@@ -1,0 +1,102 @@
+{
+  "file": "../../../sandbox/sample_target.js",
+  "language": "javascript",
+  "nodes": [
+    {
+      "id": "IM0001",
+      "type": "import",
+      "name": "express",
+      "line": 1,
+      "props": {}
+    },
+    {
+      "id": "IM0002",
+      "type": "import",
+      "name": "fs",
+      "line": 2,
+      "props": {}
+    },
+    {
+      "id": "CL0003",
+      "type": "class",
+      "name": "UserController",
+      "line": 7,
+      "props": {}
+    },
+    {
+      "id": "CA0004",
+      "type": "call",
+      "name": "eval",
+      "line": 20,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "FN0005",
+      "type": "function",
+      "name": "runSystemCommand",
+      "line": 30,
+      "props": {}
+    },
+    {
+      "id": "IM0006",
+      "type": "import",
+      "name": "child_process",
+      "line": 31,
+      "props": {}
+    },
+    {
+      "id": "CA0007",
+      "type": "call",
+      "name": "execSync",
+      "line": 32,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "FN0008",
+      "type": "function",
+      "name": "parseUserData",
+      "line": 35,
+      "props": {}
+    },
+    {
+      "id": "CA0009",
+      "type": "call",
+      "name": "Function",
+      "line": 36,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "CA0010",
+      "type": "call",
+      "name": "setTimeout",
+      "line": 39,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "CA0011",
+      "type": "call",
+      "name": "eval",
+      "line": 40,
+      "props": {
+        "dangerous": true
+      }
+    }
+  ],
+  "edges": [],
+  "metadata": {
+    "node_count": 11,
+    "edge_count": 0,
+    "dangerous_calls": 5,
+    "parser": "JavaScriptParser v0.1.0"
+  },
+  "hash": "7f9022f78c92b084f871966b1fd385e583a2f8f5f71c2564386522f41d286baf",
+  "parsed_at": "2026-04-14T21:04:16.204729+00:00"
+}
