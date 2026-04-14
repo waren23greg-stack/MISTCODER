@@ -1,0 +1,68 @@
+# CONTRIBUTORS — MISTCODER
+
+This file documents the authorship and contribution history of the MISTCODER
+project. It serves as an official record of intellectual contributions and
+is maintained by the core owner.
+
+---
+
+## Core Owner & Originator
+
+  Handle      waren23greg-stack
+  Role        Founder, Lead Architect, Core Owner
+  Joined      2025
+  Scope       All concepts, architecture, research, specifications,
+              governance documents, and module designs in this repository
+
+  Contributions:
+  -- Original conception of the MISTCODER system and pipeline
+  -- Five-module architecture (MOD-01 through MOD-05)
+  -- All research papers in /research/papers/
+  -- All module specifications in /modules/
+  -- All interface specifications in /specs/
+  -- Governance framework (CONTRIBUTING.md, SECURITY.md, LICENSE)
+  -- Ethics framework (ETHICS.md)
+
+---
+
+## External Contributors
+
+  None at this time.
+
+  External contributions are accepted by invitation only.
+  See CONTRIBUTING.md for the full process.
+
+---
+
+## Contribution Log
+
+  All contributions are permanently recorded in the Git commit history.
+  Commit hashes serve as tamper-evident proof of authorship and date.
+
+  Key commits:
+
+  c1bb248  governance: add CONTRIBUTING.md and SECURITY.md
+  ed7f661  research: add MOD-03 reasoning core architecture paper
+  ae72f9e  docs: populate all module READMEs and interface specs
+  1212035  structure: scaffold full module and research directory tree
+  0641465  feat: initial foundation — MISTCODER Phase 1
+
+---
+
+## Attribution Policy
+
+If MISTCODER concepts, architecture, or research are referenced in
+academic papers, technical articles, or other projects, the following
+attribution is required:
+
+  waren23greg-stack. MISTCODER: Multi-Intelligence Security & Threat
+  Cognition, Offensive Detection, Exploitation Reasoning.
+  GitHub, 2025. https://github.com/waren23greg-stack/MISTCODER
+
+Failure to attribute constitutes a violation of the terms set out
+in CONTRIBUTING.md.
+
+---
+
+*MISTCODER -- Core Owner: waren23greg-stack*
+*All rights reserved.*
