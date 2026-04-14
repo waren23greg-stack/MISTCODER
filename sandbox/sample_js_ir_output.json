@@ -17,14 +17,32 @@
       "props": {}
     },
     {
-      "id": "CL0003",
+      "id": "SE0003",
+      "type": "secret_flag",
+      "name": "SECRET_TOKEN",
+      "line": 4,
+      "props": {
+        "pattern": "potential_secret_assignment"
+      }
+    },
+    {
+      "id": "SE0004",
+      "type": "secret_flag",
+      "name": "db_password",
+      "line": 5,
+      "props": {
+        "pattern": "potential_secret_assignment"
+      }
+    },
+    {
+      "id": "CL0005",
       "type": "class",
       "name": "UserController",
       "line": 7,
       "props": {}
     },
     {
-      "id": "CA0004",
+      "id": "CA0006",
       "type": "call",
       "name": "eval",
       "line": 20,
@@ -33,21 +51,21 @@
       }
     },
     {
-      "id": "FN0005",
+      "id": "FN0007",
       "type": "function",
       "name": "runSystemCommand",
       "line": 30,
       "props": {}
     },
     {
-      "id": "IM0006",
+      "id": "IM0008",
       "type": "import",
       "name": "child_process",
       "line": 31,
       "props": {}
     },
     {
-      "id": "CA0007",
+      "id": "CA0009",
       "type": "call",
       "name": "execSync",
       "line": 32,
@@ -56,14 +74,14 @@
       }
     },
     {
-      "id": "FN0008",
+      "id": "FN0010",
       "type": "function",
       "name": "parseUserData",
       "line": 35,
       "props": {}
     },
     {
-      "id": "CA0009",
+      "id": "CA0011",
       "type": "call",
       "name": "Function",
       "line": 36,
@@ -72,7 +90,7 @@
       }
     },
     {
-      "id": "CA0010",
+      "id": "CA0012",
       "type": "call",
       "name": "setTimeout",
       "line": 39,
@@ -81,7 +99,7 @@
       }
     },
     {
-      "id": "CA0011",
+      "id": "CA0013",
       "type": "call",
       "name": "eval",
       "line": 40,
@@ -90,13 +108,35 @@
       }
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "src": "FN0007",
+      "dst": "CA0009",
+      "type": "calls"
+    },
+    {
+      "src": "FN0010",
+      "dst": "CA0011",
+      "type": "calls"
+    },
+    {
+      "src": "FN0010",
+      "dst": "CA0012",
+      "type": "calls"
+    },
+    {
+      "src": "FN0010",
+      "dst": "CA0013",
+      "type": "calls"
+    }
+  ],
   "metadata": {
-    "node_count": 11,
-    "edge_count": 0,
+    "node_count": 13,
+    "edge_count": 4,
     "dangerous_calls": 5,
-    "parser": "JavaScriptParser v0.1.0"
+    "secret_flags": 2,
+    "parser": "JavaScriptParser v0.2.0"
   },
   "hash": "7f9022f78c92b084f871966b1fd385e583a2f8f5f71c2564386522f41d286baf",
-  "parsed_at": "2026-04-14T21:04:16.204729+00:00"
+  "parsed_at": "2026-04-14T21:06:56.957446+00:00"
 }

@@ -227,8 +227,8 @@
     "edge_count": 6,
     "dangerous_calls": 3,
     "secret_flags": 2,
-    "parser": "PythonParser v0.1.0"
+    "parser": "PythonParser v0.2.0"
   },
   "hash": "cd04a761a68b9e01884c4c92e620a7ea580fa3a83184c5992005818ef715fdce",
-  "parsed_at": "2026-04-14T21:01:45.693783+00:00"
+  "parsed_at": "2026-04-14T21:06:57.745449+00:00"
 }
