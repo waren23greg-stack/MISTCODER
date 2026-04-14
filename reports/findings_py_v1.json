@@ -1,0 +1,57 @@
+{
+  "engine": "MISTCODER MOD-02 Static Analysis Engine v0.1.0",
+  "generated": "2026-04-14T21:15:17.838529+00:00",
+  "meta": {
+    "ir_files": [
+      "sandbox/sample_ir_output.json"
+    ]
+  },
+  "summary": {
+    "total": 3,
+    "critical": 2,
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  },
+  "findings": [
+    {
+      "finding_id": "FD0002",
+      "call_name": "eval",
+      "file": "../../../sandbox/sample_target.py",
+      "line": 18,
+      "severity": "CRITICAL",
+      "cvss_score": 10.0,
+      "cwe_id": "CWE-95",
+      "description": "Improper neutralization of directives in eval",
+      "taint_path": [
+        "FN0009",
+        "CA0010"
+      ],
+      "context": "dangerous_eval"
+    },
+    {
+      "finding_id": "FD0003",
+      "call_name": "exec",
+      "file": "../../../sandbox/sample_target.py",
+      "line": 25,
+      "severity": "CRITICAL",
+      "cvss_score": 10.0,
+      "cwe_id": "CWE-78",
+      "description": "OS command injection via exec",
+      "taint_path": [],
+      "context": "query"
+    },
+    {
+      "finding_id": "FD0001",
+      "call_name": "os.system",
+      "file": "../../../sandbox/sample_target.py",
+      "line": 14,
+      "severity": "HIGH",
+      "cvss_score": 9.1,
+      "cwe_id": "CWE-78",
+      "description": "OS command injection via os.system",
+      "taint_path": [],
+      "context": "run_command"
+    }
+  ]
+}

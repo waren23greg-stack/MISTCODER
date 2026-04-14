@@ -382,6 +382,7 @@ class Reporter:
         print()
 
     def export_json(self, report, output_path):
+        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as fh:
             json.dump(report, fh, indent=2)
         print(f"[MOD-02] Report exported to {output_path}")
