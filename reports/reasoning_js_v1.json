@@ -1,0 +1,183 @@
+{
+  "engine": "MISTCODER MOD-03 Reasoning Core v0.1.0",
+  "generated": "2026-04-14T21:20:40.624239+00:00",
+  "file": "../../../sandbox/sample_target.js",
+  "merkle_root": "7609375301983d188916ab72b170d939d6fe0145e54746b7e7417d831f37c13b",
+  "audit": {
+    "chain_valid": true,
+    "broken_at": null,
+    "length": 5,
+    "head_hash": "073229ab1d9b97bb8d9d4f7893c74e5c1ee13c8c6341f5200df2bfbaf214e9ec"
+  },
+  "entropy_findings": [
+    {
+      "node_id": "SE0003",
+      "node_type": "secret_flag",
+      "field": "props.pattern",
+      "value": "potential_secret_assignment",
+      "entropy": 3.5879,
+      "label": "WARN_ENTROPY",
+      "line": 4
+    },
+    {
+      "node_id": "SE0004",
+      "node_type": "secret_flag",
+      "field": "props.pattern",
+      "value": "potential_secret_assignment",
+      "entropy": 3.5879,
+      "label": "WARN_ENTROPY",
+      "line": 5
+    },
+    {
+      "node_id": "FN0007",
+      "node_type": "function",
+      "field": "name",
+      "value": "runSystemCommand",
+      "entropy": 3.5778,
+      "label": "WARN_ENTROPY",
+      "line": 30
+    }
+  ],
+  "attack_chains": [
+    {
+      "sink_id": "CA0009",
+      "sink_name": "execSync",
+      "sink_line": 32,
+      "chain": [
+        "FN0007",
+        "CA0009"
+      ],
+      "chain_names": [
+        "runSystemCommand",
+        "execSync"
+      ],
+      "depth": 2,
+      "risk_score": 3.0
+    },
+    {
+      "sink_id": "CA0011",
+      "sink_name": "Function",
+      "sink_line": 36,
+      "chain": [
+        "FN0010",
+        "CA0011"
+      ],
+      "chain_names": [
+        "parseUserData",
+        "Function"
+      ],
+      "depth": 2,
+      "risk_score": 3.0
+    },
+    {
+      "sink_id": "CA0012",
+      "sink_name": "setTimeout",
+      "sink_line": 39,
+      "chain": [
+        "FN0010",
+        "CA0012"
+      ],
+      "chain_names": [
+        "parseUserData",
+        "setTimeout"
+      ],
+      "depth": 2,
+      "risk_score": 3.0
+    },
+    {
+      "sink_id": "CA0013",
+      "sink_name": "eval",
+      "sink_line": 40,
+      "chain": [
+        "FN0010",
+        "CA0013"
+      ],
+      "chain_names": [
+        "parseUserData",
+        "eval"
+      ],
+      "depth": 2,
+      "risk_score": 3.0
+    },
+    {
+      "sink_id": "CA0006",
+      "sink_name": "eval",
+      "sink_line": 20,
+      "chain": [
+        "CA0006"
+      ],
+      "chain_names": [
+        "eval"
+      ],
+      "depth": 1,
+      "risk_score": 2.2
+    }
+  ],
+  "remediations": [
+    {
+      "call_name": "eval",
+      "urgency": "IMMEDIATE",
+      "confidence": 0.75,
+      "taint_confirmed": false,
+      "risk": "Executes arbitrary code from a string. If user-controlled, full code execution.",
+      "fix": "Replace eval() with a safe parser. For math: use ast.literal_eval() or a dedicated expression library. For JSON: use json.loads(). Never pass user input to eval().",
+      "example": "# UNSAFE\nresult = eval(user_input)\n\n# SAFE\nimport ast\nresult = ast.literal_eval(user_input)  # raises on non-literals",
+      "references": [
+        "https://cwe.mitre.org/data/definitions/95.html",
+        "https://owasp.org/www-project-top-ten/"
+      ]
+    },
+    {
+      "call_name": "eval",
+      "urgency": "IMMEDIATE",
+      "confidence": 0.75,
+      "taint_confirmed": false,
+      "risk": "Executes arbitrary code from a string. If user-controlled, full code execution.",
+      "fix": "Replace eval() with a safe parser. For math: use ast.literal_eval() or a dedicated expression library. For JSON: use json.loads(). Never pass user input to eval().",
+      "example": "# UNSAFE\nresult = eval(user_input)\n\n# SAFE\nimport ast\nresult = ast.literal_eval(user_input)  # raises on non-literals",
+      "references": [
+        "https://cwe.mitre.org/data/definitions/95.html",
+        "https://owasp.org/www-project-top-ten/"
+      ]
+    },
+    {
+      "call_name": "Function",
+      "urgency": "IMMEDIATE",
+      "confidence": 0.75,
+      "taint_confirmed": false,
+      "risk": "Dynamically constructs and executes a function from a string. Equivalent to eval().",
+      "fix": "Eliminate dynamic function construction entirely. Use a lookup table (object/map) to map user input to pre-defined safe functions.",
+      "example": "// UNSAFE\nFunction('return ' + data)()\n\n// SAFE\nconst handlers = { 'action1': fn1, 'action2': fn2 };\n(handlers[data] || (() => {}))();",
+      "references": [
+        "https://cwe.mitre.org/data/definitions/95.html",
+        "https://owasp.org/www-project-top-ten/"
+      ]
+    },
+    {
+      "call_name": "execSync",
+      "urgency": "IMMEDIATE",
+      "confidence": 0.75,
+      "taint_confirmed": false,
+      "risk": "Synchronous shell command. Blocks event loop and enables command injection.",
+      "fix": "Use child_process.execFile() with an explicit args array. Sanitize all inputs with a whitelist before passing to any exec function.",
+      "example": "// UNSAFE\nexecSync(cmd)\n\n// SAFE\nconst { execFile } = require('child_process');\nexecFile('command', [arg1, arg2], callback);",
+      "references": [
+        "https://cwe.mitre.org/data/definitions/78.html",
+        "https://owasp.org/www-project-top-ten/"
+      ]
+    },
+    {
+      "call_name": "setTimeout",
+      "urgency": "SCHEDULED",
+      "confidence": 0.75,
+      "taint_confirmed": false,
+      "risk": "Deferred code execution via string argument. eval() equivalent on a timer.",
+      "fix": "Always pass a function reference, never a string, to setTimeout.",
+      "example": "// UNSAFE\nsetTimeout(\"eval(code)\", 5000)\n\n// SAFE\nsetTimeout(() => { safeFunction(); }, 5000);",
+      "references": [
+        "https://cwe.mitre.org/data/definitions/95.html",
+        "https://owasp.org/www-project-top-ten/"
+      ]
+    }
+  ]
+}
