@@ -25,7 +25,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Set
 
-from .path_analyzer import AttackPath, PathAnalysisResult
+from path_analyzer import AttackPath, PathAnalysisResult
 
 
 # ──────────────────────────────────────────────────────────────────────────────

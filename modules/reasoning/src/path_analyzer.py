@@ -21,7 +21,7 @@ import heapq
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-from .attack_graph import AttackGraph, AttackNode, AttackEdge, NodeKind, Severity
+from attack_graph import AttackGraph, AttackNode, AttackEdge, NodeKind, Severity
 
 
 # ──────────────────────────────────────────────────────────────────────────────
