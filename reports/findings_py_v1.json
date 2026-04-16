@@ -1,6 +1,6 @@
 {
   "engine": "MISTCODER MOD-02 Static Analysis Engine v0.1.0",
-  "generated": "2026-04-14T21:20:38.511489+00:00",
+  "generated": "2026-04-16T14:26:52.221353+00:00",
   "meta": {
     "ir_files": [
       "sandbox/sample_ir_output.json"
@@ -17,7 +17,7 @@
     {
       "finding_id": "FD0002",
       "call_name": "eval",
-      "file": "../../../sandbox/sample_target.py",
+      "file": "sandbox/sample_target.py",
       "line": 18,
       "severity": "CRITICAL",
       "cvss_score": 10.0,
@@ -32,7 +32,7 @@
     {
       "finding_id": "FD0003",
       "call_name": "exec",
-      "file": "../../../sandbox/sample_target.py",
+      "file": "sandbox/sample_target.py",
       "line": 25,
       "severity": "CRITICAL",
       "cvss_score": 10.0,
@@ -44,7 +44,7 @@
     {
       "finding_id": "FD0001",
       "call_name": "os.system",
-      "file": "../../../sandbox/sample_target.py",
+      "file": "sandbox/sample_target.py",
       "line": 14,
       "severity": "HIGH",
       "cvss_score": 9.1,

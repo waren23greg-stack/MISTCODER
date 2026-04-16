@@ -1,6 +1,6 @@
 {
   "engine": "MISTCODER MOD-02 Static Analysis Engine v0.1.0",
-  "generated": "2026-04-14T21:20:40.112233+00:00",
+  "generated": "2026-04-16T14:26:56.578834+00:00",
   "meta": {
     "ir_files": [
       "sandbox/sample_js_ir_output.json"
@@ -17,7 +17,7 @@
     {
       "finding_id": "FD0001",
       "call_name": "eval",
-      "file": "../../../sandbox/sample_target.js",
+      "file": "sandbox/sample_target.js",
       "line": 20,
       "severity": "CRITICAL",
       "cvss_score": 10.0,
@@ -29,7 +29,7 @@
     {
       "finding_id": "FD0005",
       "call_name": "eval",
-      "file": "../../../sandbox/sample_target.js",
+      "file": "sandbox/sample_target.js",
       "line": 40,
       "severity": "CRITICAL",
       "cvss_score": 10.0,
@@ -41,7 +41,7 @@
     {
       "finding_id": "FD0003",
       "call_name": "Function",
-      "file": "../../../sandbox/sample_target.js",
+      "file": "sandbox/sample_target.js",
       "line": 36,
       "severity": "CRITICAL",
       "cvss_score": 9.4,
@@ -53,7 +53,7 @@
     {
       "finding_id": "FD0002",
       "call_name": "execSync",
-      "file": "../../../sandbox/sample_target.js",
+      "file": "sandbox/sample_target.js",
       "line": 32,
       "severity": "CRITICAL",
       "cvss_score": 9.3,
@@ -65,7 +65,7 @@
     {
       "finding_id": "FD0004",
       "call_name": "setTimeout",
-      "file": "../../../sandbox/sample_target.js",
+      "file": "sandbox/sample_target.js",
       "line": 39,
       "severity": "MEDIUM",
       "cvss_score": 5.3,
