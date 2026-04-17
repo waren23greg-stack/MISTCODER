@@ -1,138 +1,390 @@
 {
-  "engine": "MISTCODER MOD-03 Reasoning Core v0.1.0",
-  "generated": "2026-04-14T21:20:39.050796+00:00",
-  "file": "../../../sandbox/sample_target.py",
-  "merkle_root": "1eed22db528c73e67c3aa27b9f40240f1121b5245277af5bbbe06ff2fe7ebc0d",
-  "audit": {
-    "chain_valid": true,
-    "broken_at": null,
-    "length": 3,
-    "head_hash": "3107c8e79583dba88eec683ef21803aa161856892e420b54274a48ba656d19de"
+  "meta": {
+    "target": "sample_ir_output.json",
+    "elapsed_ms": 0.3,
+    "warnings": [
+      "No viable attack paths found from source to sink."
+    ]
   },
-  "entropy_findings": [
-    {
-      "node_id": "CA0016",
-      "node_type": "call",
-      "field": "name",
-      "value": "hashlib.sha256(data.encode()).hexdigest",
-      "entropy": 4.0991,
-      "label": "WARN_ENTROPY",
-      "line": 28
-    },
-    {
-      "node_id": "SE0004",
-      "node_type": "secret_flag",
-      "field": "props.pattern",
-      "value": "potential_secret_assignment",
-      "entropy": 3.5879,
-      "label": "WARN_ENTROPY",
-      "line": 5
-    },
-    {
-      "node_id": "SE0005",
-      "node_type": "secret_flag",
-      "field": "props.pattern",
-      "value": "potential_secret_assignment",
-      "entropy": 3.5879,
-      "label": "WARN_ENTROPY",
-      "line": 6
-    },
-    {
-      "node_id": "FN0009",
-      "node_type": "function",
-      "field": "name",
-      "value": "dangerous_eval",
-      "entropy": 3.5216,
-      "label": "WARN_ENTROPY",
-      "line": 17
+  "attack_graph": {
+    "name": "sample_ir_output.json",
+    "node_count": 7,
+    "edge_count": 1,
+    "has_cycles": false,
+    "nodes": [
+      {
+        "node_id": "ENTRY::INTERNET",
+        "kind": "SOURCE",
+        "label": "Untrusted Internet Input",
+        "severity": "INFO",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 10.0,
+        "reachability_score": 0.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "SINK::RCE",
+        "kind": "SINK",
+        "label": "Remote Code Execution",
+        "severity": "CRITICAL",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 1.0,
+        "reachability_score": 1.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "SINK::DATA_EXFIL",
+        "kind": "SINK",
+        "label": "Sensitive Data Exfiltration",
+        "severity": "CRITICAL",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 1.0,
+        "reachability_score": 1.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "SINK::DOS",
+        "kind": "SINK",
+        "label": "Denial of Service",
+        "severity": "HIGH",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 2.5,
+        "reachability_score": 1.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "FD0002",
+        "kind": "VULNERABILITY",
+        "label": "EVAL",
+        "severity": "CRITICAL",
+        "cwe_ids": [
+          "CWE-95"
+        ],
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 18,
+        "line_end": 18,
+        "confidence": 1.0,
+        "weight": 1.0,
+        "reachability_score": 0.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "FD0003",
+        "kind": "VULNERABILITY",
+        "label": "EXEC",
+        "severity": "CRITICAL",
+        "cwe_ids": [
+          "CWE-78"
+        ],
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 25,
+        "line_end": 25,
+        "confidence": 1.0,
+        "weight": 1.0,
+        "reachability_score": 1.0,
+        "impact_score": 0.3333333333333333,
+        "properties": {}
+      },
+      {
+        "node_id": "FD0001",
+        "kind": "VULNERABILITY",
+        "label": "OS.SYSTEM",
+        "severity": "HIGH",
+        "cwe_ids": [
+          "CWE-78"
+        ],
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 14,
+        "line_end": 14,
+        "confidence": 1.0,
+        "weight": 2.5,
+        "reachability_score": 0.0,
+        "impact_score": 0.0,
+        "properties": {}
+      }
+    ],
+    "edges": [
+      {
+        "edge_id": "34d9b3bdf182",
+        "source_id": "FD0003",
+        "target_id": "SINK::RCE",
+        "kind": "DATA_FLOW",
+        "label": "EXEC reaches SINK::RCE",
+        "weight": 1.0,
+        "probability": 0.9,
+        "conditions": []
+      }
+    ]
+  },
+  "path_analysis": {
+    "total_viable_paths": 0,
+    "unreachable_count": 2,
+    "shortest_paths": [],
+    "top_paths": [],
+    "unreachable_nodes": [
+      {
+        "node_id": "FD0002",
+        "kind": "VULNERABILITY",
+        "label": "EVAL",
+        "severity": "CRITICAL",
+        "cwe_ids": [
+          "CWE-95"
+        ],
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 18,
+        "line_end": 18,
+        "confidence": 1.0,
+        "weight": 1.0,
+        "reachability_score": 0.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "FD0001",
+        "kind": "VULNERABILITY",
+        "label": "OS.SYSTEM",
+        "severity": "HIGH",
+        "cwe_ids": [
+          "CWE-78"
+        ],
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 14,
+        "line_end": 14,
+        "confidence": 1.0,
+        "weight": 2.5,
+        "reachability_score": 0.0,
+        "impact_score": 0.0,
+        "properties": {}
+      }
+    ],
+    "blast_radius": {
+      "FD0002": 0,
+      "FD0003": 1,
+      "FD0001": 0
     }
-  ],
-  "attack_chains": [
-    {
-      "sink_id": "CA0008",
-      "sink_name": "os.system",
-      "sink_line": 14,
-      "chain": [
-        "FN0007",
-        "CA0008"
-      ],
-      "chain_names": [
-        "run_command",
-        "os.system"
-      ],
-      "depth": 2,
-      "risk_score": 3.0
-    },
-    {
-      "sink_id": "CA0010",
-      "sink_name": "eval",
-      "sink_line": 18,
-      "chain": [
-        "FN0009",
-        "CA0010"
-      ],
-      "chain_names": [
-        "dangerous_eval",
-        "eval"
-      ],
-      "depth": 2,
-      "risk_score": 3.0
-    },
-    {
-      "sink_id": "CA0014",
-      "sink_name": "exec",
-      "sink_line": 25,
-      "chain": [
-        "FN0013",
-        "CA0014"
-      ],
-      "chain_names": [
-        "query",
-        "exec"
-      ],
-      "depth": 2,
-      "risk_score": 3.0
-    }
-  ],
-  "remediations": [
-    {
-      "call_name": "eval",
-      "urgency": "IMMEDIATE",
-      "confidence": 0.95,
-      "taint_confirmed": true,
-      "risk": "Executes arbitrary code from a string. If user-controlled, full code execution.",
-      "fix": "Replace eval() with a safe parser. For math: use ast.literal_eval() or a dedicated expression library. For JSON: use json.loads(). Never pass user input to eval().",
-      "example": "# UNSAFE\nresult = eval(user_input)\n\n# SAFE\nimport ast\nresult = ast.literal_eval(user_input)  # raises on non-literals",
-      "references": [
-        "https://cwe.mitre.org/data/definitions/95.html",
-        "https://owasp.org/www-project-top-ten/"
-      ]
-    },
-    {
-      "call_name": "exec",
-      "urgency": "IMMEDIATE",
-      "confidence": 0.75,
-      "taint_confirmed": false,
-      "risk": "Executes OS commands directly. Enables remote code execution if user-controlled.",
-      "fix": "Use subprocess with a list argument (never shell=True with user input). Validate and whitelist all command arguments before execution.",
-      "example": "# UNSAFE\nexec(raw_sql)\n\n# SAFE\n# Use parameterized queries via your ORM or DB driver\ncursor.execute(query, (param,))",
-      "references": [
-        "https://cwe.mitre.org/data/definitions/78.html",
-        "https://owasp.org/www-project-top-ten/"
-      ]
-    },
-    {
-      "call_name": "os.system",
-      "urgency": "HIGH",
-      "confidence": 0.75,
-      "taint_confirmed": false,
-      "risk": "Passes a string directly to the OS shell. Shell metacharacters enable injection.",
-      "fix": "Replace with subprocess.run(args_list, shell=False). Never construct command strings from user input.",
-      "example": "# UNSAFE\nos.system(cmd)\n\n# SAFE\nimport subprocess\nsubprocess.run(['command', arg1, arg2], shell=False, check=True)",
-      "references": [
-        "https://cwe.mitre.org/data/definitions/78.html",
-        "https://owasp.org/www-project-top-ten/"
-      ]
-    }
-  ]
+  },
+  "chain_report": {
+    "chain_count": 0,
+    "max_score": 0.0,
+    "unique_tactics": [],
+    "chains": []
+  },
+  "target_risk": {
+    "aggregate_score": 7.86,
+    "risk_level": "HIGH",
+    "summary": "MISTCODER Risk Assessment \u2014 Level: HIGH  (7.9/10)\n\n  7 findings detected, 4 reachable from attack surface.\n  0 findings amplified by multi-step exploitation chains.\n  Highest priority: Remote Code Execution at None:None (score 4.7).\n\n  Recommendation: Address all CRITICAL and HIGH findings before deployment.\n  Focus remediation on the top-5 attack surface nodes identified above.",
+    "top_attack_surface": [
+      "Remote Code Execution (CRITICAL) \u2014 score 4.7",
+      "Sensitive Data Exfiltration (CRITICAL) \u2014 score 4.7",
+      "Denial of Service (HIGH) \u2014 score 4.7",
+      "EXEC (CRITICAL) \u2014 score 4.7"
+    ],
+    "findings": [
+      {
+        "node_id": "ENTRY::INTERNET",
+        "label": "Untrusted Internet Input",
+        "file_path": null,
+        "line_start": null,
+        "severity": "INFO",
+        "cvss_base": 0.0,
+        "chain_amplified": 0.0,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 0.0,
+        "remediation_priority": 7
+      },
+      {
+        "node_id": "SINK::RCE",
+        "label": "Remote Code Execution",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 2
+      },
+      {
+        "node_id": "SINK::DATA_EXFIL",
+        "label": "Sensitive Data Exfiltration",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 3
+      },
+      {
+        "node_id": "SINK::DOS",
+        "label": "Denial of Service",
+        "file_path": null,
+        "line_start": null,
+        "severity": "HIGH",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 4
+      },
+      {
+        "node_id": "FD0002",
+        "label": "EVAL",
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 18,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 1.4,
+        "remediation_priority": 5
+      },
+      {
+        "node_id": "FD0003",
+        "label": "EXEC",
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 25,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 1,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 1
+      },
+      {
+        "node_id": "FD0001",
+        "label": "OS.SYSTEM",
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 14,
+        "severity": "HIGH",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 1.4,
+        "remediation_priority": 6
+      }
+    ],
+    "remediation_order": [
+      {
+        "node_id": "FD0003",
+        "label": "EXEC",
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 25,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 1,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 1
+      },
+      {
+        "node_id": "SINK::RCE",
+        "label": "Remote Code Execution",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 2
+      },
+      {
+        "node_id": "SINK::DATA_EXFIL",
+        "label": "Sensitive Data Exfiltration",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 3
+      },
+      {
+        "node_id": "SINK::DOS",
+        "label": "Denial of Service",
+        "file_path": null,
+        "line_start": null,
+        "severity": "HIGH",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 4
+      },
+      {
+        "node_id": "FD0002",
+        "label": "EVAL",
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 18,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 1.4,
+        "remediation_priority": 5
+      },
+      {
+        "node_id": "FD0001",
+        "label": "OS.SYSTEM",
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 14,
+        "severity": "HIGH",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 1.4,
+        "remediation_priority": 6
+      },
+      {
+        "node_id": "ENTRY::INTERNET",
+        "label": "Untrusted Internet Input",
+        "file_path": null,
+        "line_start": null,
+        "severity": "INFO",
+        "cvss_base": 0.0,
+        "chain_amplified": 0.0,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 0.0,
+        "remediation_priority": 7
+      }
+    ]
+  }
 }
