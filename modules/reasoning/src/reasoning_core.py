@@ -30,10 +30,10 @@ import time
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
-from .attack_graph   import AttackGraph, AttackGraphBuilder
-from .path_analyzer  import PathAnalyzer, PathAnalysisResult
-from .chain_detector import ChainDetector, ChainReport
-from .risk_scorer    import RiskScorer, TargetRisk
+from attack_graph   import AttackGraph, AttackGraphBuilder
+from path_analyzer  import PathAnalyzer, PathAnalysisResult
+from chain_detector import ChainDetector, ChainReport
+from risk_scorer    import RiskScorer, TargetRisk
 
 
 # ──────────────────────────────────────────────────────────────────────────────

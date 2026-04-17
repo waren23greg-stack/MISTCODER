@@ -32,9 +32,9 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from .attack_graph  import AttackGraph, AttackNode, Severity
-from .path_analyzer import PathAnalysisResult
-from .chain_detector import ChainReport
+from attack_graph  import AttackGraph, AttackNode, Severity
+from path_analyzer import PathAnalysisResult
+from chain_detector import ChainReport
 
 
 # ──────────────────────────────────────────────────────────────────────────────
