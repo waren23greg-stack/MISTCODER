@@ -1,0 +1,5 @@
+# MISTCODER -- Python Dependencies
+# Core pipeline requires Python 3.11+ stdlib only
+# No external dependencies required for MOD-01, MOD-02, MOD-03
+
+# Optional enhanced dependencies -- see requirements-optional.txt

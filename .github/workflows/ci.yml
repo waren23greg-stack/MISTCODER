@@ -1,0 +1,44 @@
+name: MISTCODER CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run Test Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: MOD-01 Ingestion Engine tests
+        run: python -m pytest modules/ingestion/tests/test_parser.py -v
+
+      - name: MOD-02 Static Analysis Engine tests
+        run: python -m pytest modules/analysis/tests/test_analysis_engine.py -v
+
+      - name: Pipeline smoke test
+        run: |
+          python -c "
+          import sys
+          sys.path.insert(0, 'modules/ingestion/src')
+          sys.path.insert(0, 'modules/analysis/src')
+          from parser import PythonParser
+          from analysis_engine import AnalysisEngine
+          ir = PythonParser('x = eval(input())\n', 'test.py').parse()
+          report = AnalysisEngine().analyze(ir)
+          assert report['metadata']['finding_count'] > 0
+          print('Pipeline smoke test: PASS')
+          print(f'Findings detected: {report[\"metadata\"][\"finding_count\"]}')
+          "
