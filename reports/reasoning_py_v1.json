@@ -1,15 +1,13 @@
 {
   "meta": {
     "target": "sample_ir_output.json",
-    "elapsed_ms": 0.3,
-    "warnings": [
-      "No viable attack paths found from source to sink."
-    ]
+    "elapsed_ms": 1.0,
+    "warnings": []
   },
   "attack_graph": {
     "name": "sample_ir_output.json",
     "node_count": 7,
-    "edge_count": 1,
+    "edge_count": 11,
     "has_cycles": false,
     "nodes": [
       {
@@ -23,7 +21,7 @@
         "line_end": null,
         "confidence": 1.0,
         "weight": 10.0,
-        "reachability_score": 0.0,
+        "reachability_score": 1.0,
         "impact_score": 0.0,
         "properties": {}
       },
@@ -75,7 +73,7 @@
       {
         "node_id": "FD0002",
         "kind": "VULNERABILITY",
-        "label": "EVAL",
+        "label": "RCE_INJECTION",
         "severity": "CRITICAL",
         "cwe_ids": [
           "CWE-95"
@@ -85,14 +83,17 @@
         "line_end": 18,
         "confidence": 1.0,
         "weight": 1.0,
-        "reachability_score": 0.0,
-        "impact_score": 0.0,
-        "properties": {}
+        "reachability_score": 1.0,
+        "impact_score": 0.6666666666666666,
+        "properties": {
+          "original_call": "eval",
+          "taint_confirmed": true
+        }
       },
       {
         "node_id": "FD0003",
         "kind": "VULNERABILITY",
-        "label": "EXEC",
+        "label": "RCE_COMMAND_EXEC",
         "severity": "CRITICAL",
         "cwe_ids": [
           "CWE-78"
@@ -104,12 +105,15 @@
         "weight": 1.0,
         "reachability_score": 1.0,
         "impact_score": 0.3333333333333333,
-        "properties": {}
+        "properties": {
+          "original_call": "exec",
+          "taint_confirmed": false
+        }
       },
       {
         "node_id": "FD0001",
         "kind": "VULNERABILITY",
-        "label": "OS.SYSTEM",
+        "label": "RCE_COMMAND_EXEC",
         "severity": "HIGH",
         "cwe_ids": [
           "CWE-78"
@@ -117,88 +121,1231 @@
         "file_path": "sandbox/sample_target.py",
         "line_start": 14,
         "line_end": 14,
-        "confidence": 1.0,
-        "weight": 2.5,
-        "reachability_score": 0.0,
-        "impact_score": 0.0,
-        "properties": {}
+        "confidence": 0.9099999999999999,
+        "weight": 2.7472527472527477,
+        "reachability_score": 1.0,
+        "impact_score": 0.3333333333333333,
+        "properties": {
+          "original_call": "os.system",
+          "taint_confirmed": false
+        }
       }
     ],
     "edges": [
+      {
+        "edge_id": "6fe737ccf0e0",
+        "source_id": "ENTRY::INTERNET",
+        "target_id": "FD0002",
+        "kind": "DATA_FLOW",
+        "label": "attacker reaches RCE_INJECTION",
+        "weight": 1.0,
+        "probability": 1.0,
+        "conditions": []
+      },
+      {
+        "edge_id": "89610012247a",
+        "source_id": "FD0002",
+        "target_id": "FD0003",
+        "kind": "EXPLOIT_CHAIN",
+        "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+        "weight": 1.0,
+        "probability": 0.8,
+        "conditions": []
+      },
+      {
+        "edge_id": "83cf12d49d4a",
+        "source_id": "FD0002",
+        "target_id": "FD0001",
+        "kind": "EXPLOIT_CHAIN",
+        "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+        "weight": 1.8736263736263739,
+        "probability": 0.728,
+        "conditions": []
+      },
+      {
+        "edge_id": "296679b42f27",
+        "source_id": "FD0002",
+        "target_id": "SINK::RCE",
+        "kind": "DATA_FLOW",
+        "label": "RCE_INJECTION reaches SINK::RCE",
+        "weight": 1.0,
+        "probability": 0.9,
+        "conditions": []
+      },
+      {
+        "edge_id": "4101cd5cd102",
+        "source_id": "FD0002",
+        "target_id": "SINK::DATA_EXFIL",
+        "kind": "DATA_FLOW",
+        "label": "RCE_INJECTION reaches SINK::DATA_EXFIL",
+        "weight": 1.0,
+        "probability": 0.9,
+        "conditions": []
+      },
       {
         "edge_id": "34d9b3bdf182",
         "source_id": "FD0003",
         "target_id": "SINK::RCE",
         "kind": "DATA_FLOW",
-        "label": "EXEC reaches SINK::RCE",
+        "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
         "weight": 1.0,
         "probability": 0.9,
+        "conditions": []
+      },
+      {
+        "edge_id": "34d9b3bdf182",
+        "source_id": "FD0003",
+        "target_id": "SINK::RCE",
+        "kind": "DATA_FLOW",
+        "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+        "weight": 1.0,
+        "probability": 0.9,
+        "conditions": []
+      },
+      {
+        "edge_id": "34d9b3bdf182",
+        "source_id": "FD0003",
+        "target_id": "SINK::RCE",
+        "kind": "DATA_FLOW",
+        "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+        "weight": 1.0,
+        "probability": 0.9,
+        "conditions": []
+      },
+      {
+        "edge_id": "5322d0be410d",
+        "source_id": "FD0001",
+        "target_id": "SINK::RCE",
+        "kind": "DATA_FLOW",
+        "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+        "weight": 1.0,
+        "probability": 0.819,
+        "conditions": []
+      },
+      {
+        "edge_id": "5322d0be410d",
+        "source_id": "FD0001",
+        "target_id": "SINK::RCE",
+        "kind": "DATA_FLOW",
+        "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+        "weight": 1.0,
+        "probability": 0.819,
+        "conditions": []
+      },
+      {
+        "edge_id": "5322d0be410d",
+        "source_id": "FD0001",
+        "target_id": "SINK::RCE",
+        "kind": "DATA_FLOW",
+        "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+        "weight": 1.0,
+        "probability": 0.819,
         "conditions": []
       }
     ]
   },
   "path_analysis": {
-    "total_viable_paths": 0,
-    "unreachable_count": 2,
-    "shortest_paths": [],
-    "top_paths": [],
-    "unreachable_nodes": [
+    "total_viable_paths": 8,
+    "unreachable_count": 0,
+    "shortest_paths": [
       {
-        "node_id": "FD0002",
-        "kind": "VULNERABILITY",
-        "label": "EVAL",
-        "severity": "CRITICAL",
-        "cwe_ids": [
-          "CWE-95"
+        "length": 3,
+        "total_weight": 2.1111,
+        "probability": 0.9,
+        "exploitability_score": 42.15,
+        "critical_nodes": 2,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "Sensitive Data Exfiltration"
         ],
-        "file_path": "sandbox/sample_target.py",
-        "line_start": 18,
-        "line_end": 18,
-        "confidence": 1.0,
-        "weight": 1.0,
-        "reachability_score": 0.0,
-        "impact_score": 0.0,
-        "properties": {}
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "SINK::DATA_EXFIL",
+            "kind": "SINK",
+            "label": "Sensitive Data Exfiltration",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "4101cd5cd102",
+            "source_id": "FD0002",
+            "target_id": "SINK::DATA_EXFIL",
+            "kind": "DATA_FLOW",
+            "label": "RCE_INJECTION reaches SINK::DATA_EXFIL",
+            "weight": 1.0,
+            "probability": 0.9,
+            "conditions": []
+          }
+        ]
       },
       {
-        "node_id": "FD0001",
-        "kind": "VULNERABILITY",
-        "label": "OS.SYSTEM",
-        "severity": "HIGH",
-        "cwe_ids": [
-          "CWE-78"
+        "length": 3,
+        "total_weight": 2.1111,
+        "probability": 0.9,
+        "exploitability_score": 42.15,
+        "critical_nodes": 2,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "Remote Code Execution"
         ],
-        "file_path": "sandbox/sample_target.py",
-        "line_start": 14,
-        "line_end": 14,
-        "confidence": 1.0,
-        "weight": 2.5,
-        "reachability_score": 0.0,
-        "impact_score": 0.0,
-        "properties": {}
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "296679b42f27",
+            "source_id": "FD0002",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_INJECTION reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.9,
+            "conditions": []
+          }
+        ]
       }
     ],
+    "top_paths": [
+      {
+        "length": 3,
+        "total_weight": 2.1111,
+        "probability": 0.9,
+        "exploitability_score": 42.15,
+        "critical_nodes": 2,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "Remote Code Execution"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "296679b42f27",
+            "source_id": "FD0002",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_INJECTION reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.9,
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "length": 3,
+        "total_weight": 2.1111,
+        "probability": 0.9,
+        "exploitability_score": 42.15,
+        "critical_nodes": 2,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "Sensitive Data Exfiltration"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "SINK::DATA_EXFIL",
+            "kind": "SINK",
+            "label": "Sensitive Data Exfiltration",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "4101cd5cd102",
+            "source_id": "FD0002",
+            "target_id": "SINK::DATA_EXFIL",
+            "kind": "DATA_FLOW",
+            "label": "RCE_INJECTION reaches SINK::DATA_EXFIL",
+            "weight": 1.0,
+            "probability": 0.9,
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "length": 4,
+        "total_weight": 3.3611,
+        "probability": 0.72,
+        "exploitability_score": 29.12,
+        "critical_nodes": 3,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "RCE_COMMAND_EXEC",
+          "Remote Code Execution"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "FD0003",
+            "kind": "VULNERABILITY",
+            "label": "RCE_COMMAND_EXEC",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-78"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 25,
+            "line_end": 25,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.3333333333333333,
+            "properties": {
+              "original_call": "exec",
+              "taint_confirmed": false
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "89610012247a",
+            "source_id": "FD0002",
+            "target_id": "FD0003",
+            "kind": "EXPLOIT_CHAIN",
+            "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+            "weight": 1.0,
+            "probability": 0.8,
+            "conditions": []
+          },
+          {
+            "edge_id": "34d9b3bdf182",
+            "source_id": "FD0003",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.9,
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "length": 4,
+        "total_weight": 3.3611,
+        "probability": 0.72,
+        "exploitability_score": 29.12,
+        "critical_nodes": 3,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "RCE_COMMAND_EXEC",
+          "Remote Code Execution"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "FD0003",
+            "kind": "VULNERABILITY",
+            "label": "RCE_COMMAND_EXEC",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-78"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 25,
+            "line_end": 25,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.3333333333333333,
+            "properties": {
+              "original_call": "exec",
+              "taint_confirmed": false
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "89610012247a",
+            "source_id": "FD0002",
+            "target_id": "FD0003",
+            "kind": "EXPLOIT_CHAIN",
+            "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+            "weight": 1.0,
+            "probability": 0.8,
+            "conditions": []
+          },
+          {
+            "edge_id": "34d9b3bdf182",
+            "source_id": "FD0003",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.9,
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "length": 4,
+        "total_weight": 3.3611,
+        "probability": 0.72,
+        "exploitability_score": 29.12,
+        "critical_nodes": 3,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "RCE_COMMAND_EXEC",
+          "Remote Code Execution"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "FD0003",
+            "kind": "VULNERABILITY",
+            "label": "RCE_COMMAND_EXEC",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-78"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 25,
+            "line_end": 25,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.3333333333333333,
+            "properties": {
+              "original_call": "exec",
+              "taint_confirmed": false
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "89610012247a",
+            "source_id": "FD0002",
+            "target_id": "FD0003",
+            "kind": "EXPLOIT_CHAIN",
+            "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+            "weight": 1.0,
+            "probability": 0.8,
+            "conditions": []
+          },
+          {
+            "edge_id": "34d9b3bdf182",
+            "source_id": "FD0003",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.9,
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "length": 4,
+        "total_weight": 4.7947,
+        "probability": 0.5962,
+        "exploitability_score": 21.63,
+        "critical_nodes": 2,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "RCE_COMMAND_EXEC",
+          "Remote Code Execution"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "FD0001",
+            "kind": "VULNERABILITY",
+            "label": "RCE_COMMAND_EXEC",
+            "severity": "HIGH",
+            "cwe_ids": [
+              "CWE-78"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 14,
+            "line_end": 14,
+            "confidence": 0.9099999999999999,
+            "weight": 2.7472527472527477,
+            "reachability_score": 1.0,
+            "impact_score": 0.3333333333333333,
+            "properties": {
+              "original_call": "os.system",
+              "taint_confirmed": false
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "83cf12d49d4a",
+            "source_id": "FD0002",
+            "target_id": "FD0001",
+            "kind": "EXPLOIT_CHAIN",
+            "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+            "weight": 1.8736263736263739,
+            "probability": 0.728,
+            "conditions": []
+          },
+          {
+            "edge_id": "5322d0be410d",
+            "source_id": "FD0001",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.819,
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "length": 4,
+        "total_weight": 4.7947,
+        "probability": 0.5962,
+        "exploitability_score": 21.63,
+        "critical_nodes": 2,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "RCE_COMMAND_EXEC",
+          "Remote Code Execution"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "FD0001",
+            "kind": "VULNERABILITY",
+            "label": "RCE_COMMAND_EXEC",
+            "severity": "HIGH",
+            "cwe_ids": [
+              "CWE-78"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 14,
+            "line_end": 14,
+            "confidence": 0.9099999999999999,
+            "weight": 2.7472527472527477,
+            "reachability_score": 1.0,
+            "impact_score": 0.3333333333333333,
+            "properties": {
+              "original_call": "os.system",
+              "taint_confirmed": false
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "83cf12d49d4a",
+            "source_id": "FD0002",
+            "target_id": "FD0001",
+            "kind": "EXPLOIT_CHAIN",
+            "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+            "weight": 1.8736263736263739,
+            "probability": 0.728,
+            "conditions": []
+          },
+          {
+            "edge_id": "5322d0be410d",
+            "source_id": "FD0001",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.819,
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "length": 4,
+        "total_weight": 4.7947,
+        "probability": 0.5962,
+        "exploitability_score": 21.63,
+        "critical_nodes": 2,
+        "hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "RCE_COMMAND_EXEC",
+          "Remote Code Execution"
+        ],
+        "nodes": [
+          {
+            "node_id": "ENTRY::INTERNET",
+            "kind": "SOURCE",
+            "label": "Untrusted Internet Input",
+            "severity": "INFO",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 10.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          },
+          {
+            "node_id": "FD0002",
+            "kind": "VULNERABILITY",
+            "label": "RCE_INJECTION",
+            "severity": "CRITICAL",
+            "cwe_ids": [
+              "CWE-95"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 18,
+            "line_end": 18,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.6666666666666666,
+            "properties": {
+              "original_call": "eval",
+              "taint_confirmed": true
+            }
+          },
+          {
+            "node_id": "FD0001",
+            "kind": "VULNERABILITY",
+            "label": "RCE_COMMAND_EXEC",
+            "severity": "HIGH",
+            "cwe_ids": [
+              "CWE-78"
+            ],
+            "file_path": "sandbox/sample_target.py",
+            "line_start": 14,
+            "line_end": 14,
+            "confidence": 0.9099999999999999,
+            "weight": 2.7472527472527477,
+            "reachability_score": 1.0,
+            "impact_score": 0.3333333333333333,
+            "properties": {
+              "original_call": "os.system",
+              "taint_confirmed": false
+            }
+          },
+          {
+            "node_id": "SINK::RCE",
+            "kind": "SINK",
+            "label": "Remote Code Execution",
+            "severity": "CRITICAL",
+            "cwe_ids": [],
+            "file_path": null,
+            "line_start": null,
+            "line_end": null,
+            "confidence": 1.0,
+            "weight": 1.0,
+            "reachability_score": 1.0,
+            "impact_score": 0.0,
+            "properties": {}
+          }
+        ],
+        "edges": [
+          {
+            "edge_id": "6fe737ccf0e0",
+            "source_id": "ENTRY::INTERNET",
+            "target_id": "FD0002",
+            "kind": "DATA_FLOW",
+            "label": "attacker reaches RCE_INJECTION",
+            "weight": 1.0,
+            "probability": 1.0,
+            "conditions": []
+          },
+          {
+            "edge_id": "83cf12d49d4a",
+            "source_id": "FD0002",
+            "target_id": "FD0001",
+            "kind": "EXPLOIT_CHAIN",
+            "label": "RCE_INJECTION \u2192 RCE_COMMAND_EXEC",
+            "weight": 1.8736263736263739,
+            "probability": 0.728,
+            "conditions": []
+          },
+          {
+            "edge_id": "5322d0be410d",
+            "source_id": "FD0001",
+            "target_id": "SINK::RCE",
+            "kind": "DATA_FLOW",
+            "label": "RCE_COMMAND_EXEC reaches SINK::RCE",
+            "weight": 1.0,
+            "probability": 0.819,
+            "conditions": []
+          }
+        ]
+      }
+    ],
+    "unreachable_nodes": [],
     "blast_radius": {
-      "FD0002": 0,
+      "FD0002": 2,
       "FD0003": 1,
-      "FD0001": 0
+      "FD0001": 1
     }
   },
   "chain_report": {
-    "chain_count": 0,
-    "max_score": 0.0,
-    "unique_tactics": [],
-    "chains": []
+    "chain_count": 1,
+    "max_score": 59.02,
+    "unique_tactics": [
+      "TA0001 Initial Access",
+      "TA0010 Exfiltration"
+    ],
+    "chains": [
+      {
+        "chain_name": "Injection \u2192 Data Exfiltration",
+        "description": "Classic SQL/NoSQL/command injection leading directly to sensitive data exfiltration.",
+        "mitre_tactics": [
+          "TA0001 Initial Access",
+          "TA0010 Exfiltration"
+        ],
+        "cve_examples": [
+          "CVE-2019-0708"
+        ],
+        "risk_multiplier": 1.4,
+        "adjusted_score": 59.02,
+        "path_hops": [
+          "Untrusted Internet Input",
+          "RCE_INJECTION",
+          "Sensitive Data Exfiltration"
+        ],
+        "matched_nodes": [
+          "FD0002",
+          "SINK::DATA_EXFIL"
+        ]
+      }
+    ]
   },
   "target_risk": {
-    "aggregate_score": 7.86,
+    "aggregate_score": 8.88,
     "risk_level": "HIGH",
-    "summary": "MISTCODER Risk Assessment \u2014 Level: HIGH  (7.9/10)\n\n  7 findings detected, 4 reachable from attack surface.\n  0 findings amplified by multi-step exploitation chains.\n  Highest priority: Remote Code Execution at None:None (score 4.7).\n\n  Recommendation: Address all CRITICAL and HIGH findings before deployment.\n  Focus remediation on the top-5 attack surface nodes identified above.",
+    "summary": "MISTCODER Risk Assessment \u2014 Level: HIGH  (8.9/10)\n\n  7 findings detected, 7 reachable from attack surface.\n  2 findings amplified by multi-step exploitation chains.\n  Highest priority: Sensitive Data Exfiltration at None:None (score 6.5).\n\n  Recommendation: Address all CRITICAL and HIGH findings before deployment.\n  Focus remediation on the top-5 attack surface nodes identified above.",
     "top_attack_surface": [
+      "Sensitive Data Exfiltration (CRITICAL) \u2014 score 6.5",
+      "RCE_INJECTION (CRITICAL) \u2014 score 6.5",
       "Remote Code Execution (CRITICAL) \u2014 score 4.7",
-      "Sensitive Data Exfiltration (CRITICAL) \u2014 score 4.7",
       "Denial of Service (HIGH) \u2014 score 4.7",
-      "EXEC (CRITICAL) \u2014 score 4.7"
+      "RCE_COMMAND_EXEC (CRITICAL) \u2014 score 4.7"
     ],
     "findings": [
       {
@@ -210,7 +1357,7 @@
         "cvss_base": 0.0,
         "chain_amplified": 0.0,
         "blast_radius": 0,
-        "reachable": false,
+        "reachable": true,
         "final_score": 0.0,
         "remediation_priority": 7
       },
@@ -225,7 +1372,7 @@
         "blast_radius": 0,
         "reachable": true,
         "final_score": 4.7,
-        "remediation_priority": 2
+        "remediation_priority": 4
       },
       {
         "node_id": "SINK::DATA_EXFIL",
@@ -234,11 +1381,11 @@
         "line_start": null,
         "severity": "CRITICAL",
         "cvss_base": 4.7,
-        "chain_amplified": 4.7,
+        "chain_amplified": 6.5,
         "blast_radius": 0,
         "reachable": true,
-        "final_score": 4.7,
-        "remediation_priority": 3
+        "final_score": 6.5,
+        "remediation_priority": 2
       },
       {
         "node_id": "SINK::DOS",
@@ -251,24 +1398,24 @@
         "blast_radius": 0,
         "reachable": true,
         "final_score": 4.7,
-        "remediation_priority": 4
+        "remediation_priority": 5
       },
       {
         "node_id": "FD0002",
-        "label": "EVAL",
+        "label": "RCE_INJECTION",
         "file_path": "sandbox/sample_target.py",
         "line_start": 18,
         "severity": "CRITICAL",
         "cvss_base": 4.7,
-        "chain_amplified": 4.7,
-        "blast_radius": 0,
-        "reachable": false,
-        "final_score": 1.4,
-        "remediation_priority": 5
+        "chain_amplified": 6.5,
+        "blast_radius": 2,
+        "reachable": true,
+        "final_score": 6.5,
+        "remediation_priority": 1
       },
       {
         "node_id": "FD0003",
-        "label": "EXEC",
+        "label": "RCE_COMMAND_EXEC",
         "file_path": "sandbox/sample_target.py",
         "line_start": 25,
         "severity": "CRITICAL",
@@ -277,26 +1424,52 @@
         "blast_radius": 1,
         "reachable": true,
         "final_score": 4.7,
-        "remediation_priority": 1
+        "remediation_priority": 3
       },
       {
         "node_id": "FD0001",
-        "label": "OS.SYSTEM",
+        "label": "RCE_COMMAND_EXEC",
         "file_path": "sandbox/sample_target.py",
         "line_start": 14,
         "severity": "HIGH",
-        "cvss_base": 4.7,
-        "chain_amplified": 4.7,
-        "blast_radius": 0,
-        "reachable": false,
-        "final_score": 1.4,
+        "cvss_base": 4.2,
+        "chain_amplified": 4.2,
+        "blast_radius": 1,
+        "reachable": true,
+        "final_score": 4.2,
         "remediation_priority": 6
       }
     ],
     "remediation_order": [
       {
+        "node_id": "FD0002",
+        "label": "RCE_INJECTION",
+        "file_path": "sandbox/sample_target.py",
+        "line_start": 18,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 6.5,
+        "blast_radius": 2,
+        "reachable": true,
+        "final_score": 6.5,
+        "remediation_priority": 1
+      },
+      {
+        "node_id": "SINK::DATA_EXFIL",
+        "label": "Sensitive Data Exfiltration",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 6.5,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 6.5,
+        "remediation_priority": 2
+      },
+      {
         "node_id": "FD0003",
-        "label": "EXEC",
+        "label": "RCE_COMMAND_EXEC",
         "file_path": "sandbox/sample_target.py",
         "line_start": 25,
         "severity": "CRITICAL",
@@ -305,7 +1478,7 @@
         "blast_radius": 1,
         "reachable": true,
         "final_score": 4.7,
-        "remediation_priority": 1
+        "remediation_priority": 3
       },
       {
         "node_id": "SINK::RCE",
@@ -318,20 +1491,7 @@
         "blast_radius": 0,
         "reachable": true,
         "final_score": 4.7,
-        "remediation_priority": 2
-      },
-      {
-        "node_id": "SINK::DATA_EXFIL",
-        "label": "Sensitive Data Exfiltration",
-        "file_path": null,
-        "line_start": null,
-        "severity": "CRITICAL",
-        "cvss_base": 4.7,
-        "chain_amplified": 4.7,
-        "blast_radius": 0,
-        "reachable": true,
-        "final_score": 4.7,
-        "remediation_priority": 3
+        "remediation_priority": 4
       },
       {
         "node_id": "SINK::DOS",
@@ -344,32 +1504,19 @@
         "blast_radius": 0,
         "reachable": true,
         "final_score": 4.7,
-        "remediation_priority": 4
-      },
-      {
-        "node_id": "FD0002",
-        "label": "EVAL",
-        "file_path": "sandbox/sample_target.py",
-        "line_start": 18,
-        "severity": "CRITICAL",
-        "cvss_base": 4.7,
-        "chain_amplified": 4.7,
-        "blast_radius": 0,
-        "reachable": false,
-        "final_score": 1.4,
         "remediation_priority": 5
       },
       {
         "node_id": "FD0001",
-        "label": "OS.SYSTEM",
+        "label": "RCE_COMMAND_EXEC",
         "file_path": "sandbox/sample_target.py",
         "line_start": 14,
         "severity": "HIGH",
-        "cvss_base": 4.7,
-        "chain_amplified": 4.7,
-        "blast_radius": 0,
-        "reachable": false,
-        "final_score": 1.4,
+        "cvss_base": 4.2,
+        "chain_amplified": 4.2,
+        "blast_radius": 1,
+        "reachable": true,
+        "final_score": 4.2,
         "remediation_priority": 6
       },
       {
@@ -381,7 +1528,7 @@
         "cvss_base": 0.0,
         "chain_amplified": 0.0,
         "blast_radius": 0,
-        "reachable": false,
+        "reachable": true,
         "final_score": 0.0,
         "remediation_priority": 7
       }
