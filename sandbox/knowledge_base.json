@@ -1,0 +1,556 @@
+{
+  "version": "0.1.0",
+  "created_at": "2026-04-18T07:05:27.383013+00:00",
+  "last_updated": "2026-04-18T07:05:27.394445+00:00",
+  "update_count": 1,
+  "cve_count": 10,
+  "cves": {
+    "CVE-2024-SYN-001": {
+      "cve_id": "CVE-2024-SYN-001",
+      "description": "Remote code execution via eval() on unsanitized user input in Python web framework. Attacker can execute arbitrary code by submitting crafted expressions to the calculation endpoint.",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "CRITICAL",
+      "cwe_ids": [
+        "CWE-95"
+      ],
+      "affected": [
+        "python/flask",
+        "python/django"
+      ],
+      "published": "2024-01-15T00:00:00.000",
+      "patterns": [
+        "eval",
+        "exec",
+        "arbitrary code"
+      ],
+      "categories": [
+        "DANGEROUS_CALL"
+      ]
+    },
+    "CVE-2024-SYN-002": {
+      "cve_id": "CVE-2024-SYN-002",
+      "description": "SQL injection vulnerability allows unauthenticated attacker to read sensitive data via string-formatted database queries. No parameterization used.",
+      "cvss_score": 9.1,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L",
+      "severity": "CRITICAL",
+      "cwe_ids": [
+        "CWE-89"
+      ],
+      "affected": [
+        "mysql/connector",
+        "sqlite3"
+      ],
+      "published": "2024-02-03T00:00:00.000",
+      "patterns": [
+        "SELECT",
+        "INSERT",
+        "string concatenat",
+        "format("
+      ],
+      "categories": [
+        "SQL_INJECTION"
+      ]
+    },
+    "CVE-2024-SYN-003": {
+      "cve_id": "CVE-2024-SYN-003",
+      "description": "Hardcoded API key and database password discovered in application source. Credentials provide full administrative access to production database.",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "CRITICAL",
+      "cwe_ids": [
+        "CWE-798",
+        "CWE-259"
+      ],
+      "affected": [
+        "generic/application"
+      ],
+      "published": "2024-02-14T00:00:00.000",
+      "patterns": [
+        "hardcoded",
+        "plaintext",
+        "token",
+        "secret"
+      ],
+      "categories": [
+        "HARDCODED_SECRET",
+        "SECRET_EXPOSURE"
+      ]
+    },
+    "CVE-2024-SYN-004": {
+      "cve_id": "CVE-2024-SYN-004",
+      "description": "Insecure deserialization via pickle.loads() allows remote code execution. Attacker-controlled serialized objects trigger arbitrary code execution on load.",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "CRITICAL",
+      "cwe_ids": [
+        "CWE-502"
+      ],
+      "affected": [
+        "python/pickle",
+        "python/shelve"
+      ],
+      "published": "2024-03-01T00:00:00.000",
+      "patterns": [
+        "pickle",
+        "deserializ",
+        "marshal"
+      ],
+      "categories": [
+        "INSECURE_DESERIAL"
+      ]
+    },
+    "CVE-2024-SYN-005": {
+      "cve_id": "CVE-2024-SYN-005",
+      "description": "OS command injection via unsanitized input passed to os.system(). Attacker can execute arbitrary system commands with application privileges.",
+      "cvss_score": 10.0,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "severity": "CRITICAL",
+      "cwe_ids": [
+        "CWE-78"
+      ],
+      "affected": [
+        "python/os",
+        "python/subprocess"
+      ],
+      "published": "2024-03-10T00:00:00.000",
+      "patterns": [
+        "system(",
+        "popen",
+        "subprocess",
+        "os.environ"
+      ],
+      "categories": [
+        "COMMAND_INJECTION"
+      ]
+    },
+    "CVE-2024-SYN-006": {
+      "cve_id": "CVE-2024-SYN-006",
+      "description": "Path traversal vulnerability in file read endpoint. User-supplied filename parameter allows reading of arbitrary files including /etc/passwd.",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "severity": "HIGH",
+      "cwe_ids": [
+        "CWE-22"
+      ],
+      "affected": [
+        "generic/file-server"
+      ],
+      "published": "2024-03-22T00:00:00.000",
+      "patterns": [
+        "open(",
+        "file read",
+        "path traversal",
+        "../"
+      ],
+      "categories": [
+        "PATH_TRAVERSAL"
+      ]
+    },
+    "CVE-2024-SYN-007": {
+      "cve_id": "CVE-2024-SYN-007",
+      "description": "Reflected XSS via unescaped user input in render_template_string. Attacker-controlled name parameter is injected directly into HTML response.",
+      "cvss_score": 6.1,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+      "severity": "MEDIUM",
+      "cwe_ids": [
+        "CWE-79"
+      ],
+      "affected": [
+        "python/flask",
+        "python/jinja2"
+      ],
+      "published": "2024-04-01T00:00:00.000",
+      "patterns": [
+        "innerHTML",
+        "document.write"
+      ],
+      "categories": [
+        "XSS"
+      ]
+    },
+    "CVE-2024-SYN-008": {
+      "cve_id": "CVE-2024-SYN-008",
+      "description": "SSRF vulnerability allows internal network scanning. Server-side request forgery via user-controlled URL parameter with no allowlist validation.",
+      "cvss_score": 8.6,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N",
+      "severity": "HIGH",
+      "cwe_ids": [
+        "CWE-918"
+      ],
+      "affected": [
+        "generic/http-client"
+      ],
+      "published": "2024-04-08T00:00:00.000",
+      "patterns": [
+        "request.args",
+        "request.form"
+      ],
+      "categories": [
+        "SSRF"
+      ]
+    },
+    "CVE-2024-SYN-009": {
+      "cve_id": "CVE-2024-SYN-009",
+      "description": "Authentication bypass allows unauthenticated access to admin endpoints. Missing authorization check on privileged route due to decorator misconfiguration.",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "CRITICAL",
+      "cwe_ids": [
+        "CWE-287",
+        "CWE-306"
+      ],
+      "affected": [
+        "generic/auth-framework"
+      ],
+      "published": "2024-04-15T00:00:00.000",
+      "patterns": [
+        "token",
+        "secret"
+      ],
+      "categories": [
+        "MISSING_AUTHZ"
+      ]
+    },
+    "CVE-2024-SYN-010": {
+      "cve_id": "CVE-2024-SYN-010",
+      "description": "Sensitive data exposure in debug endpoint returns all environment variables, database credentials, and API keys in plaintext JSON response.",
+      "cvss_score": 9.1,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L",
+      "severity": "CRITICAL",
+      "cwe_ids": [
+        "CWE-200",
+        "CWE-532"
+      ],
+      "affected": [
+        "generic/web-application"
+      ],
+      "published": "2024-04-20T00:00:00.000",
+      "patterns": [
+        "os.environ",
+        "getenv",
+        "plaintext",
+        "token"
+      ],
+      "categories": [
+        "SECRET_EXPOSURE"
+      ]
+    }
+  },
+  "patterns": {
+    "eval": {
+      "pattern": "eval",
+      "category": "DANGEROUS_CALL",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.386032+00:00"
+    },
+    "exec": {
+      "pattern": "exec",
+      "category": "DANGEROUS_CALL",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.386032+00:00"
+    },
+    "arbitrary code": {
+      "pattern": "arbitrary code",
+      "category": "DANGEROUS_CALL",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.386032+00:00"
+    },
+    "SELECT": {
+      "pattern": "SELECT",
+      "category": "SQL_INJECTION",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.390033+00:00"
+    },
+    "INSERT": {
+      "pattern": "INSERT",
+      "category": "SQL_INJECTION",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.390033+00:00"
+    },
+    "string concatenat": {
+      "pattern": "string concatenat",
+      "category": "SQL_INJECTION",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.390033+00:00"
+    },
+    "format(": {
+      "pattern": "format(",
+      "category": "SQL_INJECTION",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.390033+00:00"
+    },
+    "hardcoded": {
+      "pattern": "hardcoded",
+      "category": "HARDCODED_SECRET",
+      "confidence": 0.91,
+      "source": "cve",
+      "seen_count": 2,
+      "added_at": "2026-04-18T07:05:27.390033+00:00"
+    },
+    "plaintext": {
+      "pattern": "plaintext",
+      "category": "HARDCODED_SECRET",
+      "confidence": 0.919,
+      "source": "cve",
+      "seen_count": 3,
+      "added_at": "2026-04-18T07:05:27.390033+00:00"
+    },
+    "token": {
+      "pattern": "token",
+      "category": "HARDCODED_SECRET",
+      "confidence": 0.9271,
+      "source": "cve",
+      "seen_count": 4,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "secret": {
+      "pattern": "secret",
+      "category": "HARDCODED_SECRET",
+      "confidence": 0.919,
+      "source": "cve",
+      "seen_count": 3,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "pickle": {
+      "pattern": "pickle",
+      "category": "INSECURE_DESERIAL",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "deserializ": {
+      "pattern": "deserializ",
+      "category": "INSECURE_DESERIAL",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "marshal": {
+      "pattern": "marshal",
+      "category": "INSECURE_DESERIAL",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "system(": {
+      "pattern": "system(",
+      "category": "COMMAND_INJECTION",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "popen": {
+      "pattern": "popen",
+      "category": "COMMAND_INJECTION",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "subprocess": {
+      "pattern": "subprocess",
+      "category": "COMMAND_INJECTION",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "os.environ": {
+      "pattern": "os.environ",
+      "category": "COMMAND_INJECTION",
+      "confidence": 0.91,
+      "source": "cve",
+      "seen_count": 2,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "open(": {
+      "pattern": "open(",
+      "category": "PATH_TRAVERSAL",
+      "confidence": 0.75,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "file read": {
+      "pattern": "file read",
+      "category": "PATH_TRAVERSAL",
+      "confidence": 0.75,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "path traversal": {
+      "pattern": "path traversal",
+      "category": "PATH_TRAVERSAL",
+      "confidence": 0.75,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "../": {
+      "pattern": "../",
+      "category": "PATH_TRAVERSAL",
+      "confidence": 0.75,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "innerHTML": {
+      "pattern": "innerHTML",
+      "category": "XSS",
+      "confidence": 0.61,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "document.write": {
+      "pattern": "document.write",
+      "category": "XSS",
+      "confidence": 0.61,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.391033+00:00"
+    },
+    "request.args": {
+      "pattern": "request.args",
+      "category": "SSRF",
+      "confidence": 0.86,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.392033+00:00"
+    },
+    "request.form": {
+      "pattern": "request.form",
+      "category": "SSRF",
+      "confidence": 0.86,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.392033+00:00"
+    },
+    "getenv": {
+      "pattern": "getenv",
+      "category": "SECRET_EXPOSURE",
+      "confidence": 0.9,
+      "source": "cve",
+      "seen_count": 1,
+      "added_at": "2026-04-18T07:05:27.392033+00:00"
+    }
+  },
+  "category_weights": {
+    "DANGEROUS_CALL": 1.2,
+    "COMMAND_INJECTION": 1.25,
+    "SQL_INJECTION": 1.15,
+    "SECRET_EXPOSURE": 1.37,
+    "HARDCODED_SECRET": 1.35,
+    "INSECURE_DESERIAL": 1.2,
+    "PATH_TRAVERSAL": 1.1,
+    "XSS": 1.1,
+    "SSRF": 1.15,
+    "MISSING_AUTHZ": 1.25,
+    "PRIVILEGE_ESC": 1.25,
+    "TAINT_FLOW": 1.1,
+    "DEFAULT": 1.0
+  },
+  "dangerous_calls": [
+    "open",
+    "marshal.loads",
+    "eval",
+    "execSync",
+    "importlib.import_module",
+    "compile",
+    "pickle.loads",
+    "subprocess",
+    "__import__",
+    "shelve.open",
+    "os.popen",
+    "exec",
+    "pickle.load",
+    "os.system",
+    "yaml.load",
+    "loads",
+    "system"
+  ],
+  "secret_keywords": [
+    "private_key",
+    "pwd",
+    "client_secret",
+    "refresh_token",
+    "secret",
+    "api_key",
+    "access_token",
+    "password",
+    "signing_key",
+    "apikey",
+    "db_password",
+    "credential",
+    "auth",
+    "token",
+    "passwd",
+    "key"
+  ],
+  "sink_names": {
+    "python": [
+      "eval",
+      "exec",
+      "os.system",
+      "os.popen",
+      "subprocess.run",
+      "subprocess.call",
+      "subprocess.Popen",
+      "pickle.loads",
+      "yaml.load",
+      "open",
+      "cursor.execute",
+      "db.execute",
+      "query",
+      "marshal.loads"
+    ],
+    "javascript": [
+      "eval",
+      "innerHTML",
+      "document.write",
+      "execSync",
+      "exec",
+      "setTimeout",
+      "setInterval",
+      "Function",
+      "db.query",
+      "connection.query"
+    ]
+  },
+  "feedback_log": [],
+  "update_history": [
+    {
+      "update_id": "c4ca832ea6ff",
+      "update_type": "cve_learning",
+      "details": {
+        "cve_count": 10,
+        "patterns_added": 36,
+        "calls_added": 3,
+        "sinks_added": 4,
+        "keywords_added": 0,
+        "weights_updated": 1
+      },
+      "applied_at": "2026-04-18T07:05:27.392033+00:00"
+    }
+  ]
+}

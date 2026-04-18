@@ -73,6 +73,9 @@ jobs:
       - name: CVSS Risk Scorer tests
         run: python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
 
+      - name: MOD-07 -- Knowledge Graph tests
+        run: python -m pytest modules/knowledge_graph/tests/test_knowledge_graph.py -v
+
       - name: Pipeline smoke test
         run: |
           python -c "
