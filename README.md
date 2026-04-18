@@ -13,11 +13,11 @@
 
 <br/>
 
-[![Status](https://img.shields.io/badge/Status-Concept%20%2F%20Research-blueviolet?style=for-the-badge)]()
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)]()
-[![Contributions](https://img.shields.io/badge/Contributions-Welcome-orange?style=for-the-badge)]()
-[![Research Phase](https://img.shields.io/badge/Phase-Foundational%20Research-blue?style=for-the-badge)]()
-[![Ethics](https://img.shields.io/badge/Ethics-White%20Hat%20Only-red?style=for-the-badge)]()
+[![Status](https://img.shields.io/badge/Status-Phase%202%20Active-blue?style=for-the-badge)](https://github.com/waren23greg-stack/MISTCODER)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/waren23greg-stack/MISTCODER/blob/main/LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/waren23greg-stack/MISTCODER/ci.yml?style=for-the-badge&label=Tests)](https://github.com/waren23greg-stack/MISTCODER/actions)
+[![Contributions](https://img.shields.io/badge/Contributions-Welcome-orange?style=for-the-badge)](https://github.com/waren23greg-stack/MISTCODER/blob/main/CONTRIBUTING.md)
+[![Ethics](https://img.shields.io/badge/Ethics-White%20Hat%20Only-red?style=for-the-badge)](https://github.com/waren23greg-stack/MISTCODER/blob/main/ETHICS.md)
 
 <br/>
 
@@ -34,6 +34,26 @@ It does not scan. It **reasons**. It does not report. It **understands**.
 [📖 Read the Research Vision](#-research-vision) · [🧠 Core Architecture](#-core-architecture) · [🔬 Technical Modules](#-technical-modules) · [🤝 Contribute](#-contributing) · [⚖️ Ethics & Governance](#%EF%B8%8F-ethics--governance)
 
 </div>
+
+---
+
+## 🏗️ Build Status
+
+| Module | Description | Status |
+|--------|-------------|--------|
+| MOD-01 | Universal Code Ingestion Engine | ✅ Shipped |
+| MOD-02 | Static Deep Analysis | ✅ Shipped |
+| MOD-03 | AI Reasoning Core | ✅ Shipped |
+| MOD-04 | Simulation Engine | 🔲 Planned |
+| MOD-05 | Human Oversight Layer | 🔲 Planned |
+| MOD-06 | HTML Report Generator | ✅ Shipped |
+| —      | URL / Surface Scanner | ✅ Shipped |
+| —      | Pipeline CLI | ✅ Shipped |
+| —      | GitHub Actions CI | ✅ Shipped |
+| —      | Research Paper 001 | ✅ Shipped |
+| —      | CVSS Risk Scorer | 🔲 Planned |
+| —      | Vulnerable Target Demo | 🔲 Planned |
+| —      | Self-Improvement Loop | 🔲 Planned |
 
 ---
 
@@ -369,7 +389,7 @@ The following bodies of work form the intellectual foundation of MISTCODER's des
 
 ---
 
-## 🗺️ Repository Structure *(planned)*
+## 🗺️ Repository Structure
 
 ```
 mistcoder/
@@ -419,12 +439,12 @@ This project is being built in public. Every architectural decision, research de
 
 <br/>
 
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/mistcoder?style=social)]()
-[![GitHub Forks](https://img.shields.io/github/forks/yourusername/mistcoder?style=social)]()
-[![GitHub Watchers](https://img.shields.io/github/watchers/yourusername/mistcoder?style=social)]()
+[![GitHub Stars](https://img.shields.io/github/stars/waren23greg-stack/MISTCODER?style=social)](https://github.com/waren23greg-stack/MISTCODER/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/waren23greg-stack/MISTCODER?style=social)](https://github.com/waren23greg-stack/MISTCODER/network/members)
+[![GitHub Watchers](https://img.shields.io/github/watchers/waren23greg-stack/MISTCODER?style=social)](https://github.com/waren23greg-stack/MISTCODER/watchers)
 
 <br/>
 
-*© MISTCODER Research Initiative · MIT License · Research Phase v0.1*
+*© MISTCODER Research Initiative · MIT License · Phase 2 Active · v0.2*
 
 </div>
