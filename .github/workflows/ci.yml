@@ -41,6 +41,9 @@ jobs:
       - name: MOD-06 -- Report Generator tests
         run: python -m pytest modules/reporting/tests/test_report_generator.py -v
 
+      - name: CVSS Risk Scorer tests
+        run: python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
+
       - name: Pipeline smoke test
         run: |
           python -c "
@@ -55,6 +58,3 @@ jobs:
           print('Pipeline smoke test: PASS')
           print(f'Findings: {report[\"metadata\"][\"finding_count\"]}')
           "
-
-      - name: CVSS Risk Scorer tests
-        run: python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
