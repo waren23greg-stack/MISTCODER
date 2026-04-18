@@ -11,6 +11,10 @@ jobs:
     name: Run Test Suite
     runs-on: ubuntu-latest
 
+    env:
+      PYTHONPATH: >-
+        ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/reasoning/src:${{ github.workspace }}/modules/simulation/src:${{ github.workspace }}/modules/oversight/src:${{ github.workspace }}/modules/reporting/src:${{ github.workspace }}/modules/scoring/src:${{ github.workspace }}/modules/reasoning
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,25 +28,52 @@ jobs:
         run: pip install pytest
 
       - name: MOD-01 -- Ingestion Engine tests
-        run: python -m pytest modules/ingestion/tests/test_parser.py -v
+        run: |
+          python -m pytest modules/ingestion/tests/test_parser.py -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}/modules/ingestion/src
 
       - name: MOD-02 -- Static Analysis Engine tests
-        run: python -m pytest modules/analysis/tests/test_analysis_engine.py -v
+        run: |
+          python -m pytest modules/analysis/tests/test_analysis_engine.py -v
+        env:
+          PYTHONPATH: >-
+            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src
 
       - name: MOD-03 -- Reasoning Core tests
-        run: python modules/reasoning/tests/test_mod03.py
+        run: |
+          python modules/reasoning/tests/test_mod03.py
+        env:
+          PYTHONPATH: >-
+            ${{ github.workspace }}/modules/reasoning/src:${{ github.workspace }}/modules/reasoning
 
       - name: MOD-04 -- Simulation Engine tests
-        run: python -m pytest modules/simulation/tests/test_simulation_engine.py -v
+        run: |
+          python -m pytest modules/simulation/tests/test_simulation_engine.py -v
+        env:
+          PYTHONPATH: >-
+            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/simulation/src
 
       - name: MOD-05 -- Oversight Layer tests
-        run: python -m pytest modules/oversight/tests/test_oversight_engine.py -v
+        run: |
+          python -m pytest modules/oversight/tests/test_oversight_engine.py -v
+        env:
+          PYTHONPATH: >-
+            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/oversight/src
 
       - name: MOD-06 -- Report Generator tests
-        run: python -m pytest modules/reporting/tests/test_report_generator.py -v
+        run: |
+          python -m pytest modules/reporting/tests/test_report_generator.py -v
+        env:
+          PYTHONPATH: >-
+            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/reporting/src
 
       - name: CVSS Risk Scorer tests
-        run: python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
+        run: |
+          python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
+        env:
+          PYTHONPATH: >-
+            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/scoring/src
 
       - name: Pipeline smoke test
         run: |
