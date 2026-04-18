@@ -45,7 +45,7 @@ It does not scan. It **reasons**. It does not report. It **understands**.
 | MOD-02 | Static Deep Analysis | ✅ Shipped |
 | MOD-03 | AI Reasoning Core | ✅ Shipped |
 | MOD-04 | Simulation Engine | 🔲 Planned |
-| MOD-05 | Human Oversight Layer | 🔲 Planned |
+| MOD-05 | Human Oversight Layer | ✅ Shipped |
 | MOD-06 | HTML Report Generator | ✅ Shipped |
 | —      | URL / Surface Scanner | ✅ Shipped |
 | —      | Pipeline CLI | ✅ Shipped |
@@ -445,6 +445,6 @@ This project is being built in public. Every architectural decision, research de
 
 <br/>
 
-*© MISTCODER Research Initiative · MIT License · Phase 2 Active · v0.2*
+*© MISTCODER Research Initiative · MIT License · Phase 2 Active · v0.3*
 
 </div>

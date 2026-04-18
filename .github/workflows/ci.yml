@@ -10,6 +10,7 @@ jobs:
   test:
     name: Run Test Suite
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,11 +23,23 @@ jobs:
       - name: Install pytest
         run: pip install pytest
 
-      - name: MOD-01 Ingestion Engine tests
+      - name: MOD-01 -- Ingestion Engine tests
         run: python -m pytest modules/ingestion/tests/test_parser.py -v
 
-      - name: MOD-02 Static Analysis Engine tests
+      - name: MOD-02 -- Static Analysis Engine tests
         run: python -m pytest modules/analysis/tests/test_analysis_engine.py -v
+
+      - name: MOD-03 -- Reasoning Core tests
+        run: python modules/reasoning/tests/test_mod03.py
+
+      - name: MOD-04 -- Simulation Engine tests
+        run: python -m pytest modules/simulation/tests/test_simulation_engine.py -v
+
+      - name: MOD-05 -- Oversight Layer tests
+        run: python -m pytest modules/oversight/tests/test_oversight_engine.py -v
+
+      - name: MOD-06 -- Report Generator tests
+        run: python -m pytest modules/reporting/tests/test_report_generator.py -v
 
       - name: Pipeline smoke test
         run: |
@@ -40,5 +53,5 @@ jobs:
           report = AnalysisEngine().analyze(ir)
           assert report['metadata']['finding_count'] > 0
           print('Pipeline smoke test: PASS')
-          print(f'Findings detected: {report[\"metadata\"][\"finding_count\"]}')
+          print(f'Findings: {report[\"metadata\"][\"finding_count\"]}')
           "
