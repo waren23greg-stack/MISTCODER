@@ -202,7 +202,12 @@ class JavaScriptParser:
         r'(?:const|let|var)\s+(\w+)\s*=\s*(?:async\s*)?\(.*?\)\s*=>'
     )
     CLASS_PATTERN  = re.compile(r'class\s+(\w+)')
-    IMPORT_PATTERN = re.compile(r"(?:import|require)\s*\(?['\"](.+?)['\"]")
+    IMPORT_PATTERN = re.compile(
+        r'(?:import\s+[\w\s{},*]+from\s+["\']([^"\' ]+)["\']'
+        r'|import\s+["\']([^"\' ]+)["\']'
+        r'|require\s*\(\s*["\']([^"\' ]+)["\']\s*\))',
+        re.IGNORECASE
+    )
     CALL_PATTERN   = re.compile(r'\b(\w+)\s*\(')
     SECRET_PATTERN = re.compile(
         r'(?:const|let|var)\s+(\w+)\s*=\s*["\'](.+?)["\']'
