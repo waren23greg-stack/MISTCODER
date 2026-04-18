@@ -46,6 +46,7 @@ jobs:
             f'{w}/modules/oversight/src',
             f'{w}/modules/reporting/src',
             f'{w}/modules/scoring/src',
+            f'{w}/modules/knowledge_graph/src',
           ]
           with open(os.environ['GITHUB_ENV'], 'a') as f:
             f.write('PYTHONPATH=' + ':'.join(paths) + '\n')
