@@ -267,7 +267,7 @@ class JavaScriptParser:
             # -- imports
             for m in self.IMPORT_PATTERN.finditer(line):
                 nid = self._next_id("IM")
-                self.nodes.append(make_node(nid, "import", m.group(1), lineno))
+                self.nodes.append(make_node(nid, "import", m.group(1) or m.group(2) or m.group(3), lineno))
 
             # -- dangerous calls + GAP-02: link to enclosing function
             # Detect dangerous property assignments (innerHTML etc)
