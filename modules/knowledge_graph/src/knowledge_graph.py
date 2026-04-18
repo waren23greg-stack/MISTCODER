@@ -714,7 +714,7 @@ class KnowledgeGraphEngine:
         self.query   = GraphQueryEngine(self.store)
         self._path   = storage_path
 
-        if storage_path and os.path.isfile(storage_path):
+        if storage_path and os.path.isfile(storage_path) and os.path.getsize(storage_path) > 0:
             self.store.load(storage_path)
             print(f"[MOD-07] Loaded graph from {storage_path} "
                   f"-- {self.store.stats()['node_count']} nodes")
