@@ -114,6 +114,8 @@ def _score_outcome(severity: str, confidence: float) -> str:
     s = SEV_SCORE.get(severity, 0)
     if s >= 3 and confidence >= 0.70:
         return "SUCCESS"
+    if s >= 3 and confidence >= 0.30:
+        return "PARTIAL"
     if s >= 2 and confidence >= 0.50:
         return "PARTIAL"
     return "BLOCKED"
