@@ -1,0 +1,271 @@
+{
+  "file": "C:\\Users\\user\\MISTCODER\\MISTCODER\\sandbox\\vulnerable_app\\app.py",
+  "language": "python",
+  "attack_graph": {
+    "nodes": [],
+    "edges": []
+  },
+  "attack_paths": [],
+  "chains": [
+    {
+      "id": "CH-0001",
+      "links": [
+        "MIST-00001",
+        "MIST-00002"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'DANGEROUS_CALL' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0002",
+      "links": [
+        "MIST-00001",
+        "MIST-00003"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'DANGEROUS_CALL' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0003",
+      "links": [
+        "MIST-00001",
+        "MIST-00004"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'DANGEROUS_CALL' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0004",
+      "links": [
+        "MIST-00001",
+        "MIST-00005"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'DANGEROUS_CALL' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0005",
+      "links": [
+        "MIST-00001",
+        "MIST-00006"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'SECRET_EXPOSURE' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0006",
+      "links": [
+        "MIST-00001",
+        "MIST-00007"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'SECRET_EXPOSURE' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0007",
+      "links": [
+        "MIST-00001",
+        "MIST-00008"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'SECRET_EXPOSURE' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0008",
+      "links": [
+        "MIST-00001",
+        "MIST-00009"
+      ],
+      "combined_severity": "high",
+      "narrative": "Vulnerability chain detected. 'TAINT_FLOW' combined with 'SECRET_EXPOSURE' produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0009",
+      "links": [
+        "MIST-00002",
+        "MIST-00006"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0010",
+      "links": [
+        "MIST-00002",
+        "MIST-00007"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0011",
+      "links": [
+        "MIST-00002",
+        "MIST-00008"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0012",
+      "links": [
+        "MIST-00002",
+        "MIST-00009"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0013",
+      "links": [
+        "MIST-00003",
+        "MIST-00006"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0014",
+      "links": [
+        "MIST-00003",
+        "MIST-00007"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0015",
+      "links": [
+        "MIST-00003",
+        "MIST-00008"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0016",
+      "links": [
+        "MIST-00003",
+        "MIST-00009"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0017",
+      "links": [
+        "MIST-00004",
+        "MIST-00006"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0018",
+      "links": [
+        "MIST-00004",
+        "MIST-00007"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0019",
+      "links": [
+        "MIST-00004",
+        "MIST-00008"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0020",
+      "links": [
+        "MIST-00004",
+        "MIST-00009"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0021",
+      "links": [
+        "MIST-00005",
+        "MIST-00006"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0022",
+      "links": [
+        "MIST-00005",
+        "MIST-00007"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0023",
+      "links": [
+        "MIST-00005",
+        "MIST-00008"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    },
+    {
+      "id": "CH-0024",
+      "links": [
+        "MIST-00005",
+        "MIST-00009"
+      ],
+      "combined_severity": "critical",
+      "narrative": "Vulnerability chain detected. 'DANGEROUS_CALL' combined with 'SECRET_EXPOSURE' produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.",
+      "confidence": 0.85
+    }
+  ],
+  "anomalies": [],
+  "threat_model": {
+    "overall_risk": "critical",
+    "attack_path_count": 0,
+    "chain_count": 24,
+    "anomaly_count": 0,
+    "critical_paths": 0,
+    "high_paths": 0,
+    "critical_chains": 16
+  },
+  "metadata": {
+    "graph_node_count": 51,
+    "graph_edge_count": 32,
+    "attack_path_count": 0,
+    "chain_count": 24,
+    "anomaly_count": 0,
+    "overall_risk": "critical",
+    "reasoner": "ReasoningCore v0.1.0 (demo mode)",
+    "reasoned_at": "2026-04-18T06:55:17.659879Z"
+  }
+}

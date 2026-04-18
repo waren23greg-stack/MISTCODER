@@ -87,3 +87,9 @@ jobs:
           print('Pipeline smoke test: PASS')
           print(f'Findings: {report[\"metadata\"][\"finding_count\"]}')
           "
+
+      - name: Self-Improvement Core tests
+        run: |
+          python -m pytest modules/learning/tests/test_self_improvement.py -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}/modules/learning/src
