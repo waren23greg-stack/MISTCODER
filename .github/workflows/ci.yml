@@ -11,10 +11,6 @@ jobs:
     name: Run Test Suite
     runs-on: ubuntu-latest
 
-    env:
-      PYTHONPATH: >-
-        ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/reasoning/src:${{ github.workspace }}/modules/simulation/src:${{ github.workspace }}/modules/oversight/src:${{ github.workspace }}/modules/reporting/src:${{ github.workspace }}/modules/scoring/src:${{ github.workspace }}/modules/reasoning
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,53 +23,55 @@ jobs:
       - name: Install pytest
         run: pip install pytest
 
-      - name: MOD-01 -- Ingestion Engine tests
+      - name: Add all module paths to PYTHONPATH
         run: |
-          python -m pytest modules/ingestion/tests/test_parser.py -v
-        env:
-          PYTHONPATH: ${{ github.workspace }}/modules/ingestion/src
+          echo "$GITHUB_WORKSPACE/modules/ingestion/src" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/modules/analysis/src" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/modules/reasoning/src" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/modules/reasoning" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/modules/simulation/src" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/modules/oversight/src" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/modules/reporting/src" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/modules/scoring/src" >> $GITHUB_PATH
+          python -c "
+          import sys
+          import os
+          w = os.environ['GITHUB_WORKSPACE']
+          paths = [
+            f'{w}/modules/ingestion/src',
+            f'{w}/modules/analysis/src',
+            f'{w}/modules/reasoning/src',
+            f'{w}/modules/reasoning',
+            f'{w}/modules/simulation/src',
+            f'{w}/modules/oversight/src',
+            f'{w}/modules/reporting/src',
+            f'{w}/modules/scoring/src',
+          ]
+          with open(os.environ['GITHUB_ENV'], 'a') as f:
+            f.write('PYTHONPATH=' + ':'.join(paths) + '\n')
+          print('PYTHONPATH configured')
+          "
+
+      - name: MOD-01 -- Ingestion Engine tests
+        run: python -m pytest modules/ingestion/tests/test_parser.py -v
 
       - name: MOD-02 -- Static Analysis Engine tests
-        run: |
-          python -m pytest modules/analysis/tests/test_analysis_engine.py -v
-        env:
-          PYTHONPATH: >-
-            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src
+        run: python -m pytest modules/analysis/tests/test_analysis_engine.py -v
 
       - name: MOD-03 -- Reasoning Core tests
-        run: |
-          python modules/reasoning/tests/test_mod03.py
-        env:
-          PYTHONPATH: >-
-            ${{ github.workspace }}/modules/reasoning/src:${{ github.workspace }}/modules/reasoning
+        run: python modules/reasoning/tests/test_mod03.py
 
       - name: MOD-04 -- Simulation Engine tests
-        run: |
-          python -m pytest modules/simulation/tests/test_simulation_engine.py -v
-        env:
-          PYTHONPATH: >-
-            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/simulation/src
+        run: python -m pytest modules/simulation/tests/test_simulation_engine.py -v
 
       - name: MOD-05 -- Oversight Layer tests
-        run: |
-          python -m pytest modules/oversight/tests/test_oversight_engine.py -v
-        env:
-          PYTHONPATH: >-
-            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/oversight/src
+        run: python -m pytest modules/oversight/tests/test_oversight_engine.py -v
 
       - name: MOD-06 -- Report Generator tests
-        run: |
-          python -m pytest modules/reporting/tests/test_report_generator.py -v
-        env:
-          PYTHONPATH: >-
-            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/reporting/src
+        run: python -m pytest modules/reporting/tests/test_report_generator.py -v
 
       - name: CVSS Risk Scorer tests
-        run: |
-          python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
-        env:
-          PYTHONPATH: >-
-            ${{ github.workspace }}/modules/ingestion/src:${{ github.workspace }}/modules/analysis/src:${{ github.workspace }}/modules/scoring/src
+        run: python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
 
       - name: Pipeline smoke test
         run: |
