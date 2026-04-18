@@ -265,6 +265,13 @@ class JavaScriptParser:
                 self.nodes.append(make_node(nid, "import", m.group(1), lineno))
 
             # -- dangerous calls + GAP-02: link to enclosing function
+            # Detect dangerous property assignments (innerHTML etc)
+            for danger in ["innerHTML", "outerHTML", "document.write"]:
+                if danger.lower() in line.lower() and "=" in line:
+                    nid = self._next_id("CA")
+                    props = {"dangerous": True}
+                    self.nodes.append(make_node(nid, "call", danger, lineno, props))
+                    break
             for m in self.CALL_PATTERN.finditer(line):
                 name = m.group(1)
                 if name in DANGEROUS_CALLS_JS:
