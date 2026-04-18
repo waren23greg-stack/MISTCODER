@@ -47,6 +47,7 @@ jobs:
             f'{w}/modules/reporting/src',
             f'{w}/modules/scoring/src',
             f'{w}/modules/knowledge_graph/src',
+            f'{w}/modules/binary_lifting/src',
           ]
           with open(os.environ['GITHUB_ENV'], 'a') as f:
             f.write('PYTHONPATH=' + ':'.join(paths) + '\n')
@@ -76,6 +77,9 @@ jobs:
 
       - name: MOD-07 -- Knowledge Graph tests
         run: python -m pytest modules/knowledge_graph/tests/test_knowledge_graph.py -v
+
+      - name: MOD-08 -- Binary Lifting Engine tests
+        run: python -m pytest modules/binary_lifting/tests/test_binary_lifting.py -v
 
       - name: Pipeline smoke test
         run: |
