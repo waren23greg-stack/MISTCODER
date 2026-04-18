@@ -232,7 +232,7 @@ class TestAggregateScore(unittest.TestCase):
 
     def test_more_findings_higher_aggregate(self):
         findings = [
-            {"id": f"F{i}", "category": "DANGEROUS_CALL",
+            {"id": f"F{i}", "category": "EXCEPTION_SWALLOW",
              "description": "x", "line": i}
             for i in range(5)
         ]
@@ -244,7 +244,7 @@ class TestAggregateScore(unittest.TestCase):
 
     def test_aggregate_bounded_at_10(self):
         findings = [
-            score_finding({"id": f"F{i}", "category": "DANGEROUS_CALL",
+            score_finding({"id": f"F{i}", "category": "EXCEPTION_SWALLOW",
                            "description": "x", "line": i})
             for i in range(20)
         ]
