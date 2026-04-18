@@ -275,7 +275,7 @@ class ApprovalGate:
     def __init__(self, policy_engine: Optional[PolicyEngine] = None,
                  audit_log: Optional[AuditLog] = None):
         self._policy  = policy_engine or PolicyEngine()
-        self._log     = audit_log or AuditLog()
+        self._log     = audit_log if audit_log is not None else AuditLog()
         self._pending: dict = {}
 
     def request(self, scenario_type: str, depth: str,
@@ -351,7 +351,7 @@ class KillSwitch:
     def __init__(self, audit_log: Optional[AuditLog] = None):
         self._engaged      = False
         self._reset_token: Optional[str] = None
-        self._log          = audit_log or AuditLog()
+        self._log          = audit_log if audit_log is not None else AuditLog()
 
     def engage(self, actor: str = "MISTCODER", reason: str = "") -> dict:
         self._engaged     = True
