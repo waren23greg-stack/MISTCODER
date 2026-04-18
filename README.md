@@ -51,7 +51,7 @@ It does not scan. It **reasons**. It does not report. It **understands**.
 | —      | Pipeline CLI | ✅ Shipped |
 | —      | GitHub Actions CI | ✅ Shipped |
 | —      | Research Paper 001 | ✅ Shipped |
-| —      | CVSS Risk Scorer | 🔲 Planned |
+| —      | CVSS Risk Scorer | ✅ Shipped |
 | —      | Vulnerable Target Demo | 🔲 Planned |
 | —      | Self-Improvement Loop | 🔲 Planned |
 
@@ -445,6 +445,6 @@ This project is being built in public. Every architectural decision, research de
 
 <br/>
 
-*© MISTCODER Research Initiative · MIT License · Phase 2 Active · v0.3*
+*© MISTCODER Research Initiative · MIT License · Phase 2 Active · v0.4*
 
 </div>

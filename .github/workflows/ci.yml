@@ -55,3 +55,6 @@ jobs:
           print('Pipeline smoke test: PASS')
           print(f'Findings: {report[\"metadata\"][\"finding_count\"]}')
           "
+
+      - name: CVSS Risk Scorer tests
+        run: python -m pytest modules/scoring/tests/test_cvss_scorer.py -v
