@@ -1417,9 +1417,12 @@ class BinaryLiftingEngine:
         if data[:4] == WASM_MAGIC:
             return "WASM"
         magic32 = struct.unpack_from("<I", data, 0)[0]
+        magic32_be = struct.unpack_from(">I", data, 0)[0]
         if magic32 in (MACHO_MAGIC_32, MACHO_MAGIC_64,
                        MACHO_MAGIC_FAT, MACHO_CIGAM_32,
                        MACHO_CIGAM_64):
+            return "Mach-O"
+        if magic32_be in (MACHO_MAGIC_FAT,):
             return "Mach-O"
         return "raw"
 

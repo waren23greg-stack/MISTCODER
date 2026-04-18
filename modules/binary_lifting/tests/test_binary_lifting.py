@@ -480,8 +480,8 @@ class TestMachOParser(unittest.TestCase):
 
     def test_macho_no_pie(self):
         data = bytearray(self.macho64)
-        # Clear MH_PIE flag at offset 28 (flags)
-        struct.pack_into("<I", data, 28, 0)
+        # Clear MH_PIE flag at offset 24 (flags field in Mach-O header)
+        struct.pack_into("<I", data, 24, 0)
         ir = MachOParser(bytes(data), "test").parse()
         self.assertFalse(ir["security"]["pie"])
 
