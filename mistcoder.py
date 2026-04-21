@@ -8,6 +8,13 @@ import sys, os, json, time, hashlib, datetime, pathlib
 ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
+# COVENANT audit engine
+try:
+    from modules.oversight.src.covenant import Covenant as _CovenantCls
+    _COVENANT = _CovenantCls()
+except Exception:
+    _COVENANT = None
+
 BANNER = r"""
 ███╗   ███╗██╗███████╗████████╗ ██████╗ ██████╗ ██████╗ ███████╗██████╗
 ████╗ ████║██║██╔════╝╚══██╔══╝██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗
@@ -124,6 +131,15 @@ def run_scan(target: str, json_out: str = None, phantom: bool = False):
     print(f"  Scan ID : {scan_id}")
     print()
 
+    # Kill-switch check
+    if _COVENANT and not _COVENANT.is_clear():
+        print("  🔴 COVENANT kill switch active — scanning blocked.")
+        print("     Run: python mistcoder.py covenant status")
+        return
+    # Record scan start
+    if _COVENANT:
+        _COVENANT.record_scan_start(scan_id, target)
+
     files = collect_files(target)
     py_files  = files["py"]
     js_files  = files["js"] + files["ts"]
@@ -234,6 +250,15 @@ def run_scan(target: str, json_out: str = None, phantom: bool = False):
             print(f"  ✓ PHANTOM: {len(attack_paths)} ranked attack path(s) found")
         except Exception as e:
             print(f"  ✗ PHANTOM error: {e}")
+
+    # ── COVENANT — record complete + compliance export ──────────────────────
+    if _COVENANT and engines_ran > 0:
+        cov_report = _COVENANT.record_scan_complete(scan_id, target, all_findings, attack_paths)
+        base_path  = (json_out.rsplit(".", 1)[0] + "_compliance") if json_out else f"sandbox/{scan_id}_compliance"
+        import os as _os; _os.makedirs("sandbox", exist_ok=True)
+        written    = _COVENANT.export(cov_report, base_path, formats=["json", "md"])
+        for w in written:
+            print(f"  Compliance → {w}")
 
     # ── Print report ─────────────────────────────────────────────────────────
     _print_report(all_findings, attack_paths, scan_id)
@@ -427,6 +452,40 @@ def main():
             idx      = args.index("--json")
             json_out = args[idx + 1] if idx + 1 < len(args) else "sandbox/report.json"
         run_scan(target, json_out=json_out, phantom=phantom)
+
+    elif cmd == "covenant":
+        sub = args[1] if len(args) > 1 else "status"
+        if _COVENANT is None:
+            print("  COVENANT not available — ensure modules/oversight/src/covenant.py exists")
+            return
+        if sub == "status":
+            s  = _COVENANT.status()
+            ok = s["chain_valid"]
+            ks = s["kill_switch_active"]
+            print(BANNER)
+            print(SEP)
+            print("  COVENANT AUDIT STATUS")
+            print(SEP)
+            print(f"  Chain:        {chr(10003) if ok else chr(10007)} {s['chain_message']}")
+            print(f"  Records:      {s['total_records']}")
+            print(f"  Scans logged: {s['total_scans']}")
+            print(f"  Kill switch:  {'ACTIVE' if ks else 'clear'}")
+            if s.get('last_scan'): print(f"  Last scan:    {s['last_scan']}")
+            print()
+        elif sub == "verify":
+            ok, msg = _COVENANT.verify()
+            print(f"\n  {chr(10003) if ok else chr(10007)} {msg}\n")
+        elif sub == "clear":
+            _COVENANT.disengage_kill_switch()
+        elif sub == "export" and len(args) >= 3:
+            with open(args[2]) as fh:
+                data = json.load(fh)
+            rep     = _COVENANT.reporter.build_report(
+                data.get("scan_id","unknown"), data.get("target","unknown"),
+                data.get("findings",[]), data.get("attack_paths",[]))
+            base    = args[3] if len(args) >= 4 else "sandbox/compliance_export"
+            written = _COVENANT.export(rep, base, formats=["json","csv","md"])
+            for w in written: print(f"  Wrote: {w}")
 
     else:
         print(f"  Unknown command: {cmd}")
