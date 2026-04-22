@@ -482,3 +482,53 @@ def analyse_directory(dirpath: str, max_files: int = 500) -> list[FileAnalysisRe
         count += 1
 
     return results
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OracleWalker — class wrapper so mistcoder.py can import by class name
+# ─────────────────────────────────────────────────────────────────────────────
+
+class OracleWalker:
+    """
+    Class interface for the ORACLE engine.
+    mistcoder.py imports this as: from python_ast_walker import OracleWalker
+    """
+
+    def scan_file(self, filepath: str) -> FileAnalysisResult:
+        return analyse_file(filepath)
+
+    def scan_directory(self, dirpath: str, max_files: int = 500) -> list:
+        return analyse_directory(dirpath, max_files=max_files)
+
+    def findings_from(self, results: list) -> list:
+        """Flatten all findings across results into a list of dicts."""
+        out = []
+        for r in results:
+            for flow in r.flows:
+                out.append({
+                    "severity":   flow.severity,
+                    "category":   "TAINT_FLOW",
+                    "title":      flow.title(),
+                    "cwe":        flow.cwe(),
+                    "location":   str(flow.sink.location),
+                    "confidence": flow.confidence,
+                    "sanitized":  flow.sanitized,
+                })
+            for c in r.crypto:
+                out.append({
+                    "severity":   c.severity,
+                    "category":   "CRYPTO",
+                    "title":      c.kind.value,
+                    "location":   str(c.location),
+                    "confidence": 0.95,
+                })
+            for s in r.secrets:
+                out.append({
+                    "severity":   s.severity,
+                    "category":   "SECRET",
+                    "title":      s.kind.value,
+                    "location":   str(s.location),
+                    "entropy":    s.entropy,
+                    "confidence": min(0.9, s.entropy / 5.0),
+                })
+        return out
