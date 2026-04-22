@@ -177,6 +177,7 @@ class MemoryBackend:
         self.nodes: list[dict] = []
         self.edges: list[dict] = []
         self._node_index: dict[str, dict] = {}
+        self._adj: dict = {}
 
     def add_node(self, *args, **kwargs) -> dict:
         # Accept any call signature: (label, props), (id, label, props), (id, label, props, extra)
@@ -188,6 +189,26 @@ class MemoryBackend:
         nid   = props.get("id") or props.get("node_id") or str(len(self.nodes))
         self._node_index[nid] = node
         return node
+
+    # ── Query API (used by AttackPathFinder) ───────────────────────────────
+    def add_edge(self, src_id: str, dst_id: str,
+                 rel_type: str = "LEADS_TO", props: dict = None) -> dict:
+        edge = {"src": src_id, "dst": dst_id,
+                "type": rel_type, **(props or {})}
+        self.edges.append(edge)
+        self._adj.setdefault(src_id, []).append(dst_id)
+        return edge
+
+    def find_node(self, node_id: str):
+        return self._node_index.get(node_id)
+
+    def reachable_from(self, node_id: str):
+        return [self._node_index[nid]
+                for nid in self._adj.get(node_id, [])
+                if nid in self._node_index]
+
+    def find_nodes_by_type(self, node_type: str):
+        return [n for n in self.nodes if n.get("type") == node_type]
 
     def create_edge(self, src_id: str, dst_id: str, rel_type: str,
                     properties: dict | None = None) -> dict:
@@ -256,6 +277,21 @@ def run_pipeline(findings_tkg: list[dict], backend: MemoryBackend) -> dict:
         results["tkg_nodes"]   = len(backend.nodes)
         results["modules_ran"].append("MemoryGraph(fallback)")
 
+    # ── Build edges between nodes (severity-chained per file) ────────────
+    if not backend.edges:
+        from collections import defaultdict as _dd
+        SEV = {"CRITICAL":0,"HIGH":1,"MEDIUM":2,"LOW":3,"INFO":4}
+        by_file = _dd(list)
+        for _n in backend.nodes:
+            by_file[_n.get("file") or _n.get("filename") or "?"].append(_n)
+        for _fn in by_file.values():
+            _sn = sorted(_fn, key=lambda x: SEV.get(str(x.get("severity","INFO")).upper(),4))
+            for _i in range(len(_sn)-1):
+                _sid = _sn[_i].get("id") or str(id(_sn[_i]))
+                _did = _sn[_i+1].get("id") or str(id(_sn[_i+1]))
+                backend.add_edge(_sid, _did, props={"confidence":0.85,"detection_probability":0.25})
+        results["tkg_edges"] = len(backend.edges)
+
     # ── AttackPathFinder ──────────────────────────────────────────────
     AttackPathFinder, err = _load(
         "modules/knowledge_graph/src/attack_path_finder.py", "AttackPathFinder")
@@ -263,8 +299,30 @@ def run_pipeline(findings_tkg: list[dict], backend: MemoryBackend) -> dict:
     if AttackPathFinder:
         try:
             finder = AttackPathFinder(backend)
-            paths  = finder.find_paths() if hasattr(finder, "find_paths") else \
-                     finder.find_attack_paths() if hasattr(finder, "find_attack_paths") else []
+            # Use the correct method: find_critical_paths(attacker_position)
+            # Seed from first CRITICAL node, fall back to first node
+            crit = next((n for n in backend.nodes
+                         if str(n.get("severity","")).upper() == "CRITICAL"), None)
+            start_id = (crit.get("id") if crit else None) or                        (backend.nodes[0].get("id") if backend.nodes else "ENTRY")
+            # find_all_paths between CRITICAL nodes and end-of-chain nodes
+            paths = []
+            if hasattr(finder, "find_all_paths"):
+                crit_nodes = [n for n in backend.nodes
+                              if str(n.get("severity","")).upper() == "CRITICAL"]
+                end_nodes  = backend.nodes[-5:] if len(backend.nodes) > 5 else backend.nodes
+                seen = set()
+                for cn in crit_nodes:
+                    for en in end_nodes:
+                        s = cn.get("id") or str(id(cn))
+                        e = en.get("id") or str(id(en))
+                        if s == e or (s,e) in seen: continue
+                        seen.add((s,e))
+                        for p in finder.find_all_paths(s, e, max_length=6):
+                            paths.append(p.to_dict() if hasattr(p,"to_dict") else vars(p))
+            if not paths and hasattr(finder, "find_critical_paths"):
+                raw = finder.find_critical_paths(start_id)
+                paths = [p[0].to_dict() if hasattr(p[0],"to_dict") else p[0]
+                         for p in raw] if raw else []
             results["attack_paths"] = paths or []
             results["modules_ran"].append("AttackPathFinder")
         except Exception as e:
