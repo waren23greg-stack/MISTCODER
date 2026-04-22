@@ -11,14 +11,13 @@ from threading import Lock
 __version__ = "0.5.0"
 __author__  = "MISTCODER Contributors"
 __license__ = "MIT"
-_PATH_SETUP_LOCK = Lock()
-_PATH_CONFIGURED = False
+_path_setup_lock = Lock()
+_path_state = {"configured": False}
 
 def _ensure_repo_root_on_path() -> None:
     """Ensure local module imports resolve when used as a source checkout."""
-    global _PATH_CONFIGURED
-    with _PATH_SETUP_LOCK:
-        if _PATH_CONFIGURED:
+    with _path_setup_lock:
+        if _path_state["configured"]:
             return
 
         import sys
@@ -28,7 +27,7 @@ def _ensure_repo_root_on_path() -> None:
         if repo_root not in sys.path:
             sys.path.insert(0, repo_root)
 
-        _PATH_CONFIGURED = True
+        _path_state["configured"] = True
 
 
 # Lazy imports — only load what's available
