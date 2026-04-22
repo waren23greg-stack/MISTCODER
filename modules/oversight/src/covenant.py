@@ -301,7 +301,7 @@ class ComplianceReporter:
     # ── Export formats ────────────────────────────────────────────────────────
     def export_json(self, report: Dict, path: str):
         pathlib.Path(path).parent.mkdir(parents=True, exist_ok=True)
-        with open(path, "w") as fh:
+        with open(path, "w", encoding="utf-8") as fh:
             json.dump(report, fh, indent=2)
 
     def export_csv(self, report: Dict, path: str):
@@ -367,7 +367,7 @@ class ComplianceReporter:
             f"- Records: {report['audit']['chain_length']}",
             f"- {report['audit']['chain_message']}",
         ]
-        with open(path, "w") as fh:
+        with open(path, "w", encoding="utf-8") as fh:
             fh.write("\n".join(lines))
 
 
