@@ -3,7 +3,7 @@
 import unittest
 
 
-class TestRepositoryImportPath(unittest.TestCase):
+class TestNamespacePackageImports(unittest.TestCase):
     def test_modules_namespace_importable(self):
         import modules
         import modules.ingestion
