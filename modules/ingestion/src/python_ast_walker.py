@@ -20,7 +20,7 @@ import string
 from pathlib import Path
 from typing import Optional
 
-from taint_model import (
+from modules.ingestion.src.taint_model import (
     TaintSource, TaintSink, TaintFlow, CryptoFinding, SecretFinding,
     FileAnalysisResult, SourceKind, SinkKind, CryptoIssueKind, SecretKind,
     SourceLocation,
