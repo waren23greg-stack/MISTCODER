@@ -258,6 +258,12 @@ def run_pipeline(findings_tkg: list[dict], backend: MemoryBackend) -> dict:
             builder.ingest_findings(findings_tkg)
             results["tkg_nodes"]   = len(backend.nodes)
             results["tkg_edges"]   = len(backend.edges)
+            # Rebuild _node_index so FD-prefixed IDs match edge keys
+            backend._node_index = {}
+            for _n in backend.nodes:
+                _k = _n.get("id") or _n.get("node_id") or _n.get("_label") or str(id(_n))
+                if "id" not in _n: _n["id"] = _k  # inject id so AttackPathFinder traversal works
+                backend._node_index[_k] = _n
             results["modules_ran"].append("ThreatKGBuilder")
         except Exception as e:
             results["errors"].append(f"ThreatKGBuilder: {e}")
@@ -287,8 +293,8 @@ def run_pipeline(findings_tkg: list[dict], backend: MemoryBackend) -> dict:
         for _fn in by_file.values():
             _sn = sorted(_fn, key=lambda x: SEV.get(str(x.get("severity","INFO")).upper(),4))
             for _i in range(len(_sn)-1):
-                _sid = _sn[_i].get("id") or str(id(_sn[_i]))
-                _did = _sn[_i+1].get("id") or str(id(_sn[_i+1]))
+                _sid = _sn[_i].get("id") or _sn[_i].get("_label") or str(id(_sn[_i]))
+                _did = _sn[_i+1].get("id") or _sn[_i+1].get("_label") or str(id(_sn[_i+1]))
                 backend.add_edge(_sid, _did, props={"confidence":0.85,"detection_probability":0.25})
         results["tkg_edges"] = len(backend.edges)
 
@@ -304,25 +310,23 @@ def run_pipeline(findings_tkg: list[dict], backend: MemoryBackend) -> dict:
             crit = next((n for n in backend.nodes
                          if str(n.get("severity","")).upper() == "CRITICAL"), None)
             start_id = (crit.get("id") if crit else None) or                        (backend.nodes[0].get("id") if backend.nodes else "ENTRY")
-            # find_all_paths between CRITICAL nodes and end-of-chain nodes
+            # find_all_paths: start=first node of each file chain, end=last node
             paths = []
             if hasattr(finder, "find_all_paths"):
-                crit_nodes = [n for n in backend.nodes
-                              if str(n.get("severity","")).upper() == "CRITICAL"]
-                end_nodes  = backend.nodes[-5:] if len(backend.nodes) > 5 else backend.nodes
-                seen = set()
-                for cn in crit_nodes:
-                    for en in end_nodes:
-                        s = cn.get("id") or str(id(cn))
-                        e = en.get("id") or str(id(en))
-                        if s == e or (s,e) in seen: continue
-                        seen.add((s,e))
-                        for p in finder.find_all_paths(s, e, max_length=6):
-                            paths.append(p.to_dict() if hasattr(p,"to_dict") else vars(p))
-            if not paths and hasattr(finder, "find_critical_paths"):
-                raw = finder.find_critical_paths(start_id)
-                paths = [p[0].to_dict() if hasattr(p[0],"to_dict") else p[0]
-                         for p in raw] if raw else []
+                from collections import defaultdict as _dd2
+                SEV2 = {"CRITICAL":0,"HIGH":1,"MEDIUM":2,"LOW":3,"INFO":4}
+                by_file2 = _dd2(list)
+                for _n in backend.nodes:
+                    by_file2[_n.get("file") or "?"].append(_n)
+                for _fn in by_file2.values():
+                    if len(_fn) < 2: continue
+                    _sn = sorted(_fn, key=lambda x: SEV2.get(
+                        str(x.get("severity","INFO")).upper(), 4))
+                    s = _sn[0].get("id") or _sn[0].get("_label") or str(id(_sn[0]))
+                    e = _sn[-1].get("id") or _sn[-1].get("_label") or str(id(_sn[-1]))
+                    if s == e: continue
+                    for p in finder.find_all_paths(s, e, max_length=8):
+                        paths.append(p.to_dict() if hasattr(p,"to_dict") else vars(p))
             results["attack_paths"] = paths or []
             results["modules_ran"].append("AttackPathFinder")
         except Exception as e:
