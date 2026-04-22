@@ -357,6 +357,16 @@ def run_pipeline(findings_tkg: list[dict], backend: MemoryBackend) -> dict:
         except Exception as e:
             results["errors"].append(f"ReasoningEngine: {e}")
 
+    # Resolve string node IDs to full node objects in attack paths
+    resolved = []
+    for p in results["attack_paths"]:
+        if not isinstance(p, dict): continue
+        resolved.append({**p, "nodes": [
+            backend._node_index.get(n, {"id":n,"_label":n})
+            if isinstance(n, str) else n
+            for n in p.get("nodes", [])
+        ]})
+    results["attack_paths"] = resolved
     return results
 
 
