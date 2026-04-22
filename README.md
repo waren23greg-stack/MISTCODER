@@ -1,215 +1,210 @@
-# NestFinder CUK 🏠
+# MISTCODER
+### Adversarial Intelligence Platform · Phase IV Reasoning Engine
 
-> **Safe, verified student housing near the Cooperative University of Kenya — and Airbnb-style short stays.**
+```
+  ███╗   ███╗██╗███████╗████████╗ ██████╗ ██████╗ ██████╗ ███████╗██████╗
+  ████╗ ████║██║██╔════╝╚══██╔══╝██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗
+  ██╔████╔██║██║███████╗   ██║   ██║     ██║   ██║██║  ██║█████╗  ██████╔╝
+  ██║╚██╔╝██║██║╚════██║   ██║   ██║     ██║   ██║██║  ██║██╔══╝  ██╔══██╗
+  ██║ ╚═╝ ██║██║███████║   ██║   ╚██████╗╚██████╔╝██████╔╝███████╗██║  ██║
+  ╚═╝     ╚═╝╚═╝╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
+```
 
-Live at → **[nestfindercuk.rocks](https://nestfindercuk.rocks)**
+> **AI-powered static analysis that builds a Threat Knowledge Graph, enumerates ranked attack chains, and signs every scan to an immutable audit ledger — all from a single Python command, zero external dependencies.**
+
+---
+
+## The Problem
+
+Most codebases ship with vulnerabilities nobody found because:
+- Manual review doesn't scale
+- Generic linters find bugs, not *attack paths*
+- There's no tamper-evident record that a scan even happened
+
+**MISTCODER** solves all three.
 
 ---
 
 ## What It Does
 
-NestFinder CUK is a full-stack housing platform built specifically for CUK students. It solves the problem of students arriving in Gataka and Rongai with nowhere to stay — by listing verified, photo-verified rooms with real caretaker contacts unlocked through a one-time M-Pesa payment.
-
-It also supports **Airbnb-style short-stay listings** for guests, visitors, and students who need temporary accommodation.
-
----
-
-## Features
-
-### For Students / Guests
-- Browse verified listings with real photos — free, no sign-in required
-- Filter by room type, price, amenities (water, WiFi), availability
-- Filter by listing type — Student Rental or Airbnb / Short Stay
-- View approximate location map per listing
-- Save favourites (persisted locally)
-- Pay via M-Pesa to unlock caretaker contact (one-time fee)
-- Promo/referral code system — refer a friend, they unlock contact free
-- Rate and review listings after moving in
-- Report suspicious listings
-- Submit and track M-Pesa payment status in real time
-
-### For Airbnb Listings
-- Per-night pricing, max guests, minimum nights
-- Date picker (check-in / check-out) at booking
-- 🌙 Short Stay badge on listing cards
-- Booking fee: Ksh 150 (vs Ksh 250+ for rentals)
-
-### For Admin
-- Secure admin panel (role-based access)
-- Add, edit, delete listings with photo upload
-- Set listing type: Student Rental or Airbnb / Short Stay
-- Search & pin location (Nominatim geocoding → saves lat/lng)
-- Confirm or deny M-Pesa payments
-- View all student profiles and payment history
-- Generate referral promo codes on payment confirmation
-- Receive email notification (Resend) on new payment submission
-- M-Pesa STK push integration (Safaricom Daraja API)
-- Report management
+```
+python mistcoder.py scan modules/
+         │
+         ▼
+  ┌─────────────────────────────────────────────────────────┐
+  │  ORACLE  ─  AST taint-flow engine                       │
+  │    65 findings across 24 files in 38ms                  │
+  │    SQL injection · Path traversal · Code execution      │
+  ├─────────────────────────────────────────────────────────┤
+  │  PHANTOM ─  Threat Knowledge Graph                      │
+  │    65 nodes · 41 edges · 14 ranked attack chains        │
+  │    CHAIN-01 score=8.31 eval_exec→eval_exec→Password     │
+  ├─────────────────────────────────────────────────────────┤
+  │  COVENANT ─  Immutable Intelligence Ledger              │
+  │    Hash-chained · MITRE ATT&CK · OWASP Top 10           │
+  │    entry 2 of 2 · ⬡ CHAIN INTACT                       │
+  └─────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## Tech Stack
+## Architecture
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | Vanilla HTML, CSS, JS — no framework |
-| Backend DB | Supabase (PostgreSQL + Auth + Storage) |
-| API Routes | Vercel Serverless Functions (Node.js) |
-| Payments | M-Pesa Daraja API (STK Push + Callback) |
-| Email | Resend (admin notifications) |
-| Maps | Leaflet + OpenStreetMap |
-| Hosting | Vercel |
-| CDN / Assets | Supabase Storage (house photos) |
+```
+┌────────────────────────────────────────────────────────────────┐
+│                        MISTCODER                               │
+│                                                                │
+│  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐ │
+│  │  ORACLE  │───▶│  NEXUS   │───▶│ PHANTOM  │───▶│COVENANT  │ │
+│  │  AST     │    │  Unified │    │  TKG +   │    │  Ledger  │ │
+│  │  Taint   │    │  CLI/IR  │    │  Paths   │    │  Chain   │ │
+│  └──────────┘    └──────────┘    └──────────┘    └──────────┘ │
+│       │                               │                │       │
+│  Python AST              AttackPathFinder         SHA-256     │
+│  CWE mapping             65 nodes/41 edges        MITRE TTP   │
+│  CVSS scoring            14 kill chains           OWASP map   │
+└────────────────────────────────────────────────────────────────┘
+```
+
+| Module | Role | Status |
+|--------|------|--------|
+| **ORACLE** | Python AST taint-flow analysis engine | ✅ Live |
+| **NEXUS** | Unified CLI bridge, IR normalization | ✅ Live |
+| **PHANTOM** | Threat Knowledge Graph + Attack Path Finder | ✅ Live |
+| **COVENANT** | Immutable hash-chained audit ledger | ✅ Live |
+
+---
+
+## Real Output — 38ms
+
+```
+════════════════════════════════════════════════════════════════
+  COVENANT INTELLIGENCE REPORT
+════════════════════════════════════════════════════════════════
+  Ledger    : entry 2 of 2  │  ⬡ CHAIN INTACT
+  Risk Trend: STABLE
+
+  ATTACK CHAINS  (14 ranked)
+
+  CHAIN-01  score=8.31  steps=3  p(success)=0.64
+      ◈   [CRITICAL] eval_exec  test_gaps.py:105  CWE-94
+      └─▶ [CRITICAL] eval_exec  test_gaps.py:118  CWE-94
+      └─▶ [HIGH] Password  test_gaps.py:25  CWE-312
+
+  CHAIN-06  score=7.76  steps=4  p(success)=0.512
+      ◈   [CRITICAL] eval_exec  test_parser.py:257  CWE-94
+      └─▶ [HIGH] file_path  test_parser.py:344  CWE-22
+      └─▶ [HIGH] file_path  test_parser.py:362  CWE-22
+      └─▶ [HIGH] Password  test_parser.py:157  CWE-312
+
+  COMPLIANCE MATRIX
+  A01: Broken Access Control  ████████████████████ 30 findings
+  A03: Injection              ████████████████████ 19 findings
+
+  ⬛ CRITICAL RISK — Halt deployments. Patch immediately.
+════════════════════════════════════════════════════════════════
+  PHANTOM BRIDGE complete  │  findings: 65  paths: 14  time: 38ms
+```
+
+---
+
+## Quick Start
+
+```bash
+# Clone
+git clone https://github.com/waren23greg-stack/MISTCODER.git
+cd MISTCODER
+
+# Scan your codebase
+python mistcoder.py scan path/to/code/
+
+# Full intelligence pipeline
+python phantom_bridge.py sandbox/unified_ir.json
+
+# Signed audit report
+python covenant_engine.py sandbox/phantom_report.json
+```
+
+**Zero dependencies. Python 3.8+. Runs anywhere.**
+
+---
+
+## What Makes MISTCODER Different
+
+| Feature | Traditional SAST | MISTCODER |
+|---------|-----------------|-----------|
+| Analysis | Rule-based pattern matching | AST taint-flow (data follows paths) |
+| Output | List of findings | **Ranked attack kill chains** |
+| Graph | ❌ | **Threat Knowledge Graph** (65 nodes, 41 edges) |
+| Audit | ❌ | **Hash-chained immutable ledger** |
+| Compliance | Manual | Auto-mapped to **MITRE ATT&CK + OWASP** |
+| Dependencies | Many | **Zero** |
+| Speed | Minutes | **38ms** |
+
+---
+
+## COVENANT — The Chain of Truth
+
+Every scan is cryptographically linked to the previous. Tamper one entry — the chain breaks.
+
+```
+2026-04-22T07:18:30  49eb226accfe3f1e…  findings=65  paths=14
+        │
+        └──SHA-256──▶
+2026-04-22T07:24:17  ecdaf9baeff77771…  findings=65  paths=14
+
+Chain status: VERIFIED — 2 entries intact
+Risk Trend  : STABLE
+```
+
+This isn't just a report. It's a **cryptographic proof** your codebase was audited.
+
+---
+
+## Roadmap
+
+- [ ] **CI/CD Integration** — GitHub Actions, GitLab CI one-liner
+- [ ] **VS Code Extension** — inline vulnerability highlighting
+- [ ] **API Mode** — REST endpoint for pipeline integration
+- [ ] **Multi-language** — JavaScript, Go, Java AST engines
+- [ ] **Dashboard** — Real-time web UI with live chain visualization
+- [ ] **CVE Correlation** — Auto-match findings to NVD CVE database
+
+---
+
+## Why This Matters
+
+Security vulnerabilities cost organizations an average of **$4.45M per breach** (IBM 2023). Most are preventable. MISTCODER finds the *paths an attacker would take* — not just individual bugs — giving developers exactly what to fix first.
+
+Built by a developer, for developers. Free. Open. Fast.
 
 ---
 
 ## Project Structure
 
 ```
-NestFinder-CUK/
-├── index.html          # Main public listing page
-├── admin.html          # Admin panel (role-gated)
-├── login.html          # Auth page
-├── api/
-│   ├── mpesa-stk.js        # Initiate STK push
-│   ├── mpesa-callback.js   # Safaricom callback handler
-│   ├── mpesa-check.js      # Poll payment status
-│   ├── notify.js           # Email admin on payment
-│   ├── notify-student.js   # Email student on confirm
-│   ├── generate-promo.js   # Generate referral code
-│   ├── redeem-promo.js     # Validate & redeem promo
-│   ├── report.js           # Submit listing report
-│   └── security.js         # Security utilities
-├── sw.js               # Service worker (cache, offline)
-├── vercel.json         # Vercel config + CSP headers
-└── README.md
+MISTCODER/
+├── mistcoder.py                  # Unified CLI entry point
+├── phantom_bridge.py             # Full intelligence pipeline
+├── covenant_engine.py            # Immutable audit ledger
+├── modules/
+│   ├── analysis/src/             # AST taint-flow engine (ORACLE)
+│   ├── knowledge_graph/src/      # TKG + AttackPathFinder (PHANTOM)
+│   ├── reasoning/src/            # Attack path reasoning engine
+│   └── oversight/src/            # CVSS scoring + compliance
+└── sandbox/
+    ├── unified_ir.json           # Intermediate representation
+    ├── phantom_report.json       # Full intelligence report
+    ├── covenant_report.json      # Compliance + remediation
+    └── covenant_ledger.json      # Immutable hash-chained ledger
 ```
 
 ---
 
-## Database Schema (Supabase)
+<div align="center">
 
-### `listings`
-| Column | Type | Notes |
-|--------|------|-------|
-| id | uuid | PK |
-| title | text | |
-| type | text | single / bedsitter / one-bedroom |
-| listing_type | text | rental / airbnb |
-| price | int | Monthly rent (rentals) |
-| price_per_night | int | Nightly rate (Airbnb) |
-| max_guests | int | Airbnb only |
-| min_nights | int | Airbnb only |
-| contact_fee | int | One-time unlock fee |
-| location | text | Human-readable address |
-| latitude | float | Pinned coordinates |
-| longitude | float | Pinned coordinates |
-| description | text | |
-| water_included | bool | |
-| wifi_available | bool | |
-| available | bool | |
-| photos | text[] | Supabase storage URLs |
+**Built with zero external dependencies · Python 3.8+ · 38ms full pipeline**
 
-### `payments`
-| Column | Type | Notes |
-|--------|------|-------|
-| id | uuid | PK |
-| user_id | uuid | FK → profiles |
-| listing_id | uuid | FK → listings |
-| amount | int | Ksh |
-| mpesa_ref | text | M-Pesa confirmation code |
-| status | text | pending / confirmed / denied |
-| checkin_date | date | Airbnb bookings |
-| checkout_date | date | Airbnb bookings |
+*MISTCODER — Know your attack surface before the adversary does.*
 
-### `promo_codes`
-| Column | Type | Notes |
-|--------|------|-------|
-| id | uuid | PK |
-| code | text | e.g. NEST-A3X9K2 |
-| owner_user_id | uuid | Who earned it |
-| is_used | bool | |
-| used_by_user_id | uuid | Who redeemed it |
-
-### Other tables
-- `profiles` — user roles, full name, phone
-- `caretaker_contacts` — unlocked per listing per user
-- `reviews` — star ratings + comments
-- `reports` — flagged listings
-
----
-
-## Environment Variables
-
-Set these in Vercel → Settings → Environment Variables:
-
-```
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_KEY=your_service_role_key   # server-side only
-MPESA_CONSUMER_KEY=your_daraja_consumer_key
-MPESA_CONSUMER_SECRET=your_daraja_secret
-MPESA_SHORTCODE=your_till_or_paybill
-MPESA_PASSKEY=your_lipa_na_mpesa_passkey
-MPESA_CALLBACK_URL=https://nestfindercuk.rocks/api/mpesa-callback
-RESEND_API_KEY=your_resend_key
-ADMIN_EMAIL=your_admin_email
-```
-
-> ⚠️ Never commit `.env` files. Never expose `SUPABASE_SERVICE_KEY` in frontend code.
-
----
-
-## Local Development
-
-```bash
-git clone https://github.com/waren23greg-stack/NestFinderCuk.git
-cd NestFinderCuk
-
-# Install Vercel CLI
-npm i -g vercel
-
-# Run locally (serverless functions work too)
-vercel dev
-```
-
-Open `http://localhost:3000`
-
----
-
-## Deployment
-
-Pushes to `main` auto-deploy via Vercel GitHub integration.
-
-```bash
-git add .
-git commit -m "your message"
-git push origin main
-```
-
----
-
-## Security
-
-See `SECURITY.md` for full security audit and recommendations.
-
-Key measures currently in place:
-- Content Security Policy (CSP) via `vercel.json`
-- Service worker intercepts same-origin requests only
-- `SUPABASE_SERVICE_KEY` server-side only (never in browser)
-- Promo codes generated server-side after DB-verified payment
-- Payment references checked for duplicates before insert
-- Admin panel role-gated (profile.role === 'admin')
-- RLS enabled on Supabase tables
-
----
-
-## Contributing
-
-This is a private project for Cooperative University of Kenya students. Contact the maintainer via WhatsApp: **0704 285 315**
-
----
-
-## License
-
-Private — © 2025 NestFinder CUK. All rights reserved.
+</div>
