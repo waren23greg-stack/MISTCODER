@@ -25,6 +25,7 @@ class ThreatVector:
 
     @property
     def rank_score(self) -> float:
+        # Inputs are each 0-100. Their product is 0..1,000,000, so dividing by 10,000 normalizes to 0..100.
         return _clamp_0_100((self.impact * self.stealth * self.novelty) / 10_000.0)
 
 

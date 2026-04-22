@@ -7,6 +7,8 @@ from typing import Dict, List, Tuple
 
 from findings import AttackChain, UnifiedFindings
 
+MAX_FALLBACK_REMEDIATION_ITEMS = 5
+
 
 def _signature(chain: AttackChain) -> str:
     cwes = ",".join(sorted(chain.cwe_mappings))
@@ -44,7 +46,11 @@ def synthesize_consensus(findings: UnifiedFindings) -> ConsensusReport:
     reconciled = []
     for key in sorted(merged):
         score = sum(merged[key]) / len(merged[key])
-        source = phantom_map.get(key) or oracle_map.get(key) or covenant_map.get(key)
+        source = phantom_map.get(key)
+        if source is None:
+            source = oracle_map.get(key)
+        if source is None:
+            source = covenant_map.get(key)
         reconciled.append(
             {
                 "chain": source.description,
@@ -57,7 +63,9 @@ def synthesize_consensus(findings: UnifiedFindings) -> ConsensusReport:
     remediation = findings.covenant.remediation if findings.covenant else ()
     if not remediation:
         remediation = tuple(
-            f"Mitigate {entry['chain']}" for entry in reconciled[:5] if entry["chain"]
+            f"Mitigate {entry['chain']}"
+            for entry in reconciled[:MAX_FALLBACK_REMEDIATION_ITEMS]
+            if entry["chain"]
         )
 
     audit_hashes = tuple(entry.entry_hash for entry in findings.audit_trail)
