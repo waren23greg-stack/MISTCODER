@@ -458,27 +458,24 @@ def render(findings_raw: list[dict], findings_tkg: list[dict],
         print(sec(f"RANKED ATTACK CHAINS  (top {min(5, len(paths))})"))
 
         for i, path in enumerate(paths[:5], 1):
-            score = path.get("score", 0)
-            depth = path.get("depth", 0)
-            tier  = path.get("min_tier", "T2")
-            fpath = os.path.basename(str(path.get("file", "")))
-            entry = path.get("entry_point", "?")
-            impact= path.get("impact", "?")
-
-            score_color = R if score >= 8.0 else Y if score >= 5.0 else G
-            print(f"\n  {BO(score_color(f'#{i}'))}  "
-                  f"Score: {score_color(str(score))}  "
-                  f"Depth: {depth} steps  "
-                  f"Min adversary: {BO(tier)}")
+            nodes = path.get("nodes", [])
+            depth = path.get("length", len(nodes))
+            cvss_list = [n.get("cvss_score",0) for n in nodes if isinstance(n,dict)]
+            score = round(sum(cvss_list)/len(cvss_list),2) if cvss_list else 0
+            tier  = "T1" if score >= 8 else "T2"
+            first = nodes[0] if nodes and isinstance(nodes[0],dict) else {}
+            last  = nodes[-1] if nodes and isinstance(nodes[-1],dict) else {}
+            fpath = __import__("os").path.basename(str(first.get("file","")))
+            entry = first.get("call_name") or first.get("_label","?")
+            impact= last.get("call_name") or last.get("_label","?")
+            score_color = R if score>=8.0 else Y if score>=5.0 else G
+            print(f"\n  {BO(score_color(f'#{i}'))}  Score: {score_color(str(score))}  Depth: {BO(str(depth))} steps  Min adversary: {BO(tier)}")
             print(f"     {DI('File  :')} {C(fpath)}")
-            print(f"     {DI('Entry :')} {entry}")
-            print(f"     {DI('Impact:')} {impact}")
-
-            steps = path.get("steps", [])
-            if steps:
-                print(f"     {DI('Chain :')}", end="")
-                chain = " → ".join(s.get("title", "?")[:35] for s in steps[:4])
-                print(f" {DI(chain)}")
+            print(f"     {DI('Entry :')} {Y(str(entry))}")
+            print(f"     {DI('Impact:')} {R(str(impact))}")
+            if len(nodes)>1:
+                chain=" → ".join((n.get("call_name") or n.get("_label","?"))[:25] for n in nodes if isinstance(n,dict))
+                print(f"     {DI('Chain :')} {DI(chain)}")
 
     # ── Critical findings detail ──────────────────────────────────────
     crits = [f for f in findings_raw if f.get("severity") in ("CRITICAL", "HIGH")]
