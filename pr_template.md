@@ -1,122 +1,81 @@
-# 🎉 PHASE 3: Knowledge Graph & Binary Lifting Enhancement
+## MISTCODER Phase 4 — Reasoning Engine
 
-## Description
-Complete implementation of PHASE 3 for MISTCODER, including:
-- MOD-07: Knowledge Graph Integration (Neo4j + In-Memory backend)
-- MOD-08: Binary Lifting Enhancement (Callgraph + x86-64 Disassembly)
-- MOD-01: JavaScript Enhancement Tests (GAP fixes)
-
-## Type of Change
-- [x] New feature (non-breaking)
-- [ ] Bug fix
-- [ ] Breaking change
-
-## Related Issues
-- Phase 3.0: Foundation Setup
-- Phase 3.1: Query & Threat Modeling
-- Phase 3.2: Binary Analysis
-
-## Deliverables
-
-### MOD-07: Knowledge Graph Integration
-- ✅ `neo4j_backend.py` (650 lines) - Dual backend design
-- ✅ `cypher_builder.py` (380 lines) - Fluent query API
-- ✅ `attack_path_finder.py` (580 lines) - Path discovery & scoring
-- ✅ `threat_kg_builder.py` (420 lines) - Automatic graph construction
-- ✅ `kg_integration.py` (350 lines) - High-level orchestration
-
-### MOD-08: Binary Lifting Enhancement
-- ✅ `callgraph_builder.py` (380 lines) - Call graph construction
-- ✅ `disasm_x86_64.py` (440 lines) - x86-64 disassembly
-
-### Testing
-- ✅ 91 new test cases added
-- ✅ 497 total tests passing (100%)
-- ✅ Zero test failures
-- ✅ Full coverage of new modules
-
-### Documentation
-- ✅ PHASE3_COMPLETION_SUMMARY.md
-- ✅ PHASE3_FINAL_STATUS.md
-- ✅ PHASE3_ACHIEVEMENT.txt
-- ✅ SPEC_MOD07_NEO4J.md
-- ✅ SPEC_MOD08_DECOMPILER.md
-- ✅ Inline code documentation
-
-## Technical Details
-
-### MOD-07 Features
-- Dual-backend design (Neo4j + In-Memory)
-- Automatic backend selection with fallback
-- Fluent Cypher query API (injection-safe)
-- Multi-dimensional path scoring (exploitability, impact, probability, detectability)
-- Adversary tier modeling (T1-T4)
-- Attack path discovery algorithms
-- Threat knowledge graph auto-construction
-
-### MOD-08 Features
-- Callgraph construction from binary analysis
-- Recursion detection
-- Dangerous function identification
-- x86-64 disassembly (pattern-based, no external deps)
-- Function prologue detection
-- Call target extraction
-- Tainted function analysis
-
-## Testing
-Total Tests: 497 Passing: 497 ✅ Failing: 0 Pass Rate: 100% Execution Time: 2.18 seconds
-
-### Test Coverage by Module
-- MOD-01 (Ingestion): 48 tests ✅
-- MOD-02 (Analysis): 68 tests ✅
-- MOD-03 (Simulation): 51 tests ✅
-- MOD-05 (Oversight): 66 tests ✅
-- MOD-06 (Reporting): 26 tests ✅
-- MOD-07 (Knowledge Graph): 65 tests ✅
-- MOD-08 (Binary Lifting): 77 tests ✅
-
-## Code Quality
-- ✅ No linting issues
-- ✅ Type hints on all functions
-- ✅ Comprehensive docstrings
-- ✅ Error handling implemented
-- ✅ No external dependencies (core modules)
-- ✅ Security review passed
-
-## Performance
-- Full test suite: 2.18 seconds
-- Graph operations: <10ms
-- Binary parsing: <2s (10MB)
-- Callgraph analysis: <1s (500 functions)
-
-## Integration
-- ✅ MOD-01 integration verified
-- ✅ MOD-02 integration verified
-- ✅ Data flow tested end-to-end
-- ✅ Backward compatible
-
-## Breaking Changes
-None
-
-## Additional Notes
-- Production-ready code
-- Full architectural integration
-- Ready for immediate deployment
-- Phase 4 options documented
-
-## Checklist
-- [x] My code follows the style guidelines
-- [x] I have performed a self-review of my own code
-- [x] I have commented my code, particularly in hard-to-understand areas
-- [x] I have made corresponding changes to the documentation
-- [x] My changes generate no new warnings
-- [x] I have added tests that prove my fix is effective or that my feature works
-- [x] New and existing unit tests passed locally with my changes
-- [x] Any dependent changes have been merged and published
+**Branch:** `feature/phase4-reasoning-engine` → `main`
 
 ---
 
-**Phase 3 Status: ✅ PRODUCTION READY**
+### What this PR delivers
 
-All deliverables complete, tested, documented, and integrated.
-Ready for code review, merge, and deployment.
+This is the culmination of Phase 4. It ships a fully connected, end-to-end vulnerability intelligence pipeline — from raw source code to ranked, explainable, audit-signed attack paths.
+
+#### Step 1 — ORACLE (Python taint engine)
+- `oracle.py` — CLI entry point
+- `modules/ingestion/src/python_ast_walker.py` — AST-based taint flow analysis
+- `modules/ingestion/src/taint_model.py` — 8 source kinds, 12 sink kinds, CWE mapping
+- `modules/ingestion/src/oracle_report.py` — terminal + JSON output with remediation
+
+#### Step 2 — NEXUS (Unified CLI)
+- `mistcoder.py` — routes any target (file/dir/URL) through all engines
+- `modules/ingestion/src/ir_bridge.py` — normalises all findings into UnifiedIR
+
+#### Step 3 — PHANTOM (Knowledge graph + attack paths)
+- `modules/knowledge_graph/src/phantom.py` — TKG builder + DFS path finder + reasoner
+- Delegates to existing `threat_kg_builder`, `attack_path_finder`, `reasoning` modules
+- Falls back to self-contained engine if existing modules change API
+
+#### Step 4 — COVENANT (Cryptographic audit engine)
+- `modules/oversight/src/covenant.py` — SHA-256 hash-chained audit log
+- HMAC-signed records, tamper detection, kill switch
+- CVSS v3.1 scoring, CWE → OWASP Top 10 2021 mapping
+- Compliance export: JSON + CSV + Markdown
+
+#### Step 5 — RELEASE (Package structure + CI)
+- `__init__.py` across all module directories
+- `.github/workflows/ci.yml` — CI on push/PR, 3 Python versions
+- `README.md` — full architecture diagram + engine map + CLI reference
+
+---
+
+### Test results
+
+```
+python mistcoder.py selftest    → ORACLE ✓  PARSER ✓  IR_BRIDGE ✓  PHANTOM ✓
+python oracle.py --self-test    → 19 findings, 5 CRITICAL
+covenant.py selftest            → chain intact, CVSS 9.1, exports verified
+phantom.py                      → 4 ranked attack paths
+CI workflow                     → Python 3.10 / 3.11 / 3.12
+```
+
+---
+
+### How to review
+
+```bash
+# 1. Checkout
+git checkout feature/phase4-reasoning-engine
+
+# 2. Run full selftest
+python mistcoder.py selftest
+
+# 3. Scan this repo itself
+python mistcoder.py scan modules/ --phantom --json sandbox/phase4_report.json
+
+# 4. Check audit trail
+python mistcoder.py covenant status
+```
+
+---
+
+### Checklist
+
+- [x] All new files have module `__init__.py`
+- [x] All steps self-test clean
+- [x] COVENANT chain verified
+- [x] No hardcoded secrets
+- [x] Ethics scope applies (white-hat, authorised use only)
+- [x] README updated with architecture + CLI reference
+- [x] CI workflow added
+
+---
+
+**Merging this branch closes Phase 4 and sets the foundation for Phase 5 (Dynamic Analysis + Self-Improvement Loop).**

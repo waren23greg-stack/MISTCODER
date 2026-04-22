@@ -20,7 +20,7 @@ import string
 from pathlib import Path
 from typing import Optional
 
-from taint_model import (
+from modules.ingestion.src.taint_model import (
     TaintSource, TaintSink, TaintFlow, CryptoFinding, SecretFinding,
     FileAnalysisResult, SourceKind, SinkKind, CryptoIssueKind, SecretKind,
     SourceLocation,
@@ -482,3 +482,70 @@ def analyse_directory(dirpath: str, max_files: int = 500) -> list[FileAnalysisRe
         count += 1
 
     return results
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OracleWalker — class wrapper so mistcoder.py can import by class name
+# ─────────────────────────────────────────────────────────────────────────────
+
+class OracleWalker:
+    """
+    Class interface for the ORACLE engine.
+    ALL public methods return flat lists of finding dicts so
+    mistcoder.py can call len() and iterate directly.
+    """
+
+    def _to_dicts(self, results) -> list:
+        out = []
+        for r in results:
+            if getattr(r, "parse_error", None):
+                continue
+            for flow in r.flows:
+                out.append({
+                    "severity":   flow.severity,
+                    "category":   "TAINT_FLOW",
+                    "title":      flow.title(),
+                    "cwe":        flow.cwe(),
+                    "location":   str(flow.sink.location),
+                    "file":       r.path,
+                    "confidence": flow.confidence,
+                    "sanitized":  flow.sanitized,
+                    "detail":     (f"{flow.source.kind.value} flows to "
+                                   f"{flow.sink.kind.value}"),
+                })
+            for c in r.crypto:
+                out.append({
+                    "severity":   c.severity,
+                    "category":   "CRYPTO",
+                    "title":      c.kind.value.replace("_", " ").title(),
+                    "cwe":        "CWE-327",
+                    "location":   str(c.location),
+                    "file":       r.path,
+                    "confidence": 0.95,
+                    "detail":     c.detail or c.expression[:80],
+                })
+            for s in r.secrets:
+                out.append({
+                    "severity":   s.severity,
+                    "category":   "SECRET",
+                    "title":      s.kind.value.replace("_", " ").title(),
+                    "cwe":        "CWE-312",
+                    "location":   str(s.location),
+                    "file":       r.path,
+                    "entropy":    s.entropy,
+                    "confidence": min(0.9, s.entropy / 5.0),
+                    "detail":     s.pattern,
+                })
+        return out
+
+    def scan_file(self, filepath: str) -> list:
+        return self._to_dicts([analyse_file(filepath)])
+
+    def scan_directory(self, dirpath: str, max_files: int = 500) -> list:
+        return self._to_dicts(analyse_directory(dirpath, max_files=max_files))
+
+    def scan_files(self, filepaths: list) -> list:
+        return self._to_dicts([analyse_file(p) for p in filepaths])
+
+    def findings_from(self, results: list) -> list:
+        return self._to_dicts(results)
