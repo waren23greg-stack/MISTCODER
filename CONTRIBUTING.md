@@ -97,6 +97,8 @@ pytest modules/ --tb=short -q --ignore=modules/binary_lifting/tests
 ruff check . --ignore E501,E402,F401
 ```
 
+> Run these commands from the repository root so `pytest.ini` can apply the local import path configuration.
+
 ---
 
 ## 5. Contributor Agreement (Summary)
