@@ -233,7 +233,7 @@ Built by a developer, for developers. Free. Open. Fast.
 ## Troubleshooting
 
 - **`ModuleNotFoundError: No module named 'modules'` while running tests**  
-  Run tests from the repository root (`MISTCODER/`) and ensure your environment is activated.
+  Run tests from the repository root (`MISTCODER/`) so `pytest.ini` can apply `pythonpath = .`, and ensure your environment is activated.
 - **`pytest` or `ruff` command not found**  
   Install tools with `pip install pytest ruff` (or use your environment's package manager).
 - **COVENANT verify says no chain exists**  

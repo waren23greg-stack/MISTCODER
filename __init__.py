@@ -6,15 +6,36 @@ Quick start:
     from mistcoder import scan, covenant, phantom
     results = scan("src/")
 """
+from threading import Lock
+
 __version__ = "0.5.0"
 __author__  = "MISTCODER Contributors"
 __license__ = "MIT"
+_path_setup_lock = Lock()
+_path_state = {"configured": False}
+
+def _ensure_repo_root_on_path() -> None:
+    """Ensure local module imports resolve when used as a source checkout."""
+    with _path_setup_lock:
+        if _path_state["configured"]:
+            return
+
+        import sys
+        from pathlib import Path
+
+        repo_root = str(Path(__file__).resolve().parent)
+        if repo_root not in sys.path:
+            sys.path.insert(0, repo_root)
+
+        _path_state["configured"] = True
+
 
 # Lazy imports — only load what's available
+# TODO: Replace path mutation with proper package entry points when a stable
+# distribution layout is introduced in a future iteration.
 def scan(target: str, **kwargs):
     """Run a full MISTCODER scan on a target path or URL."""
-    import sys, os
-    sys.path.insert(0, os.path.dirname(__file__))
+    _ensure_repo_root_on_path()
     from mistcoder import run_scan
     return run_scan(target, **kwargs)
 
@@ -25,8 +46,7 @@ def get_version() -> str:
 
 def status() -> dict:
     """Return availability status of all engines."""
-    import sys, os
-    sys.path.insert(0, os.path.dirname(__file__))
+    _ensure_repo_root_on_path()
     from mistcoder import get_module_status
     layers, statuses = get_module_status()
     return statuses
