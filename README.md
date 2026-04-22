@@ -10,7 +10,7 @@
   ╚═╝     ╚═╝╚═╝╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
 ```
 
-> **AI-powered static analysis that builds a Threat Knowledge Graph, enumerates ranked attack chains, and signs every scan to an immutable audit ledger — all from a single Python command, zero external dependencies.**
+> **AI-powered static analysis that builds a Threat Knowledge Graph, enumerates ranked attack chains, and signs every scan to an immutable audit ledger — all from a single Python command, zero runtime dependencies.**
 
 ---
 
@@ -115,6 +115,10 @@ python mistcoder.py scan modules/
 git clone https://github.com/waren23greg-stack/MISTCODER.git
 cd MISTCODER
 
+# (Optional) create a virtualenv
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
 # Scan your codebase
 python mistcoder.py scan path/to/code/
 
@@ -125,7 +129,53 @@ python phantom_bridge.py sandbox/unified_ir.json
 python covenant_engine.py sandbox/phantom_report.json
 ```
 
-**Zero dependencies. Python 3.8+. Runs anywhere.**
+**Zero runtime dependencies. CI-tested on Python 3.10–3.12.**
+
+---
+
+## CLI Usage
+
+```bash
+python mistcoder.py --help
+python mistcoder.py status
+python mistcoder.py selftest
+python mistcoder.py scan <target> [--json <report.json>] [--phantom]
+python mistcoder.py covenant status
+python mistcoder.py covenant verify
+```
+
+---
+
+## Development Checks
+
+```bash
+# Install lightweight dev tools
+pip install pytest ruff
+
+# Core health checks
+python mistcoder.py status
+python mistcoder.py selftest
+python oracle.py --self-test
+python modules/oversight/src/covenant.py selftest
+python modules/knowledge_graph/src/phantom.py
+
+# Test and lint (mirrors CI expectations)
+pytest modules/ --tb=short -q --ignore=modules/binary_lifting/tests
+ruff check . --ignore E501,E402,F401
+```
+
+> Note: some module tests require optional dependencies or environment setup and may be skipped in CI.
+
+---
+
+## Configuration & Output
+
+- `sandbox/unified_ir.json`: normalized intermediate representation from scan ingestion
+- `sandbox/phantom_report.json`: ranked attack paths and graph intelligence output
+- `sandbox/covenant_report.json`: compliance and remediation summary
+- `sandbox/covenant_ledger.json`: hash-chained audit ledger history
+
+Use `--json` on `mistcoder.py scan` to export machine-readable reports to a custom path.
 
 ---
 
@@ -163,7 +213,7 @@ This isn't just a report. It's a **cryptographic proof** your codebase was audit
 
 ## Roadmap
 
-- [ ] **CI/CD Integration** — GitHub Actions, GitLab CI one-liner
+- [x] **CI/CD Integration** — GitHub Actions workflow for self-tests, pytest, lint, and audit checks
 - [ ] **VS Code Extension** — inline vulnerability highlighting
 - [ ] **API Mode** — REST endpoint for pipeline integration
 - [ ] **Multi-language** — JavaScript, Go, Java AST engines
@@ -177,6 +227,25 @@ This isn't just a report. It's a **cryptographic proof** your codebase was audit
 Security vulnerabilities cost organizations an average of **$4.45M per breach** (IBM 2023). Most are preventable. MISTCODER finds the *paths an attacker would take* — not just individual bugs — giving developers exactly what to fix first.
 
 Built by a developer, for developers. Free. Open. Fast.
+
+---
+
+## Troubleshooting
+
+- **`ModuleNotFoundError: No module named 'modules'` while running tests**  
+  Run tests from the repository root (`MISTCODER/`) and ensure your environment is activated.
+- **`pytest` or `ruff` command not found**  
+  Install tools with `pip install pytest ruff` (or use your environment's package manager).
+- **COVENANT verify says no chain exists**  
+  Generate at least one report first (run a scan + report pipeline), then run `python mistcoder.py covenant verify`.
+
+---
+
+## Community
+
+- Contribution process: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Security policy: [`SECURITY.md`](SECURITY.md)
+- Code of conduct: [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
 
 ---
 

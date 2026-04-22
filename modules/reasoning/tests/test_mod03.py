@@ -39,7 +39,7 @@ FAIL = "\033[91m✗\033[0m"
 _results = []
 
 
-def test(name: str):
+def case(name: str):
     """Decorator that catches exceptions and records pass/fail."""
     def decorator(fn):
         try:
@@ -145,21 +145,21 @@ def make_sample_findings():
 print("\n  ▶  SECTION 1 — AttackGraph Primitives")
 print("  " + "─" * 50)
 
-@test("AttackGraph: add nodes and query by kind")
+@case("AttackGraph: add nodes and query by kind")
 def _():
     g = make_minimal_graph()
     assert_eq(g.node_count, 4)
     vulns = g.nodes(kind=NodeKind.VULNERABILITY)
     assert_eq(len(vulns), 2)
 
-@test("AttackGraph: edge adjacency lists correct")
+@case("AttackGraph: edge adjacency lists correct")
 def _():
     g = make_minimal_graph()
     out = g.edges_from("n_src")
     assert_eq(len(out), 1)
     assert_eq(out[0].target_id, "n_sqli")
 
-@test("AttackGraph: sources() and sinks() populated")
+@case("AttackGraph: sources() and sinks() populated")
 def _():
     g = make_minimal_graph()
     assert_eq(len(g.sources()), 1)
@@ -167,22 +167,23 @@ def _():
     assert_eq(len(g.sinks()), 1)
     assert_eq(g.sinks()[0].node_id, "n_sink")
 
-@test("AttackGraph: has_cycles() correct on acyclic graph")
+@case("AttackGraph: has_cycles() correct on acyclic graph")
 def _():
     g = make_minimal_graph()
     assert_true(not g.has_cycles(), "Expected no cycles")
 
-@test("AttackGraph: has_cycles() detects real cycle")
+@case("AttackGraph: has_cycles() detects real cycle")
 def _():
     g = AttackGraph("cyclic")
     a = AttackNode("a", NodeKind.VULNERABILITY, "VULN_A", Severity.HIGH)
     b = AttackNode("b", NodeKind.VULNERABILITY, "VULN_B", Severity.MEDIUM)
-    g.add_node(a); g.add_node(b)
+    g.add_node(a)
+    g.add_node(b)
     g.add_edge(AttackEdge("a", "b", EdgeKind.DATA_FLOW))
     g.add_edge(AttackEdge("b", "a", EdgeKind.EXPLOIT_CHAIN))   # cycle
     assert_true(g.has_cycles())
 
-@test("AttackGraph: strongly_connected_components non-trivial")
+@case("AttackGraph: strongly_connected_components non-trivial")
 def _():
     g = make_minimal_graph()
     sccs = g.strongly_connected_components()
@@ -190,19 +191,19 @@ def _():
     for scc in sccs:
         assert_eq(len(scc), 1)
 
-@test("AttackNode.weight correlates with severity")
+@case("AttackNode.weight correlates with severity")
 def _():
     crit = AttackNode("c", NodeKind.VULNERABILITY, "X", Severity.CRITICAL)
     low  = AttackNode("l", NodeKind.VULNERABILITY, "X", Severity.LOW)
     assert_gt(low.weight, crit.weight, "LOW should have higher weight than CRITICAL")
 
-@test("AttackEdge.effective_weight penalises low probability")
+@case("AttackEdge.effective_weight penalises low probability")
 def _():
     e_high = AttackEdge("a", "b", EdgeKind.DATA_FLOW, probability=0.9)
     e_low  = AttackEdge("a", "b", EdgeKind.DATA_FLOW, probability=0.1)
     assert_gt(e_low.effective_weight(), e_high.effective_weight())
 
-@test("AttackGraph.to_json serialises without error")
+@case("AttackGraph.to_json serialises without error")
 def _():
     g = make_minimal_graph()
     raw = g.to_json()
@@ -218,12 +219,12 @@ def _():
 print("\n  ▶  SECTION 2 — AttackGraphBuilder")
 print("  " + "─" * 50)
 
-@test("Builder: ingest findings produces non-empty graph")
+@case("Builder: ingest findings produces non-empty graph")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     assert_true(not graph.is_empty())
 
-@test("Builder: boundary nodes always present")
+@case("Builder: boundary nodes always present")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     assert_true(graph.node("ENTRY::INTERNET") is not None)
@@ -231,25 +232,25 @@ def _():
     assert_true(graph.node("SINK::DATA_EXFIL") is not None)
     assert_true(graph.node("SINK::DOS") is not None)
 
-@test("Builder: finding nodes reflect finding ids")
+@case("Builder: finding nodes reflect finding ids")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     assert_true(graph.node("f-001") is not None)
     assert_true(graph.node("f-003") is not None)
 
-@test("Builder: edges created for entry-point findings")
+@case("Builder: edges created for entry-point findings")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     entry_edges = graph.edges_from("ENTRY::INTERNET")
     assert_gt(len(entry_edges), 0, "Expected entry → vuln edges")
 
-@test("Builder: sink edges created for RCE finding")
+@case("Builder: sink edges created for RCE finding")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     rce_in = graph.edges_to("SINK::RCE")
     assert_gt(len(rce_in), 0, "Expected vuln → SINK::RCE edges")
 
-@test("Builder: empty findings produces graph with only boundaries")
+@case("Builder: empty findings produces graph with only boundaries")
 def _():
     graph = AttackGraphBuilder("target").ingest([]).build()
     vulns = graph.nodes(kind=NodeKind.VULNERABILITY)
@@ -263,13 +264,13 @@ def _():
 print("\n  ▶  SECTION 3 — PathAnalyzer")
 print("  " + "─" * 50)
 
-@test("PathAnalyzer: produces PathAnalysisResult on minimal graph")
+@case("PathAnalyzer: produces PathAnalysisResult on minimal graph")
 def _():
     g = make_minimal_graph()
     r = PathAnalyzer(g).analyze()
     assert_true(isinstance(r, PathAnalysisResult))
 
-@test("PathAnalyzer: finds shortest path src→sink")
+@case("PathAnalyzer: finds shortest path src→sink")
 def _():
     g = make_minimal_graph()
     r = PathAnalyzer(g).analyze()
@@ -278,13 +279,13 @@ def _():
     assert_eq(sp.start.node_id, "n_src")
     assert_eq(sp.end.node_id,   "n_sink")
 
-@test("PathAnalyzer: all_paths non-empty on connected graph")
+@case("PathAnalyzer: all_paths non-empty on connected graph")
 def _():
     g = make_minimal_graph()
     r = PathAnalyzer(g).analyze()
     assert_gt(len(r.all_paths), 0)
 
-@test("PathAnalyzer: unreachable on disconnected node")
+@case("PathAnalyzer: unreachable on disconnected node")
 def _():
     g = make_minimal_graph()
     isolated = AttackNode("iso", NodeKind.VULNERABILITY, "ORPHAN", Severity.HIGH)
@@ -293,21 +294,21 @@ def _():
     unreachable_ids = {n.node_id for n in r.unreachable_nodes}
     assert_true("iso" in unreachable_ids, "Isolated node should be unreachable")
 
-@test("PathAnalyzer: blast_radius > 0 for reachable node")
+@case("PathAnalyzer: blast_radius > 0 for reachable node")
 def _():
     g = make_minimal_graph()
     r = PathAnalyzer(g).analyze()
     blast = r.blast_radius.get("n_sqli", 0)
     assert_gt(blast, 0)
 
-@test("AttackPath.exploitability_score bounded [0,100]")
+@case("AttackPath.exploitability_score bounded [0,100]")
 def _():
     g = make_minimal_graph()
     r = PathAnalyzer(g).analyze()
     for p in r.all_paths:
         assert_between(p.exploitability_score, 0, 100)
 
-@test("PathAnalyzer: on full findings graph finds multiple paths")
+@case("PathAnalyzer: on full findings graph finds multiple paths")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     r = PathAnalyzer(graph, max_paths=50).analyze()
@@ -321,23 +322,22 @@ def _():
 print("\n  ▶  SECTION 4 — ChainDetector")
 print("  " + "─" * 50)
 
-@test("ChainDetector: returns list on empty paths")
+@case("ChainDetector: returns list on empty paths")
 def _():
     g = make_minimal_graph()
     r = PathAnalyzer(g).analyze()
     chains = ChainDetector().detect(r)
     assert_true(isinstance(chains, list))
 
-@test("ChainDetector: detects Injection→Exfil on full findings")
+@case("ChainDetector: detects Injection→Exfil on full findings")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     r = PathAnalyzer(graph, max_paths=100).analyze()
     chains = ChainDetector().detect(r)
-    names = [dc.pattern.name for dc in chains]
     # At least one chain should be detected
     assert_gt(len(chains), 0, "Expected at least one chain")
 
-@test("ChainDetector: no duplicate chain names")
+@case("ChainDetector: no duplicate chain names")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     r = PathAnalyzer(graph, max_paths=100).analyze()
@@ -345,7 +345,7 @@ def _():
     names = [dc.pattern.name for dc in chains]
     assert_eq(len(names), len(set(names)), "Duplicate chain names found")
 
-@test("ChainReport.from_chains computes max_score")
+@case("ChainReport.from_chains computes max_score")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     r = PathAnalyzer(graph, max_paths=100).analyze()
@@ -353,7 +353,7 @@ def _():
     report = ChainReport.from_chains(chains)
     assert_true(report.max_score >= 0)
 
-@test("DetectedChain.adjusted_score ≥ base exploitability")
+@case("DetectedChain.adjusted_score ≥ base exploitability")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     r = PathAnalyzer(graph, max_paths=100).analyze()
@@ -371,7 +371,7 @@ def _():
 print("\n  ▶  SECTION 5 — RiskScorer")
 print("  " + "─" * 50)
 
-@test("RiskScorer: produces TargetRisk")
+@case("RiskScorer: produces TargetRisk")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     pr = PathAnalyzer(graph, max_paths=100).analyze()
@@ -379,7 +379,7 @@ def _():
     tr = RiskScorer(graph, pr, cr).score()
     assert_true(isinstance(tr, TargetRisk))
 
-@test("RiskScorer: aggregate_score in [0,10]")
+@case("RiskScorer: aggregate_score in [0,10]")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     pr = PathAnalyzer(graph, max_paths=100).analyze()
@@ -387,7 +387,7 @@ def _():
     tr = RiskScorer(graph, pr, cr).score()
     assert_between(tr.aggregate_score, 0, 10)
 
-@test("RiskScorer: risk_level is valid enum string")
+@case("RiskScorer: risk_level is valid enum string")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     pr = PathAnalyzer(graph, max_paths=100).analyze()
@@ -395,7 +395,7 @@ def _():
     tr = RiskScorer(graph, pr, cr).score()
     assert_true(tr.risk_level in {"CRITICAL","HIGH","MEDIUM","LOW","MINIMAL"})
 
-@test("RiskScorer: remediation_order sorted ascending by priority")
+@case("RiskScorer: remediation_order sorted ascending by priority")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     pr = PathAnalyzer(graph, max_paths=100).analyze()
@@ -404,7 +404,7 @@ def _():
     priorities = [f.remediation_priority for f in tr.remediation_order]
     assert_eq(priorities, sorted(priorities))
 
-@test("RiskScorer: CRITICAL findings score higher than INFO findings")
+@case("RiskScorer: CRITICAL findings score higher than INFO findings")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     pr = PathAnalyzer(graph, max_paths=100).analyze()
@@ -416,7 +416,7 @@ def _():
     if "CRITICAL" in by_sev and "INFO" in by_sev:
         assert_gt(max(by_sev["CRITICAL"]), max(by_sev["INFO"]))
 
-@test("RiskScorer: chain-amplified score ≥ cvss_base for chained nodes")
+@case("RiskScorer: chain-amplified score ≥ cvss_base for chained nodes")
 def _():
     graph = AttackGraphBuilder("target").ingest(make_sample_findings()).build()
     pr = PathAnalyzer(graph, max_paths=100).analyze()
@@ -435,20 +435,20 @@ def _():
 print("\n  ▶  SECTION 6 — ReasoningCore (End-to-End)")
 print("  " + "─" * 50)
 
-@test("ReasoningCore: processes findings and returns ReasoningResult")
+@case("ReasoningCore: processes findings and returns ReasoningResult")
 def _():
     core = ReasoningCore(ReasoningConfig(target_name="test_app"))
     result = core.reason(make_sample_findings())
     assert_true(result is not None)
     assert_true(result.graph.node_count > 0)
 
-@test("ReasoningCore: elapsed_ms > 0")
+@case("ReasoningCore: elapsed_ms > 0")
 def _():
     core = ReasoningCore()
     result = core.reason(make_sample_findings())
     assert_gt(result.elapsed_ms, 0)
 
-@test("ReasoningCore: to_json produces valid JSON")
+@case("ReasoningCore: to_json produces valid JSON")
 def _():
     core = ReasoningCore()
     result = core.reason(make_sample_findings())
@@ -458,20 +458,20 @@ def _():
     assert_true("chain_report"  in obj)
     assert_true("target_risk"   in obj)
 
-@test("ReasoningCore: reason_from_json accepts JSON string input")
+@case("ReasoningCore: reason_from_json accepts JSON string input")
 def _():
     core = ReasoningCore()
     findings_json = json.dumps(make_sample_findings())
     result = core.reason_from_json(findings_json)
     assert_true(result.graph.node_count > 0)
 
-@test("ReasoningCore: empty findings returns warnings")
+@case("ReasoningCore: empty findings returns warnings")
 def _():
     core = ReasoningCore()
     result = core.reason([])
     assert_true(len(result.warnings) > 0)
 
-@test("ReasoningCore: confidence filter removes low-confidence findings")
+@case("ReasoningCore: confidence filter removes low-confidence findings")
 def _():
     cfg = ReasoningConfig(min_confidence=0.99)  # very strict
     core = ReasoningCore(cfg)
@@ -479,7 +479,7 @@ def _():
     # Only f-003 has confidence >= 0.99
     assert_true(len(result.warnings) > 0, "Expected filtering warning")
 
-@test("ReasoningCore: aggregate_score higher with CRITICAL findings")
+@case("ReasoningCore: aggregate_score higher with CRITICAL findings")
 def _():
     crit_findings = [f for f in make_sample_findings()
                      if f["severity"] == "CRITICAL"]
@@ -491,16 +491,17 @@ def _():
     # more critical vulns in all_findings, so all_findings score should be ≥ crit only
     assert_true(score_all >= 0 and score_crit >= 0)
 
-@test("ReasoningCore: most_critical_path_hops non-empty with connected graph")
+@case("ReasoningCore: most_critical_path_hops non-empty with connected graph")
 def _():
     core = ReasoningCore()
     result = core.reason(make_sample_findings())
     # may or may not find a path depending on chaining rules matching
     assert_true(isinstance(result.most_critical_path_hops, list))
 
-@test("ReasoningCore: print_summary runs without exceptions")
+@case("ReasoningCore: print_summary runs without exceptions")
 def _():
-    import io, contextlib
+    import contextlib
+    import io
     core = ReasoningCore(ReasoningConfig(target_name="print_test"))
     result = core.reason(make_sample_findings())
     buf = io.StringIO()
