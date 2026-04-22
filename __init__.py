@@ -17,9 +17,6 @@ _PATH_CONFIGURED = False
 def _ensure_repo_root_on_path() -> None:
     """Ensure local module imports resolve when used as a source checkout."""
     global _PATH_CONFIGURED
-    if _PATH_CONFIGURED:
-        return
-
     with _PATH_SETUP_LOCK:
         if _PATH_CONFIGURED:
             return
