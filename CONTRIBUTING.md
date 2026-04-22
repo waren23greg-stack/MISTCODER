@@ -75,7 +75,31 @@ Pull requests submitted without prior approval will be closed without review.
 
 ---
 
-## 4. Contributor Agreement (Summary)
+## 4. Local Development Setup (for approved contributors)
+
+```bash
+git clone https://github.com/waren23greg-stack/MISTCODER.git
+cd MISTCODER
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install pytest ruff
+```
+
+Run the same checks used by CI before opening a pull request:
+
+```bash
+python mistcoder.py status
+python mistcoder.py selftest
+python oracle.py --self-test
+python modules/oversight/src/covenant.py selftest
+python modules/knowledge_graph/src/phantom.py
+pytest modules/ --tb=short -q --ignore=modules/binary_lifting/tests
+ruff check . --ignore E501,E402,F401
+```
+
+---
+
+## 5. Contributor Agreement (Summary)
 
 All approved contributors must agree to the following before any contribution
 is accepted:
@@ -95,11 +119,11 @@ is accepted:
 
 ---
 
-## 5. Code Standards
+## 6. Code Standards
 
 When contributions are eventually accepted, the following standards apply:
 
-  Language       Python 3.11+ for all core modules
+  Language       Python 3.10+ (CI-tested on 3.10–3.12)
   Style          PEP 8 strictly enforced
   Tests          All code must include unit tests (pytest)
   Documentation  All functions must have docstrings (Google style)
@@ -109,7 +133,7 @@ When contributions are eventually accepted, the following standards apply:
 
 ---
 
-## 6. Reporting Issues
+## 7. Reporting Issues
 
 Issues are welcome for:
   -- Bug reports (once code exists)
@@ -121,7 +145,14 @@ in this repository.
 
 ---
 
-## 7. Contact
+## 8. Code of Conduct
+
+All contributors and participants are expected to follow
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+---
+
+## 9. Contact
 
 For contribution requests, licensing inquiries, or IP concerns:
 Open a GitHub Issue with the label: [CONTACT]
