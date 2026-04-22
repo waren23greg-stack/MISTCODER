@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MISTCODER — Intelligence Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #020408;
+    --abyss: #050d12;
+    --panel: #071620;
+    --border: #0d3a4f;
+    --glow: #00ffe0;
+    --glow2: #00b8ff;
+    --red: #ff3c5a;
+    --orange: #ff7c2a;
+    --yellow: #ffd700;
+    --green: #00ff88;
+    --dim: #1a3a4a;
+    --text: #7ab8cc;
+    --textbright: #c8e8f0;
+    --mono: 'Share Tech Mono', monospace;
+    --display: 'Orbitron', monospace;
+    --body: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--text);
+    font-family: var(--body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* SCANLINE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,224,0.015) 2px,
+      rgba(0,255,224,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* GRID BG */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,224,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,224,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 40px 48px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(180deg, rgba(0,255,224,0.04) 0%, transparent 100%);
+  }
+
+  .logo-block { display: flex; flex-direction: column; gap: 4px; }
+
+  .logo-title {
+    font-family: var(--display);
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    background: linear-gradient(90deg, var(--glow), var(--glow2), #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 20px rgba(0,255,224,0.4));
+    animation: titlePulse 4s ease-in-out infinite;
+  }
+
+  @keyframes titlePulse {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(0,255,224,0.4)); }
+    50% { filter: drop-shadow(0 0 35px rgba(0,255,224,0.7)); }
+  }
+
+  .logo-sub {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--glow);
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .scan-id { color: var(--glow); font-size: 0.65rem; }
+  .status-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+  }
+  .pulse-dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.3; transform:scale(0.6); }
+  }
+
+  /* ── MAIN GRID ── */
+  main {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: auto;
+    gap: 0;
+    min-height: calc(100vh - 120px);
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    border-right: 1px solid var(--border);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    background: linear-gradient(180deg, var(--abyss) 0%, var(--void) 100%);
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glow), transparent);
+    opacity: 0.5;
+  }
+
+  .panel-head {
+    padding: 10px 16px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--glow);
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,255,224,0.04);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-body { padding: 16px; }
+
+  /* VERDICT */
+  .verdict-critical {
+    font-family: var(--display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    text-align: center;
+    padding: 14px 12px;
+    border: 1px solid rgba(255,60,90,0.35);
+    background: rgba(255,60,90,0.08);
+    animation: verdictFlash 3s ease-in-out infinite;
+  }
+  @keyframes verdictFlash {
+    0%,100% { border-color: rgba(255,60,90,0.35); }
+    50% { border-color: rgba(255,60,90,0.8); box-shadow: 0 0 20px rgba(255,60,90,0.2); }
+  }
+
+  /* STAT BLOCKS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-box {
+    padding: 12px 10px;
+    background: var(--abyss);
+    border: 1px solid var(--dim);
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .num-critical { color: var(--red); text-shadow: 0 0 15px rgba(255,60,90,0.5); }
+  .num-high { color: var(--orange); text-shadow: 0 0 15px rgba(255,124,42,0.4); }
+  .num-paths { color: var(--glow); text-shadow: 0 0 15px rgba(0,255,224,0.4); }
+  .num-files { color: var(--glow2); text-shadow: 0 0 15px rgba(0,184,255,0.4); }
+
+  /* SEVERITY BARS */
+  .sev-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .sev-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    width: 65px;
+    letter-spacing: 0.05em;
+  }
+  .sev-bar-track {
+    flex: 1;
+    height: 6px;
+    background: var(--dim);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .sev-bar-fill {
+    height: 100%;
+    border-radius: 1px;
+    transform-origin: left;
+    animation: barGrow 1.5s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+    transform: scaleX(0);
+  }
+  @keyframes barGrow {
+    to { transform: scaleX(1); }
+  }
+  .sev-count {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    width: 22px;
+    text-align: right;
+    opacity: 0.8;
+  }
+  .fill-critical { background: var(--red); box-shadow: 0 0 8px rgba(255,60,90,0.6); }
+  .fill-high { background: var(--orange); box-shadow: 0 0 8px rgba(255,124,42,0.5); }
+  .fill-medium { background: var(--yellow); box-shadow: 0 0 8px rgba(255,215,0,0.4); }
+  .fill-low { background: var(--green); box-shadow: 0 0 8px rgba(0,255,136,0.3); }
+
+  /* CHAIN STATUS */
+  .chain-intact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(0,255,136,0.06);
+    border: 1px solid rgba(0,255,136,0.25);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--green);
+  }
+
+  .hex-icon { font-size: 1.2rem; }
+
+  /* ── CONTENT AREA ── */
+  .content {
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* TAB NAV */
+  .tab-nav {
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+
+  .tab-btn {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+
+  .tab-btn:hover { color: var(--textbright); }
+  .tab-btn.active {
+    color: var(--glow);
+    border-bottom-color: var(--glow);
+    background: rgba(0,255,224,0.04);
+  }
+
+  /* TAB PANELS */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* ── ATTACK CHAINS ── */
+  .chain-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .chain-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .chain-card:hover {
+    border-color: var(--glow);
+    box-shadow: 0 0 20px rgba(0,255,224,0.08);
+  }
+
+  .chain-card-head {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0,255,224,0.03);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chain-id {
+    font-family: var(--display);
+    font-size: 0.7rem;
+    color: var(--glow);
+    letter-spacing: 0.1em;
+  }
+
+  .chain-meta {
+    display: flex;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--text);
+  }
+
+  .score-badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 1px;
+    font-weight: 600;
+  }
+  .score-critical { background: rgba(255,60,90,0.2); color: var(--red); border: 1px solid rgba(255,60,90,0.4); }
+  .score-high { background: rgba(255,124,42,0.2); color: var(--orange); border: 1px solid rgba(255,124,42,0.4); }
+  .score-med { background: rgba(255,215,0,0.15); color: var(--yellow); border: 1px solid rgba(255,215,0,0.3); }
+
+  .chain-steps { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+
+  .step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+  }
+
+  .step-icon { color: var(--glow); opacity: 0.7; width: 14px; flex-shrink: 0; }
+  .step-arrow { color: var(--dim); width: 14px; flex-shrink: 0; }
+
+  .step-sev {
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    border-radius: 1px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+  .sev-CRITICAL { background: rgba(255,60,90,0.2); color: var(--red); }
+  .sev-HIGH { background: rgba(255,124,42,0.18); color: var(--orange); }
+  .sev-MEDIUM { background: rgba(255,215,0,0.15); color: var(--yellow); }
+  .sev-LOW { background: rgba(0,255,136,0.12); color: var(--green); }
+
+  .step-name { color: var(--textbright); flex: 1; }
+  .step-file { color: var(--text); opacity: 0.6; font-size: 0.6rem; }
+  .step-cwe { color: var(--glow2); font-size: 0.6rem; opacity: 0.8; }
+
+  /* ── COMPLIANCE ── */
+  .compliance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .compliance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--dim);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+  }
+
+  .compliance-name { color: var(--textbright); flex: 1; }
+  .compliance-bar-wrap { width: 80px; height: 4px; background: var(--dim); margin: 0 12px; }
+  .compliance-bar { height: 4px; background: var(--glow2); animation: barGrow 1.5s ease forwards; transform: scaleX(0); transform-origin: left; }
+  .compliance-count { color: var(--glow); width: 30px; text-align: right; }
+
+  /* ── REMEDIATION ── */
+  .remed-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .remed-item {
+    display: grid;
+    grid-template-columns: 28px 80px 60px 1fr;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    transition: background 0.2s;
+  }
+  .remed-item:hover { background: rgba(0,255,224,0.04); }
+
+  .remed-num { color: var(--glow); opacity: 0.5; }
+  .remed-cwe { color: var(--glow2); }
+  .effort-LOW { color: var(--green); }
+  .effort-MEDIUM { color: var(--yellow); }
+  .effort-HIGH { color: var(--red); }
+  .remed-action { color: var(--textbright); line-height: 1.4; font-size: 0.66rem; }
+  .border-LOW { border-left-color: var(--green); }
+  .border-MEDIUM { border-left-color: var(--yellow); }
+  .border-HIGH { border-left-color: var(--red); }
+
+  /* ── LEDGER ── */
+  .ledger-list { display: flex; flex-direction: column; gap: 0; }
+
+  .ledger-entry {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    background: var(--panel);
+  }
+  .ledger-entry:last-child { border-bottom: 1px solid var(--border); }
+  .ledger-entry:hover { background: rgba(0,255,224,0.04); }
+
+  .ledger-num {
+    font-family: var(--display);
+    font-size: 0.75rem;
+    color: var(--glow);
+    width: 24px;
+  }
+  .ledger-hash { color: var(--glow2); letter-spacing: 0.05em; font-size: 0.63rem; flex: 1; }
+  .ledger-time { color: var(--text); opacity: 0.7; width: 140px; }
+  .ledger-findings { color: var(--orange); width: 70px; }
+  .ledger-paths { color: var(--green); width: 60px; }
+  .verified-badge {
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    color: var(--green);
+    border-radius: 1px;
+  }
+
+  /* ── OVERVIEW GRAPH ── */
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .mini-chart {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 18px;
+  }
+
+  .chart-title {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glow);
+    margin-bottom: 14px;
+  }
+
+  /* MITRE TAGS */
+  .mitre-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mitre-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    background: rgba(0,184,255,0.08);
+    color: var(--glow2);
+    border-radius: 1px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .mitre-tag:hover {
+    background: rgba(0,184,255,0.18);
+    border-color: var(--glow2);
+  }
+
+  /* FILE RISK TABLE */
+  .file-table { width: 100%; border-collapse: collapse; }
+  .file-table th {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--glow);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    opacity: 0.7;
+  }
+  .file-table td {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(13,58,79,0.4);
+  }
+  .file-table tr:hover td { background: rgba(0,255,224,0.03); }
+  .fname { color: var(--textbright); }
+  .tcrit { color: var(--red); }
+  .thigh { color: var(--orange); }
+  .ttot { color: var(--text); }
+  .risk-bar-cell { width: 100px; }
+  .risk-bar { height: 3px; background: linear-gradient(90deg, var(--red), var(--orange)); border-radius: 1px; }
+
+  /* TYPING ANIMATION */
+  .typing {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--green);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--green);
+    animation: typing 2.5s steps(40) forwards, blink 0.75s step-end infinite;
+    width: 0;
+  }
+  @keyframes typing { to { width: 100%; } }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 10;
+    padding: 14px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text);
+    opacity: 0.5;
+    background: var(--abyss);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+    aside { border-right: none; border-bottom: 1px solid var(--border); }
+    .compliance-grid, .overview-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-block">
+    <div class="logo-title">MISTCODER</div>
+    <div class="logo-sub">Adversarial Intelligence Platform · Phase IV</div>
+  </div>
+  <div class="header-meta">
+    <div class="typing" style="animation-delay:0.5s" id="scanIdEl">SCAN ID: MSTC-20260422-102206-E05D7E</div>
+    <div style="margin-top:6px" class="status-live">
+      <span class="pulse-dot"></span>
+      CHAIN INTACT · LEDGER VERIFIED
+    </div>
+    <div style="margin-top:4px; font-size:0.6rem; opacity:0.5">2026-04-22T07:24:17 UTC</div>
+  </div>
+</header>
+
+<main>
+  <!-- SIDEBAR -->
+  <aside>
+
+    <!-- VERDICT -->
+    <div class="panel">
+      <div class="panel-head">⬛ RISK VERDICT</div>
+      <div class="panel-body">
+        <div class="verdict-critical">CRITICAL RISK<br><span style="font-size:0.6rem;font-weight:400;opacity:0.7;font-family:var(--mono);letter-spacing:0.1em">HALT DEPLOYMENTS · PATCH NOW</span></div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="panel">
+      <div class="panel-head">◈ SCAN STATISTICS</div>
+      <div class="panel-body">
+        <div class="stat-grid">
+          <div class="stat-box">
+            <span class="stat-num num-critical" id="cnt-crit">0</span>
+            <span class="stat-label">Critical</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num num-high" id="cnt-high">0</span>
+            <span class="stat-label">High</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num num-paths" id="cnt-paths">0</span>
+            <span class="stat-label">Attack Chains</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num num-files" id="cnt-nodes">0</span>
+            <span class="stat-label">TKG Nodes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEVERITY DISTRIBUTION -->
+    <div class="panel">
+      <div class="panel-head">▸ SEVERITY DISTRIBUTION</div>
+      <div class="panel-body">
+        <div class="sev-row">
+          <span class="sev-label" style="color:var(--red)">CRITICAL</span>
+          <div class="sev-bar-track"><div class="sev-bar-fill fill-critical" style="animation-delay:0.3s;--w:0.077" id="bar-c"></div></div>
+          <span class="sev-count" style="color:var(--red)">5</span>
+        </div>
+        <div class="sev-row">
+          <span class="sev-label" style="color:var(--orange)">HIGH</span>
+          <div class="sev-bar-track"><div class="sev-bar-fill fill-high" style="animation-delay:0.5s" id="bar-h"></div></div>
+          <span class="sev-count" style="color:var(--orange)">41</span>
+        </div>
+        <div class="sev-row">
+          <span class="sev-label" style="color:var(--yellow)">MEDIUM</span>
+          <div class="sev-bar-track"><div class="sev-bar-fill fill-medium" style="animation-delay:0.7s" id="bar-m"></div></div>
+          <span class="sev-count" style="color:var(--yellow)">6</span>
+        </div>
+        <div class="sev-row">
+          <span class="sev-label" style="color:var(--green)">LOW</span>
+          <div class="sev-bar-track"><div class="sev-bar-fill fill-low" style="animation-delay:0.9s" id="bar-l"></div></div>
+          <span class="sev-count" style="color:var(--green)">13</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TKG -->
+    <div class="panel">
+      <div class="panel-head">⬡ KNOWLEDGE GRAPH</div>
+      <div class="panel-body">
+        <div style="display:flex;gap:16px;font-family:var(--mono);font-size:0.72rem;">
+          <div>
+            <div style="color:var(--glow);font-family:var(--display);font-size:1.4rem;font-weight:700">65</div>
+            <div style="font-size:0.58rem;opacity:0.6;letter-spacing:0.15em">NODES</div>
+          </div>
+          <div style="width:1px;background:var(--border)"></div>
+          <div>
+            <div style="color:var(--glow2);font-family:var(--display);font-size:1.4rem;font-weight:700">41</div>
+            <div style="font-size:0.58rem;opacity:0.6;letter-spacing:0.15em">EDGES</div>
+          </div>
+          <div style="width:1px;background:var(--border)"></div>
+          <div>
+            <div style="color:var(--orange);font-family:var(--display);font-size:1.4rem;font-weight:700">14</div>
+            <div style="font-size:0.58rem;opacity:0.6;letter-spacing:0.15em">PATHS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAIN -->
+    <div class="panel">
+      <div class="panel-head">🔗 COVENANT CHAIN</div>
+      <div class="panel-body">
+        <div class="chain-intact">
+          <span class="hex-icon">⬡</span>
+          <div>
+            <div>CHAIN INTACT</div>
+            <div style="opacity:0.6;font-size:0.58rem;margin-top:2px">2 entries · STABLE trend</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-family:var(--mono);font-size:0.58rem;line-height:1.9;opacity:0.6;">
+          <div>49eb226a<span style="opacity:0.4">ccfe3f1e…</span></div>
+          <div style="padding-left:14px;color:var(--glow);opacity:0.4">└─▶</div>
+          <div>ecdaf9ba<span style="opacity:0.4">eff77771…</span></div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- TABS -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('chains',this)">ATTACK CHAINS</button>
+      <button class="tab-btn" onclick="switchTab('compliance',this)">COMPLIANCE</button>
+      <button class="tab-btn" onclick="switchTab('files',this)">FILES AT RISK</button>
+      <button class="tab-btn" onclick="switchTab('remed',this)">REMEDIATION</button>
+      <button class="tab-btn" onclick="switchTab('ledger',this)">LEDGER</button>
+      <button class="tab-btn" onclick="switchTab('mitre',this)">MITRE ATT&amp;CK</button>
+    </div>
+
+    <!-- TAB: ATTACK CHAINS -->
+    <div class="tab-panel active" id="tab-chains">
+      <div style="font-family:var(--mono);font-size:0.62rem;opacity:0.5;margin-bottom:14px;letter-spacing:0.1em">
+        14 ADVERSARIAL KILL CHAINS ENUMERATED · RANKED BY EXPLOIT SCORE
+      </div>
+      <div class="chain-list" id="chain-list"></div>
+    </div>
+
+    <!-- TAB: COMPLIANCE -->
+    <div class="tab-panel" id="tab-compliance">
+      <div class="compliance-grid">
+        <div class="panel">
+          <div class="panel-head">OWASP TOP 10</div>
+          <div class="panel-body" id="owasp-list"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">CWE TOP 25</div>
+          <div class="panel-body" id="cwe-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: FILES AT RISK -->
+    <div class="tab-panel" id="tab-files">
+      <div class="panel">
+        <div class="panel-head">◈ FILES MOST AT RISK</div>
+        <div class="panel-body" style="padding:0">
+          <table class="file-table" id="file-table">
+            <thead>
+              <tr>
+                <th>FILE</th>
+                <th>CRIT</th>
+                <th>HIGH</th>
+                <th>TOTAL</th>
+                <th>RISK</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: REMEDIATION -->
+    <div class="tab-panel" id="tab-remed">
+      <div style="font-family:var(--mono);font-size:0.62rem;opacity:0.5;margin-bottom:14px;letter-spacing:0.1em">
+        REMEDIATION ROADMAP · SORTED BY EFFORT
+      </div>
+      <div class="remed-list" id="remed-list"></div>
+    </div>
+
+    <!-- TAB: LEDGER -->
+    <div class="tab-panel" id="tab-ledger">
+      <div style="font-family:var(--mono);font-size:0.62rem;opacity:0.5;margin-bottom:14px;letter-spacing:0.1em">
+        IMMUTABLE HASH-CHAINED AUDIT LEDGER · EVERY SCAN SIGNED
+      </div>
+      <div class="ledger-list" id="ledger-list"></div>
+      <div style="margin-top:16px;padding:14px;background:rgba(0,255,136,0.05);border:1px solid rgba(0,255,136,0.2);font-family:var(--mono);font-size:0.65rem;color:var(--green)">
+        ✓ CHAIN VERIFIED — 2 entries · SHA-256 tamper-evident · STABLE risk trend
+      </div>
+    </div>
+
+    <!-- TAB: MITRE -->
+    <div class="tab-panel" id="tab-mitre">
+      <div style="font-family:var(--mono);font-size:0.62rem;opacity:0.5;margin-bottom:14px;letter-spacing:0.1em">
+        MITRE ATT&CK ENTERPRISE TACTICS MAPPED TO FINDINGS
+      </div>
+      <div class="panel">
+        <div class="panel-head">DETECTED TACTICS</div>
+        <div class="panel-body">
+          <div class="mitre-grid" id="mitre-tags"></div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:16px">
+        <div class="panel-head">TECHNIQUE COVERAGE</div>
+        <div class="panel-body" id="mitre-detail"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <span>MISTCODER v1.0.0 · Phase IV Reasoning Engine · feature/phase4-reasoning-engine</span>
+  <span>Python AST Taint · TKG · AttackPathFinder · COVENANT Chain</span>
+  <span>Built with zero external dependencies</span>
+</footer>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const DATA = {
+  scanId: "MSTC-20260422-102206-E05D7E",
+  timestamp: "2026-04-22T07:24:17 UTC",
+  findings: { critical: 5, high: 41, medium: 6, low: 13, total: 65 },
+  tkg: { nodes: 65, edges: 41 },
+  chains: [
+    { id:"CHAIN-01", score:8.31, steps:3, prob:0.64, nodes:[
+      {sev:"CRITICAL",name:"eval_exec",file:"test_gaps.py",line:105,cwe:"CWE-94"},
+      {sev:"CRITICAL",name:"eval_exec",file:"test_gaps.py",line:118,cwe:"CWE-94"},
+      {sev:"HIGH",name:"Password",file:"test_gaps.py",line:25,cwe:"CWE-312"},
+    ]},
+    { id:"CHAIN-02", score:8.3, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"file_path",file:"analyzer.py",line:120,cwe:"CWE-22"},
+      {sev:"LOW",name:"file_path",file:"analyzer.py",line:386,cwe:"CWE-22"},
+    ]},
+    { id:"CHAIN-03", score:8.3, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"file_path",file:"phantom.py",line:375,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"phantom.py",line:408,cwe:"CWE-22"},
+    ]},
+    { id:"CHAIN-04", score:8.3, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"Password",file:"test_oversight_engine.py",line:29,cwe:"CWE-312"},
+      {sev:"MEDIUM",name:"High Entropy String",file:"test_oversight_engine.py",line:274,cwe:"CWE-312"},
+    ]},
+    { id:"CHAIN-05", score:8.3, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"file_path",file:"cvss_scorer.py",line:472,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"cvss_scorer.py",line:484,cwe:"CWE-22"},
+    ]},
+    { id:"CHAIN-06", score:7.76, steps:4, prob:0.512, nodes:[
+      {sev:"CRITICAL",name:"eval_exec",file:"test_parser.py",line:257,cwe:"CWE-94"},
+      {sev:"HIGH",name:"file_path",file:"test_parser.py",line:344,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"test_parser.py",line:362,cwe:"CWE-22"},
+      {sev:"HIGH",name:"Password",file:"test_parser.py",line:157,cwe:"CWE-312"},
+    ]},
+    { id:"CHAIN-07", score:7.63, steps:3, prob:0.64, nodes:[
+      {sev:"HIGH",name:"sql_query",file:"oracle_report.py",line:58,cwe:"CWE-89"},
+      {sev:"HIGH",name:"file_path",file:"oracle_report.py",line:120,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"oracle_report.py",line:404,cwe:"CWE-22"},
+    ]},
+    { id:"CHAIN-08", score:7.63, steps:3, prob:0.64, nodes:[
+      {sev:"HIGH",name:"file_path",file:"run_reasoning.py",line:39,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"run_reasoning.py",line:40,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"run_reasoning.py",line:67,cwe:"CWE-22"},
+    ]},
+    { id:"CHAIN-09", score:7.5, steps:3, prob:0.64, nodes:[
+      {sev:"HIGH",name:"sql_query",file:"analysis_engine.py",line:49,cwe:"CWE-89"},
+      {sev:"HIGH",name:"file_path",file:"analysis_engine.py",line:393,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"analysis_engine.py",line:409,cwe:"CWE-22"},
+    ]},
+    { id:"CHAIN-10", score:7.5, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"eval_exec",file:"reasoning.py",line:44,cwe:"CWE-94"},
+      {sev:"HIGH",name:"sql_query",file:"reasoning.py",line:88,cwe:"CWE-89"},
+    ]},
+    { id:"CHAIN-11", score:7.5, steps:3, prob:0.64, nodes:[
+      {sev:"CRITICAL",name:"eval_exec",file:"parser.py",line:77,cwe:"CWE-94"},
+      {sev:"CRITICAL",name:"eval_exec",file:"parser.py",line:91,cwe:"CWE-94"},
+      {sev:"HIGH",name:"sql_query",file:"parser.py",line:210,cwe:"CWE-89"},
+    ]},
+    { id:"CHAIN-12", score:7.3, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"file_path",file:"cve_ingester.py",line:101,cwe:"CWE-22"},
+      {sev:"HIGH",name:"file_path",file:"cve_ingester.py",line:114,cwe:"CWE-22"},
+    ]},
+    { id:"CHAIN-13", score:7.3, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"MD5",file:"covenant.py",line:55,cwe:"CWE-327"},
+      {sev:"HIGH",name:"SHA1",file:"covenant.py",line:88,cwe:"CWE-327"},
+    ]},
+    { id:"CHAIN-14", score:7.1, steps:2, prob:0.80, nodes:[
+      {sev:"HIGH",name:"file_path",file:"phantom_bridge.py",line:112,cwe:"CWE-22"},
+      {sev:"MEDIUM",name:"eval_exec",file:"phantom_bridge.py",line:198,cwe:"CWE-94"},
+    ]},
+  ],
+  owasp: [
+    {name:"A01: Broken Access Control", hits:30, max:30},
+    {name:"A03: Injection", hits:19, max:30},
+    {name:"A02: Cryptographic Failures", hits:3, max:30},
+  ],
+  cwe: [
+    {id:"CWE-22", rank:"#8", hits:30},
+    {id:"CWE-94", rank:"#28", hits:13},
+    {id:"CWE-89", rank:"#1", hits:6},
+    {id:"CWE-327", rank:"#0", hits:3},
+  ],
+  files: [
+    {name:"test_gaps.py",crit:2,high:1,total:3},
+    {name:"parser.py",crit:2,high:0,total:12},
+    {name:"test_parser.py",crit:1,high:3,total:4},
+    {name:"covenant.py",crit:0,high:6,total:6},
+    {name:"analysis_engine.py",crit:0,high:4,total:4},
+    {name:"oracle_report.py",crit:0,high:3,total:3},
+    {name:"cve_ingester.py",crit:0,high:3,total:4},
+    {name:"run_reasoning.py",crit:0,high:3,total:3},
+    {name:"reasoning.py",crit:0,high:3,total:5},
+    {name:"phantom.py",crit:0,high:2,total:2},
+  ],
+  remediation: [
+    {num:1,cwe:"CWE-327",effort:"LOW",action:"Replace MD5/SHA1/DES with SHA-256+ or AES-256 — one-line swap in hashlib"},
+    {num:2,cwe:"CWE-89",effort:"LOW",action:"Parameterize all SQL queries — use ORM or prepared statements throughout"},
+    {num:3,cwe:"CWE-22",effort:"LOW",action:"Validate and canonicalize all file paths — use Path.resolve() + allowlist"},
+    {num:4,cwe:"CWE-312",effort:"MEDIUM",action:"Audit hardcoded credentials — rotate secrets, migrate to env vars / vault"},
+    {num:5,cwe:"CWE-94",effort:"HIGH",action:"Remove eval/exec on untrusted input — use AST-safe parsers or sandboxed eval"},
+  ],
+  ledger: [
+    {num:1,hash:"49eb226accfe3f1e…",time:"2026-04-22T07:18:30",findings:65,paths:14},
+    {num:2,hash:"ecdaf9baeff77771…",time:"2026-04-22T07:24:17",findings:65,paths:14},
+  ],
+  mitre: [
+    {tactic:"TA0001",name:"Initial Access",techniques:["T1190 - Exploit Public-Facing App"]},
+    {tactic:"TA0002",name:"Execution",techniques:["T1059 - Command & Script Interpreter","T1203 - Exploitation for Client Execution"]},
+    {tactic:"TA0006",name:"Credential Access",techniques:["T1552 - Unsecured Credentials","T1555 - Credentials from Password Stores"]},
+    {tactic:"TA0007",name:"Discovery",techniques:["T1083 - File & Directory Discovery"]},
+    {tactic:"TA0040",name:"Impact",techniques:["T1565 - Data Manipulation","T1190 - Drive-By Compromise"]},
+  ]
+};
+
+// ─── RENDER ─────────────────────────────────────────────────────────────────
+
+// Count up animation
+function countUp(el, target, delay=0) {
+  setTimeout(() => {
+    let start = 0;
+    const dur = 1200;
+    const step = target / (dur / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.floor(start);
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }, delay);
+}
+
+countUp(document.getElementById('cnt-crit'), DATA.findings.critical, 300);
+countUp(document.getElementById('cnt-high'), DATA.findings.high, 500);
+countUp(document.getElementById('cnt-paths'), DATA.chains.length, 700);
+countUp(document.getElementById('cnt-nodes'), DATA.tkg.nodes, 900);
+
+// Severity bars
+const barWidths = {c: 5/65, h: 41/65, m: 6/65, l: 13/65};
+['c','h','m','l'].forEach((k,i) => {
+  const bar = document.getElementById(`bar-${k}`);
+  if(bar) {
+    bar.style.width = (barWidths[k] * 100) + '%';
+  }
+});
+
+// Attack Chains
+function scoreClass(s) {
+  if(s >= 8.0) return 'score-critical';
+  if(s >= 7.0) return 'score-high';
+  return 'score-med';
+}
+
+const chainList = document.getElementById('chain-list');
+DATA.chains.forEach((chain, ci) => {
+  const card = document.createElement('div');
+  card.className = 'chain-card';
+  card.style.animationDelay = (ci * 0.05) + 's';
+
+  const steps = chain.nodes.map((n, i) => `
+    <div class="step-row">
+      <span class="${i===0?'step-icon':'step-arrow'}">${i===0?'◈':'└─▶'}</span>
+      <span class="step-sev sev-${n.sev}">${n.sev}</span>
+      <span class="step-name">${n.name}</span>
+      <span class="step-file">${n.file}:${n.line}</span>
+      <span class="step-cwe">${n.cwe}</span>
+    </div>`).join('');
+
+  card.innerHTML = `
+    <div class="chain-card-head">
+      <span class="chain-id">${chain.id}</span>
+      <div class="chain-meta">
+        <span>steps: ${chain.steps}</span>
+        <span>p(success): ${chain.prob}</span>
+      </div>
+      <span class="score-badge ${scoreClass(chain.score)}">SCORE ${chain.score}</span>
+    </div>
+    <div class="chain-steps">${steps}</div>`;
+  chainList.appendChild(card);
+});
+
+// OWASP
+const owaspList = document.getElementById('owasp-list');
+DATA.owasp.forEach(item => {
+  owaspList.innerHTML += `
+    <div class="compliance-row">
+      <span class="compliance-name">${item.name}</span>
+      <div class="compliance-bar-wrap"><div class="compliance-bar" style="width:${(item.hits/item.max*100)}%"></div></div>
+      <span class="compliance-count">${item.hits}</span>
+    </div>`;
+});
+
+// CWE
+const cweList = document.getElementById('cwe-list');
+DATA.cwe.forEach(item => {
+  cweList.innerHTML += `
+    <div class="compliance-row">
+      <span class="compliance-name">${item.id}</span>
+      <span style="font-family:var(--mono);font-size:0.6rem;color:var(--text);opacity:0.5;margin-right:8px">${item.rank}</span>
+      <div class="compliance-bar-wrap"><div class="compliance-bar" style="width:${(item.hits/30*100)}%;background:var(--orange)"></div></div>
+      <span class="compliance-count" style="color:var(--orange)">${item.hits}</span>
+    </div>`;
+});
+
+// Files
+const tbody = document.querySelector('#file-table tbody');
+DATA.files.forEach(f => {
+  const riskW = Math.min(100, ((f.crit * 2 + f.high) / 10) * 100);
+  tbody.innerHTML += `<tr>
+    <td class="fname">${f.name}</td>
+    <td class="tcrit">${f.crit || '—'}</td>
+    <td class="thigh">${f.high || '—'}</td>
+    <td class="ttot">${f.total}</td>
+    <td class="risk-bar-cell"><div class="risk-bar" style="width:${riskW}%"></div></td>
+  </tr>`;
+});
+
+// Remediation
+const remedList = document.getElementById('remed-list');
+DATA.remediation.forEach(r => {
+  remedList.innerHTML += `
+    <div class="remed-item border-${r.effort}">
+      <span class="remed-num">${r.num}</span>
+      <span class="remed-cwe">${r.cwe}</span>
+      <span class="effort-${r.effort}">${r.effort}</span>
+      <span class="remed-action">${r.action}</span>
+    </div>`;
+});
+
+// Ledger
+const ledgerList = document.getElementById('ledger-list');
+DATA.ledger.forEach(e => {
+  ledgerList.innerHTML += `
+    <div class="ledger-entry">
+      <span class="ledger-num">#${e.num}</span>
+      <span class="ledger-hash">${e.hash}</span>
+      <span class="ledger-time">${e.time}</span>
+      <span class="ledger-findings">findings: ${e.findings}</span>
+      <span class="ledger-paths">paths: ${e.paths}</span>
+      <span class="verified-badge">✓ SIGNED</span>
+    </div>`;
+});
+
+// MITRE
+const mitreTags = document.getElementById('mitre-tags');
+const mitreDetail = document.getElementById('mitre-detail');
+DATA.mitre.forEach(t => {
+  mitreTags.innerHTML += `<span class="mitre-tag">${t.tactic} · ${t.name}</span>`;
+  mitreDetail.innerHTML += `
+    <div style="margin-bottom:14px;padding:12px 14px;background:var(--abyss);border:1px solid var(--border)">
+      <div style="font-family:var(--display);font-size:0.7rem;color:var(--glow2);letter-spacing:0.1em;margin-bottom:8px">${t.tactic} — ${t.name}</div>
+      ${t.techniques.map(tc => `<div style="font-family:var(--mono);font-size:0.63rem;color:var(--text);padding:3px 0;border-bottom:1px solid rgba(13,58,79,0.4)">▸ ${tc}</div>`).join('')}
+    </div>`;
+});
+
+// TAB SWITCHER
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
