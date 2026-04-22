@@ -24,5 +24,31 @@
     ],
     "_prev_hash": "GENESIS",
     "_hash": "49eb226accfe3f1ef204f83079d3c80bba376aef2f41d55599373899123c5a7b"
+  },
+  {
+    "scan_id": "MSTC-20260422-102206-E05D7E",
+    "timestamp": "2026-04-22T07:24:17.176942+00:00",
+    "total_findings": 65,
+    "critical": 5,
+    "high": 41,
+    "attack_paths": 14,
+    "tkg_nodes": 65,
+    "tkg_edges": 41,
+    "top_cwe": [
+      [
+        "CWE-22",
+        30
+      ],
+      [
+        "CWE-94",
+        13
+      ],
+      [
+        "CWE-312",
+        13
+      ]
+    ],
+    "_prev_hash": "49eb226accfe3f1ef204f83079d3c80bba376aef2f41d55599373899123c5a7b",
+    "_hash": "ecdaf9baeff777710bd862679154bed10763904aa4ec47dcc0e364ce7dc8b2ab"
   }
 ]

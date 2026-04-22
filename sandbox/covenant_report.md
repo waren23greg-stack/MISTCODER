@@ -1,7 +1,7 @@
-# COVENANT REPORT — MSTC-20260422-093434-E05D7E
-**Generated:** 2026-04-22T07:18:30 UTC  |  **Chain Entry:** 1  |  **Valid:** True
+# COVENANT REPORT — MSTC-20260422-102206-E05D7E
+**Generated:** 2026-04-22T07:24:17 UTC  |  **Chain Entry:** 2  |  **Valid:** True
 
-## Risk Trend: BASELINE
+## Risk Trend: STABLE
 
 ## Findings
 | Severity | Count |
@@ -14,19 +14,19 @@
 ## Attack Chains
 Total: 14
 
-### Chain 01  (score 7.38)
+### Chain 01  (score 8.31)
+- Steps: 3  P(success): 0.64
+
+### Chain 02  (score 8.3)
 - Steps: 2  P(success): 0.8
 
-### Chain 02  (score 7.38)
+### Chain 03  (score 8.3)
 - Steps: 2  P(success): 0.8
 
-### Chain 03  (score 7.38)
+### Chain 04  (score 8.3)
 - Steps: 2  P(success): 0.8
 
-### Chain 04  (score 7.38)
-- Steps: 2  P(success): 0.8
-
-### Chain 05  (score 7.38)
+### Chain 05  (score 8.3)
 - Steps: 2  P(success): 0.8
 
 ## OWASP Top 10 Coverage
