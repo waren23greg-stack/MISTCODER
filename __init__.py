@@ -6,20 +6,18 @@ Quick start:
     from mistcoder import scan, covenant, phantom
     results = scan("src/")
 """
-from pathlib import Path
-import sys
-
 __version__ = "0.5.0"
 __author__  = "MISTCODER Contributors"
 __license__ = "MIT"
 
-_REPO_ROOT = str(Path(__file__).resolve().parent)
-
-
 def _ensure_repo_root_on_path() -> None:
     """Ensure local module imports resolve when used as a source checkout."""
-    if _REPO_ROOT not in sys.path:
-        sys.path.insert(0, _REPO_ROOT)
+    import sys
+    from pathlib import Path
+
+    repo_root = str(Path(__file__).resolve().parent)
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
 
 
 # Lazy imports — only load what's available
