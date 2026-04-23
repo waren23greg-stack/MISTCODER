@@ -1,0 +1,18 @@
+{
+  "name": "finance_mobile_money",
+  "playbook_version": "1.0",
+  "sector": "finance",
+  "system_type": "mobile backend",
+  "risk_priorities": ["fraud prevention", "account takeover", "transaction integrity"],
+  "thresholds": {"max_critical": 0, "max_high": 0, "max_medium": 2},
+  "reporting": {"executive": "plain_language", "technical": "full"},
+  "impact_narratives": {
+    "severity": {
+      "CRITICAL": "Attackers could directly move or steal customer funds.",
+      "HIGH": "Attackers could trigger unauthorized transfers or wallet abuse.",
+      "MEDIUM": "Attackers could disrupt transactions or expose sensitive payment data."
+    },
+    "default": "Security gaps could reduce trust, compliance standing, and transaction reliability."
+  },
+  "effort_estimates": {"critical": "high", "high": "high", "medium": "medium", "low": "low", "info": "low"}
+}

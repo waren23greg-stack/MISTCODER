@@ -6125,5 +6125,1014 @@
     },
     "requires_review": false,
     "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0086",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.062856+00:00",
+    "completed_at": "2026-04-23T09:38:04.064797+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.062884+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "46b8f94223d0",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.064065+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.064068+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.064078+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.064788+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0087",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.070008+00:00",
+    "completed_at": "2026-04-23T09:38:04.071948+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 0,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.070037+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "025c961c1921",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.071177+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.071179+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.071187+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.071939+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 10,
+      "cve_count_after": 10,
+      "pattern_count_before": 27,
+      "pattern_count_after": 27,
+      "update_count": 2,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0088",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.079403+00:00",
+    "completed_at": "2026-04-23T09:38:04.081345+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.079425+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "4c994d73ee1a",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.080604+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.080606+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.080614+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.081334+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0089",
+    "mode": "feedback",
+    "started_at": "2026-04-23T09:38:04.088703+00:00",
+    "completed_at": "2026-04-23T09:38:04.089146+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "mode": "feedback_only"
+        },
+        "at": "2026-04-23T09:38:04.088713+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "update_id": "4b0b90d3ab5a",
+          "findings_seen": 1,
+          "learned": 0
+        },
+        "at": "2026-04-23T09:38:04.088745+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.088753+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 15,
+          "secret_keywords": 16,
+          "high_conf_patterns": 0
+        },
+        "at": "2026-04-23T09:38:04.089138+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 0,
+      "pattern_count_before": 0,
+      "pattern_count_after": 0,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 15,
+        "secret_keywords": 16,
+        "high_conf_patterns": 0
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0090",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.096648+00:00",
+    "completed_at": "2026-04-23T09:38:04.098583+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.096670+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "df3b34ab3995",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.097857+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.097860+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.097867+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.098575+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0091",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.108703+00:00",
+    "completed_at": "2026-04-23T09:38:04.110622+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.108725+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "96dd0ef11053",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.109913+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.109915+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.109922+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.110615+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0092",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.120542+00:00",
+    "completed_at": "2026-04-23T09:38:04.122508+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.120564+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "6c5fc800b554",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.121761+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.121763+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.121770+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.122500+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0093",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.130300+00:00",
+    "completed_at": "2026-04-23T09:38:04.132231+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.130322+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "61b0ef60a880",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.131498+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.131500+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.131507+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.132223+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0094",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.140167+00:00",
+    "completed_at": "2026-04-23T09:38:04.142090+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.140189+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "97a038fb3c04",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.141358+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.141360+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.141368+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.142081+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0095",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.150050+00:00",
+    "completed_at": "2026-04-23T09:38:04.151999+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.150070+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "a0c6cbe34bcc",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.151240+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.151242+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.151249+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.151991+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0096",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.160072+00:00",
+    "completed_at": "2026-04-23T09:38:04.161991+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.160093+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "7539a457705e",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.161266+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.161268+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.161275+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.161982+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0097",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.170092+00:00",
+    "completed_at": "2026-04-23T09:38:04.172040+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.170113+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "aeebcd936c58",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.171279+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.171282+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.171289+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.172032+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0098",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.180271+00:00",
+    "completed_at": "2026-04-23T09:38:04.182208+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 10,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.180293+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "811906c87432",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.181457+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.181460+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.181467+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.182199+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 0,
+      "cve_count_after": 10,
+      "pattern_count_before": 0,
+      "pattern_count_after": 27,
+      "update_count": 1,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
+  },
+  {
+    "cycle_id": "CYCLE-0099",
+    "mode": "synthetic",
+    "started_at": "2026-04-23T09:38:04.188197+00:00",
+    "completed_at": "2026-04-23T09:38:04.190115+00:00",
+    "stages": [
+      {
+        "stage": "ingestion",
+        "result": {
+          "total_fetched": 10,
+          "new_to_kb": 0,
+          "mode": "synthetic"
+        },
+        "at": "2026-04-23T09:38:04.188219+00:00"
+      },
+      {
+        "stage": "cve_learning",
+        "result": {
+          "update_id": "a64ed2a34000",
+          "cves_processed": 10,
+          "patterns_added": 36,
+          "calls_added": 3,
+          "sinks_added": 4,
+          "keywords_added": 0,
+          "weights_updated": 1
+        },
+        "at": "2026-04-23T09:38:04.189359+00:00"
+      },
+      {
+        "stage": "scan_feedback",
+        "result": {
+          "skipped": true
+        },
+        "at": "2026-04-23T09:38:04.189361+00:00"
+      },
+      {
+        "stage": "review_gate",
+        "result": {
+          "requires_review": false,
+          "reason": ""
+        },
+        "at": "2026-04-23T09:38:04.189368+00:00"
+      },
+      {
+        "stage": "export",
+        "result": {
+          "kb_saved": true,
+          "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+          "dangerous_calls": 17,
+          "secret_keywords": 16,
+          "high_conf_patterns": 25
+        },
+        "at": "2026-04-23T09:38:04.190107+00:00"
+      }
+    ],
+    "summary": {
+      "cve_count_before": 10,
+      "cve_count_after": 10,
+      "pattern_count_before": 27,
+      "pattern_count_after": 27,
+      "update_count": 2,
+      "requires_review": false,
+      "detection_config": {
+        "kb_saved": true,
+        "detection_config_path": "/home/runner/work/MISTCODER/MISTCODER/modules/learning/tests/../src/../../../sandbox/detection_config.json",
+        "dangerous_calls": 17,
+        "secret_keywords": 16,
+        "high_conf_patterns": 25
+      }
+    },
+    "requires_review": false,
+    "review_reason": ""
   }
 ]

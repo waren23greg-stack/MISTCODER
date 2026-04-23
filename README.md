@@ -140,9 +140,17 @@ python mistcoder.py --help
 python mistcoder.py status
 python mistcoder.py selftest
 python mistcoder.py scan <target> [--json <report.json>] [--phantom]
+python mistcoder.py certify <scan_report.json> [--playbook <finance|government|education|health|path>]
+python mistcoder.py report executive --input <scan_report.json> [--playbook <finance|government|education|health|path>] [--output <base>]
 python mistcoder.py covenant status
 python mistcoder.py covenant verify
 ```
+
+Default assurance playbooks:
+- `playbooks/finance_mobile_money.yml`
+- `playbooks/gov_citizen_portal.yml`
+- `playbooks/education_school_portal.yml`
+- `playbooks/health_clinic_system.yml`
 
 ---
 

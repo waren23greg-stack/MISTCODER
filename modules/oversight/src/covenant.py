@@ -413,6 +413,59 @@ class Covenant:
             "action": action, "player": color, **(meta or {})
         })
 
+    def certify_scan(self, scan_data: Dict[str, Any], playbook: Dict[str, Any],
+                     decision: str, tool_version: str,
+                     target_hash: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Certify a completed scan into the immutable ledger with procurement/audit metadata.
+        """
+        scan_id = str(scan_data.get("scan_id", "unknown"))
+        findings = scan_data.get("findings", []) or []
+        attack_paths = scan_data.get("attack_paths", []) or []
+
+        sev = {"critical": 0, "high": 0, "medium": 0, "low": 0, "info": 0}
+        for f in findings:
+            if isinstance(f, dict):
+                level = str(f.get("severity", "info")).strip().lower()
+            else:
+                level = str(getattr(f, "severity", "info")).strip().lower()
+            if level not in sev:
+                level = "info"
+            sev[level] += 1
+
+        payload = {
+            "target_identifier": scan_data.get("target", "unknown"),
+            "target_hash": target_hash or scan_data.get("target_hash"),
+            "tool_version": tool_version,
+            "playbook": {
+                "name": playbook.get("name", "unknown"),
+                "version": playbook.get("playbook_version", "1.0"),
+                "sector": playbook.get("sector", "unknown"),
+                "system_type": playbook.get("system_type", "unknown"),
+            },
+            "summary_counts": {
+                "total_findings": len(findings),
+                "critical": sev["critical"],
+                "high": sev["high"],
+                "medium": sev["medium"],
+                "low": sev["low"],
+                "info": sev["info"],
+                "attack_paths": len(attack_paths),
+            },
+            "decision": decision,
+        }
+        rec = self.chain.append("SCAN_CERTIFIED", scan_id, payload)
+        ok, msg = self.chain.verify()
+        return {
+            "scan_id": scan_id,
+            "record_id": rec.record_id,
+            "ledger_hash": rec.record_hash,
+            "timestamp": rec.timestamp,
+            "chain_verified": ok,
+            "chain_message": msg,
+            "chain_index": rec.chain_index,
+        }
+
     # ── Export ───────────────────────────────────────────────────────────────
     def export(self, report: Dict, base_path: str, formats: List[str] = None):
         if formats is None:

@@ -3,7 +3,8 @@
 MISTCODER — NEXUS Unified Intelligence CLI  v0.3.0
 Fixes: IR_BRIDGE path detection + directory scan routing + PHANTOM integration
 """
-import sys, os, json, time, hashlib, datetime, pathlib
+import sys, os, json, time, hashlib, datetime, pathlib, html, ast
+from typing import Any, Dict, Optional
 
 ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
@@ -26,6 +27,14 @@ BANNER = r"""
 """
 
 SEP = "─" * 72
+MISTCODER_VERSION = "0.3.0"
+PLAYBOOK_DIR = ROOT / "playbooks"
+DEFAULT_PLAYBOOKS = {
+    "finance": "finance_mobile_money.yml",
+    "government": "gov_citizen_portal.yml",
+    "education": "education_school_portal.yml",
+    "health": "health_clinic_system.yml",
+}
 
 # ── Module probe — checks all known locations ─────────────────────────────────
 def _probe(module_id):
@@ -117,6 +126,332 @@ def collect_files(target: str):
         files["url"].append(target)
 
     return files
+
+
+def _arg_value(args, flag, default=None):
+    if flag in args:
+        idx = args.index(flag)
+        if idx + 1 < len(args):
+            return args[idx + 1]
+    return default
+
+
+def _resolve_playbook_path(playbook: Optional[str]) -> pathlib.Path:
+    if not playbook:
+        return PLAYBOOK_DIR / DEFAULT_PLAYBOOKS["finance"]
+
+    token = str(playbook).strip().lower()
+    if token in DEFAULT_PLAYBOOKS:
+        return PLAYBOOK_DIR / DEFAULT_PLAYBOOKS[token]
+
+    p = pathlib.Path(playbook)
+    if p.exists():
+        return p
+    if not p.is_absolute():
+        repo_local = ROOT / playbook
+        if repo_local.exists():
+            return repo_local
+
+    if not p.suffix:
+        candidate = PLAYBOOK_DIR / f"{playbook}.yml"
+        if candidate.exists():
+            return candidate
+
+    raise FileNotFoundError(f"Playbook not found: {playbook}")
+
+
+def _load_playbook(playbook: Optional[str] = None) -> Dict[str, Any]:
+    p = _resolve_playbook_path(playbook)
+    raw = p.read_text(encoding="utf-8")
+    try:
+        data = json.loads(raw)
+    except Exception:
+        try:
+            import yaml  # type: ignore
+            data = yaml.safe_load(raw)
+        except Exception as e:
+            raise ValueError(f"Unable to parse playbook {p}. Use JSON-compatible YAML. ({e})")
+
+    if not isinstance(data, dict):
+        raise ValueError(f"Invalid playbook structure in {p}")
+
+    data.setdefault("name", p.stem)
+    data.setdefault("playbook_version", "1.0")
+    data.setdefault("sector", "finance")
+    data.setdefault("system_type", "web portal")
+    data.setdefault("risk_priorities", [])
+    data.setdefault("thresholds", {"max_critical": 0, "max_high": 0, "max_medium": 2})
+    data.setdefault("reporting", {"executive": "plain_language", "technical": "full"})
+    data.setdefault("impact_narratives", {})
+    data.setdefault("effort_estimates", {"critical": "high", "high": "high", "medium": "medium", "low": "low", "info": "low"})
+    data["_path"] = str(p)
+    return data
+
+
+def _finding_dict(f):
+    if isinstance(f, dict):
+        return f
+    if isinstance(f, str):
+        s = f.strip()
+        if s.startswith("{") and s.endswith("}"):
+            try:
+                parsed = json.loads(s)
+                if isinstance(parsed, dict):
+                    return parsed
+            except Exception:
+                pass
+            try:
+                parsed = ast.literal_eval(s)
+                if isinstance(parsed, dict):
+                    return parsed
+            except Exception:
+                pass
+        return {"description": s}
+    if hasattr(f, "__dict__"):
+        return dict(f.__dict__)
+    return {"description": str(f)}
+
+
+def _findings_summary(findings):
+    summary = {"total": len(findings), "critical": 0, "high": 0, "medium": 0, "low": 0, "info": 0}
+    for f in findings:
+        level = str(_finding_dict(f).get("severity", "info")).strip().lower()
+        if level not in summary:
+            level = "info"
+        summary[level] += 1
+    return summary
+
+
+def _decision_from_playbook(findings_summary, playbook):
+    t = playbook.get("thresholds", {}) or {}
+    checks = [("critical", "max_critical"), ("high", "max_high"), ("medium", "max_medium")]
+    failures = []
+    for sev, key in checks:
+        max_allowed = t.get(key, 999999)
+        try:
+            max_allowed = int(max_allowed)
+        except Exception:
+            max_allowed = 999999
+        if findings_summary.get(sev, 0) > max_allowed:
+            failures.append(f"{sev.upper()} findings {findings_summary.get(sev, 0)} > {max_allowed}")
+    return ("NO-GO", failures) if failures else ("GO", [])
+
+
+def _impact_narrative(finding, playbook):
+    f = _finding_dict(finding)
+    impacts = playbook.get("impact_narratives", {}) or {}
+    sev = str(f.get("severity", "INFO")).upper()
+    category = str(f.get("category", "")).upper()
+    cwe = str(f.get("cwe", "")).upper()
+    by_sev = (impacts.get("severity", {}) or {}).get(sev)
+    by_cat = (impacts.get("categories", {}) or {}).get(category)
+    by_cwe = (impacts.get("cwe", {}) or {}).get(cwe)
+    return by_cat or by_cwe or by_sev or impacts.get("default", "Could expose sensitive operations, data, or service continuity.")
+
+
+def _effort_for_finding(finding, playbook):
+    sev = str(_finding_dict(finding).get("severity", "info")).strip().lower()
+    return (playbook.get("effort_estimates", {}) or {}).get(sev, "medium")
+
+
+def _severity_rank(value):
+    return {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}.get(str(value).lower(), 4)
+
+
+def _compute_target_hash(target: str) -> Optional[str]:
+    if not target:
+        return None
+    if target.startswith("http://") or target.startswith("https://"):
+        return None
+    p = pathlib.Path(target)
+    if p.is_file():
+        h = hashlib.sha256()
+        with open(p, "rb") as fh:
+            while True:
+                chunk = fh.read(1024 * 1024)
+                if not chunk:
+                    break
+                h.update(chunk)
+        return h.hexdigest()
+    if p.is_dir():
+        h = hashlib.sha256()
+        for f in sorted(x for x in p.rglob("*") if x.is_file()):
+            try:
+                rel = str(f.relative_to(p))
+            except Exception:
+                rel = str(f)
+            h.update(rel.encode())
+            with open(f, "rb") as fh:
+                while True:
+                    chunk = fh.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    h.update(chunk)
+        return h.hexdigest()
+    return None
+
+
+def _build_executive_report(scan_data: Dict[str, Any], playbook: Dict[str, Any], audit_ref: Dict[str, Any] = None) -> Dict[str, Any]:
+    findings = scan_data.get("findings", []) or []
+    attack_paths = scan_data.get("attack_paths", []) or []
+    summary = _findings_summary(findings)
+    decision, failure_reasons = _decision_from_playbook(summary, playbook)
+
+    top_findings = sorted((_finding_dict(f) for f in findings), key=lambda f: _severity_rank(f.get("severity")))[:5]
+    top_risks = []
+    for f in top_findings:
+        top_risks.append({
+            "severity": str(f.get("severity", "INFO")).upper(),
+            "issue": str(f.get("description") or f.get("message") or f.get("category") or "Security issue"),
+            "impact": _impact_narrative(f, playbook),
+            "effort_estimate": _effort_for_finding(f, playbook),
+            "location": f"{f.get('file_path') or f.get('filename') or ''}:{f.get('line') or f.get('line_number') or ''}".strip(":"),
+        })
+
+    scenarios = []
+    for i, p in enumerate(attack_paths[:3], 1):
+        pd = _finding_dict(p)
+        title = pd.get("title") or pd.get("name") or f"Attack path {i}"
+        risk = pd.get("risk_score", pd.get("score", "unknown"))
+        scenarios.append({
+            "title": str(title),
+            "what_could_happen": _impact_narrative(top_findings[0] if top_findings else {"severity": "HIGH"}, playbook),
+            "risk_score": risk,
+        })
+
+    return {
+        "report_type": "executive_assurance",
+        "generated_at": datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat() + "Z",
+        "scan_id": scan_data.get("scan_id", "unknown"),
+        "target": scan_data.get("target", "unknown"),
+        "sector": playbook.get("sector"),
+        "system_type": playbook.get("system_type"),
+        "playbook": {
+            "name": playbook.get("name"),
+            "version": playbook.get("playbook_version"),
+            "path": playbook.get("_path"),
+        },
+        "summary": summary,
+        "top_risks": top_risks,
+        "impact_scenarios": scenarios,
+        "go_no_go": {
+            "decision": decision,
+            "reasons": failure_reasons or ["Within configured assurance thresholds."],
+        },
+        "technical_reference": {
+            "findings_count": len(findings),
+            "attack_paths_count": len(attack_paths),
+        },
+        "audit_reference": audit_ref or {},
+    }
+
+
+def _render_executive_html(report: Dict[str, Any]) -> str:
+    decision = report.get("go_no_go", {}).get("decision", "GO")
+    decision_color = "#c62828" if decision == "NO-GO" else "#2e7d32"
+    risks = report.get("top_risks", [])
+    scenarios = report.get("impact_scenarios", [])
+    audit_ref = report.get("audit_reference", {}) or {}
+
+    risk_rows = "".join(
+        f"<tr><td>{html.escape(str(r.get('severity','')))}</td><td>{html.escape(str(r.get('issue','')))}</td><td>{html.escape(str(r.get('impact','')))}</td><td>{html.escape(str(r.get('effort_estimate',''))).upper()}</td></tr>"
+        for r in risks
+    ) or "<tr><td colspan='4'>No notable risk findings in this scan.</td></tr>"
+
+    scenario_rows = "".join(
+        f"<li><b>{html.escape(str(s.get('title','Scenario')))}</b>: {html.escape(str(s.get('what_could_happen','')))} (risk={html.escape(str(s.get('risk_score','n/a')))}).</li>"
+        for s in scenarios
+    ) or "<li>No attack-chain scenarios were detected.</li>"
+
+    reasons = "".join(f"<li>{html.escape(str(r))}</li>" for r in report.get("go_no_go", {}).get("reasons", []))
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MISTCODER Executive Assurance Report</title>
+  <style>
+    body {{ font-family: Arial, sans-serif; margin: 24px; color: #1e1e1e; }}
+    h1, h2 {{ margin-bottom: 8px; }}
+    .meta {{ color: #444; margin-bottom: 18px; }}
+    .decision {{ font-size: 22px; font-weight: bold; color: {decision_color}; }}
+    table {{ border-collapse: collapse; width: 100%; margin-top: 8px; }}
+    th, td {{ border: 1px solid #ddd; padding: 8px; vertical-align: top; }}
+    th {{ background: #f7f7f7; text-align: left; }}
+    .card {{ border: 1px solid #ddd; padding: 12px; margin: 14px 0; border-radius: 8px; }}
+  </style>
+</head>
+<body>
+  <h1>MISTCODER Executive Assurance Report</h1>
+  <div class="meta">
+    Sector: <b>{html.escape(str(report.get("sector","")))}</b> |
+    System: <b>{html.escape(str(report.get("system_type","")))}</b> |
+    Scan: <b>{html.escape(str(report.get("scan_id","")))}</b>
+  </div>
+  <div class="card">
+    <div class="decision">Go/No-Go: {html.escape(str(decision))}</div>
+    <ul>{reasons}</ul>
+  </div>
+  <h2>Top Risks (Plain Language)</h2>
+  <table>
+    <tr><th>Severity</th><th>Risk</th><th>What could happen</th><th>Effort</th></tr>
+    {risk_rows}
+  </table>
+  <h2>Impact Scenarios</h2>
+  <ul>{scenario_rows}</ul>
+  <h2>Audit-Proof Reference (COVENANT)</h2>
+  <div class="card">
+    Ledger Hash: <code>{html.escape(str(audit_ref.get("ledger_hash", "n/a")))}</code><br/>
+    Ledger Timestamp: <b>{html.escape(str(audit_ref.get("timestamp", "n/a")))}</b><br/>
+    Chain Verified: <b>{html.escape(str(audit_ref.get("chain_verified", "n/a")))}</b>
+  </div>
+</body>
+</html>"""
+
+
+def _certify_scan_data(scan_data: Dict[str, Any], playbook: Dict[str, Any]) -> Dict[str, Any]:
+    if _COVENANT is None:
+        return {}
+    summary = _findings_summary(scan_data.get("findings", []) or [])
+    decision, _ = _decision_from_playbook(summary, playbook)
+    target = str(scan_data.get("target", "") or "")
+    target_hash = scan_data.get("target_hash") or _compute_target_hash(target)
+    return _COVENANT.certify_scan(
+        scan_data=scan_data,
+        playbook=playbook,
+        decision=decision,
+        tool_version=MISTCODER_VERSION,
+        target_hash=target_hash,
+    )
+
+
+def generate_executive_report(input_path: str, playbook_name: Optional[str] = None,
+                              output_base: Optional[str] = None, auto_certify: bool = True):
+    with open(input_path, "r", encoding="utf-8") as fh:
+        scan_data = json.load(fh)
+    playbook = _load_playbook(playbook_name)
+    audit_ref = _certify_scan_data(scan_data, playbook) if auto_certify else {}
+    report = _build_executive_report(scan_data, playbook, audit_ref=audit_ref)
+
+    base = output_base or (input_path.rsplit(".", 1)[0] + "_executive")
+    os.makedirs(os.path.dirname(base) or ".", exist_ok=True)
+    json_path = base + ".json"
+    html_path = base + ".html"
+    with open(json_path, "w", encoding="utf-8") as fh:
+        json.dump(report, fh, indent=2)
+    with open(html_path, "w", encoding="utf-8") as fh:
+        fh.write(_render_executive_html(report))
+    return json_path, html_path, report
+
+
+def certify_scan_file(input_path: str, playbook_name: Optional[str] = None):
+    if _COVENANT is None:
+        raise RuntimeError("COVENANT not available")
+    with open(input_path, "r", encoding="utf-8") as fh:
+        scan_data = json.load(fh)
+    playbook = _load_playbook(playbook_name)
+    certificate = _certify_scan_data(scan_data, playbook)
+    return certificate, playbook
 
 
 # ── Scan engine ───────────────────────────────────────────────────────────────
@@ -265,7 +600,7 @@ def run_scan(target: str, json_out: str = None, phantom: bool = False):
 
     # ── JSON export ──────────────────────────────────────────────────────────
     if json_out:
-        _export_json(all_findings, attack_paths, scan_id, json_out, unified_ir)
+        _export_json(all_findings, attack_paths, scan_id, json_out, unified_ir, target)
         print(f"\n  JSON saved → {json_out}")
 
 
@@ -309,7 +644,7 @@ def _print_report(findings, attack_paths, scan_id):
     print(SEP)
 
 
-def _export_json(findings, attack_paths, scan_id, path, unified_ir=None):
+def _export_json(findings, attack_paths, scan_id, path, unified_ir=None, target=None):
     def _serialise(f):
         if hasattr(f, "__dict__"):
             return {k: str(v) for k, v in f.__dict__.items()}
@@ -317,7 +652,9 @@ def _export_json(findings, attack_paths, scan_id, path, unified_ir=None):
 
     data = {
         "scan_id":      scan_id,
-        "timestamp":    datetime.datetime.utcnow().isoformat(),
+        "timestamp":    datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat() + "Z",
+        "target":       target,
+        "target_hash":  _compute_target_hash(target) if target else None,
         "findings":     [_serialise(f) for f in findings],
         "attack_paths": [_serialise(p) for p in attack_paths],
         "unified_ir":   unified_ir if isinstance(unified_ir, dict) else {},
@@ -426,11 +763,15 @@ def main():
         print("    python mistcoder.py status")
         print("    python mistcoder.py selftest")
         print("    python mistcoder.py scan <target> [--json <out.json>] [--phantom]")
+        print("    python mistcoder.py certify <scan_report.json> [--playbook <name_or_path>]")
+        print("    python mistcoder.py report executive --input <scan_report.json> [--playbook <name_or_path>] [--output <base>]")
         print()
         print("  Examples:")
         print("    python mistcoder.py scan src/")
         print("    python mistcoder.py scan src/ --phantom")
         print("    python mistcoder.py scan src/ --json sandbox/report.json --phantom")
+        print("    python mistcoder.py certify sandbox/report.json --playbook finance")
+        print("    python mistcoder.py report executive --input sandbox/report.json --playbook government --output sandbox/gov_assurance")
         return
 
     cmd = args[0]
@@ -452,6 +793,57 @@ def main():
             idx      = args.index("--json")
             json_out = args[idx + 1] if idx + 1 < len(args) else "sandbox/report.json"
         run_scan(target, json_out=json_out, phantom=phantom)
+
+    elif cmd == "certify":
+        if len(args) < 2:
+            print("  Error: provide a scan report JSON file")
+            sys.exit(1)
+        try:
+            playbook_name = _arg_value(args, "--playbook", "finance")
+            cert, playbook = certify_scan_file(args[1], playbook_name=playbook_name)
+            print(SEP)
+            print("  SCAN CERTIFIED")
+            print(SEP)
+            print(f"  Scan ID:        {cert.get('scan_id')}")
+            print(f"  Playbook:       {playbook.get('name')} v{playbook.get('playbook_version')}")
+            print(f"  Ledger hash:    {cert.get('ledger_hash')}")
+            print(f"  Timestamp:      {cert.get('timestamp')}")
+            print(f"  Chain verified: {cert.get('chain_verified')}")
+            print(SEP)
+        except Exception as e:
+            print(f"  Error: {e}")
+            sys.exit(1)
+
+    elif cmd == "report":
+        sub = args[1] if len(args) > 1 else ""
+        if sub != "executive":
+            print("  Error: supported report mode is: executive")
+            sys.exit(1)
+        input_path = _arg_value(args, "--input")
+        if not input_path:
+            print("  Error: provide --input <scan_report.json>")
+            sys.exit(1)
+        playbook_name = _arg_value(args, "--playbook", "finance")
+        output_base = _arg_value(args, "--output", None)
+        try:
+            out_json, out_html, report = generate_executive_report(
+                input_path=input_path,
+                playbook_name=playbook_name,
+                output_base=output_base,
+                auto_certify=True,
+            )
+            print(SEP)
+            print("  EXECUTIVE ASSURANCE REPORT")
+            print(SEP)
+            print(f"  Decision:   {report.get('go_no_go', {}).get('decision')}")
+            print(f"  JSON:       {out_json}")
+            print(f"  HTML:       {out_html}")
+            if report.get("audit_reference"):
+                print(f"  Ledger ref: {report['audit_reference'].get('ledger_hash')}")
+            print(SEP)
+        except Exception as e:
+            print(f"  Error: {e}")
+            sys.exit(1)
 
     elif cmd == "covenant":
         sub = args[1] if len(args) > 1 else "status"
