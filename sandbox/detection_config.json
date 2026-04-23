@@ -1,40 +1,40 @@
 {
   "dangerous_calls": [
+    "exec",
+    "execSync",
+    "marshal.loads",
     "shelve.open",
-    "yaml.load",
+    "__import__",
+    "pickle.load",
     "compile",
+    "open",
+    "pickle.loads",
+    "os.popen",
+    "os.system",
+    "subprocess",
+    "yaml.load",
     "importlib.import_module",
     "eval",
-    "os.popen",
-    "open",
-    "__import__",
-    "subprocess",
-    "pickle.load",
-    "pickle.loads",
-    "exec",
-    "os.system",
-    "marshal.loads",
-    "execSync",
     "loads",
     "system"
   ],
   "secret_keywords": [
-    "password",
-    "token",
-    "db_password",
-    "credential",
     "refresh_token",
     "auth",
+    "signing_key",
     "secret",
     "passwd",
-    "client_secret",
-    "access_token",
-    "api_key",
-    "private_key",
+    "db_password",
+    "password",
+    "token",
     "pwd",
+    "private_key",
+    "apikey",
+    "access_token",
     "key",
-    "signing_key",
-    "apikey"
+    "credential",
+    "client_secret",
+    "api_key"
   ],
   "sinks_python": [
     "eval",
@@ -107,5 +107,5 @@
     "request.form",
     "getenv"
   ],
-  "generated_at": "2026-04-23T09:26:54.335098+00:00"
+  "generated_at": "2026-04-21T15:31:27.260026+00:00"
 }
