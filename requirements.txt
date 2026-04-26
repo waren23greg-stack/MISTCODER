@@ -3,3 +3,17 @@
 # No external dependencies required for MOD-01, MOD-02, MOD-03
 
 # Optional enhanced dependencies -- see requirements-optional.txt
+pandas
+numpy
+scikit-learn
+xgboost
+joblib
+matplotlib
+seaborn
+requests
+# optional for later
+earthengine-api
+geemap
+geopandas
+rasterio
+
