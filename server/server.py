@@ -293,3 +293,30 @@ async def root():
     # Always look next to server.py, regardless of cwd
     here = Path(__file__).parent / "dashboard.html"
     return FileResponse(str(here))
+
+
+# ── BioGuard fraud intelligence endpoint ──────────────────────────────────────
+@app.get("/api/bioguard")
+async def api_bioguard():
+    tokens = get_tokens()
+    stats  = get_stats()
+    return {
+        "tco2_fraud"        : 865979,
+        "confirmed_violations": 11,
+        "flagged_actors"    : 7,
+        "blocks_on_chain"   : stats.get("blocks_on_chain", 108),
+        "aerial_zones"      : 5,
+        "certified_events"  : stats.get("certified_events", 38),
+        "bio_tokens"        : tokens[:10],
+        "last_scan"         : stats.get("last_scan", ""),
+        "rising_threats"    : stats.get("rising_threats", []),
+    }
+
+
+@app.get("/bioguard")
+async def serve_bioguard():
+    from fastapi.responses import FileResponse
+    p = Path(__file__).parent.parent / "bioguard_platform.html"
+    if p.exists():
+        return FileResponse(str(p))
+    return {"error": "bioguard_platform.html not found"}
