@@ -1,0 +1,724 @@
+{
+  "sql_query": {
+    "appearances": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      7,
+      8,
+      11,
+      14,
+      15,
+      16,
+      16,
+      17,
+      17,
+      17
+    ],
+    "trend": "RISING",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-89": {
+    "appearances": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      7,
+      8,
+      11,
+      14,
+      15,
+      16,
+      16,
+      17,
+      17,
+      17
+    ],
+    "trend": "RISING",
+    "last_seen": "2026-04-25"
+  },
+  "file_path": {
+    "appearances": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      7,
+      8,
+      11,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17
+    ],
+    "trend": "RISING",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-22": {
+    "appearances": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      7,
+      8,
+      11,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17
+    ],
+    "trend": "RISING",
+    "last_seen": "2026-04-25"
+  },
+  "eval_exec": {
+    "appearances": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4,
+      5,
+      5,
+      6,
+      6,
+      7,
+      8,
+      9,
+      10,
+      10,
+      11,
+      12,
+      13,
+      14,
+      14,
+      16,
+      16,
+      17,
+      17
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-94": {
+    "appearances": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4,
+      5,
+      5,
+      6,
+      6,
+      7,
+      8,
+      9,
+      10,
+      10,
+      11,
+      12,
+      13,
+      14,
+      14,
+      16,
+      16,
+      17,
+      17
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "Password": {
+    "appearances": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      17,
+      17,
+      17
+    ],
+    "trend": "RISING",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-312": {
+    "appearances": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      6,
+      6,
+      7,
+      8,
+      11,
+      14,
+      14,
+      15,
+      16,
+      16,
+      16,
+      17,
+      17,
+      17,
+      17,
+      17
+    ],
+    "trend": "RISING",
+    "last_seen": "2026-04-25"
+  },
+  "High Entropy String": {
+    "appearances": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      17,
+      17
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "Weak Hash": {
+    "appearances": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      17
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-327": {
+    "appearances": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      14,
+      15,
+      16,
+      16,
+      17
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "unknown_pattern": {
+    "appearances": [
+      11
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-999": {
+    "appearances": [
+      11,
+      12,
+      13
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "unknown_func": {
+    "appearances": [
+      12,
+      13
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "conflicting_signal": {
+    "appearances": [
+      12,
+      13
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-362": {
+    "appearances": [
+      12,
+      13
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject": {
+    "appearances": [
+      14,
+      14,
+      15,
+      16,
+      16,
+      16
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-78": {
+    "appearances": [
+      14,
+      14,
+      15,
+      16,
+      16,
+      16
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "hardcoded_secret": {
+    "appearances": [
+      14,
+      14,
+      15,
+      16,
+      16,
+      16
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "weak_hash": {
+    "appearances": [
+      14,
+      15,
+      16,
+      16
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "xss_inject": {
+    "appearances": [
+      14,
+      14,
+      16,
+      16
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "CWE-79": {
+    "appearances": [
+      14,
+      14,
+      16,
+      16
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "illegal_clearing": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "ECO-006": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "vegetation_stress": {
+    "appearances": [
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "ECO-005": {
+    "appearances": [
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "soil_degradation": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "ECO-004": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "edge_effect": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "ECO-008": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "habitat_fragmentation": {
+    "appearances": [
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "ECO-002": {
+    "appearances": [
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "deforestation_event": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "ECO-001": {
+    "appearances": [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "human_activity": {
+    "appearances": [
+      18,
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "fire_crackle": {
+    "appearances": [
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "ECO-007": {
+    "appearances": [
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "heavy_vehicle": {
+    "appearances": [
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  },
+  "chainsaw_detected": {
+    "appearances": [
+      18
+    ],
+    "trend": "STABLE",
+    "last_seen": "2026-04-25"
+  }
+}

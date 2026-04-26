@@ -1,0 +1,830 @@
+{
+  "file": "C:\\Users\\user\\MISTCODER\\MISTCODER\\sandbox\\vulnerable_app\\app.py",
+  "language": "python",
+  "taint_flows": [
+    {
+      "source": "open",
+      "sink": "open",
+      "path": [
+        "CA0041"
+      ],
+      "sanitized": false,
+      "severity": "medium"
+    }
+  ],
+  "cfg": {
+    "get_db": {
+      "entry": "FN0011",
+      "nodes": [
+        {
+          "id": "FN0011",
+          "type": "function",
+          "name": "get_db",
+          "line": 46,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0011",
+          "type": "function",
+          "name": "get_db",
+          "line": 46,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0012",
+          "type": "call",
+          "name": "sqlite3.connect",
+          "line": 47,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0013",
+          "type": "call",
+          "name": "conn.execute",
+          "line": 48,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0014",
+          "type": "call",
+          "name": "conn.execute",
+          "line": 52,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0015",
+          "type": "call",
+          "name": "conn.commit",
+          "line": 53,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0011",
+          "dst": "CA0012",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0011",
+          "dst": "CA0013",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0011",
+          "dst": "CA0014",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0011",
+          "dst": "CA0015",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 6
+    },
+    "login": {
+      "entry": "FN0016",
+      "nodes": [
+        {
+          "id": "FN0016",
+          "type": "function",
+          "name": "login",
+          "line": 58,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/login', methods=['GET', 'POST'])"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0016",
+          "type": "function",
+          "name": "login",
+          "line": 58,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/login', methods=['GET', 'POST'])"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0017",
+          "type": "call",
+          "name": "request.form.get",
+          "line": 60,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "SE0018",
+          "type": "secret_flag",
+          "name": "password",
+          "line": 61,
+          "props": {
+            "pattern": "potential_secret_assignment"
+          }
+        },
+        {
+          "id": "CA0019",
+          "type": "call",
+          "name": "request.form.get",
+          "line": 61,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0020",
+          "type": "call",
+          "name": "get_db",
+          "line": 62,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0021",
+          "type": "call",
+          "name": "conn.execute(query).fetchone",
+          "line": 65,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0023",
+          "type": "call",
+          "name": "render_template_string",
+          "line": 69,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0024",
+          "type": "call",
+          "name": "app.route",
+          "line": 57,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0022",
+          "type": "call",
+          "name": "conn.execute",
+          "line": 65,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0016",
+          "dst": "CA0017",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0016",
+          "dst": "SE0018",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0016",
+          "dst": "CA0019",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0016",
+          "dst": "CA0020",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0016",
+          "dst": "CA0021",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0016",
+          "dst": "CA0023",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0016",
+          "dst": "CA0024",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 10
+    },
+    "ping": {
+      "entry": "FN0025",
+      "nodes": [
+        {
+          "id": "FN0025",
+          "type": "function",
+          "name": "ping",
+          "line": 77,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/ping')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0025",
+          "type": "function",
+          "name": "ping",
+          "line": 77,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/ping')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0026",
+          "type": "call",
+          "name": "request.args.get",
+          "line": 78,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0027",
+          "type": "call",
+          "name": "os.system",
+          "line": 80,
+          "props": {
+            "dangerous": true
+          }
+        },
+        {
+          "id": "CA0028",
+          "type": "call",
+          "name": "app.route",
+          "line": 76,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0025",
+          "dst": "CA0026",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0025",
+          "dst": "CA0027",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0025",
+          "dst": "CA0028",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 5
+    },
+    "calc": {
+      "entry": "FN0029",
+      "nodes": [
+        {
+          "id": "FN0029",
+          "type": "function",
+          "name": "calc",
+          "line": 89,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/calc')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0029",
+          "type": "function",
+          "name": "calc",
+          "line": 89,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/calc')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0030",
+          "type": "call",
+          "name": "request.args.get",
+          "line": 90,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0031",
+          "type": "call",
+          "name": "eval",
+          "line": 92,
+          "props": {
+            "dangerous": true
+          }
+        },
+        {
+          "id": "CA0032",
+          "type": "call",
+          "name": "str",
+          "line": 93,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0033",
+          "type": "call",
+          "name": "app.route",
+          "line": 88,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0029",
+          "dst": "CA0030",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0029",
+          "dst": "CA0031",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0029",
+          "dst": "CA0032",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0029",
+          "dst": "CA0033",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 6
+    },
+    "load_data": {
+      "entry": "FN0034",
+      "nodes": [
+        {
+          "id": "FN0034",
+          "type": "function",
+          "name": "load_data",
+          "line": 101,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/load', methods=['POST'])"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0034",
+          "type": "function",
+          "name": "load_data",
+          "line": 101,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/load', methods=['POST'])"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0035",
+          "type": "call",
+          "name": "request.get_data",
+          "line": 102,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0036",
+          "type": "call",
+          "name": "pickle.loads",
+          "line": 104,
+          "props": {
+            "dangerous": true
+          }
+        },
+        {
+          "id": "CA0037",
+          "type": "call",
+          "name": "str",
+          "line": 105,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0038",
+          "type": "call",
+          "name": "app.route",
+          "line": 100,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0034",
+          "dst": "CA0035",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0034",
+          "dst": "CA0036",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0034",
+          "dst": "CA0037",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0034",
+          "dst": "CA0038",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 6
+    },
+    "read_file": {
+      "entry": "FN0039",
+      "nodes": [
+        {
+          "id": "FN0039",
+          "type": "function",
+          "name": "read_file",
+          "line": 113,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/file')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0039",
+          "type": "function",
+          "name": "read_file",
+          "line": 113,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/file')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0040",
+          "type": "call",
+          "name": "request.args.get",
+          "line": 114,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0041",
+          "type": "call",
+          "name": "open",
+          "line": 116,
+          "props": {
+            "dangerous": true
+          }
+        },
+        {
+          "id": "CA0042",
+          "type": "call",
+          "name": "f.read",
+          "line": 117,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0043",
+          "type": "call",
+          "name": "app.route",
+          "line": 112,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0039",
+          "dst": "CA0040",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0039",
+          "dst": "CA0041",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0039",
+          "dst": "CA0042",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0039",
+          "dst": "CA0043",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 6
+    },
+    "greet": {
+      "entry": "FN0044",
+      "nodes": [
+        {
+          "id": "FN0044",
+          "type": "function",
+          "name": "greet",
+          "line": 125,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/greet')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0044",
+          "type": "function",
+          "name": "greet",
+          "line": 125,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/greet')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0045",
+          "type": "call",
+          "name": "request.args.get",
+          "line": 126,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0046",
+          "type": "call",
+          "name": "render_template_string",
+          "line": 129,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0047",
+          "type": "call",
+          "name": "app.route",
+          "line": 124,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0044",
+          "dst": "CA0045",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0044",
+          "dst": "CA0046",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0044",
+          "dst": "CA0047",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 5
+    },
+    "debug_info": {
+      "entry": "FN0048",
+      "nodes": [
+        {
+          "id": "FN0048",
+          "type": "function",
+          "name": "debug_info",
+          "line": 137,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/debug')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "FN0048",
+          "type": "function",
+          "name": "debug_info",
+          "line": 137,
+          "props": {
+            "async": false,
+            "args": [],
+            "decorators": [
+              "app.route('/debug')"
+            ],
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0049",
+          "type": "call",
+          "name": "dict",
+          "line": 143,
+          "props": {
+            "dangerous": false
+          }
+        },
+        {
+          "id": "CA0050",
+          "type": "call",
+          "name": "app.route",
+          "line": 136,
+          "props": {
+            "dangerous": false
+          }
+        }
+      ],
+      "edges": [
+        {
+          "src": "FN0048",
+          "dst": "CA0049",
+          "type": "cfg_edge"
+        },
+        {
+          "src": "FN0048",
+          "dst": "CA0050",
+          "type": "cfg_edge"
+        }
+      ],
+      "node_count": 4
+    }
+  },
+  "findings": [
+    {
+      "id": "MIST-00001",
+      "category": "TAINT_FLOW",
+      "description": "Unsanitized data flows from 'open' to 'open' with no sanitizer on path.",
+      "line": null,
+      "severity": "medium",
+      "node_id": null
+    },
+    {
+      "id": "MIST-00002",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'os.system' called at line 80.",
+      "line": 80,
+      "severity": "high",
+      "node_id": "CA0027"
+    },
+    {
+      "id": "MIST-00003",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'eval' called at line 92.",
+      "line": 92,
+      "severity": "high",
+      "node_id": "CA0031"
+    },
+    {
+      "id": "MIST-00004",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'pickle.loads' called at line 104.",
+      "line": 104,
+      "severity": "high",
+      "node_id": "CA0036"
+    },
+    {
+      "id": "MIST-00005",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'open' called at line 116.",
+      "line": 116,
+      "severity": "high",
+      "node_id": "CA0041"
+    },
+    {
+      "id": "MIST-00006",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'SECRET_KEY' at line 30.",
+      "line": 30,
+      "severity": "medium",
+      "node_id": "SE0008"
+    },
+    {
+      "id": "MIST-00007",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'DB_PASSWORD' at line 31.",
+      "line": 31,
+      "severity": "medium",
+      "node_id": "SE0009"
+    },
+    {
+      "id": "MIST-00008",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'API_KEY' at line 32.",
+      "line": 32,
+      "severity": "medium",
+      "node_id": "SE0010"
+    },
+    {
+      "id": "MIST-00009",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'password' at line 61.",
+      "line": 61,
+      "severity": "medium",
+      "node_id": "SE0018"
+    }
+  ],
+  "metadata": {
+    "taint_flow_count": 1,
+    "cfg_function_count": 8,
+    "finding_count": 9,
+    "severity_summary": {
+      "critical": 0,
+      "high": 4,
+      "medium": 5
+    },
+    "analyzer": "AnalysisEngine v0.1.0",
+    "analyzed_at": "2026-04-18T06:55:17.652000+00:00"
+  }
+}

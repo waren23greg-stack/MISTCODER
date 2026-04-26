@@ -1,0 +1,159 @@
+{
+  "report_version": "1.0",
+  "scanner": "MISTCODER Unified CLI",
+  "scanned_at": "2026-04-25T07:18:40.921556+00:00",
+  "elapsed_s": 0.54,
+  "languages": [
+    "python",
+    "javascript",
+    "go"
+  ],
+  "totals": {
+    "files": 4,
+    "findings": 20,
+    "critical": 8,
+    "high": 9,
+    "medium": 3,
+    "low": 0
+  },
+  "per_language": [
+    {
+      "language": "python",
+      "files": 0,
+      "findings": 0,
+      "summary": {}
+    },
+    {
+      "language": "javascript",
+      "files": 3,
+      "findings": 14,
+      "summary": {
+        "critical": 6,
+        "high": 7,
+        "medium": 1,
+        "low": 0,
+        "total": 14
+      }
+    },
+    {
+      "language": "go",
+      "files": 1,
+      "findings": 6,
+      "summary": {
+        "critical": 2,
+        "high": 2,
+        "medium": 2,
+        "low": 0,
+        "total": 6
+      }
+    }
+  ],
+  "trinity": {
+    "certified": 0,
+    "blocked": 0,
+    "deduplicated": 3,
+    "blocks": []
+  },
+  "top_findings": [
+    {
+      "file": "test_vuln.js",
+      "line": 19,
+      "language": "javascript",
+      "call_name": "cmd_inject",
+      "cwe_id": "CWE-78",
+      "severity": "CRITICAL",
+      "cvss": 9.5,
+      "title": "Shell command built from request data \u2014 OS command injection"
+    },
+    {
+      "file": "test_vuln.go",
+      "line": 23,
+      "language": "go",
+      "call_name": "cmd_inject",
+      "cwe_id": "CWE-78",
+      "severity": "CRITICAL",
+      "cvss": 9.5,
+      "title": "exec.Command built with string concatenation \u2014 OS injection risk"
+    },
+    {
+      "file": "test_vuln.js",
+      "line": 9,
+      "language": "javascript",
+      "call_name": "sql_query",
+      "cwe_id": "CWE-89",
+      "severity": "CRITICAL",
+      "cvss": 9.0,
+      "title": "SQL query constructed with string concatenation \u2014 injection risk"
+    },
+    {
+      "file": "test_vuln.js",
+      "line": 14,
+      "language": "javascript",
+      "call_name": "eval_exec",
+      "cwe_id": "CWE-94",
+      "severity": "CRITICAL",
+      "cvss": 9.0,
+      "title": "eval() executes arbitrary code \u2014 remote code execution vector"
+    },
+    {
+      "file": "sandbox\\sample_target.js",
+      "line": 20,
+      "language": "javascript",
+      "call_name": "eval_exec",
+      "cwe_id": "CWE-94",
+      "severity": "CRITICAL",
+      "cvss": 9.0,
+      "title": "eval() executes arbitrary code \u2014 remote code execution vector"
+    },
+    {
+      "file": "sandbox\\sample_target.js",
+      "line": 40,
+      "language": "javascript",
+      "call_name": "eval_exec",
+      "cwe_id": "CWE-94",
+      "severity": "CRITICAL",
+      "cvss": 9.0,
+      "title": "eval() executes arbitrary code \u2014 remote code execution vector"
+    },
+    {
+      "file": "test_vuln.go",
+      "line": 18,
+      "language": "go",
+      "call_name": "sql_query",
+      "cwe_id": "CWE-89",
+      "severity": "CRITICAL",
+      "cvss": 9.0,
+      "title": "SQL query built with string concatenation \u2014 injection risk"
+    },
+    {
+      "file": "sandbox\\sample_target.js",
+      "line": 36,
+      "language": "javascript",
+      "call_name": "eval_exec",
+      "cwe_id": "CWE-94",
+      "severity": "CRITICAL",
+      "cvss": 8.5,
+      "title": "Function() constructor executes arbitrary code"
+    },
+    {
+      "file": "sandbox\\sample_target.js",
+      "line": 32,
+      "language": "javascript",
+      "call_name": "cmd_inject",
+      "cwe_id": "CWE-78",
+      "severity": "HIGH",
+      "cvss": 8.0,
+      "title": "Synchronous shell execution \u2014 blocks event loop and injection risk"
+    },
+    {
+      "file": "test_vuln.js",
+      "line": 23,
+      "language": "javascript",
+      "call_name": "hardcoded_secret",
+      "cwe_id": "CWE-312",
+      "severity": "HIGH",
+      "cvss": 7.5,
+      "title": "Hardcoded credential found in source"
+    }
+  ]
+}

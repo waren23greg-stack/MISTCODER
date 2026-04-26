@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: mistcoder
+Version: 1.0.0
+Summary: Threat-Native Blockchain Security Scanner
+Requires-Python: >=3.10
+License-File: LICENSE
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary

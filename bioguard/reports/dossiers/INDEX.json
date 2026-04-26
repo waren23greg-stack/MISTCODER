@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-04-26T06:00:53.896880+00:00",
+  "total_dossiers": 4,
+  "confirmed": 0,
+  "probable": 0,
+  "dossiers": [
+    {
+      "id": "BG-CPK/2023/04471",
+      "entity": "GreenVeil Conservation Partners Ltd",
+      "grade": "EvidenceGrade.CONFIRMED",
+      "score": 9.4,
+      "fraud_credits_usd": 486000,
+      "referral_count": 5
+    },
+    {
+      "id": "BG-NGO/2021/11892",
+      "entity": "Rift Stewardship Foundation",
+      "grade": "EvidenceGrade.PROBABLE",
+      "score": 6.1,
+      "fraud_credits_usd": 93000,
+      "referral_count": 2
+    },
+    {
+      "id": "BG-CMP/2022/33019",
+      "entity": "SilverLeaf Carbon Investments",
+      "grade": "EvidenceGrade.CONFIRMED",
+      "score": 9.8,
+      "fraud_credits_usd": 852000,
+      "referral_count": 5
+    },
+    {
+      "id": "BG-INTL/2023/KE/00871",
+      "entity": "Continental Wildlife Corridor Fund",
+      "grade": "EvidenceGrade.CONFIRMED",
+      "score": 9.9,
+      "fraud_credits_usd": 1363500,
+      "referral_count": 5
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "scores": [
+    {
+      "finding_id": "MIST-00002",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'os.system' called at line 80.",
+      "line": 80,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.2,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00003",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'eval' called at line 92.",
+      "line": 92,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.2,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00004",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'pickle.loads' called at line 104.",
+      "line": 104,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.2,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00005",
+      "category": "DANGEROUS_CALL",
+      "description": "Dangerous function 'open' called at line 116.",
+      "line": 116,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.2,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00006",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'SECRET_KEY' at line 30.",
+      "line": 30,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.35,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00007",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'DB_PASSWORD' at line 31.",
+      "line": 31,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.35,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00008",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'API_KEY' at line 32.",
+      "line": 32,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.35,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00009",
+      "category": "SECRET_EXPOSURE",
+      "description": "Potential secret or credential assigned to 'password' at line 61.",
+      "line": 61,
+      "cvss_base_score": 10.0,
+      "context_score": 10.0,
+      "severity": "CRITICAL",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.35,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "L",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "C",
+        "confidentiality": "H",
+        "integrity": "H",
+        "availability": "H"
+      }
+    },
+    {
+      "finding_id": "MIST-00001",
+      "category": "TAINT_FLOW",
+      "description": "Unsanitized data flows from 'open' to 'open' with no sanitizer on path.",
+      "line": null,
+      "cvss_base_score": 6.5,
+      "context_score": 7.8,
+      "severity": "HIGH",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N",
+      "modifiers": {
+        "in_chain": true,
+        "reachable": true,
+        "asset_weight": 1.0,
+        "chain_amp": 1.2,
+        "reach_disc": 1.0
+      },
+      "vector_detail": {
+        "attack_vector": "N",
+        "attack_complexity": "H",
+        "privileges_required": "N",
+        "user_interaction": "N",
+        "scope": "U",
+        "confidentiality": "H",
+        "integrity": "L",
+        "availability": "N"
+      }
+    }
+  ],
+  "aggregate": {
+    "score": 10.0,
+    "label": "CRITICAL",
+    "finding_count": 9,
+    "critical": 8,
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  },
+  "risk_vector": "MIST/AG:10.0/C:8/H:1/M:0/L:0/FC:9",
+  "risk_label": "CRITICAL -- Immediate remediation required. Active exploitation is probable.",
+  "metadata": {
+    "scorer": "CVSSScorer v0.1.0",
+    "standard": "CVSS 3.1",
+    "extensions": [
+      "chain_amplification",
+      "reachability_weighting",
+      "asset_criticality"
+    ],
+    "scored_at": "2026-04-18T06:55:17.664877+00:00",
+    "finding_count": 9,
+    "chain_count": 24
+  }
+}

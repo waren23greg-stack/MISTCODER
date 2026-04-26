@@ -1,0 +1,234 @@
+{
+  "file": "sandbox/sample_target.py",
+  "language": "python",
+  "nodes": [
+    {
+      "id": "IM0001",
+      "type": "import",
+      "name": "os",
+      "line": 1,
+      "props": {}
+    },
+    {
+      "id": "IM0002",
+      "type": "import",
+      "name": "subprocess",
+      "line": 2,
+      "props": {}
+    },
+    {
+      "id": "IM0003",
+      "type": "import",
+      "name": "hashlib",
+      "line": 3,
+      "props": {}
+    },
+    {
+      "id": "SE0004",
+      "type": "secret_flag",
+      "name": "password",
+      "line": 5,
+      "props": {
+        "pattern": "potential_secret_assignment"
+      }
+    },
+    {
+      "id": "SE0005",
+      "type": "secret_flag",
+      "name": "api_token",
+      "line": 6,
+      "props": {
+        "pattern": "potential_secret_assignment"
+      }
+    },
+    {
+      "id": "FN0006",
+      "type": "function",
+      "name": "authenticate",
+      "line": 8,
+      "props": {
+        "async": false,
+        "args": [
+          "username",
+          "user_password"
+        ],
+        "decorators": [],
+        "dangerous": false
+      }
+    },
+    {
+      "id": "FN0007",
+      "type": "function",
+      "name": "run_command",
+      "line": 13,
+      "props": {
+        "async": false,
+        "args": [
+          "cmd"
+        ],
+        "decorators": [],
+        "dangerous": false
+      }
+    },
+    {
+      "id": "CA0008",
+      "type": "call",
+      "name": "os.system",
+      "line": 14,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "FN0009",
+      "type": "function",
+      "name": "dangerous_eval",
+      "line": 17,
+      "props": {
+        "async": false,
+        "args": [
+          "user_input"
+        ],
+        "decorators": [],
+        "dangerous": false
+      }
+    },
+    {
+      "id": "CA0010",
+      "type": "call",
+      "name": "eval",
+      "line": 18,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "CL0011",
+      "type": "class",
+      "name": "DatabaseManager",
+      "line": 20,
+      "props": {}
+    },
+    {
+      "id": "FN0012",
+      "type": "function",
+      "name": "__init__",
+      "line": 21,
+      "props": {
+        "async": false,
+        "args": [
+          "self",
+          "secret_key"
+        ],
+        "decorators": [],
+        "dangerous": false
+      }
+    },
+    {
+      "id": "FN0013",
+      "type": "function",
+      "name": "query",
+      "line": 24,
+      "props": {
+        "async": false,
+        "args": [
+          "self",
+          "raw_sql"
+        ],
+        "decorators": [],
+        "dangerous": false
+      }
+    },
+    {
+      "id": "CA0014",
+      "type": "call",
+      "name": "exec",
+      "line": 25,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "FN0015",
+      "type": "function",
+      "name": "hash_data",
+      "line": 27,
+      "props": {
+        "async": false,
+        "args": [
+          "data"
+        ],
+        "decorators": [],
+        "dangerous": false
+      }
+    },
+    {
+      "id": "CA0016",
+      "type": "call",
+      "name": "hashlib.sha256(data.encode()).hexdigest",
+      "line": 28,
+      "props": {
+        "dangerous": false
+      }
+    },
+    {
+      "id": "CA0017",
+      "type": "call",
+      "name": "hashlib.sha256",
+      "line": 28,
+      "props": {
+        "dangerous": false
+      }
+    },
+    {
+      "id": "CA0018",
+      "type": "call",
+      "name": "data.encode",
+      "line": 28,
+      "props": {
+        "dangerous": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "src": "FN0007",
+      "dst": "CA0008",
+      "type": "calls"
+    },
+    {
+      "src": "FN0009",
+      "dst": "CA0010",
+      "type": "calls"
+    },
+    {
+      "src": "FN0013",
+      "dst": "CA0014",
+      "type": "calls"
+    },
+    {
+      "src": "FN0015",
+      "dst": "CA0016",
+      "type": "calls"
+    },
+    {
+      "src": "CA0016",
+      "dst": "CA0017",
+      "type": "calls"
+    },
+    {
+      "src": "CA0017",
+      "dst": "CA0018",
+      "type": "calls"
+    }
+  ],
+  "metadata": {
+    "node_count": 18,
+    "edge_count": 6,
+    "dangerous_calls": 3,
+    "secret_flags": 2,
+    "parser": "PythonParser v0.2.0"
+  },
+  "hash": "cd04a761a68b9e01884c4c92e620a7ea580fa3a83184c5992005818ef715fdce",
+  "parsed_at": "2026-04-16T14:31:21.189439+00:00"
+}

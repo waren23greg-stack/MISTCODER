@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  eden-server:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount your MISTCODER reports directory here
+      - ../reports:/app/reports:ro
+      # Mount eden_cli.py so the server can trigger scans
+      - ../eden_cli.py:/app/eden_cli.py:ro
+      - ../eden:/app/eden:ro
+    environment:
+      - SCAN_INTERVAL_MINUTES=5
+      - PORT=8000
+    restart: unless-stopped

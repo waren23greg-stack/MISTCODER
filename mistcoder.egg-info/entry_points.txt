@@ -1,0 +1,2 @@
+[console_scripts]
+mistcoder = blockchain.mistcoder_cli:main

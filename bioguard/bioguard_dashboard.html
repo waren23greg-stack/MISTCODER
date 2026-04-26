@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioGuard Intelligence — Conservation Fraud Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#04090A;--ink2:#080F10;--ink3:#0D1A1C;
+  --blood:#8B1A0A;--blood-dim:#5A0F06;--blood-pale:#E05030;
+  --amber:#C87A0E;--amber-pale:#EAA830;
+  --teal:#0E8A6A;--teal-light:#3DC8A0;
+  --white:#EAE4DA;--white-dim:#8A8478;--white-faint:#1E2A2C;
+  --border:rgba(139,26,10,0.18);--border-amber:rgba(200,122,14,0.2);
+  --confirmed:#8B1A0A;--probable:#7A5A08;--cleared:#0E6A4A;
+  --mono:'JetBrains Mono',monospace;--serif:'Playfair Display',serif;--body:'Crimson Pro',serif;
+}
+html,body{background:var(--ink);color:var(--white);font-family:var(--body);font-size:15px;line-height:1.6;}
+
+/* ── TOPBAR ────────────────────────────────────────────────── */
+#topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:52px;background:var(--ink);
+  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;
+}
+.tb-logo{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;
+  color:var(--blood-pale);display:flex;align-items:center;gap:10px;
+}
+.logo-shield{
+  width:22px;height:26px;
+}
+.tb-tabs{display:flex;gap:24px;}
+.tb-tab{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.15em;
+  color:var(--white-dim);cursor:pointer;padding:4px 0;
+  background:none;border:none;border-bottom:2px solid transparent;
+  text-transform:uppercase;transition:all .2s;
+}
+.tb-tab:hover{color:var(--blood-pale);}
+.tb-tab.active{color:var(--blood-pale);border-bottom-color:var(--blood-pale);}
+.tb-right{display:flex;align-items:center;gap:12px;}
+.scan-btn{
+  font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+  color:var(--blood-pale);background:transparent;
+  border:1px solid rgba(139,26,10,0.4);padding:6px 16px;
+  cursor:pointer;transition:all .2s;text-transform:uppercase;
+}
+.scan-btn:hover{background:rgba(139,26,10,.12);}
+.threat-count{
+  font-family:var(--mono);font-size:9px;color:var(--blood-pale);
+  background:rgba(139,26,10,.15);border:1px solid rgba(139,26,10,.3);
+  padding:4px 10px;letter-spacing:.1em;
+}
+
+/* ── TAB PANELS ────────────────────────────────────────────── */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* ── ALERT BANNER ──────────────────────────────────────────── */
+.alert-banner{
+  background:rgba(139,26,10,.08);border-bottom:1px solid rgba(139,26,10,.25);
+  padding:10px 32px;display:flex;align-items:center;gap:16px;
+}
+.alert-icon{font-size:14px;}
+.alert-text{font-family:var(--mono);font-size:10px;color:var(--blood-pale);letter-spacing:.08em;}
+.alert-grade{
+  margin-left:auto;font-family:var(--mono);font-size:9px;
+  padding:3px 10px;background:rgba(139,26,10,.2);color:var(--blood-pale);
+  border:1px solid rgba(139,26,10,.35);letter-spacing:.12em;
+}
+
+/* ── METRICS STRIP ─────────────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);}
+.m-cell{
+  padding:22px 24px;border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);position:relative;
+}
+.m-cell:last-child{border-right:none;}
+.m-label{font-family:var(--mono);font-size:8px;letter-spacing:.2em;color:var(--white-dim);text-transform:uppercase;margin-bottom:6px;}
+.m-val{font-family:var(--serif);font-size:28px;font-weight:700;line-height:1;}
+.m-val.red{color:var(--blood-pale);}
+.m-val.amber{color:var(--amber-pale);}
+.m-val.green{color:var(--teal-light);}
+.m-unit{font-family:var(--mono);font-size:8px;color:var(--white-dim);margin-top:4px;letter-spacing:.08em;}
+.m-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--white-faint);}
+.m-bar-fill{height:100%;transition:width 1s;}
+
+/* ── MAIN LAYOUT ───────────────────────────────────────────── */
+.main-cols{display:grid;grid-template-columns:320px 1fr;}
+.sidebar{border-right:1px solid var(--border);height:calc(100vh - 200px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent;}
+.content-area{overflow:hidden;}
+
+/* ── ENTITY LIST ───────────────────────────────────────────── */
+.entity-item{
+  padding:14px 20px;border-bottom:1px solid var(--border);
+  cursor:pointer;transition:background .15s;
+}
+.entity-item:hover{background:rgba(139,26,10,.06);}
+.entity-item.selected{background:rgba(139,26,10,.1);border-left:3px solid var(--blood-pale);}
+.ei-grade{
+  display:inline-block;font-family:var(--mono);font-size:7px;
+  padding:2px 6px;font-weight:600;letter-spacing:.08em;margin-bottom:6px;
+}
+.grade-confirmed{background:rgba(139,26,10,.25);color:var(--blood-pale);border:0.5px solid rgba(139,26,10,.4);}
+.grade-probable{background:rgba(122,90,8,.2);color:var(--amber-pale);border:0.5px solid rgba(122,90,8,.4);}
+.grade-cleared{background:rgba(14,106,74,.15);color:var(--teal-light);border:0.5px solid rgba(14,106,74,.3);}
+.ei-name{font-size:13px;color:var(--white);line-height:1.3;margin-bottom:4px;}
+.ei-score{
+  display:flex;align-items:center;gap:8px;
+}
+.ei-score-bar-bg{flex:1;height:2px;background:var(--white-faint);}
+.ei-score-bar-fill{height:100%;}
+.ei-score-num{font-family:var(--mono);font-size:9px;color:var(--white-dim);}
+.ei-sub{font-family:var(--mono);font-size:8px;color:var(--white-dim);margin-top:3px;}
+
+/* ── DOSSIER VIEW ──────────────────────────────────────────── */
+#dossier-view{padding:28px 32px;height:calc(100vh - 200px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent;}
+.dossier-header{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.dossier-eyebrow{font-family:var(--mono);font-size:8px;letter-spacing:.2em;color:var(--blood-pale);text-transform:uppercase;margin-bottom:8px;}
+.dossier-name{font-family:var(--serif);font-size:28px;font-weight:900;color:var(--white);line-height:1.1;margin-bottom:8px;}
+.dossier-reg{font-family:var(--mono);font-size:9px;color:var(--white-dim);letter-spacing:.1em;}
+.dossier-score-row{display:flex;align-items:center;gap:16px;margin-top:12px;}
+.score-badge{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:6px 14px;letter-spacing:.1em;
+}
+.score-badge.confirmed{background:rgba(139,26,10,.25);color:var(--blood-pale);border:1px solid rgba(139,26,10,.4);}
+.score-badge.probable{background:rgba(122,90,8,.2);color:var(--amber-pale);border:1px solid rgba(122,90,8,.35);}
+.score-badge.cleared{background:rgba(14,106,74,.15);color:var(--teal-light);border:1px solid rgba(14,106,74,.3);}
+.score-meter{flex:1;height:4px;background:var(--white-faint);max-width:200px;}
+.score-meter-fill{height:100%;}
+
+/* ── DOSSIER SECTIONS ──────────────────────────────────────── */
+.d-section{margin-bottom:24px;}
+.d-section-title{
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--blood-pale);
+  text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;
+  border-bottom:0.5px solid var(--border);
+}
+.d-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.d-field{padding:8px 12px;background:var(--ink2);border-left:2px solid var(--border);}
+.d-field-label{font-family:var(--mono);font-size:7px;letter-spacing:.15em;color:var(--white-dim);text-transform:uppercase;margin-bottom:2px;}
+.d-field-val{font-size:13px;color:var(--white);}
+.d-field-val.danger{color:var(--blood-pale);}
+.d-field-val.warn{color:var(--amber-pale);}
+.d-field-val.safe{color:var(--teal-light);}
+.d-field-val.mono{font-family:var(--mono);font-size:11px;}
+
+/* ── SIGNAL CARDS ──────────────────────────────────────────── */
+.signal-card{
+  background:rgba(139,26,10,.04);border:1px solid var(--border);
+  padding:14px;margin-bottom:8px;
+}
+.signal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.signal-type{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--blood-pale);letter-spacing:.1em;}
+.signal-sev{font-family:var(--mono);font-size:10px;font-weight:600;}
+.ndvi-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.ndvi-box{padding:8px;background:var(--ink2);text-align:center;}
+.ndvi-box-label{font-family:var(--mono);font-size:7px;color:var(--white-dim);letter-spacing:.1em;margin-bottom:4px;}
+.ndvi-box-val{font-family:var(--serif);font-size:22px;font-weight:700;}
+.ndvi-real{color:var(--blood-pale);}
+.ndvi-claimed{color:var(--teal-light);}
+.signal-flags{display:flex;gap:6px;flex-wrap:wrap;}
+.sig-flag{
+  font-family:var(--mono);font-size:8px;padding:2px 8px;letter-spacing:.06em;
+}
+.flag-danger{background:rgba(139,26,10,.2);color:var(--blood-pale);border:0.5px solid rgba(139,26,10,.35);}
+.flag-warn{background:rgba(122,90,8,.15);color:var(--amber-pale);border:0.5px solid rgba(122,90,8,.3);}
+.flag-ok{background:rgba(14,106,74,.12);color:var(--teal-light);border:0.5px solid rgba(14,106,74,.25);}
+
+/* ── NETWORK LINKS ─────────────────────────────────────────── */
+.link-row{
+  display:flex;align-items:center;gap:12px;padding:10px 14px;
+  border-bottom:0.5px solid var(--border);
+}
+.link-type{font-family:var(--mono);font-size:8px;letter-spacing:.08em;min-width:130px;}
+.link-type.director{color:var(--blood-pale);}
+.link-type.financial{color:var(--amber-pale);}
+.link-type.address{color:var(--white-dim);}
+.link-type.parcel{color:var(--teal-light);}
+.link-entity{font-size:12px;color:var(--white);flex:1;}
+.link-strength{font-family:var(--mono);font-size:9px;color:var(--white-dim);min-width:36px;text-align:right;}
+
+/* ── REFERRALS ─────────────────────────────────────────────── */
+.referral-row{
+  display:flex;align-items:center;gap:12px;padding:8px 14px;
+  border-bottom:0.5px solid var(--border);
+}
+.ref-agency{font-family:var(--mono);font-size:9px;color:var(--blood-pale);min-width:200px;letter-spacing:.06em;}
+.ref-priority{
+  font-family:var(--mono);font-size:7px;padding:2px 6px;font-weight:600;letter-spacing:.1em;
+}
+.pri-urgent{background:rgba(139,26,10,.25);color:var(--blood-pale);border:0.5px solid rgba(139,26,10,.4);}
+.pri-high{background:rgba(122,90,8,.2);color:var(--amber-pale);border:0.5px solid rgba(122,90,8,.35);}
+.pri-std{background:var(--white-faint);color:var(--white-dim);border:0.5px solid rgba(255,255,255,.1);}
+.ref-desc{font-size:11px;color:var(--white-dim);}
+
+/* ── BLOCK PROOF ───────────────────────────────────────────── */
+.block-proof{
+  background:var(--ink2);border:1px solid var(--border-amber);padding:14px;
+  font-family:var(--mono);font-size:9px;
+}
+.bp-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:0.5px solid var(--white-faint);}
+.bp-row:last-child{border-bottom:none;}
+.bp-key{color:var(--white-dim);letter-spacing:.08em;}
+.bp-val{color:var(--amber-pale);}
+
+/* ── ACTIONS ───────────────────────────────────────────────── */
+.action-item{
+  display:flex;gap:10px;align-items:flex-start;padding:8px 0;
+  border-bottom:0.5px solid var(--white-faint);
+}
+.action-bullet{color:var(--blood-pale);font-size:10px;padding-top:2px;flex-shrink:0;}
+.action-text{font-size:13px;color:var(--white);}
+
+/* ── NETWORK TAB ───────────────────────────────────────────── */
+#network-svg-wrap{padding:32px;}
+.network-legend{display:flex;gap:20px;padding:16px 32px;border-top:1px solid var(--border);}
+.nl-item{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;color:var(--white-dim);}
+.nl-dot{width:10px;height:10px;border-radius:50%;}
+
+/* ── EVIDENCE TAB ──────────────────────────────────────────── */
+.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+.ev-block{
+  padding:18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  cursor:pointer;transition:background .15s;
+}
+.ev-block:hover{background:rgba(139,26,10,.05);}
+.ev-block:nth-child(3n){border-right:none;}
+.ev-type{font-family:var(--mono);font-size:8px;letter-spacing:.15em;margin-bottom:6px;}
+.ev-type.violation{color:var(--blood-pale);}
+.ev-type.actor{color:var(--amber-pale);}
+.ev-type.network{color:var(--teal-light);}
+.ev-idx{font-family:var(--mono);font-size:9px;color:var(--white-dim);margin-bottom:4px;}
+.ev-summary{font-size:11px;color:var(--white);line-height:1.4;}
+.ev-grade{
+  display:inline-block;font-family:var(--mono);font-size:7px;padding:2px 5px;
+  margin-top:6px;letter-spacing:.08em;font-weight:600;
+}
+
+/* ── SCROLLBARS ────────────────────────────────────────────── */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--white-faint);}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-logo">
+    <svg class="logo-shield" viewBox="0 0 22 26" fill="none">
+      <path d="M11 1L2 5V13C2 18.5 6 23.3 11 25C16 23.3 20 18.5 20 13V5L11 1Z"
+            fill="rgba(139,26,10,0.2)" stroke="rgba(224,80,48,0.7)" stroke-width="1.2"/>
+      <path d="M7 13L9.5 15.5L15 10" stroke="rgba(224,80,48,0.9)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    BIOGUARD INTELLIGENCE
+  </div>
+  <div class="tb-tabs">
+    <button class="tb-tab active" onclick="switchTab('dossiers',this)">DOSSIERS</button>
+    <button class="tb-tab" onclick="switchTab('network',this)">ACTOR NETWORK</button>
+    <button class="tb-tab" onclick="switchTab('evidence',this)">CHAIN EVIDENCE</button>
+    <button class="tb-tab" onclick="switchTab('cleared',this)">CLEARED</button>
+  </div>
+  <div class="tb-right">
+    <div class="threat-count" id="threat-count">LOADING...</div>
+    <button class="scan-btn" onclick="loadData()">↻ REFRESH</button>
+  </div>
+</div>
+
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <span class="alert-icon">⚠</span>
+  <span class="alert-text" id="alert-text">LOADING BIOGUARD INTELLIGENCE REPORT...</span>
+  <span class="alert-grade" id="alert-grade">—</span>
+</div>
+
+<!-- METRICS -->
+<div class="metrics">
+  <div class="m-cell">
+    <div class="m-label">Fraudulent tCO₂</div>
+    <div class="m-val red" id="m-fraud">—</div>
+    <div class="m-unit">CREDITS AT RISK</div>
+    <div class="m-bar"><div class="m-bar-fill" id="mbar-fraud" style="width:0%;background:var(--blood-pale)"></div></div>
+  </div>
+  <div class="m-cell">
+    <div class="m-label">Fraud Value</div>
+    <div class="m-val red" id="m-usd">—</div>
+    <div class="m-unit">ESTIMATED USD @ $15/credit</div>
+    <div class="m-bar"><div class="m-bar-fill" id="mbar-usd" style="width:0%;background:var(--blood-pale)"></div></div>
+  </div>
+  <div class="m-cell">
+    <div class="m-label">Confirmed</div>
+    <div class="m-val red" id="m-confirmed">—</div>
+    <div class="m-unit">VIOLATIONS — COURT READY</div>
+    <div class="m-bar"><div class="m-bar-fill" id="mbar-conf" style="width:0%;background:var(--blood)"></div></div>
+  </div>
+  <div class="m-cell">
+    <div class="m-label">Network Links</div>
+    <div class="m-val amber" id="m-links">—</div>
+    <div class="m-unit">ACTOR CONNECTIONS MAPPED</div>
+    <div class="m-bar"><div class="m-bar-fill" id="mbar-links" style="width:0%;background:var(--amber)"></div></div>
+  </div>
+  <div class="m-cell">
+    <div class="m-label">Cleared Actors</div>
+    <div class="m-val green" id="m-cleared">—</div>
+    <div class="m-unit">LEGITIMATE CONSERVANCIES</div>
+    <div class="m-bar"><div class="m-bar-fill" id="mbar-clr" style="width:0%;background:var(--teal)"></div></div>
+  </div>
+</div>
+
+<!-- ── DOSSIERS TAB ──────────────────────────────────────────────── -->
+<div id="panel-dossiers" class="panel active">
+  <div class="main-cols">
+    <div class="sidebar" id="entity-list"></div>
+    <div class="content-area" id="dossier-view">
+      <div style="padding:48px 32px;text-align:center">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--white-dim);letter-spacing:.2em">SELECT AN ENTITY TO VIEW DOSSIER</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── NETWORK TAB ──────────────────────────────────────────────── -->
+<div id="panel-network" class="panel">
+  <div id="network-svg-wrap">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--blood-pale);margin-bottom:20px;text-transform:uppercase;">Actor Network Graph — Conservation Fraud Cluster</div>
+    <svg id="network-svg" viewBox="0 0 900 520" width="100%" style="display:block;background:var(--ink2);border:1px solid var(--border)"></svg>
+  </div>
+  <div class="network-legend">
+    <div class="nl-item"><div class="nl-dot" style="background:var(--blood-pale)"></div>CONFIRMED FRAUDULENT</div>
+    <div class="nl-item"><div class="nl-dot" style="background:var(--amber)"></div>PROBABLE</div>
+    <div class="nl-item"><div class="nl-dot" style="background:var(--teal)"></div>CLEARED / LEGITIMATE</div>
+    <div class="nl-item"><div class="nl-dot" style="background:var(--white-dim)"></div>EXTRACTION COMPANY</div>
+    <div style="margin-left:auto;font-family:var(--mono);font-size:9px;color:var(--white-dim)">LINE WEIGHT = LINK STRENGTH</div>
+  </div>
+</div>
+
+<!-- ── EVIDENCE TAB ──────────────────────────────────────────────── -->
+<div id="panel-evidence" class="panel">
+  <div style="padding:20px 32px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--blood-pale);text-transform:uppercase">Blockchain Evidence Ledger</div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--white-dim)" id="evidence-count">—</div>
+  </div>
+  <div class="evidence-grid" id="evidence-grid"></div>
+</div>
+
+<!-- ── CLEARED TAB ───────────────────────────────────────────────── -->
+<div id="panel-cleared" class="panel">
+  <div style="padding:32px">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--teal-light);text-transform:uppercase;margin-bottom:20px">Cleared Actors — Verified Legitimate Conservation</div>
+    <div id="cleared-list"></div>
+  </div>
+</div>
+
+<script>
+// ── STATE ────────────────────────────────────────────────────────────
+let report    = null;
+let dossiers  = {};
+let selected  = null;
+
+// ── TAB SWITCH ───────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tb-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── LOAD DATA ────────────────────────────────────────────────────────
+async function loadData() {
+  try {
+    // Try live API first
+    const r = await fetch('/api/bioguard');
+    if (r.ok) {
+      report = await r.json();
+    } else {
+      throw new Error('API not available');
+    }
+  } catch(e) {
+    // Fall back to static file (when running with python -m http.server)
+    try {
+      const r = await fetch('reports/bioguard_report.json');
+      report = await r.json();
+    } catch(e2) {
+      report = DEMO_DATA;
+    }
+  }
+  render();
+}
+
+// ── RENDER ALL ───────────────────────────────────────────────────────
+function render() {
+  if (!report) return;
+  renderMetrics();
+  renderEntityList();
+  renderNetworkGraph();
+  renderEvidence();
+  renderCleared();
+  updateAlert();
+}
+
+function updateAlert() {
+  const apex = (report.apex_nodes || [])[0] || 'Multiple flagged entities';
+  document.getElementById('alert-text').textContent =
+    `APEX THREAT NODE: ${apex} — Score 9.9/10 — Immediate referral: DCI Kenya · INTERPOL · Verra Carbon Registry`;
+  document.getElementById('alert-grade').textContent =
+    `${report.confirmed_violations || 0} CONFIRMED`;
+  document.getElementById('threat-count').textContent =
+    `${(report.confirmed_violations || 0) + (report.probable_violations || 0)} ACTIVE THREATS`;
+}
+
+// ── METRICS ──────────────────────────────────────────────────────────
+function renderMetrics() {
+  const fc = report.fraudulent_credits || 0;
+  const usd = fc * 15;
+  set('m-fraud',     fmtNum(fc));
+  set('m-usd',       '$' + fmtNum(usd));
+  set('m-confirmed', report.confirmed_violations || 0);
+  set('m-links',     report.network_links || 0);
+  set('m-cleared',   countCleared());
+
+  setBar('mbar-fraud', Math.min(100, (fc / 200000) * 100));
+  setBar('mbar-usd',   Math.min(100, (usd / 3000000) * 100));
+  setBar('mbar-conf',  Math.min(100, ((report.confirmed_violations || 0) / 15) * 100));
+  setBar('mbar-links', Math.min(100, ((report.network_links || 0) / 10) * 100));
+  setBar('mbar-clr',   66);
+}
+
+function countCleared() {
+  return Object.values(report.dossiers || {})
+    .filter(d => d.entity?.evidence_grade?.includes('CLEARED')).length + 2;
+}
+
+function set(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+function setBar(id, pct) { const el = document.getElementById(id); if (el) el.style.width = pct + '%'; }
+
+// ── ENTITY LIST ───────────────────────────────────────────────────────
+function renderEntityList() {
+  const container = document.getElementById('entity-list');
+  const entities  = Object.entries(report.dossiers || {});
+  let html = '';
+
+  // Header
+  html += `<div style="padding:14px 20px;border-bottom:1px solid var(--border)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--blood-pale);text-transform:uppercase">Flagged Entities</div>
+  </div>`;
+
+  // Sort by score desc
+  entities.sort((a,b) => (b[1].entity?.contradiction_score||0) - (a[1].entity?.contradiction_score||0));
+
+  entities.forEach(([name, data]) => {
+    const grade = (data.entity?.evidence_grade || '').replace('EvidenceGrade.','');
+    const score = data.entity?.contradiction_score || 0;
+    const gradeClass = grade === 'CONFIRMED' ? 'grade-confirmed'
+                     : grade === 'PROBABLE'  ? 'grade-probable'
+                     : 'grade-cleared';
+    const barColor = grade === 'CONFIRMED' ? 'var(--blood-pale)'
+                   : grade === 'PROBABLE'  ? 'var(--amber)'
+                   : 'var(--teal)';
+    const fraud = fmtNum(data.fraud_credits || 0);
+
+    html += `<div class="entity-item${selected === name ? ' selected' : ''}"
+                  onclick="selectEntity('${name.replace(/'/g,"\\'")}')">
+      <span class="ei-grade ${gradeClass}">${grade}</span>
+      <div class="ei-name">${name}</div>
+      <div class="ei-score">
+        <div class="ei-score-bar-bg">
+          <div class="ei-score-bar-fill" style="width:${score*10}%;height:100%;background:${barColor}"></div>
+        </div>
+        <span class="ei-score-num">${score}/10</span>
+      </div>
+      <div class="ei-sub">${fraud} FRAUD tCO₂</div>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+// ── DOSSIER VIEW ──────────────────────────────────────────────────────
+function selectEntity(name) {
+  selected = name;
+  renderEntityList(); // re-render to update selection
+
+  const data    = report.dossiers[name];
+  const entity  = data.entity;
+  const grade   = (entity.evidence_grade || '').replace('EvidenceGrade.','');
+  const score   = entity.contradiction_score || 0;
+  const blocks  = (report.blocks || []).filter(b => b.entity && b.entity.includes(name));
+  const signals = (report.behavioral_signals || []).filter(s => s.entity_name === name);
+  const links   = (report.actor_network || []).filter(l => l.actor_a === name || l.actor_b === name);
+  const fraud   = data.fraud_credits || 0;
+
+  const gradeClass = grade === 'CONFIRMED' ? 'confirmed' : grade === 'PROBABLE' ? 'probable' : 'cleared';
+  const barColor   = grade === 'CONFIRMED' ? 'var(--blood-pale)' : grade === 'PROBABLE' ? 'var(--amber)' : 'var(--teal)';
+
+  let html = `
+    <div class="dossier-header">
+      <div class="dossier-eyebrow">BIOGUARD DOSSIER · RESTRICTED ENFORCEMENT USE · ${data.referred_to?.join(' · ') || '—'}</div>
+      <div class="dossier-name">${name}</div>
+      <div class="dossier-reg">${entity.registration_number} · ${entity.registered_date} · ${entity.registered_country}</div>
+      <div class="dossier-score-row">
+        <span class="score-badge ${gradeClass}">${grade} · SCORE ${score}/10</span>
+        <div class="score-meter"><div class="score-meter-fill" style="width:${score*10}%;background:${barColor}"></div></div>
+      </div>
+    </div>
+
+    <div class="d-section">
+      <div class="d-section-title">Subject Profile</div>
+      <div class="d-grid">
+        <div class="d-field">
+          <div class="d-field-label">Beneficial Owner</div>
+          <div class="d-field-val ${entity.beneficial_owner?.includes('UNKNOWN') ? 'danger' : 'safe'}">${entity.beneficial_owner}</div>
+        </div>
+        <div class="d-field">
+          <div class="d-field-label">Directors</div>
+          <div class="d-field-val">${(entity.directors || []).join(', ')}</div>
+        </div>
+        <div class="d-field">
+          <div class="d-field-label">Offshore Accounts</div>
+          <div class="d-field-val ${entity.offshore_accounts?.length ? 'danger' : 'safe'} mono">${entity.offshore_accounts?.join(' · ') || 'NONE'}</div>
+        </div>
+        <div class="d-field">
+          <div class="d-field-label">Mining / Logging Licenses</div>
+          <div class="d-field-val ${entity.mining_licenses?.length ? 'danger' : 'safe'} mono">${entity.mining_licenses?.join(' · ') || 'NONE'}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-section">
+      <div class="d-section-title">Conservation Claim vs Reality</div>
+      <div class="d-grid">
+        <div class="d-field">
+          <div class="d-field-label">Land Claimed</div>
+          <div class="d-field-val">${fmtNum(entity.land_title_ha)} ha</div>
+        </div>
+        <div class="d-field">
+          <div class="d-field-label">Carbon Credits Filed</div>
+          <div class="d-field-val danger">${fmtNum(entity.carbon_credits_filed)} tCO₂</div>
+        </div>
+        <div class="d-field">
+          <div class="d-field-label">Legitimate Credits</div>
+          <div class="d-field-val safe">${fmtNum(entity.carbon_credits_legitimate)} tCO₂</div>
+        </div>
+        <div class="d-field">
+          <div class="d-field-label">Fraudulent Credits Estimated</div>
+          <div class="d-field-val danger">${fmtNum(fraud)} tCO₂ ≈ $${fmtNum(fraud*15)} USD</div>
+        </div>
+      </div>
+    </div>`;
+
+  // Behavioral signals
+  if (signals.length) {
+    html += `<div class="d-section"><div class="d-section-title">Satellite Behavioral Signals</div>`;
+    signals.forEach(s => {
+      const sevColor = s.severity >= 9 ? 'var(--blood-pale)' : s.severity >= 7 ? 'var(--amber)' : 'var(--teal-light)';
+      html += `<div class="signal-card">
+        <div class="signal-top">
+          <span class="signal-type">${s.signal_type}</span>
+          <span class="signal-sev" style="color:${sevColor}">SEVERITY ${s.severity}/10</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--white-dim);margin-bottom:8px">${s.region} · Parcel ${s.parcel_id}</div>
+        <div class="ndvi-compare">
+          <div class="ndvi-box">
+            <div class="ndvi-box-label">NDVI CLAIMED</div>
+            <div class="ndvi-box-val ndvi-claimed">${s.ndvi_claimed}</div>
+          </div>
+          <div class="ndvi-box">
+            <div class="ndvi-box-label">NDVI SATELLITE</div>
+            <div class="ndvi-box-val ndvi-real">${s.ndvi_actual}</div>
+          </div>
+        </div>
+        <div class="signal-flags">
+          <span class="sig-flag ${s.clearing_rate_ha_per_month > 50 ? 'flag-danger' : 'flag-warn'}">${s.clearing_rate_ha_per_month} ha/month clearing</span>
+          ${s.night_activity_detected ? '<span class="sig-flag flag-danger">NIGHT ACTIVITY DETECTED</span>' : ''}
+          ${s.rectangular_clearing ? '<span class="sig-flag flag-danger">RECTANGULAR PATTERN — COMMERCIAL</span>' : ''}
+          ${s.acoustic_gunshot_events > 0 ? `<span class="sig-flag flag-danger">${s.acoustic_gunshot_events} GUNSHOT EVENTS</span>` : ''}
+          ${s.thermal_anomalies > 0 ? `<span class="sig-flag flag-warn">${s.thermal_anomalies} THERMAL ANOMALIES</span>` : ''}
+          ${s.vehicle_tracks_detected ? '<span class="sig-flag flag-warn">VEHICLE TRACKS</span>' : ''}
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Network links
+  if (links.length) {
+    html += `<div class="d-section"><div class="d-section-title">Actor Network Links</div>`;
+    links.forEach(l => {
+      const partner = l.actor_a === name ? l.actor_b : l.actor_a;
+      const typeClass = l.link_type === 'SHARED_DIRECTOR' ? 'director'
+                      : l.link_type === 'FINANCIAL_FLOW'  ? 'financial'
+                      : l.link_type === 'SHARED_ADDRESS'  ? 'address' : 'parcel';
+      html += `<div class="link-row">
+        <span class="link-type ${typeClass}">${l.link_type}</span>
+        <span class="link-entity">${partner}</span>
+        <span class="link-strength">${Math.round(l.strength*100)}%</span>
+      </div>
+      <div style="padding:4px 14px 8px;font-size:11px;color:var(--white-dim)">${l.evidence}</div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Referrals
+  if (data.referred_to?.length) {
+    html += `<div class="d-section"><div class="d-section-title">Enforcement Referrals</div>`;
+    data.referred_to.forEach(agency => {
+      const priority = score >= 9 ? 'URGENT' : score >= 7 ? 'HIGH' : 'STANDARD';
+      const priClass = priority === 'URGENT' ? 'pri-urgent' : priority === 'HIGH' ? 'pri-high' : 'pri-std';
+      html += `<div class="referral-row">
+        <span class="ref-agency">${agency}</span>
+        <span class="ref-priority ${priClass}">${priority}</span>
+        <span class="ref-desc">Pending submission</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Blockchain proof
+  if (blocks.length) {
+    html += `<div class="d-section"><div class="d-section-title">Blockchain Evidence — Tamper Proof</div>
+      <div class="block-proof">`;
+    blocks.slice(0,3).forEach(b => {
+      html += `<div class="bp-row">
+        <span class="bp-key">BLOCK #${b.block_index} · ${b.block_type}</span>
+        <span class="bp-val">${b.block_hash}...</span>
+      </div>`;
+    });
+    html += `<div class="bp-row" style="margin-top:4px">
+      <span class="bp-key">LEDGER</span>
+      <span class="bp-val">MistChain · NODE-PRIMARY · IMMUTABLE</span>
+    </div></div></div>`;
+  }
+
+  // Recommended actions
+  html += `<div class="d-section"><div class="d-section-title">Recommended Actions</div>`;
+  const actions = getActions(score, fraud, entity);
+  actions.forEach(a => {
+    html += `<div class="action-item"><span class="action-bullet">▸</span><span class="action-text">${a}</span></div>`;
+  });
+  html += `</div>`;
+
+  document.getElementById('dossier-view').innerHTML = html;
+}
+
+function getActions(score, fraud, entity) {
+  const acts = [];
+  if (score >= 9) {
+    acts.push("IMMEDIATE: Freeze all carbon credit issuance for this entity pending investigation");
+    acts.push("IMMEDIATE: Request aerial survey from Kenya Forest Service Enforcement Unit");
+    acts.push("URGENT: Submit full evidence package to DCI Economic Crimes Unit");
+    acts.push("URGENT: Notify INTERPOL Project Predator if wildlife crime indicators confirmed");
+  }
+  if (score >= 7) {
+    acts.push("HIGH PRIORITY: Refer to Verra / Gold Standard for credit suspension");
+    acts.push("HIGH PRIORITY: Initiate beneficial ownership trace via Kenya Financial Intelligence Centre");
+  }
+  if (entity.offshore_accounts?.length) {
+    acts.push(`Flag ${entity.offshore_accounts.length} offshore account(s) to KFIC for money laundering investigation`);
+  }
+  if (entity.mining_licenses?.length) {
+    acts.push("Cross-reference mining/logging licenses with Ministry of Environment land use records");
+  }
+  if (entity.linked_entities?.length) {
+    acts.push(`Expand investigation to ${entity.linked_entities.length} linked entities in network`);
+  }
+  if (fraud > 10000) {
+    acts.push(`Quantify financial exposure: ${fmtNum(fraud)} fraudulent credits × $15 = $${fmtNum(fraud*15)} estimated fraud value`);
+  }
+  return acts;
+}
+
+// ── NETWORK GRAPH (SVG) ───────────────────────────────────────────────
+function renderNetworkGraph() {
+  const svg = document.getElementById('network-svg');
+
+  // Node positions (hand-placed for clarity)
+  const nodes = [
+    { id: 'Continental Wildlife Corridor Fund', x: 450, y: 130, r: 26, color: 'var(--blood-pale)', grade: 'CONFIRMED', label: 'Continental Wildlife\nCorridor Fund' },
+    { id: 'SilverLeaf Carbon Investments',      x: 260, y: 260, r: 22, color: 'var(--blood-pale)', grade: 'CONFIRMED', label: 'SilverLeaf Carbon\nInvestments' },
+    { id: 'GreenVeil Conservation Partners Ltd',x: 640, y: 260, r: 20, color: 'var(--blood-pale)', grade: 'CONFIRMED', label: 'GreenVeil\nConservation' },
+    { id: 'Rift Stewardship Foundation',         x: 450, y: 360, r: 16, color: 'var(--amber)',      grade: 'PROBABLE',  label: 'Rift Stewardship\nFoundation' },
+    { id: 'Pan-Africa Timber Corp',              x: 140, y: 390, r: 14, color: 'var(--white-dim)',  grade: 'EXTRACTION', label: 'Pan-Africa\nTimber Corp' },
+    { id: 'Veil Timber Holdings',                x: 760, y: 390, r: 12, color: 'var(--white-dim)',  grade: 'EXTRACTION', label: 'Veil Timber\nHoldings' },
+    { id: 'Mau Indigenous Communities Alliance', x: 140, y: 160, r: 14, color: 'var(--teal)',       grade: 'CLEARED',   label: 'Mau Indigenous\nCommunities Alliance' },
+    { id: 'Eastlands Urban Forest Trust',        x: 760, y: 160, r: 12, color: 'var(--teal)',       grade: 'CLEARED',   label: 'Eastlands Urban\nForest Trust' },
+  ];
+
+  const links = [
+    { a: 'Continental Wildlife Corridor Fund', b: 'SilverLeaf Carbon Investments',       type: 'SHARED_DIRECTOR', w: 2.5 },
+    { a: 'SilverLeaf Carbon Investments',      b: 'GreenVeil Conservation Partners Ltd', type: 'SHARED_DIRECTOR', w: 2.5 },
+    { a: 'Continental Wildlife Corridor Fund', b: 'Pan-Africa Timber Corp',              type: 'FINANCIAL_FLOW',  w: 2.0 },
+    { a: 'GreenVeil Conservation Partners Ltd',b: 'Veil Timber Holdings',               type: 'SHARED_ADDRESS',  w: 1.8 },
+    { a: 'Continental Wildlife Corridor Fund', b: 'Rift Stewardship Foundation',         type: 'SAME_PARCEL',     w: 1.2 },
+    { a: 'SilverLeaf Carbon Investments',      b: 'Continental Wildlife Corridor Fund',  type: 'FINANCIAL_FLOW',  w: 2.0 },
+  ];
+
+  const nodeMap = {};
+  nodes.forEach(n => nodeMap[n.id] = n);
+
+  const linkColors = {
+    'SHARED_DIRECTOR': 'rgba(224,80,48,0.6)',
+    'FINANCIAL_FLOW':  'rgba(200,122,14,0.6)',
+    'SHARED_ADDRESS':  'rgba(138,132,120,0.5)',
+    'SAME_PARCEL':     'rgba(61,200,160,0.4)',
+  };
+
+  let svgHtml = '';
+
+  // Draw links first
+  links.forEach(l => {
+    const a = nodeMap[l.a], b = nodeMap[l.b];
+    if (!a || !b) return;
+    const color = linkColors[l.type] || 'rgba(200,200,200,0.3)';
+    svgHtml += `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"
+      stroke="${color}" stroke-width="${l.w}"
+      stroke-dasharray="${l.type === 'FINANCIAL_FLOW' ? '8,4' : 'none'}"/>`;
+    // Link label at midpoint
+    const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+    svgHtml += `<text x="${mx}" y="${my-4}" font-family="JetBrains Mono,monospace"
+      font-size="7" fill="${color}" text-anchor="middle" letter-spacing="0.08em">${l.type}</text>`;
+  });
+
+  // Draw nodes
+  nodes.forEach(n => {
+    // Pulse ring for confirmed
+    if (n.grade === 'CONFIRMED') {
+      svgHtml += `<circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="none"
+        stroke="${n.color}" stroke-width="1" opacity="0.3">
+        <animate attributeName="r" from="${n.r}" to="${n.r+12}" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from="0.3" to="0" dur="2.5s" repeatCount="indefinite"/>
+      </circle>`;
+    }
+    svgHtml += `<circle cx="${n.x}" cy="${n.y}" r="${n.r}"
+      fill="${n.color}" fill-opacity="0.18"
+      stroke="${n.color}" stroke-width="1.5"/>`;
+
+    // Label
+    const lines = n.label.split('\n');
+    const lineH = 12;
+    const totalH = lines.length * lineH;
+    const startY = n.y + n.r + 14;
+    lines.forEach((line, i) => {
+      svgHtml += `<text x="${n.x}" y="${startY + i * lineH}"
+        font-family="JetBrains Mono,monospace" font-size="8"
+        fill="${n.color}" text-anchor="middle" letter-spacing="0.05em">${line}</text>`;
+    });
+  });
+
+  // Apex label
+  const apex = nodeMap['Continental Wildlife Corridor Fund'];
+  svgHtml += `<text x="${apex.x}" y="${apex.y - apex.r - 8}"
+    font-family="JetBrains Mono,monospace" font-size="8"
+    fill="var(--blood-pale)" text-anchor="middle" letter-spacing="0.15em" font-weight="600">APEX NODE</text>`;
+
+  svg.innerHTML = svgHtml;
+}
+
+// ── EVIDENCE GRID ─────────────────────────────────────────────────────
+function renderEvidence() {
+  const blocks = report.blocks || [];
+  const grid   = document.getElementById('evidence-grid');
+  document.getElementById('evidence-count').textContent = `${blocks.length} blocks on chain`;
+
+  let html = '';
+  blocks.forEach(b => {
+    const typeClass = b.block_type === 'VIOLATION' ? 'violation'
+                    : b.block_type === 'ACTOR'     ? 'actor'
+                    : 'network';
+    const gradeClass = b.evidence_grade === 'CONFIRMED' ? 'grade-confirmed'
+                     : b.evidence_grade === 'PROBABLE'  ? 'grade-probable'
+                     : 'grade-cleared';
+    html += `<div class="ev-block">
+      <div class="ev-type ${typeClass}">${b.block_type} — ${b.threat_class}</div>
+      <div class="ev-idx">BLOCK #${b.block_index} · ${b.block_hash}...</div>
+      <div class="ev-summary">${b.summary?.substring(0, 120)}...</div>
+      <span class="ev-grade ${gradeClass}">${b.evidence_grade}</span>
+    </div>`;
+  });
+  grid.innerHTML = html;
+}
+
+// ── CLEARED ───────────────────────────────────────────────────────────
+function renderCleared() {
+  const cleared = [
+    { name: 'Mau Indigenous Communities Alliance', reg: 'CBO/2018/00341', ha: 3200, credits: 37200, note: 'Genuine community forest steward. Carbon revenue returns to 847 registered members. NDVI stable +2.1% over 3 years.' },
+    { name: 'Eastlands Urban Forest Trust', reg: 'NGO/2020/08834', ha: 408, credits: 5800, note: 'Community-managed urban forest buffer. Transparent accounts. No offshore structures. Credits verified against satellite baseline.' },
+  ];
+
+  let html = '';
+  cleared.forEach(c => {
+    html += `<div style="background:rgba(14,106,74,.05);border:1px solid rgba(14,106,74,.2);padding:20px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+        <div>
+          <span class="ei-grade grade-cleared" style="display:inline-block;margin-bottom:6px">CLEARED</span>
+          <div style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--white)">${c.name}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--white-dim);margin-top:4px">${c.reg}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--teal-light)">${fmtNum(c.ha)} ha monitored</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--teal-light)">${fmtNum(c.credits)} tCO₂ legitimate</div>
+        </div>
+      </div>
+      <div style="font-size:14px;color:var(--white-dim);line-height:1.6">${c.note}</div>
+      <div style="margin-top:12px;font-family:var(--mono);font-size:8px;color:rgba(14,106,74,.7);letter-spacing:.15em">
+        ✓ CLEARED BY BIOGUARD INVESTIGATION — LEGITIMATE CONSERVATION ACTOR
+      </div>
+    </div>`;
+  });
+  document.getElementById('cleared-list').innerHTML = html;
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────
+function fmtNum(n) { return Number(n).toLocaleString(); }
+
+// ── DEMO DATA (fallback when no server) ───────────────────────────────
+const DEMO_DATA = {
+  fraudulent_credits: 186300,
+  confirmed_violations: 9,
+  probable_violations: 5,
+  network_links: 6,
+  apex_nodes: ['Continental Wildlife Corridor Fund'],
+  entities_scanned: 6,
+  blocks: [
+    { block_index:109, block_hash:'a4f8c2e91b3d', block_type:'ACTOR', threat_class:'CARBON_FRAUD', entity:'GreenVeil Conservation Partners Ltd', evidence_grade:'CONFIRMED', summary:'Claims 2840ha conservation. Filed 34,200 credits, legitimate: 1,800. Offshore: YES. Mining licenses: 1. Contradiction: 9.4/10.' },
+    { block_index:110, block_hash:'7e2d1a8f4c09', block_type:'ACTOR', threat_class:'CARBON_FRAUD', entity:'Rift Stewardship Foundation', evidence_grade:'PROBABLE', summary:'Claims 1200ha. Filed 18,600 credits, legitimate: 12,400. Offshore: YES. Contradiction: 6.1/10.' },
+    { block_index:111, block_hash:'3b9f5e2c1a07', block_type:'ACTOR', threat_class:'CARBON_FRAUD', entity:'SilverLeaf Carbon Investments', evidence_grade:'CONFIRMED', summary:'Claims 5100ha. Filed 61,000 credits, legitimate: 4,200. Offshore: YES. Mining licenses: 2. Contradiction: 9.8/10.' },
+    { block_index:112, block_hash:'f1a4c8e93d2b', block_type:'ACTOR', threat_class:'CARBON_FRAUD', entity:'Continental Wildlife Corridor Fund', evidence_grade:'CONFIRMED', summary:'Claims 7200ha. Filed 94,000 credits, legitimate: 3,100. Offshore: YES. Mining licenses: 3. Contradiction: 9.9/10.' },
+    { block_index:113, block_hash:'2c7a1e8f4b09', block_type:'VIOLATION', threat_class:'LAND_GRAB', entity:'GreenVeil Conservation Partners Ltd', evidence_grade:'CONFIRMED', summary:'NDVI_FRAUD: claimed 0.72 vs satellite 0.31. Clearing 38.4ha/month. Night activity: YES. Rectangular pattern: YES.' },
+    { block_index:114, block_hash:'9d3f2a1c8e07', block_type:'VIOLATION', threat_class:'LAND_GRAB', entity:'SilverLeaf Carbon Investments', evidence_grade:'CONFIRMED', summary:'MASS_CLEARING: claimed 0.68 vs satellite 0.22. Clearing 127ha/month. Night activity: YES. Rectangular pattern: YES.' },
+    { block_index:115, block_hash:'4b8e1f9a2c07', block_type:'VIOLATION', threat_class:'POACHING_NETWORK', entity:'Continental Wildlife Corridor Fund', evidence_grade:'CONFIRMED', summary:'SYSTEMATIC_EXTRACTION: NDVI claimed 0.74 vs satellite 0.24. Clearing 204ha/month. 22 gunshot events. 58 thermal anomalies.' },
+    { block_index:117, block_hash:'e2a8f4c1b9d3', block_type:'NETWORK', threat_class:'SHELL_CONSERVANCY', entity:'GreenVeil Conservation Partners Ltd ↔ SilverLeaf Carbon Investments', evidence_grade:'CONFIRMED', summary:'SHARED_DIRECTOR: T. Reinholt appears as director on both entities. Strength: 95%.' },
+    { block_index:118, block_hash:'1c9d4b8f2a07', block_type:'NETWORK', threat_class:'MONEY_LAUNDERING', entity:'SilverLeaf Carbon Investments ↔ Continental Wildlife Corridor Fund', evidence_grade:'CONFIRMED', summary:'FINANCIAL_FLOW: Carbon payments traced to Pan-Africa Timber accounts. Strength: 88%.' },
+  ],
+  dossiers: {
+    'GreenVeil Conservation Partners Ltd': {
+      entity: { registration_number:'CPK/2023/04471', registered_date:'2023-03-14', registered_country:'Kenya (BVI beneficial)', directors:['Thomas Reinholt','Amina Osei-Bonsu','D. Whitmore'], beneficial_owner:'UNKNOWN — British Virgin Islands', land_title_ha:2840, carbon_credits_filed:34200, carbon_credits_legitimate:1800, offshore_accounts:['BVI-TRUST-447','SEYCHELLES-GL-09'], mining_licenses:['MINING/MAU/2022/117'], linked_entities:['Veil Timber Holdings','GV Agriforest Kenya'], contradiction_score:9.4, evidence_grade:'CONFIRMED' },
+      block_ref:109, fraud_credits:32400, referred_to:['DCI_KENYA','KFS_ENFORCEMENT','INTERPOL_WILDLIFE','CARBON_REGISTRY_VERRA']
+    },
+    'SilverLeaf Carbon Investments': {
+      entity: { registration_number:'CMP/2022/33019', registered_date:'2022-11-28', registered_country:'Mauritius (Kenya operations)', directors:['Ravi Menon','Clara Oduya','H. Stenmark','T. Reinholt'], beneficial_owner:'UNKNOWN — Mauritius trust chain', land_title_ha:5100, carbon_credits_filed:61000, carbon_credits_legitimate:4200, offshore_accounts:['MAURITIUS-SL-001','MAURITIUS-SL-002','SINGAPORE-SL-T'], mining_licenses:['MINING/RIFT/2023/044','LOGGING/MAU/2021/088'], linked_entities:['GreenVeil Conservation Partners Ltd','SL Agri Rift Ltd'], contradiction_score:9.8, evidence_grade:'CONFIRMED' },
+      block_ref:111, fraud_credits:56800, referred_to:['DCI_KENYA','KFS_ENFORCEMENT','INTERPOL_WILDLIFE','CARBON_REGISTRY_VERRA','UNFCCC_INTEGRITY']
+    },
+    'Continental Wildlife Corridor Fund': {
+      entity: { registration_number:'INTL/2023/KE/00871', registered_date:'2023-01-09', registered_country:'Kenya (Delaware USA parent)', directors:['M. Ashworth','Fatuma Issa','C. Bauer','Ravi Menon'], beneficial_owner:'UNKNOWN — Delaware LLC chain → Panama', land_title_ha:7200, carbon_credits_filed:94000, carbon_credits_legitimate:3100, offshore_accounts:['DELAWARE-CWC-LLC','PANAMA-HOLDING-07','CAYMAN-CWC-T'], mining_licenses:['LOGGING/MAU/2023/012','LOGGING/RIFT/2022/091','MINING/COAST/2023/034'], linked_entities:['SilverLeaf Carbon Investments','Rift Stewardship Foundation','Continental Agri-Rift SA','Pan-Africa Timber Corp'], contradiction_score:9.9, evidence_grade:'CONFIRMED' },
+      block_ref:112, fraud_credits:90900, referred_to:['DCI_KENYA','KFS_ENFORCEMENT','INTERPOL_WILDLIFE','CARBON_REGISTRY_VERRA','UNFCCC_INTEGRITY','FINANCIAL_INTELLIGENCE_UNIT']
+    },
+    'Rift Stewardship Foundation': {
+      entity: { registration_number:'NGO/2021/11892', registered_date:'2021-07-02', registered_country:'Kenya', directors:['Grace Mutua','P. Eriksson','James Wanjohi'], beneficial_owner:'P. Eriksson (Swedish national, resident Dubai)', land_title_ha:1200, carbon_credits_filed:18600, carbon_credits_legitimate:12400, offshore_accounts:['UAE-HOLDING-882'], mining_licenses:[], linked_entities:['Rift Eco-Safari Ltd','Nordic Carbon Brokers AS'], contradiction_score:6.1, evidence_grade:'PROBABLE' },
+      block_ref:110, fraud_credits:6200, referred_to:['KFS_ENFORCEMENT','CARBON_REGISTRY_VERRA']
+    },
+  },
+  actor_network: [
+    { actor_a:'GreenVeil Conservation Partners Ltd', actor_b:'SilverLeaf Carbon Investments', link_type:'SHARED_DIRECTOR', strength:0.95, evidence:'Thomas Reinholt appears as director on both entities' },
+    { actor_a:'SilverLeaf Carbon Investments', actor_b:'Continental Wildlife Corridor Fund', link_type:'SHARED_DIRECTOR', strength:0.95, evidence:'Ravi Menon appears as director on both entities' },
+    { actor_a:'Continental Wildlife Corridor Fund', actor_b:'Pan-Africa Timber Corp', link_type:'FINANCIAL_FLOW', strength:0.88, evidence:'Carbon credit payments traced to Pan-Africa Timber accounts' },
+    { actor_a:'GreenVeil Conservation Partners Ltd', actor_b:'Veil Timber Holdings', link_type:'SHARED_ADDRESS', strength:0.91, evidence:'Registered address: Suite 4B, Waiyaki Way, Nairobi — identical' },
+    { actor_a:'SilverLeaf Carbon Investments', actor_b:'Continental Wildlife Corridor Fund', link_type:'FINANCIAL_FLOW', strength:0.82, evidence:'Mauritius → Panama offshore flow pattern matches both entities' },
+    { actor_a:'Continental Wildlife Corridor Fund', actor_b:'Rift Stewardship Foundation', link_type:'SAME_PARCEL', strength:0.74, evidence:'Overlapping carbon credit claims on parcel RIFT/N/1200/NGO' },
+  ],
+  behavioral_signals: [
+    { entity_name:'GreenVeil Conservation Partners Ltd', signal_type:'NDVI_FRAUD', region:'Mau Forest', parcel_id:'MAU/N/2840/KFS', ndvi_claimed:0.72, ndvi_actual:0.31, ndvi_delta:-0.41, clearing_rate_ha_per_month:38.4, night_activity_detected:true, vehicle_tracks_detected:true, rectangular_clearing:true, thermal_anomalies:14, acoustic_gunshot_events:6, severity:9.4 },
+    { entity_name:'SilverLeaf Carbon Investments', signal_type:'MASS_CLEARING', region:'Rift Valley', parcel_id:'RIFT/S/5100/KLC', ndvi_claimed:0.68, ndvi_actual:0.22, ndvi_delta:-0.46, clearing_rate_ha_per_month:127.0, night_activity_detected:true, vehicle_tracks_detected:true, rectangular_clearing:true, thermal_anomalies:31, acoustic_gunshot_events:0, severity:9.8 },
+    { entity_name:'Continental Wildlife Corridor Fund', signal_type:'SYSTEMATIC_EXTRACTION', region:'Mau Forest', parcel_id:'MAU/S/7200/INTL', ndvi_claimed:0.74, ndvi_actual:0.24, ndvi_delta:-0.50, clearing_rate_ha_per_month:204.0, night_activity_detected:true, vehicle_tracks_detected:true, rectangular_clearing:true, thermal_anomalies:58, acoustic_gunshot_events:22, severity:9.9 },
+    { entity_name:'Rift Stewardship Foundation', signal_type:'PARTIAL_DIVERSION', region:'Rift Valley', parcel_id:'RIFT/N/1200/NGO', ndvi_claimed:0.61, ndvi_actual:0.48, ndvi_delta:-0.13, clearing_rate_ha_per_month:8.2, night_activity_detected:false, vehicle_tracks_detected:true, rectangular_clearing:false, thermal_anomalies:3, acoustic_gunshot_events:0, severity:6.1 },
+  ],
+};
+
+// ── INIT ──────────────────────────────────────────────────────────────
+loadData();
+</script>
+</body>
+</html>

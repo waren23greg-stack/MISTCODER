@@ -1,0 +1,142 @@
+{
+  "file": "sandbox/sample_target.js",
+  "language": "javascript",
+  "nodes": [
+    {
+      "id": "IM0001",
+      "type": "import",
+      "name": "express",
+      "line": 1,
+      "props": {}
+    },
+    {
+      "id": "IM0002",
+      "type": "import",
+      "name": "fs",
+      "line": 2,
+      "props": {}
+    },
+    {
+      "id": "SE0003",
+      "type": "secret_flag",
+      "name": "SECRET_TOKEN",
+      "line": 4,
+      "props": {
+        "pattern": "potential_secret_assignment"
+      }
+    },
+    {
+      "id": "SE0004",
+      "type": "secret_flag",
+      "name": "db_password",
+      "line": 5,
+      "props": {
+        "pattern": "potential_secret_assignment"
+      }
+    },
+    {
+      "id": "CL0005",
+      "type": "class",
+      "name": "UserController",
+      "line": 7,
+      "props": {}
+    },
+    {
+      "id": "CA0006",
+      "type": "call",
+      "name": "eval",
+      "line": 20,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "FN0007",
+      "type": "function",
+      "name": "runSystemCommand",
+      "line": 30,
+      "props": {}
+    },
+    {
+      "id": "IM0008",
+      "type": "import",
+      "name": "child_process",
+      "line": 31,
+      "props": {}
+    },
+    {
+      "id": "CA0009",
+      "type": "call",
+      "name": "execSync",
+      "line": 32,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "FN0010",
+      "type": "function",
+      "name": "parseUserData",
+      "line": 35,
+      "props": {}
+    },
+    {
+      "id": "CA0011",
+      "type": "call",
+      "name": "Function",
+      "line": 36,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "CA0012",
+      "type": "call",
+      "name": "setTimeout",
+      "line": 39,
+      "props": {
+        "dangerous": true
+      }
+    },
+    {
+      "id": "CA0013",
+      "type": "call",
+      "name": "eval",
+      "line": 40,
+      "props": {
+        "dangerous": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "src": "FN0007",
+      "dst": "CA0009",
+      "type": "calls"
+    },
+    {
+      "src": "FN0010",
+      "dst": "CA0011",
+      "type": "calls"
+    },
+    {
+      "src": "FN0010",
+      "dst": "CA0012",
+      "type": "calls"
+    },
+    {
+      "src": "FN0010",
+      "dst": "CA0013",
+      "type": "calls"
+    }
+  ],
+  "metadata": {
+    "node_count": 13,
+    "edge_count": 4,
+    "dangerous_calls": 5,
+    "secret_flags": 2,
+    "parser": "JavaScriptParser v0.2.0"
+  },
+  "hash": "7f9022f78c92b084f871966b1fd385e583a2f8f5f71c2564386522f41d286baf",
+  "parsed_at": "2026-04-16T14:31:23.143733+00:00"
+}

@@ -1,0 +1,156 @@
+{
+  "dossier_id": "BG-INTL/2023/KE/00871",
+  "generated_at": "2026-04-26T06:00:53.896880+00:00",
+  "classification": "RESTRICTED \u2014 ENFORCEMENT USE",
+  "evidence_grade": "EvidenceGrade.CONFIRMED",
+  "contradiction_score": 9.9,
+  "subject": {
+    "name": "Continental Wildlife Corridor Fund",
+    "registration_number": "INTL/2023/KE/00871",
+    "registered_date": "2023-01-09",
+    "registered_country": "Kenya (Delaware USA parent)",
+    "directors": [
+      "M. Ashworth",
+      "Fatuma Issa",
+      "C. Bauer",
+      "Ravi Menon"
+    ],
+    "beneficial_owner": "UNKNOWN \u2014 Delaware LLC chain \u2192 Panama",
+    "offshore_accounts": [
+      "DELAWARE-CWC-LLC",
+      "PANAMA-HOLDING-07",
+      "CAYMAN-CWC-T"
+    ],
+    "linked_entities": [
+      "SilverLeaf Carbon Investments",
+      "Rift Stewardship Foundation",
+      "Continental Agri-Rift SA",
+      "Pan-Africa Timber Corp"
+    ],
+    "mining_logging_licenses": [
+      "LOGGING/MAU/2023/012",
+      "LOGGING/RIFT/2022/091",
+      "MINING/COAST/2023/034"
+    ]
+  },
+  "conservation_claim": {
+    "land_title_ha": 7200.0,
+    "conservation_claim_ha": 7200.0,
+    "carbon_credits_filed": 94000,
+    "carbon_credits_legitimate": 3100,
+    "fraudulent_credits_estimated": 90900,
+    "estimated_fraud_value_usd": 1363500
+  },
+  "threat_assessment": {
+    "primary_threat": "CARBON_FRAUD",
+    "threat_description": "Entity is filing carbon credits for forest carbon that does not exist or has been destroyed. Credits represent fraudulent financial instruments on international carbon markets.",
+    "behavioral_signals": [
+      {
+        "signal_type": "SYSTEMATIC_EXTRACTION",
+        "region": "Mau Forest",
+        "parcel_id": "MAU/S/7200/INTL",
+        "ndvi_claimed": 0.74,
+        "ndvi_satellite": 0.24,
+        "ndvi_divergence": -0.5,
+        "clearing_ha_per_month": 204.0,
+        "night_activity": true,
+        "rectangular_clearing": true,
+        "acoustic_gunshots": 22,
+        "thermal_anomalies": 58,
+        "severity": 9.9
+      }
+    ]
+  },
+  "network_links": [
+    {
+      "connected_to": "SilverLeaf Carbon Investments",
+      "link_type": "SHARED_DIRECTOR",
+      "strength": 0.95,
+      "evidence": "Ravi Menon appears as director on both entities"
+    },
+    {
+      "connected_to": "Pan-Africa Timber Corp",
+      "link_type": "FINANCIAL_FLOW",
+      "strength": 0.88,
+      "evidence": "Carbon credit payments traced to Pan-Africa Timber accounts"
+    },
+    {
+      "connected_to": "SilverLeaf Carbon Investments",
+      "link_type": "FINANCIAL_FLOW",
+      "strength": 0.82,
+      "evidence": "Mauritius \u2192 Panama offshore flow pattern matches both entities"
+    },
+    {
+      "connected_to": "Rift Stewardship Foundation",
+      "link_type": "SAME_PARCEL",
+      "strength": 0.74,
+      "evidence": "Overlapping carbon credit claims on parcel RIFT/N/1200/NGO"
+    }
+  ],
+  "blockchain_evidence": {
+    "primary_block": 112,
+    "all_blocks": [
+      112,
+      115,
+      118,
+      119,
+      121,
+      122
+    ],
+    "block_hashes": [
+      "2de66b2d30c7e6d6",
+      "0d97b801b2010df0",
+      "995016314249865f",
+      "d22dd51b19ed339a",
+      "aaf94afa121f1b78",
+      "a32f172e79962f8c"
+    ],
+    "chain_timestamp": "2026-04-26T06:00:53.775861+00:00",
+    "tamper_proof": true,
+    "ledger": "MistChain \u2014 PhantomChainBridge / NODE-PRIMARY"
+  },
+  "referrals": [
+    {
+      "agency": "DCI_KENYA",
+      "description": "Kenya Directorate of Criminal Investigations \u2014 Economic Crimes Unit",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "KFS_ENFORCEMENT",
+      "description": "Kenya Forest Service \u2014 Forest Protection & Enforcement",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "INTERPOL_WILDLIFE",
+      "description": "INTERPOL \u2014 Project Predator (Wildlife & Forest Crime)",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "CARBON_REGISTRY_VERRA",
+      "description": "Verra VCS Carbon Registry \u2014 Integrity & Audit Division",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "UNFCCC_INTEGRITY",
+      "description": "UNFCCC \u2014 Article 6 Carbon Market Integrity Unit",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    }
+  ],
+  "recommended_actions": [
+    "IMMEDIATE: Freeze carbon credit issuance pending investigation",
+    "IMMEDIATE: Alert KFS for ground-truthing aerial survey",
+    "URGENT: Submit evidence package to DCI Economic Crimes Unit",
+    "URGENT: Notify INTERPOL Project Predator if wildlife crime confirmed",
+    "HIGH: Refer to Verra/Gold Standard for credit suspension",
+    "HIGH: Conduct beneficial ownership tracing via KFIC",
+    "Flag offshore account chain to Financial Intelligence Centre",
+    "Cross-check mining/logging licenses with Ministry of Environment",
+    "Expand investigation to all linked entities in network",
+    "Quantify financial exposure: ~90,900 credits \u00d7 $15 = $1,363,500 estimated fraud value"
+  ]
+}

@@ -1,0 +1,1303 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "MISTCODER",
+          "rules": [
+            {
+              "id": "CWE-89",
+              "name": "sql_query",
+              "shortDescription": {
+                "text": ""
+              },
+              "properties": {
+                "severity": "HIGH"
+              }
+            },
+            {
+              "id": "CWE-22",
+              "name": "file_path",
+              "shortDescription": {
+                "text": ""
+              },
+              "properties": {
+                "severity": "HIGH"
+              }
+            },
+            {
+              "id": "CWE-94",
+              "name": "eval_exec",
+              "shortDescription": {
+                "text": ""
+              },
+              "properties": {
+                "severity": "CRITICAL"
+              }
+            },
+            {
+              "id": "CWE-312",
+              "name": "Password",
+              "shortDescription": {
+                "text": ""
+              },
+              "properties": {
+                "severity": "HIGH"
+              }
+            },
+            {
+              "id": "CWE-327",
+              "name": "Weak Hash",
+              "shortDescription": {
+                "text": ""
+              },
+              "properties": {
+                "severity": "MEDIUM"
+              }
+            },
+            {
+              "id": "CWE-78",
+              "name": "cmd_inject",
+              "shortDescription": {
+                "text": "Shell command built from request data \u2014 OS command injection"
+              },
+              "properties": {
+                "severity": "CRITICAL"
+              }
+            },
+            {
+              "id": "CWE-79",
+              "name": "xss_inject",
+              "shortDescription": {
+                "text": "innerHTML assignment may inject unsanitised HTML"
+              },
+              "properties": {
+                "severity": "HIGH"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CWE-89",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\analysis\\src\\analysis_engine.py"
+                },
+                "region": {
+                  "startLine": 49
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-89",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\analysis\\src\\analysis_engine.py"
+                },
+                "region": {
+                  "startLine": 105
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\analysis\\src\\analysis_engine.py"
+                },
+                "region": {
+                  "startLine": 393
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\analysis\\src\\analysis_engine.py"
+                },
+                "region": {
+                  "startLine": 409
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\analysis\\src\\analyzer.py"
+                },
+                "region": {
+                  "startLine": 120
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "note",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\analysis\\src\\analyzer.py"
+                },
+                "region": {
+                  "startLine": 386
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-89",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\src\\oracle_report.py"
+                },
+                "region": {
+                  "startLine": 58
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\src\\oracle_report.py"
+                },
+                "region": {
+                  "startLine": 120
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\src\\oracle_report.py"
+                },
+                "region": {
+                  "startLine": 404
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-94",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\tests\\test_gaps.py"
+                },
+                "region": {
+                  "startLine": 105
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-94",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\tests\\test_gaps.py"
+                },
+                "region": {
+                  "startLine": 118
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\tests\\test_gaps.py"
+                },
+                "region": {
+                  "startLine": 25
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-94",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\tests\\test_parser.py"
+                },
+                "region": {
+                  "startLine": 257
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\tests\\test_parser.py"
+                },
+                "region": {
+                  "startLine": 344
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\tests\\test_parser.py"
+                },
+                "region": {
+                  "startLine": 362
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\ingestion\\tests\\test_parser.py"
+                },
+                "region": {
+                  "startLine": 157
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\knowledge_graph\\src\\phantom.py"
+                },
+                "region": {
+                  "startLine": 375
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\knowledge_graph\\src\\phantom.py"
+                },
+                "region": {
+                  "startLine": 408
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\learning\\src\\cve_ingester.py"
+                },
+                "region": {
+                  "startLine": 93
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\learning\\src\\cve_ingester.py"
+                },
+                "region": {
+                  "startLine": 212
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\learning\\src\\cve_ingester.py"
+                },
+                "region": {
+                  "startLine": 220
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "note",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\learning\\src\\cve_ingester.py"
+                },
+                "region": {
+                  "startLine": 232
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\covenant.py"
+                },
+                "region": {
+                  "startLine": 114
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\covenant.py"
+                },
+                "region": {
+                  "startLine": 122
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\covenant.py"
+                },
+                "region": {
+                  "startLine": 304
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\covenant.py"
+                },
+                "region": {
+                  "startLine": 312
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\covenant.py"
+                },
+                "region": {
+                  "startLine": 370
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\covenant.py"
+                },
+                "region": {
+                  "startLine": 527
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "warning",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\oversight_engine.py"
+                },
+                "region": {
+                  "startLine": 432
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "warning",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\src\\oversight_engine.py"
+                },
+                "region": {
+                  "startLine": 433
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\tests\\test_oversight_engine.py"
+                },
+                "region": {
+                  "startLine": 29
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "warning",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\oversight\\tests\\test_oversight_engine.py"
+                },
+                "region": {
+                  "startLine": 274
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\run_reasoning.py"
+                },
+                "region": {
+                  "startLine": 39
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\run_reasoning.py"
+                },
+                "region": {
+                  "startLine": 40
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\run_reasoning.py"
+                },
+                "region": {
+                  "startLine": 67
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-327",
+          "level": "warning",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\src\\attack_graph.py"
+                },
+                "region": {
+                  "startLine": 127
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-327",
+          "level": "warning",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\src\\attack_graph.py"
+                },
+                "region": {
+                  "startLine": 127
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-89",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\src\\reasoning.py"
+                },
+                "region": {
+                  "startLine": 301
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\src\\reasoning.py"
+                },
+                "region": {
+                  "startLine": 552
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\src\\reasoning.py"
+                },
+                "region": {
+                  "startLine": 553
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "warning",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\src\\reasoning.py"
+                },
+                "region": {
+                  "startLine": 164
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "note",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\reasoning\\src\\reasoning.py"
+                },
+                "region": {
+                  "startLine": 532
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\scoring\\src\\cvss_scorer.py"
+                },
+                "region": {
+                  "startLine": 472
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-22",
+          "level": "error",
+          "message": {
+            "text": ""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "modules\\scoring\\src\\cvss_scorer.py"
+                },
+                "region": {
+                  "startLine": 484
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-89",
+          "level": "error",
+          "message": {
+            "text": "SQL query constructed with string concatenation \u2014 injection risk"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.js"
+                },
+                "region": {
+                  "startLine": 9
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-94",
+          "level": "error",
+          "message": {
+            "text": "eval() executes arbitrary code \u2014 remote code execution vector"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.js"
+                },
+                "region": {
+                  "startLine": 14
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-78",
+          "level": "error",
+          "message": {
+            "text": "Shell command built from request data \u2014 OS command injection"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.js"
+                },
+                "region": {
+                  "startLine": 19
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": "Hardcoded credential found in source"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.js"
+                },
+                "region": {
+                  "startLine": 23
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": "Hardcoded credential found in source"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.js"
+                },
+                "region": {
+                  "startLine": 24
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-327",
+          "level": "warning",
+          "message": {
+            "text": "SHA1 is deprecated for security use"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.js"
+                },
+                "region": {
+                  "startLine": 28
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-79",
+          "level": "error",
+          "message": {
+            "text": "innerHTML assignment may inject unsanitised HTML"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.js"
+                },
+                "region": {
+                  "startLine": 31
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": "Hardcoded credential found in source"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sandbox\\sample_target.js"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": "Hardcoded credential found in source"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sandbox\\sample_target.js"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-79",
+          "level": "error",
+          "message": {
+            "text": "document.write() with user input causes XSS"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sandbox\\sample_target.js"
+                },
+                "region": {
+                  "startLine": 15
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-94",
+          "level": "error",
+          "message": {
+            "text": "eval() executes arbitrary code \u2014 remote code execution vector"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sandbox\\sample_target.js"
+                },
+                "region": {
+                  "startLine": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-78",
+          "level": "error",
+          "message": {
+            "text": "Synchronous shell execution \u2014 blocks event loop and injection risk"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sandbox\\sample_target.js"
+                },
+                "region": {
+                  "startLine": 32
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-94",
+          "level": "error",
+          "message": {
+            "text": "Function() constructor executes arbitrary code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sandbox\\sample_target.js"
+                },
+                "region": {
+                  "startLine": 36
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-94",
+          "level": "error",
+          "message": {
+            "text": "eval() executes arbitrary code \u2014 remote code execution vector"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "sandbox\\sample_target.js"
+                },
+                "region": {
+                  "startLine": 40
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": "Hardcoded credential in Go source"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.go"
+                },
+                "region": {
+                  "startLine": 13
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-312",
+          "level": "error",
+          "message": {
+            "text": "Hardcoded credential in Go source"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.go"
+                },
+                "region": {
+                  "startLine": 14
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-89",
+          "level": "error",
+          "message": {
+            "text": "SQL query built with string concatenation \u2014 injection risk"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.go"
+                },
+                "region": {
+                  "startLine": 18
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-78",
+          "level": "error",
+          "message": {
+            "text": "exec.Command built with string concatenation \u2014 OS injection risk"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.go"
+                },
+                "region": {
+                  "startLine": 23
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-327",
+          "level": "warning",
+          "message": {
+            "text": "MD5 is cryptographically broken \u2014 use SHA-256"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.go"
+                },
+                "region": {
+                  "startLine": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CWE-327",
+          "level": "warning",
+          "message": {
+            "text": "SHA1 is deprecated for security use"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "test_vuln.go"
+                },
+                "region": {
+                  "startLine": 28
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

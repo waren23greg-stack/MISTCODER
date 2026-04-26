@@ -1,0 +1,1344 @@
+{
+  "decisions": [
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.034570+00:00",
+      "message": "OracleBrain online — scan #1 — 7 known patterns"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.068634+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.508655+00:00",
+      "message": "Evaluating PATH-0002 | steps=['file_path', 'CWE-22'] | score=5.25"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.625481+00:00",
+      "message": "Evaluating PATH-0003 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.641620+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.690580+00:00",
+      "message": "Evaluating PATH-0005 | steps=['eval_exec', 'CWE-94', 'file_path', 'CWE-22', 'Password', 'CWE-312'] | score=7.88"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.860042+00:00",
+      "message": "Evaluating PATH-0006 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.917008+00:00",
+      "message": "Evaluating PATH-0007 | steps=['file_path', 'CWE-22'] | score=6.38"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:54.960980+00:00",
+      "message": "Evaluating PATH-0008 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:55.334889+00:00",
+      "message": "Evaluating PATH-0009 | steps=['High Entropy String', 'CWE-312'] | score=5.0"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:55.334889+00:00",
+      "message": "Novel pattern incubated: f99678bdb5c7... (1/3)"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:55.588618+00:00",
+      "message": "Evaluating PATH-0010 | steps=['Password', 'CWE-312', 'High Entropy String'] | score=6.25"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:55.588618+00:00",
+      "message": "Novel pattern incubated: 854adfe610a8... (1/3)"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:55.706567+00:00",
+      "message": "Evaluating PATH-0011 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:55.726023+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:56.388960+00:00",
+      "message": "Evaluating PATH-0013 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22', 'High Entropy String', 'CWE-312'] | score=6.1"
+    },
+    {
+      "scan": 1,
+      "timestamp": "2026-04-24T20:30:56.873788+00:00",
+      "message": "Evaluating PATH-0014 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:03.372285+00:00",
+      "message": "OracleBrain online — scan #2 — 7 known patterns"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:03.378154+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:03.805586+00:00",
+      "message": "Evaluating PATH-0002 | steps=['file_path', 'CWE-22'] | score=5.25"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.039301+00:00",
+      "message": "Evaluating PATH-0003 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.099266+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.180789+00:00",
+      "message": "Evaluating PATH-0005 | steps=['eval_exec', 'CWE-94', 'file_path', 'CWE-22', 'Password', 'CWE-312'] | score=7.88"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.222762+00:00",
+      "message": "Evaluating PATH-0006 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.394757+00:00",
+      "message": "Evaluating PATH-0007 | steps=['file_path', 'CWE-22'] | score=6.38"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.544679+00:00",
+      "message": "Evaluating PATH-0008 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.612680+00:00",
+      "message": "Evaluating PATH-0009 | steps=['High Entropy String', 'CWE-312'] | score=5.0"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.612680+00:00",
+      "message": "Novel pattern resighted: f99678bdb5c7... (2/3)"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.755766+00:00",
+      "message": "Evaluating PATH-0010 | steps=['Password', 'CWE-312', 'High Entropy String'] | score=6.25"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.755766+00:00",
+      "message": "Novel pattern resighted: 854adfe610a8... (2/3)"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.792527+00:00",
+      "message": "Evaluating PATH-0011 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.825337+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:04.985004+00:00",
+      "message": "Evaluating PATH-0013 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22', 'High Entropy String', 'CWE-312'] | score=6.1"
+    },
+    {
+      "scan": 2,
+      "timestamp": "2026-04-24T20:33:05.008444+00:00",
+      "message": "Evaluating PATH-0014 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.355150+00:00",
+      "message": "OracleBrain online — scan #3 — 7 known patterns"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.361147+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.424132+00:00",
+      "message": "Evaluating PATH-0002 | steps=['file_path', 'CWE-22'] | score=5.25"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.497090+00:00",
+      "message": "Evaluating PATH-0003 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.514173+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.562144+00:00",
+      "message": "Evaluating PATH-0005 | steps=['eval_exec', 'CWE-94', 'file_path', 'CWE-22', 'Password', 'CWE-312'] | score=7.88"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.663081+00:00",
+      "message": "Evaluating PATH-0006 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.823641+00:00",
+      "message": "Evaluating PATH-0007 | steps=['file_path', 'CWE-22'] | score=6.38"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:39.858901+00:00",
+      "message": "Evaluating PATH-0008 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.003475+00:00",
+      "message": "Evaluating PATH-0009 | steps=['High Entropy String', 'CWE-312'] | score=5.0"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.003475+00:00",
+      "message": "Novel pattern resighted: f99678bdb5c7... (3/3)"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.087405+00:00",
+      "message": "Evaluating PATH-0010 | steps=['Password', 'CWE-312', 'High Entropy String'] | score=6.25"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.087405+00:00",
+      "message": "Novel pattern resighted: 854adfe610a8... (3/3)"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.164643+00:00",
+      "message": "Evaluating PATH-0011 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.300370+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.331099+00:00",
+      "message": "Evaluating PATH-0013 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22', 'High Entropy String', 'CWE-312'] | score=6.1"
+    },
+    {
+      "scan": 3,
+      "timestamp": "2026-04-24T20:38:40.951276+00:00",
+      "message": "Evaluating PATH-0014 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:44.609495+00:00",
+      "message": "OracleBrain online — scan #4 — 7 known patterns"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:44.616240+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:44.729109+00:00",
+      "message": "Evaluating PATH-0002 | steps=['file_path', 'CWE-22'] | score=5.25"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:44.853010+00:00",
+      "message": "Evaluating PATH-0003 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:45.264755+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:45.295903+00:00",
+      "message": "Evaluating PATH-0005 | steps=['eval_exec', 'CWE-94', 'file_path', 'CWE-22', 'Password', 'CWE-312'] | score=7.88"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:45.731745+00:00",
+      "message": "Evaluating PATH-0006 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:45.832826+00:00",
+      "message": "Evaluating PATH-0007 | steps=['file_path', 'CWE-22'] | score=6.38"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:45.953491+00:00",
+      "message": "Evaluating PATH-0008 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.007380+00:00",
+      "message": "Evaluating PATH-0009 | steps=['High Entropy String', 'CWE-312'] | score=5.0"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.007380+00:00",
+      "message": "Novel pattern resighted: f99678bdb5c7... (4/3)"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.288348+00:00",
+      "message": "Evaluating PATH-0010 | steps=['Password', 'CWE-312', 'High Entropy String'] | score=6.25"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.288348+00:00",
+      "message": "Novel pattern resighted: 854adfe610a8... (4/3)"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.350361+00:00",
+      "message": "Evaluating PATH-0011 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.438306+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.498271+00:00",
+      "message": "Evaluating PATH-0013 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22', 'High Entropy String', 'CWE-312'] | score=6.1"
+    },
+    {
+      "scan": 4,
+      "timestamp": "2026-04-24T20:38:46.510263+00:00",
+      "message": "Evaluating PATH-0014 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:38:59.950672+00:00",
+      "message": "OracleBrain online — scan #5 — 7 known patterns"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:38:59.956160+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:00.041758+00:00",
+      "message": "Evaluating PATH-0002 | steps=['file_path', 'CWE-22'] | score=5.25"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:00.168092+00:00",
+      "message": "Evaluating PATH-0003 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:00.448954+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:00.698127+00:00",
+      "message": "Evaluating PATH-0005 | steps=['eval_exec', 'CWE-94', 'file_path', 'CWE-22', 'Password', 'CWE-312'] | score=7.88"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.159346+00:00",
+      "message": "Evaluating PATH-0006 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.182331+00:00",
+      "message": "Evaluating PATH-0007 | steps=['file_path', 'CWE-22'] | score=6.38"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.261284+00:00",
+      "message": "Evaluating PATH-0008 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.467779+00:00",
+      "message": "Evaluating PATH-0009 | steps=['High Entropy String', 'CWE-312'] | score=5.0"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.467779+00:00",
+      "message": "Novel pattern resighted: f99678bdb5c7... (5/3)"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.524190+00:00",
+      "message": "Evaluating PATH-0010 | steps=['Password', 'CWE-312', 'High Entropy String'] | score=6.25"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.524190+00:00",
+      "message": "Novel pattern resighted: 854adfe610a8... (5/3)"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.646114+00:00",
+      "message": "Evaluating PATH-0011 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.676114+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:01.888095+00:00",
+      "message": "Evaluating PATH-0013 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22', 'High Entropy String', 'CWE-312'] | score=6.1"
+    },
+    {
+      "scan": 5,
+      "timestamp": "2026-04-24T20:39:02.015177+00:00",
+      "message": "Evaluating PATH-0014 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:44.567110+00:00",
+      "message": "OracleBrain online — scan #6 — 7 known patterns"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:44.572705+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:44.693477+00:00",
+      "message": "Evaluating PATH-0002 | steps=['file_path', 'CWE-22'] | score=5.25"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:44.751005+00:00",
+      "message": "Evaluating PATH-0003 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:45.071301+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:45.456199+00:00",
+      "message": "Evaluating PATH-0005 | steps=['eval_exec', 'CWE-94', 'file_path', 'CWE-22', 'Password', 'CWE-312'] | score=7.88"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:45.522508+00:00",
+      "message": "Evaluating PATH-0006 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:45.601579+00:00",
+      "message": "Evaluating PATH-0007 | steps=['file_path', 'CWE-22'] | score=6.38"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:45.884439+00:00",
+      "message": "Evaluating PATH-0008 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:46.065326+00:00",
+      "message": "Evaluating PATH-0009 | steps=['High Entropy String', 'CWE-312'] | score=5.0"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:46.065326+00:00",
+      "message": "Novel pattern resighted: f99678bdb5c7... (6/3)"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:46.534770+00:00",
+      "message": "Evaluating PATH-0010 | steps=['Password', 'CWE-312', 'High Entropy String'] | score=6.25"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:46.534770+00:00",
+      "message": "Novel pattern resighted: 854adfe610a8... (6/3)"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:46.653697+00:00",
+      "message": "Evaluating PATH-0011 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:46.841822+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:46.861321+00:00",
+      "message": "Evaluating PATH-0013 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22', 'High Entropy String', 'CWE-312'] | score=6.1"
+    },
+    {
+      "scan": 6,
+      "timestamp": "2026-04-24T20:41:47.031786+00:00",
+      "message": "Evaluating PATH-0014 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 7,
+      "timestamp": "2026-04-25T06:21:57.740270+00:00",
+      "message": "OracleBrain online — scan #7 — 7 known patterns"
+    },
+    {
+      "scan": 7,
+      "timestamp": "2026-04-25T06:21:57.740270+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 7,
+      "timestamp": "2026-04-25T06:21:57.840288+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 7,
+      "timestamp": "2026-04-25T06:21:57.847579+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 7,
+      "timestamp": "2026-04-25T06:21:57.854583+00:00",
+      "message": "PROMOTED: high_entropy_string → knowledge base (self-authored, 6 sightings)"
+    },
+    {
+      "scan": 7,
+      "timestamp": "2026-04-25T06:21:57.854583+00:00",
+      "message": "PROMOTED: password → knowledge base (self-authored, 6 sightings)"
+    },
+    {
+      "scan": 8,
+      "timestamp": "2026-04-25T06:21:57.861573+00:00",
+      "message": "Evaluating PATH-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 8,
+      "timestamp": "2026-04-25T06:21:57.869569+00:00",
+      "message": "Evaluating PATH-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 8,
+      "timestamp": "2026-04-25T06:21:57.876571+00:00",
+      "message": "Evaluating PATH-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 9,
+      "timestamp": "2026-04-25T06:21:57.892554+00:00",
+      "message": "Evaluating PATH-NEW | steps=['eval_exec', 'CWE-94'] | score=8.1"
+    },
+    {
+      "scan": 10,
+      "timestamp": "2026-04-25T06:31:05.530547+00:00",
+      "message": "OracleBrain online — scan #10 — 9 known patterns"
+    },
+    {
+      "scan": 10,
+      "timestamp": "2026-04-25T06:31:28.727343+00:00",
+      "message": "Evaluating LIVE-001 | steps=['eval_exec', 'CWE-94'] | score=8.5"
+    },
+    {
+      "scan": 10,
+      "timestamp": "2026-04-25T06:33:25.728189+00:00",
+      "message": "Evaluating PR-123 | steps=['eval_exec', 'CWE-94'] | score=8.5"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:36.974363+00:00",
+      "message": "OracleBrain online — scan #11 — 9 known patterns"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:37.207983+00:00",
+      "message": "Evaluating NEURAL-001 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.5"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:37.208983+00:00",
+      "message": "ThreatNet: NOVEL conf=0.976"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:37.234608+00:00",
+      "message": "Evaluating NEURAL-002 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:37.235607+00:00",
+      "message": "ThreatNet: NOVEL conf=0.9972"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:37.244598+00:00",
+      "message": "Evaluating NEURAL-003 | steps=['unknown_pattern', 'CWE-999'] | score=3.0"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:37.244598+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.6768"
+    },
+    {
+      "scan": 11,
+      "timestamp": "2026-04-25T07:02:37.244598+00:00",
+      "message": "Novel pattern incubated: 6ec599e05e35..."
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.052949+00:00",
+      "message": "OracleBrain online — scan #12 — 9 known patterns"
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.233803+00:00",
+      "message": "Evaluating CHECK-001 | steps=['eval_exec', 'CWE-94', 'Password'] | score=8.5"
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.234802+00:00",
+      "message": "ThreatNet: NOVEL conf=0.996"
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.247793+00:00",
+      "message": "Evaluating CHECK-002 | steps=['unknown_func', 'CWE-999'] | score=3.0"
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.247793+00:00",
+      "message": "ThreatNet: NOVEL conf=0.9058"
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.247793+00:00",
+      "message": "Novel pattern incubated: d888c076f1c1..."
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.255788+00:00",
+      "message": "Evaluating CHECK-003 | steps=['conflicting_signal', 'CWE-362'] | score=4.5"
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.255788+00:00",
+      "message": "ThreatNet: DISPUTED conf=1.0"
+    },
+    {
+      "scan": 12,
+      "timestamp": "2026-04-25T07:03:51.255788+00:00",
+      "message": "Novel pattern incubated: 1938a076269d..."
+    },
+    {
+      "scan": 13,
+      "timestamp": "2026-04-25T07:04:59.368105+00:00",
+      "message": "OracleBrain online — scan #13 — 9 known patterns"
+    },
+    {
+      "scan": 13,
+      "timestamp": "2026-04-25T07:04:59.548434+00:00",
+      "message": "Evaluating CHECK-001 | steps=['eval_exec', 'CWE-94', 'Password'] | score=8.5"
+    },
+    {
+      "scan": 13,
+      "timestamp": "2026-04-25T07:04:59.549433+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 13,
+      "timestamp": "2026-04-25T07:04:59.562423+00:00",
+      "message": "Evaluating CHECK-002 | steps=['unknown_func', 'CWE-999'] | score=3.0"
+    },
+    {
+      "scan": 13,
+      "timestamp": "2026-04-25T07:04:59.563424+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.8923"
+    },
+    {
+      "scan": 13,
+      "timestamp": "2026-04-25T07:04:59.570420+00:00",
+      "message": "Evaluating CHECK-003 | steps=['conflicting_signal', 'CWE-362'] | score=4.5"
+    },
+    {
+      "scan": 13,
+      "timestamp": "2026-04-25T07:04:59.571419+00:00",
+      "message": "ThreatNet: DISPUTED conf=1.0"
+    },
+    {
+      "scan": 14,
+      "timestamp": "2026-04-25T07:13:13.453693+00:00",
+      "message": "OracleBrain online — scan #14 — 9 known patterns"
+    },
+    {
+      "scan": 14,
+      "timestamp": "2026-04-25T07:13:13.624793+00:00",
+      "message": "Evaluating LANG-JA-0001 | steps=['sql_query', 'CWE-89', 'eval_exec', 'CWE-94', 'cmd_inject', 'CWE-78', 'hardcoded_secret', 'CWE-312', 'weak_hash', 'CWE-327', 'xss_inject', 'CWE-79'] | score=7.92"
+    },
+    {
+      "scan": 14,
+      "timestamp": "2026-04-25T07:13:13.624793+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 14,
+      "timestamp": "2026-04-25T07:13:13.646780+00:00",
+      "message": "Evaluating LANG-JA-0002 | steps=['hardcoded_secret', 'CWE-312', 'xss_inject', 'CWE-79', 'eval_exec', 'CWE-94', 'cmd_inject', 'CWE-78'] | score=7.88"
+    },
+    {
+      "scan": 14,
+      "timestamp": "2026-04-25T07:13:13.646780+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 15,
+      "timestamp": "2026-04-25T07:13:29.595543+00:00",
+      "message": "OracleBrain online — scan #15 — 9 known patterns"
+    },
+    {
+      "scan": 15,
+      "timestamp": "2026-04-25T07:13:29.762263+00:00",
+      "message": "Evaluating LANG-GO-0001 | steps=['hardcoded_secret', 'CWE-312', 'sql_query', 'CWE-89', 'cmd_inject', 'CWE-78', 'weak_hash', 'CWE-327'] | score=7.88"
+    },
+    {
+      "scan": 15,
+      "timestamp": "2026-04-25T07:13:29.762263+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 16,
+      "timestamp": "2026-04-25T07:17:56.675541+00:00",
+      "message": "OracleBrain online — scan #16 — 9 known patterns"
+    },
+    {
+      "scan": 16,
+      "timestamp": "2026-04-25T07:17:56.846291+00:00",
+      "message": "Evaluating UNIFIED-JA-0001 | steps=['sql_query', 'CWE-89', 'eval_exec', 'CWE-94', 'cmd_inject', 'CWE-78', 'hardcoded_secret', 'CWE-312', 'weak_hash', 'CWE-327', 'xss_inject', 'CWE-79'] | score=7.92"
+    },
+    {
+      "scan": 16,
+      "timestamp": "2026-04-25T07:17:56.846291+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 16,
+      "timestamp": "2026-04-25T07:17:56.946229+00:00",
+      "message": "Evaluating UNIFIED-JA-0002 | steps=['hardcoded_secret', 'CWE-312', 'xss_inject', 'CWE-79', 'eval_exec', 'CWE-94', 'cmd_inject', 'CWE-78'] | score=7.88"
+    },
+    {
+      "scan": 16,
+      "timestamp": "2026-04-25T07:17:56.947229+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 16,
+      "timestamp": "2026-04-25T07:17:57.160187+00:00",
+      "message": "Evaluating UNIFIED-GO-0001 | steps=['hardcoded_secret', 'CWE-312', 'sql_query', 'CWE-89', 'cmd_inject', 'CWE-78', 'weak_hash', 'CWE-327'] | score=7.88"
+    },
+    {
+      "scan": 16,
+      "timestamp": "2026-04-25T07:17:57.160187+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.211397+00:00",
+      "message": "OracleBrain online — scan #17 — 9 known patterns"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.378820+00:00",
+      "message": "Evaluating UNIFIED-PY-0001 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.379818+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.485753+00:00",
+      "message": "Evaluating UNIFIED-PY-0002 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.485753+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.512952+00:00",
+      "message": "Evaluating UNIFIED-PY-0003 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.513951+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.614747+00:00",
+      "message": "Evaluating UNIFIED-PY-0004 | steps=['eval_exec', 'CWE-94', 'Password', 'CWE-312'] | score=8.25"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.614747+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.685704+00:00",
+      "message": "Evaluating UNIFIED-PY-0005 | steps=['eval_exec', 'CWE-94', 'file_path', 'CWE-22', 'Password', 'CWE-312'] | score=8.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.685704+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.774648+00:00",
+      "message": "Evaluating UNIFIED-PY-0006 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.775647+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.788266+00:00",
+      "message": "Evaluating UNIFIED-PY-0007 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:58.789266+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.178028+00:00",
+      "message": "Evaluating UNIFIED-PY-0008 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.178028+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.238869+00:00",
+      "message": "Evaluating UNIFIED-PY-0009 | steps=['High Entropy String', 'CWE-312'] | score=5.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.238869+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.397092+00:00",
+      "message": "Evaluating UNIFIED-PY-0010 | steps=['Password', 'CWE-312'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.397092+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.701001+00:00",
+      "message": "Evaluating UNIFIED-PY-0011 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.701001+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.813520+00:00",
+      "message": "Evaluating UNIFIED-PY-0012 | steps=['Weak Hash', 'CWE-327'] | score=5.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.813520+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.852385+00:00",
+      "message": "Evaluating UNIFIED-PY-0013 | steps=['sql_query', 'CWE-89', 'file_path', 'CWE-22', 'High Entropy String', 'CWE-312'] | score=6.67"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.852385+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.984201+00:00",
+      "message": "Evaluating UNIFIED-PY-0014 | steps=['file_path', 'CWE-22'] | score=7.5"
+    },
+    {
+      "scan": 17,
+      "timestamp": "2026-04-25T07:55:59.984201+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:36.327628+00:00",
+      "message": "OracleBrain online — scan #18 — 9 known patterns"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:48.807283+00:00",
+      "message": "Evaluating EDEN-NV-0001 | steps=['illegal_clearing', 'ECO-006'] | score=8.7"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:48.807283+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9999"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:48.807283+00:00",
+      "message": "Novel pattern incubated: abdf251ea5f9..."
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.139983+00:00",
+      "message": "Evaluating EDEN-NV-0002 | steps=['illegal_clearing', 'ECO-006'] | score=8.7"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.139983+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9999"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.207805+00:00",
+      "message": "Evaluating EDEN-NV-0003 | steps=['vegetation_stress', 'ECO-005'] | score=6.8"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.208808+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9994"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.208808+00:00",
+      "message": "Novel pattern incubated: 2b6447f5bfcc..."
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.442663+00:00",
+      "message": "Evaluating EDEN-NV-0004 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.443663+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.443663+00:00",
+      "message": "Novel pattern incubated: 38a2962a9e90..."
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.488635+00:00",
+      "message": "Evaluating EDEN-NV-0005 | steps=['edge_effect', 'ECO-008'] | score=4.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.489634+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9846"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.489634+00:00",
+      "message": "Novel pattern incubated: ca7a73ac4996..."
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.507623+00:00",
+      "message": "Evaluating EDEN-NV-0006 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.507623+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.549596+00:00",
+      "message": "Evaluating EDEN-NV-0007 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.549596+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.656531+00:00",
+      "message": "Evaluating EDEN-NV-0008 | steps=['edge_effect', 'ECO-008'] | score=4.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.656531+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9846"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.673521+00:00",
+      "message": "Evaluating EDEN-NV-0009 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.673521+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.869168+00:00",
+      "message": "Evaluating EDEN-NV-0010 | steps=['habitat_fragmentation', 'ECO-002'] | score=7.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.869168+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9997"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:49.869168+00:00",
+      "message": "Novel pattern incubated: e6c350f49325..."
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.021374+00:00",
+      "message": "Evaluating EDEN-NV-0011 | steps=['deforestation_event', 'ECO-001'] | score=9.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.021374+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.021374+00:00",
+      "message": "Novel pattern incubated: cda04c5d8b85..."
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.082027+00:00",
+      "message": "Evaluating EDEN-NV-0012 | steps=['deforestation_event', 'ECO-001'] | score=9.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.082027+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.216947+00:00",
+      "message": "Evaluating EDEN-NV-0013 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.217946+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.639814+00:00",
+      "message": "Evaluating EDEN-NV-0014 | steps=['vegetation_stress', 'ECO-005'] | score=6.8"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.639814+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9994"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.764741+00:00",
+      "message": "Evaluating EDEN-NV-0015 | steps=['habitat_fragmentation', 'ECO-002'] | score=7.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:50.764741+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9997"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.125360+00:00",
+      "message": "Evaluating EDEN-NV-0016 | steps=['deforestation_event', 'ECO-001'] | score=9.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.125360+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.180240+00:00",
+      "message": "Evaluating EDEN-NV-0017 | steps=['deforestation_event', 'ECO-001'] | score=9.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.181239+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.477687+00:00",
+      "message": "Evaluating EDEN-NV-0018 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.477687+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.757136+00:00",
+      "message": "Evaluating EDEN-NV-0019 | steps=['edge_effect', 'ECO-008'] | score=4.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.757136+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9846"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.774006+00:00",
+      "message": "Evaluating EDEN-NV-0020 | steps=['edge_effect', 'ECO-008'] | score=4.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.775009+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9846"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.793997+00:00",
+      "message": "Evaluating EDEN-NV-0021 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:51.793997+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.137627+00:00",
+      "message": "Evaluating EDEN-NV-0022 | steps=['edge_effect', 'ECO-008'] | score=4.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.138626+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9846"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.156716+00:00",
+      "message": "Evaluating EDEN-NV-0023 | steps=['illegal_clearing', 'ECO-006'] | score=8.7"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.156716+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9999"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.491146+00:00",
+      "message": "Evaluating EDEN-NV-0024 | steps=['edge_effect', 'ECO-008'] | score=4.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.491146+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9846"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.509044+00:00",
+      "message": "Evaluating EDEN-NV-0025 | steps=['deforestation_event', 'ECO-001'] | score=9.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:52.510043+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.381781+00:00",
+      "message": "Evaluating EDEN-NV-0026 | steps=['vegetation_stress', 'ECO-005'] | score=6.8"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.382778+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9994"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.688460+00:00",
+      "message": "Evaluating EDEN-NV-0027 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.688460+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.886636+00:00",
+      "message": "Evaluating EDEN-NV-0028 | steps=['edge_effect', 'ECO-008'] | score=4.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.886636+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9846"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.904716+00:00",
+      "message": "Evaluating EDEN-NV-0029 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:53.904716+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.015354+00:00",
+      "message": "Evaluating EDEN-NV-0030 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.016353+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.073427+00:00",
+      "message": "Evaluating EDEN-NV-0031 | steps=['illegal_clearing', 'ECO-006'] | score=8.7"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.074426+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9999"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.627326+00:00",
+      "message": "Evaluating EDEN-NV-0032 | steps=['illegal_clearing', 'ECO-006'] | score=8.7"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.628325+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9999"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.745509+00:00",
+      "message": "Evaluating EDEN-NV-0033 | steps=['deforestation_event', 'ECO-001'] | score=9.2"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.745509+00:00",
+      "message": "ThreatNet: CONFIRMED conf=1.0"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.783488+00:00",
+      "message": "Evaluating EDEN-NV-0034 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.784487+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.909137+00:00",
+      "message": "Evaluating EDEN-NV-0035 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:54.910140+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.025186+00:00",
+      "message": "Evaluating EDEN-NV-0036 | steps=['soil_degradation', 'ECO-004'] | score=5.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.025186+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9971"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.114913+00:00",
+      "message": "Evaluating EDEN-AC-0001 | steps=['human_activity', 'ECO-008', 'fire_crackle', 'ECO-007'] | score=6.5"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.115916+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9958"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.115916+00:00",
+      "message": "Novel pattern incubated: 314d92f0aa58..."
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.233077+00:00",
+      "message": "Evaluating EDEN-AC-0002 | steps=['human_activity', 'ECO-008', 'heavy_vehicle', 'ECO-002', 'chainsaw_detected', 'ECO-001'] | score=7.6"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.233077+00:00",
+      "message": "ThreatNet: CONFIRMED conf=0.9941"
+    },
+    {
+      "scan": 18,
+      "timestamp": "2026-04-25T18:23:55.234077+00:00",
+      "message": "Novel pattern incubated: 36bce7989e3f..."
+    }
+  ]
+}

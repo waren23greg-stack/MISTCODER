@@ -1,0 +1,18 @@
+{
+  "name": "education_school_portal",
+  "playbook_version": "1.0",
+  "sector": "education",
+  "system_type": "web portal",
+  "risk_priorities": ["student data privacy", "learning platform uptime", "exam integrity"],
+  "thresholds": {"max_critical": 0, "max_high": 1, "max_medium": 4},
+  "reporting": {"executive": "plain_language", "technical": "full"},
+  "impact_narratives": {
+    "severity": {
+      "CRITICAL": "Attackers could expose student records or alter high-stakes academic data.",
+      "HIGH": "Attackers could disrupt classes, grades, or parent communication systems.",
+      "MEDIUM": "Attackers could cause repeated outages and trust loss for students and families."
+    },
+    "default": "Security issues could affect privacy, continuity, and fairness in education services."
+  },
+  "effort_estimates": {"critical": "high", "high": "high", "medium": "medium", "low": "low", "info": "low"}
+}

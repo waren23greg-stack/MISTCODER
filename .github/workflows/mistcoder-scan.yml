@@ -1,0 +1,183 @@
+# .github/workflows/mistcoder-scan.yml
+# MISTCODER Threat-Native Blockchain
+# Layer 8 — Constitutional CI/CD Guard
+#
+# Runs on every pull request.
+# Scans changed Python files through the Trinity.
+# Blocks merge if a CRITICAL certified kill chain is found.
+# Posts a full threat report as a PR comment.
+#
+# This is the moment MISTCODER becomes a platform.
+
+name: MISTCODER Constitutional Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  mistcoder-scan:
+    name: Trinity Threat Certification
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Python setup ────────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ── Install deps ────────────────────────────────────────────────────
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # ── Run MISTCODER scan ───────────────────────────────────────────────
+      - name: Run MISTCODER Trinity scan
+        id: scan
+        run: |
+          echo "Running MISTCODER constitutional scan..."
+          python -m blockchain.mistcoder_chain_runner 2>&1 | tee scan_output.txt
+          echo "scan_complete=true" >> $GITHUB_OUTPUT
+
+      # ── Run chain exporter ───────────────────────────────────────────────
+      - name: Export certified chain data
+        run: |
+          python -m blockchain.chain_exporter 2>&1 | tee export_output.txt
+
+      # ── Check for CRITICAL findings ──────────────────────────────────────
+      - name: Constitutional gate — check for CRITICAL kill chains
+        id: gate
+        run: |
+          python - <<'EOF'
+          import json
+          import sys
+          from pathlib import Path
+
+          # Read the chain export
+          export_path = Path("sandbox/chain_export.js")
+          if not export_path.exists():
+              print("No chain export found — scan may have failed.")
+              sys.exit(1)
+
+          # Parse the DATA object from the JS file
+          content = export_path.read_text(encoding="utf-8")
+          # Strip JS wrapper to get pure JSON
+          json_start = content.find("const DATA = ") + len("const DATA = ")
+          json_end   = content.rfind(";")
+          data       = json.loads(content[json_start:json_end])
+
+          findings   = data.get("findings", {})
+          chains     = data.get("chains", [])
+          blockchain = data.get("blockchain", {})
+
+          critical_count = findings.get("critical", 0)
+          certified      = blockchain.get("certified", 0)
+          blocks         = blockchain.get("blocks", 0)
+
+          # Find highest scoring certified chain
+          critical_chains = [
+              c for c in chains
+              if c.get("score", 0) >= 8.0 and c.get("certified", False)
+          ]
+
+          print(f"MISTCODER Constitutional Gate")
+          print(f"  Certified blocks : {blocks}")
+          print(f"  Certified chains : {certified}")
+          print(f"  Critical findings: {critical_count}")
+          print(f"  Critical chains  : {len(critical_chains)}")
+
+          if critical_chains:
+              print()
+              print("CRITICAL kill chains found:")
+              for c in critical_chains[:3]:
+                  print(f"  {c['id']} score={c['score']} "
+                        f"hash={c.get('block_hash','?')[:16]}...")
+              print()
+              print("COVENANT VERDICT: HALT DEPLOYMENTS")
+              print("Constitutional threshold exceeded.")
+              print("Merge blocked by MISTCODER Trinity.")
+              # Write status for PR comment
+              with open("gate_result.txt", "w") as f:
+                  f.write("BLOCKED")
+              sys.exit(1)
+          else:
+              print()
+              print("COVENANT VERDICT: CERTIFIED CLEAR")
+              print("No critical kill chains. Merge permitted.")
+              with open("gate_result.txt", "w") as f:
+                  f.write("CLEAR")
+              sys.exit(0)
+          EOF
+
+      # ── Post PR comment ──────────────────────────────────────────────────
+      - name: Post threat report to PR
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs   = require('fs');
+            const path = require('path');
+
+            // Read scan output
+            let scanOut  = '';
+            let gateOut  = '';
+            let gateFile = '';
+
+            try { scanOut  = fs.readFileSync('scan_output.txt',  'utf8'); } catch(e) {}
+            try { gateOut  = fs.readFileSync('export_output.txt','utf8'); } catch(e) {}
+            try { gateFile = fs.readFileSync('gate_result.txt',  'utf8').trim(); } catch(e) {}
+
+            const blocked = gateFile === 'BLOCKED';
+            const verdict = blocked
+              ? '🔴 **COVENANT VERDICT: HALT DEPLOYMENTS**'
+              : '🟢 **COVENANT VERDICT: CERTIFIED CLEAR**';
+
+            const badge = blocked
+              ? '![MISTCODER](https://img.shields.io/badge/MISTCODER-BLOCKED-red)'
+              : '![MISTCODER](https://img.shields.io/badge/MISTCODER-CERTIFIED-brightgreen)';
+
+            const body = `## ${badge}
+
+            ### MISTCODER Constitutional Scan — Trinity Report
+
+            ${verdict}
+
+            ---
+
+            **Scan details:**
+            \`\`\`
+            ${scanOut.slice(-2000)}
+            \`\`\`
+
+            ---
+
+            > *MISTCODER — Know your attack surface before the adversary does.*
+            > *PHANTOM simulates · ORACLE challenges · COVENANT certifies*
+            `;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner:        context.repo.owner,
+              repo:         context.repo.repo,
+              body:         body
+            });
+
+      # ── Upload chain export as artifact ─────────────────────────────────
+      - name: Upload certified chain as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mistcoder-chain-${{ github.sha }}
+          path: |
+            sandbox/chain_export.js
+            sandbox/oracle_knowledge.json
+            sandbox/oracle_signatures.json
+          retention-days: 90

@@ -1,0 +1,1525 @@
+{
+  "phantom_version": "1.0.0",
+  "scan_id": "MSTC-20260422-102206-E05D7E",
+  "timestamp": "2026-04-22 07:44:32 UTC",
+  "summary": {
+    "critical": 0,
+    "high": 2,
+    "total": 2,
+    "path": "modules\\knowledge_graph\\src\\phantom.py"
+  },
+  "tkg": {
+    "nodes": 65,
+    "edges": 41
+  },
+  "attack_paths": [
+    {
+      "path_id": "PATH-0001",
+      "nodes": [
+        {
+          "_label": "VUL0001",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-89",
+          "call_name": "sql_query",
+          "file": "modules\\analysis\\src\\analysis_engine.py",
+          "line": 49,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0001"
+        },
+        {
+          "_label": "VUL0002",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-89",
+          "call_name": "sql_query",
+          "file": "modules\\analysis\\src\\analysis_engine.py",
+          "line": 105,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0002"
+        },
+        {
+          "_label": "VUL0003",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\analysis\\src\\analysis_engine.py",
+          "line": 393,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0003"
+        },
+        {
+          "_label": "VUL0004",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\analysis\\src\\analysis_engine.py",
+          "line": 409,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0004"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0001",
+          "dst": "VUL0002",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0002",
+          "dst": "VUL0003",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0003",
+          "dst": "VUL0004",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 4,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0002",
+      "nodes": [
+        {
+          "_label": "VUL0005",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\analysis\\src\\analyzer.py",
+          "line": 120,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0005"
+        },
+        {
+          "_label": "VUL0006",
+          "cvss_score": 3.0,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\analysis\\src\\analyzer.py",
+          "line": 386,
+          "type": "ConfirmedVuln",
+          "severity": "LOW",
+          "id": "VUL0006"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0005",
+          "dst": "VUL0006",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 2,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0003",
+      "nodes": [
+        {
+          "_label": "VUL0008",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-89",
+          "call_name": "sql_query",
+          "file": "modules\\ingestion\\src\\oracle_report.py",
+          "line": 58,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0008"
+        },
+        {
+          "_label": "VUL0009",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\ingestion\\src\\oracle_report.py",
+          "line": 120,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0009"
+        },
+        {
+          "_label": "VUL0010",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\ingestion\\src\\oracle_report.py",
+          "line": 404,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0010"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0008",
+          "dst": "VUL0009",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0009",
+          "dst": "VUL0010",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 3,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0004",
+      "nodes": [
+        {
+          "_label": "VUL0024",
+          "cvss_score": 9.0,
+          "cwe_id": "CWE-94",
+          "call_name": "eval_exec",
+          "file": "modules\\ingestion\\tests\\test_gaps.py",
+          "line": 105,
+          "type": "ConfirmedVuln",
+          "severity": "CRITICAL",
+          "id": "VUL0024"
+        },
+        {
+          "_label": "VUL0025",
+          "cvss_score": 9.0,
+          "cwe_id": "CWE-94",
+          "call_name": "eval_exec",
+          "file": "modules\\ingestion\\tests\\test_gaps.py",
+          "line": 118,
+          "type": "ConfirmedVuln",
+          "severity": "CRITICAL",
+          "id": "VUL0025"
+        },
+        {
+          "_label": "VUL0026",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-312",
+          "call_name": "Password",
+          "file": "modules\\ingestion\\tests\\test_gaps.py",
+          "line": 25,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0026"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0024",
+          "dst": "VUL0025",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0025",
+          "dst": "VUL0026",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 3,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0005",
+      "nodes": [
+        {
+          "_label": "VUL0027",
+          "cvss_score": 9.0,
+          "cwe_id": "CWE-94",
+          "call_name": "eval_exec",
+          "file": "modules\\ingestion\\tests\\test_parser.py",
+          "line": 257,
+          "type": "ConfirmedVuln",
+          "severity": "CRITICAL",
+          "id": "VUL0027"
+        },
+        {
+          "_label": "VUL0028",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\ingestion\\tests\\test_parser.py",
+          "line": 344,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0028"
+        },
+        {
+          "_label": "VUL0029",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\ingestion\\tests\\test_parser.py",
+          "line": 362,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0029"
+        },
+        {
+          "_label": "VUL0030",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-312",
+          "call_name": "Password",
+          "file": "modules\\ingestion\\tests\\test_parser.py",
+          "line": 157,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0030"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0027",
+          "dst": "VUL0028",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0028",
+          "dst": "VUL0029",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0029",
+          "dst": "VUL0030",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 4,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0006",
+      "nodes": [
+        {
+          "_label": "VUL0032",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\knowledge_graph\\src\\phantom.py",
+          "line": 375,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0032"
+        },
+        {
+          "_label": "VUL0033",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\knowledge_graph\\src\\phantom.py",
+          "line": 408,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0033"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0032",
+          "dst": "VUL0033",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 2,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0007",
+      "nodes": [
+        {
+          "_label": "VUL0035",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\learning\\src\\cve_ingester.py",
+          "line": 93,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0035"
+        },
+        {
+          "_label": "VUL0036",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\learning\\src\\cve_ingester.py",
+          "line": 212,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0036"
+        },
+        {
+          "_label": "VUL0037",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\learning\\src\\cve_ingester.py",
+          "line": 220,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0037"
+        },
+        {
+          "_label": "VUL0038",
+          "cvss_score": 3.0,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\learning\\src\\cve_ingester.py",
+          "line": 232,
+          "type": "ConfirmedVuln",
+          "severity": "LOW",
+          "id": "VUL0038"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0035",
+          "dst": "VUL0036",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0036",
+          "dst": "VUL0037",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0037",
+          "dst": "VUL0038",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 4,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0008",
+      "nodes": [
+        {
+          "_label": "VUL0041",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\oversight\\src\\covenant.py",
+          "line": 114,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0041"
+        },
+        {
+          "_label": "VUL0042",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\oversight\\src\\covenant.py",
+          "line": 122,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0042"
+        },
+        {
+          "_label": "VUL0043",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\oversight\\src\\covenant.py",
+          "line": 304,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0043"
+        },
+        {
+          "_label": "VUL0044",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\oversight\\src\\covenant.py",
+          "line": 312,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0044"
+        },
+        {
+          "_label": "VUL0045",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\oversight\\src\\covenant.py",
+          "line": 370,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0045"
+        },
+        {
+          "_label": "VUL0046",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\oversight\\src\\covenant.py",
+          "line": 527,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0046"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0041",
+          "dst": "VUL0042",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0042",
+          "dst": "VUL0043",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0043",
+          "dst": "VUL0044",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0044",
+          "dst": "VUL0045",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0045",
+          "dst": "VUL0046",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 6,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0009",
+      "nodes": [
+        {
+          "_label": "VUL0047",
+          "cvss_score": 5.0,
+          "cwe_id": "CWE-312",
+          "call_name": "High Entropy String",
+          "file": "modules\\oversight\\src\\oversight_engine.py",
+          "line": 432,
+          "type": "ConfirmedVuln",
+          "severity": "MEDIUM",
+          "id": "VUL0047"
+        },
+        {
+          "_label": "VUL0048",
+          "cvss_score": 5.0,
+          "cwe_id": "CWE-312",
+          "call_name": "High Entropy String",
+          "file": "modules\\oversight\\src\\oversight_engine.py",
+          "line": 433,
+          "type": "ConfirmedVuln",
+          "severity": "MEDIUM",
+          "id": "VUL0048"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0047",
+          "dst": "VUL0048",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 2,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0010",
+      "nodes": [
+        {
+          "_label": "VUL0049",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-312",
+          "call_name": "Password",
+          "file": "modules\\oversight\\tests\\test_oversight_engine.py",
+          "line": 29,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0049"
+        },
+        {
+          "_label": "VUL0050",
+          "cvss_score": 5.0,
+          "cwe_id": "CWE-312",
+          "call_name": "High Entropy String",
+          "file": "modules\\oversight\\tests\\test_oversight_engine.py",
+          "line": 274,
+          "type": "ConfirmedVuln",
+          "severity": "MEDIUM",
+          "id": "VUL0050"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0049",
+          "dst": "VUL0050",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 2,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0011",
+      "nodes": [
+        {
+          "_label": "VUL0051",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\reasoning\\run_reasoning.py",
+          "line": 39,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0051"
+        },
+        {
+          "_label": "VUL0052",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\reasoning\\run_reasoning.py",
+          "line": 40,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0052"
+        },
+        {
+          "_label": "VUL0053",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\reasoning\\run_reasoning.py",
+          "line": 67,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0053"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0051",
+          "dst": "VUL0052",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0052",
+          "dst": "VUL0053",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 3,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0012",
+      "nodes": [
+        {
+          "_label": "VUL0054",
+          "cvss_score": 5.0,
+          "cwe_id": "CWE-327",
+          "call_name": "Weak Hash",
+          "file": "modules\\reasoning\\src\\attack_graph.py",
+          "line": 127,
+          "type": "ConfirmedVuln",
+          "severity": "MEDIUM",
+          "id": "VUL0054"
+        },
+        {
+          "_label": "VUL0055",
+          "cvss_score": 5.0,
+          "cwe_id": "CWE-327",
+          "call_name": "Weak Hash",
+          "file": "modules\\reasoning\\src\\attack_graph.py",
+          "line": 127,
+          "type": "ConfirmedVuln",
+          "severity": "MEDIUM",
+          "id": "VUL0055"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0054",
+          "dst": "VUL0055",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 2,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0013",
+      "nodes": [
+        {
+          "_label": "VUL0056",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-89",
+          "call_name": "sql_query",
+          "file": "modules\\reasoning\\src\\reasoning.py",
+          "line": 301,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0056"
+        },
+        {
+          "_label": "VUL0058",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\reasoning\\src\\reasoning.py",
+          "line": 552,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0058"
+        },
+        {
+          "_label": "VUL0059",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\reasoning\\src\\reasoning.py",
+          "line": 553,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0059"
+        },
+        {
+          "_label": "VUL0060",
+          "cvss_score": 5.0,
+          "cwe_id": "CWE-312",
+          "call_name": "High Entropy String",
+          "file": "modules\\reasoning\\src\\reasoning.py",
+          "line": 164,
+          "type": "ConfirmedVuln",
+          "severity": "MEDIUM",
+          "id": "VUL0060"
+        },
+        {
+          "_label": "VUL0057",
+          "cvss_score": 3.0,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\reasoning\\src\\reasoning.py",
+          "line": 532,
+          "type": "ConfirmedVuln",
+          "severity": "LOW",
+          "id": "VUL0057"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0056",
+          "dst": "VUL0058",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0058",
+          "dst": "VUL0059",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0059",
+          "dst": "VUL0060",
+          "type": "traversal",
+          "confidence": 0.8
+        },
+        {
+          "src": "VUL0060",
+          "dst": "VUL0057",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 5,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    },
+    {
+      "path_id": "PATH-0014",
+      "nodes": [
+        {
+          "_label": "VUL0062",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\scoring\\src\\cvss_scorer.py",
+          "line": 472,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0062"
+        },
+        {
+          "_label": "VUL0063",
+          "cvss_score": 7.5,
+          "cwe_id": "CWE-22",
+          "call_name": "file_path",
+          "file": "modules\\scoring\\src\\cvss_scorer.py",
+          "line": 484,
+          "type": "ConfirmedVuln",
+          "severity": "HIGH",
+          "id": "VUL0063"
+        }
+      ],
+      "edges": [
+        {
+          "src": "VUL0062",
+          "dst": "VUL0063",
+          "type": "traversal",
+          "confidence": 0.8
+        }
+      ],
+      "length": 2,
+      "created_at": "2026-04-22T07:44:32.498220+00:00"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 sql_query",
+      "cwe": "CWE-89",
+      "location": "modules\\analysis\\src\\analysis_engine.py:49",
+      "file": "modules\\analysis\\src\\analysis_engine.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to sql_query"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 sql_query",
+      "cwe": "CWE-89",
+      "location": "modules\\analysis\\src\\analysis_engine.py:105",
+      "file": "modules\\analysis\\src\\analysis_engine.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to sql_query"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\analysis\\src\\analysis_engine.py:393",
+      "file": "modules\\analysis\\src\\analysis_engine.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\analysis\\src\\analysis_engine.py:409",
+      "file": "modules\\analysis\\src\\analysis_engine.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\analysis\\src\\analyzer.py:120",
+      "file": "modules\\analysis\\src\\analyzer.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\analysis\\src\\analyzer.py:386",
+      "file": "modules\\analysis\\src\\analyzer.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "CRYPTO",
+      "title": "Weak Cipher",
+      "cwe": "CWE-327",
+      "location": "modules\\binary_lifting\\src\\disasm_x86_64.py:126",
+      "file": "modules\\binary_lifting\\src\\disasm_x86_64.py",
+      "confidence": 0.95,
+      "detail": "Broken cipher algorithm"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 sql_query",
+      "cwe": "CWE-89",
+      "location": "modules\\ingestion\\src\\oracle_report.py:58",
+      "file": "modules\\ingestion\\src\\oracle_report.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to sql_query"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\ingestion\\src\\oracle_report.py:120",
+      "file": "modules\\ingestion\\src\\oracle_report.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\ingestion\\src\\oracle_report.py:404",
+      "file": "modules\\ingestion\\src\\oracle_report.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:200",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:200",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:204",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:204",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:205",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:205",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:211",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:211",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:212",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\src\\parser.py:212",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to eval_exec"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\ingestion\\src\\parser.py:324",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to file_path"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\ingestion\\src\\parser.py:369",
+      "file": "modules\\ingestion\\src\\parser.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "deserialization flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\ingestion\\src\\taint_model.py:57",
+      "file": "modules\\ingestion\\src\\taint_model.py",
+      "entropy": 3.3729205036561045,
+      "confidence": 0.6745841007312209,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\tests\\test_gaps.py:105",
+      "file": "modules\\ingestion\\tests\\test_gaps.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to eval_exec"
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\tests\\test_gaps.py:118",
+      "file": "modules\\ingestion\\tests\\test_gaps.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to eval_exec"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\ingestion\\tests\\test_gaps.py:25",
+      "file": "modules\\ingestion\\tests\\test_gaps.py",
+      "entropy": 3.647742678581274,
+      "confidence": 0.7295485357162548,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 eval_exec",
+      "cwe": "CWE-94",
+      "location": "modules\\ingestion\\tests\\test_parser.py:257",
+      "file": "modules\\ingestion\\tests\\test_parser.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to eval_exec"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\ingestion\\tests\\test_parser.py:344",
+      "file": "modules\\ingestion\\tests\\test_parser.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\ingestion\\tests\\test_parser.py:362",
+      "file": "modules\\ingestion\\tests\\test_parser.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\ingestion\\tests\\test_parser.py:157",
+      "file": "modules\\ingestion\\tests\\test_parser.py",
+      "entropy": 3.921928094887362,
+      "confidence": 0.7843856189774724,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\knowledge_graph\\src\\neo4j_backend.py:72",
+      "file": "modules\\knowledge_graph\\src\\neo4j_backend.py",
+      "entropy": 3.4387218755408675,
+      "confidence": 0.6877443751081735,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\knowledge_graph\\src\\phantom.py:375",
+      "file": "modules\\knowledge_graph\\src\\phantom.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\knowledge_graph\\src\\phantom.py:408",
+      "file": "modules\\knowledge_graph\\src\\phantom.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\knowledge_graph\\tests\\test_knowledge_graph.py:29",
+      "file": "modules\\knowledge_graph\\tests\\test_knowledge_graph.py",
+      "entropy": 3.879664004902593,
+      "confidence": 0.7759328009805186,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\learning\\src\\cve_ingester.py:93",
+      "file": "modules\\learning\\src\\cve_ingester.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\learning\\src\\cve_ingester.py:212",
+      "file": "modules\\learning\\src\\cve_ingester.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\learning\\src\\cve_ingester.py:220",
+      "file": "modules\\learning\\src\\cve_ingester.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\learning\\src\\cve_ingester.py:232",
+      "file": "modules\\learning\\src\\cve_ingester.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 sql_query",
+      "cwe": "CWE-89",
+      "location": "modules\\learning\\src\\knowledge_base.py:294",
+      "file": "modules\\learning\\src\\knowledge_base.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to sql_query"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "deserialization \u2192 sql_query",
+      "cwe": "CWE-89",
+      "location": "modules\\learning\\src\\pattern_learner.py:49",
+      "file": "modules\\learning\\src\\pattern_learner.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "deserialization flows to sql_query"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\oversight\\src\\covenant.py:114",
+      "file": "modules\\oversight\\src\\covenant.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "env_var \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\oversight\\src\\covenant.py:122",
+      "file": "modules\\oversight\\src\\covenant.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "env_var flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\oversight\\src\\covenant.py:304",
+      "file": "modules\\oversight\\src\\covenant.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\oversight\\src\\covenant.py:312",
+      "file": "modules\\oversight\\src\\covenant.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\oversight\\src\\covenant.py:370",
+      "file": "modules\\oversight\\src\\covenant.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\oversight\\src\\covenant.py:527",
+      "file": "modules\\oversight\\src\\covenant.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "SECRET",
+      "title": "High Entropy String",
+      "cwe": "CWE-312",
+      "location": "modules\\oversight\\src\\oversight_engine.py:432",
+      "file": "modules\\oversight\\src\\oversight_engine.py",
+      "entropy": 3.588354347173234,
+      "confidence": 0.7176708694346468,
+      "detail": "High-entropy string"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "SECRET",
+      "title": "High Entropy String",
+      "cwe": "CWE-312",
+      "location": "modules\\oversight\\src\\oversight_engine.py:433",
+      "file": "modules\\oversight\\src\\oversight_engine.py",
+      "entropy": 3.8841550945958048,
+      "confidence": 0.776831018919161,
+      "detail": "High-entropy string"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\oversight\\tests\\test_oversight_engine.py:29",
+      "file": "modules\\oversight\\tests\\test_oversight_engine.py",
+      "entropy": 3.921928094887362,
+      "confidence": 0.7843856189774724,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "SECRET",
+      "title": "High Entropy String",
+      "cwe": "CWE-312",
+      "location": "modules\\oversight\\tests\\test_oversight_engine.py:274",
+      "file": "modules\\oversight\\tests\\test_oversight_engine.py",
+      "entropy": 3.588354347173234,
+      "confidence": 0.7176708694346468,
+      "detail": "High-entropy string"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\reasoning\\run_reasoning.py:39",
+      "file": "modules\\reasoning\\run_reasoning.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\reasoning\\run_reasoning.py:40",
+      "file": "modules\\reasoning\\run_reasoning.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\reasoning\\run_reasoning.py:67",
+      "file": "modules\\reasoning\\run_reasoning.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "CRYPTO",
+      "title": "Weak Hash",
+      "cwe": "CWE-327",
+      "location": "modules\\reasoning\\src\\attack_graph.py:127",
+      "file": "modules\\reasoning\\src\\attack_graph.py",
+      "confidence": 0.95,
+      "detail": "SHA-1 collision attacks exist"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "CRYPTO",
+      "title": "Weak Hash",
+      "cwe": "CWE-327",
+      "location": "modules\\reasoning\\src\\attack_graph.py:127",
+      "file": "modules\\reasoning\\src\\attack_graph.py",
+      "confidence": 0.95,
+      "detail": "SHA-1 collision attacks exist"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 sql_query",
+      "cwe": "CWE-89",
+      "location": "modules\\reasoning\\src\\reasoning.py:301",
+      "file": "modules\\reasoning\\src\\reasoning.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "http_param flows to sql_query"
+    },
+    {
+      "severity": "LOW",
+      "category": "TAINT_FLOW",
+      "title": "http_param \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\reasoning\\src\\reasoning.py:532",
+      "file": "modules\\reasoning\\src\\reasoning.py",
+      "confidence": 0.3,
+      "sanitized": true,
+      "detail": "http_param flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\reasoning\\src\\reasoning.py:552",
+      "file": "modules\\reasoning\\src\\reasoning.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\reasoning\\src\\reasoning.py:553",
+      "file": "modules\\reasoning\\src\\reasoning.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "SECRET",
+      "title": "High Entropy String",
+      "cwe": "CWE-312",
+      "location": "modules\\reasoning\\src\\reasoning.py:164",
+      "file": "modules\\reasoning\\src\\reasoning.py",
+      "entropy": 3.879664004902593,
+      "confidence": 0.7759328009805186,
+      "detail": "High-entropy string"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\reporting\\tests\\test_report_generator.py:29",
+      "file": "modules\\reporting\\tests\\test_report_generator.py",
+      "entropy": 3.921928094887362,
+      "confidence": 0.7843856189774724,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\scoring\\src\\cvss_scorer.py:472",
+      "file": "modules\\scoring\\src\\cvss_scorer.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "TAINT_FLOW",
+      "title": "cli_arg \u2192 file_path",
+      "cwe": "CWE-22",
+      "location": "modules\\scoring\\src\\cvss_scorer.py:484",
+      "file": "modules\\scoring\\src\\cvss_scorer.py",
+      "confidence": 0.85,
+      "sanitized": false,
+      "detail": "cli_arg flows to file_path"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\scoring\\tests\\test_cvss_scorer.py:38",
+      "file": "modules\\scoring\\tests\\test_cvss_scorer.py",
+      "entropy": 3.921928094887362,
+      "confidence": 0.7843856189774724,
+      "detail": "Password literal"
+    },
+    {
+      "severity": "HIGH",
+      "category": "SECRET",
+      "title": "Password",
+      "cwe": "CWE-312",
+      "location": "modules\\simulation\\tests\\test_simulation_engine.py:28",
+      "file": "modules\\simulation\\tests\\test_simulation_engine.py",
+      "entropy": 3.921928094887362,
+      "confidence": 0.7843856189774724,
+      "detail": "Password literal"
+    }
+  ],
+  "modules_ran": [
+    "ThreatKGBuilder",
+    "AttackPathFinder"
+  ]
+}

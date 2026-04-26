@@ -1,0 +1,93 @@
+2026-04-25 11:02:22 [INFO] Scan started: target=. langs=['py', 'js', 'go'] parallel=False
+2026-04-25 11:02:22 [INFO] PY SCANNER: Loaded phantom_report.json — 14 attack paths -> 44 nodes
+2026-04-25 11:02:22 [INFO] JS SCANNER: 3 files, 14 findings
+2026-04-25 11:02:22 [INFO] GO SCANNER: 1 files, 6 findings
+2026-04-25 11:02:22 [INFO] Trinity pipeline started
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0001 block 63
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0002 block 64
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0003 block 65
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0004 block 66
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0005 block 67
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0006 block 68
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0007 block 69
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0008 block 70
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0009 block 71
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0010 block 72
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0011 block 73
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0012 block 74
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0013 block 75
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-PY-0014 block 76
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-JA-0001 block 60
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-JA-0002 block 61
+2026-04-25 11:02:24 [INFO] DEDUP: UNIFIED-GO-0001 block 62
+2026-04-25 11:02:24 [INFO] Trinity done: 0 certified, 0 blocked, 17 deduped
+2026-04-25 11:02:24 [INFO] Scan complete in 2.30s
+2026-04-25 11:02:25 [INFO] Scan started: target=. langs=['py', 'js', 'go'] parallel=False
+2026-04-25 11:02:25 [INFO] PY SCANNER: Loaded phantom_report.json — 14 attack paths -> 44 nodes
+2026-04-25 11:02:25 [INFO] JS SCANNER: 3 files, 14 findings
+2026-04-25 11:02:25 [INFO] GO SCANNER: 1 files, 6 findings
+2026-04-25 11:02:25 [INFO] Trinity pipeline started
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0001 block 63
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0002 block 64
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0003 block 65
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0004 block 66
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0005 block 67
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0006 block 68
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0007 block 69
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0008 block 70
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0009 block 71
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0010 block 72
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0011 block 73
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0012 block 74
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0013 block 75
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-PY-0014 block 76
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-JA-0001 block 60
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-JA-0002 block 61
+2026-04-25 11:02:25 [INFO] DEDUP: UNIFIED-GO-0001 block 62
+2026-04-25 11:02:25 [INFO] Trinity done: 0 certified, 0 blocked, 17 deduped
+2026-04-25 11:02:25 [INFO] JSON report: reports\mistcoder_report.json
+2026-04-25 11:02:25 [INFO] Scan complete in 0.50s
+2026-04-25 11:02:26 [INFO] Scan started: target=. langs=['py', 'js', 'go'] parallel=False
+2026-04-25 11:02:26 [INFO] PY SCANNER: Loaded phantom_report.json — 14 attack paths -> 44 nodes
+2026-04-25 11:02:26 [INFO] JS SCANNER: 3 files, 14 findings
+2026-04-25 11:02:26 [INFO] GO SCANNER: 1 files, 6 findings
+2026-04-25 11:02:26 [INFO] Trinity pipeline started
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0001 block 63
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0002 block 64
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0003 block 65
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0004 block 66
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0005 block 67
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0006 block 68
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0007 block 69
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0008 block 70
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0009 block 71
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0010 block 72
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0011 block 73
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0012 block 74
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0013 block 75
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-PY-0014 block 76
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-JA-0001 block 60
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-JA-0002 block 61
+2026-04-25 11:02:26 [INFO] DEDUP: UNIFIED-GO-0001 block 62
+2026-04-25 11:02:26 [INFO] Trinity done: 0 certified, 0 blocked, 17 deduped
+2026-04-25 11:02:26 [INFO] SARIF written: reports\mistcoder.sarif (64 results)
+2026-04-25 11:02:26 [INFO] Scan complete in 0.63s
+2026-04-25 11:17:40 [INFO] Scan started: target=. langs=['py', 'js', 'go'] parallel=False workers=4
+2026-04-25 11:17:40 [ERROR] Python scanner error
+Traceback (most recent call last):
+  File "C:\Users\user\MISTCODER\MISTCODER\blockchain\mistcoder_cli.py", line 98, in run_python_scan
+    from blockchain.phantom_scanner import PhantomScanner
+ModuleNotFoundError: No module named 'blockchain.phantom_scanner'
+2026-04-25 11:17:43 [INFO] JS SCANNER: 3 files, 14 findings
+2026-04-25 11:17:43 [INFO] GO SCANNER: 1 files, 6 findings
+2026-04-25 11:17:50 [INFO] Scan complete in 10.30s
+2026-04-25 11:18:15 [INFO] Scan started: target=. langs=['py', 'js', 'go'] parallel=False workers=4
+2026-04-25 11:18:15 [ERROR] Python scanner error
+Traceback (most recent call last):
+  File "C:\Users\user\MISTCODER\MISTCODER\blockchain\mistcoder_cli.py", line 98, in run_python_scan
+    from blockchain.phantom_scanner import PhantomScanner
+ModuleNotFoundError: No module named 'blockchain.phantom_scanner'
+2026-04-25 11:18:16 [INFO] JS SCANNER: 3 files, 14 findings
+2026-04-25 11:18:16 [INFO] GO SCANNER: 1 files, 6 findings
+2026-04-25 11:18:16 [INFO] JSON report: reports\mistcoder_report.json
+2026-04-25 11:18:16 [INFO] Scan complete in 0.60s

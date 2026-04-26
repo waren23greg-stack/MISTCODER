@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Sandbox runtime outputs
+sandbox/*.json
+!sandbox/mistchain.json
+!sandbox/mistchain_index.json
+
+# Zip artifacts
+*.zip
+# Allow oracle brain memory stores
+!sandbox/oracle_knowledge.json
+!sandbox/oracle_cooccurrence.json
+!sandbox/oracle_incubation.json
+!sandbox/oracle_velocity.json
+!sandbox/oracle_signatures.json
+!sandbox/oracle_brain_log.json
+!sandbox/chain_export.js
+!sandbox/threatnet_weights.pkl
+!sandbox/threatnet_history.json

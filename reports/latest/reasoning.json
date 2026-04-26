@@ -1,0 +1,210 @@
+{
+  "meta": {
+    "target": "https://example.com",
+    "elapsed_ms": 0.3,
+    "warnings": [
+      "No viable attack paths found from source to sink."
+    ]
+  },
+  "attack_graph": {
+    "name": "https://example.com",
+    "node_count": 4,
+    "edge_count": 0,
+    "has_cycles": false,
+    "nodes": [
+      {
+        "node_id": "ENTRY::INTERNET",
+        "kind": "SOURCE",
+        "label": "Untrusted Internet Input",
+        "severity": "INFO",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 10.0,
+        "reachability_score": 0.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "SINK::RCE",
+        "kind": "SINK",
+        "label": "Remote Code Execution",
+        "severity": "CRITICAL",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 1.0,
+        "reachability_score": 1.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "SINK::DATA_EXFIL",
+        "kind": "SINK",
+        "label": "Sensitive Data Exfiltration",
+        "severity": "CRITICAL",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 1.0,
+        "reachability_score": 1.0,
+        "impact_score": 0.0,
+        "properties": {}
+      },
+      {
+        "node_id": "SINK::DOS",
+        "kind": "SINK",
+        "label": "Denial of Service",
+        "severity": "HIGH",
+        "cwe_ids": [],
+        "file_path": null,
+        "line_start": null,
+        "line_end": null,
+        "confidence": 1.0,
+        "weight": 2.5,
+        "reachability_score": 1.0,
+        "impact_score": 0.0,
+        "properties": {}
+      }
+    ],
+    "edges": []
+  },
+  "path_analysis": {
+    "total_viable_paths": 0,
+    "unreachable_count": 0,
+    "shortest_paths": [],
+    "top_paths": [],
+    "unreachable_nodes": [],
+    "blast_radius": {}
+  },
+  "chain_report": {
+    "chain_count": 0,
+    "max_score": 0.0,
+    "unique_tactics": [],
+    "chains": []
+  },
+  "target_risk": {
+    "aggregate_score": 7.37,
+    "risk_level": "HIGH",
+    "summary": "MISTCODER Risk Assessment \u2014 Level: HIGH  (7.4/10)\n\n  4 findings detected, 3 reachable from attack surface.\n  0 findings amplified by multi-step exploitation chains.\n  Highest priority: Remote Code Execution at None:None (score 4.7).\n\n  Recommendation: Address all CRITICAL and HIGH findings before deployment.\n  Focus remediation on the top-5 attack surface nodes identified above.",
+    "top_attack_surface": [
+      "Remote Code Execution (CRITICAL) \u2014 score 4.7",
+      "Sensitive Data Exfiltration (CRITICAL) \u2014 score 4.7",
+      "Denial of Service (HIGH) \u2014 score 4.7"
+    ],
+    "findings": [
+      {
+        "node_id": "ENTRY::INTERNET",
+        "label": "Untrusted Internet Input",
+        "file_path": null,
+        "line_start": null,
+        "severity": "INFO",
+        "cvss_base": 0.0,
+        "chain_amplified": 0.0,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 0.0,
+        "remediation_priority": 4
+      },
+      {
+        "node_id": "SINK::RCE",
+        "label": "Remote Code Execution",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 1
+      },
+      {
+        "node_id": "SINK::DATA_EXFIL",
+        "label": "Sensitive Data Exfiltration",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 2
+      },
+      {
+        "node_id": "SINK::DOS",
+        "label": "Denial of Service",
+        "file_path": null,
+        "line_start": null,
+        "severity": "HIGH",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 3
+      }
+    ],
+    "remediation_order": [
+      {
+        "node_id": "SINK::RCE",
+        "label": "Remote Code Execution",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 1
+      },
+      {
+        "node_id": "SINK::DATA_EXFIL",
+        "label": "Sensitive Data Exfiltration",
+        "file_path": null,
+        "line_start": null,
+        "severity": "CRITICAL",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 2
+      },
+      {
+        "node_id": "SINK::DOS",
+        "label": "Denial of Service",
+        "file_path": null,
+        "line_start": null,
+        "severity": "HIGH",
+        "cvss_base": 4.7,
+        "chain_amplified": 4.7,
+        "blast_radius": 0,
+        "reachable": true,
+        "final_score": 4.7,
+        "remediation_priority": 3
+      },
+      {
+        "node_id": "ENTRY::INTERNET",
+        "label": "Untrusted Internet Input",
+        "file_path": null,
+        "line_start": null,
+        "severity": "INFO",
+        "cvss_base": 0.0,
+        "chain_amplified": 0.0,
+        "blast_radius": 0,
+        "reachable": false,
+        "final_score": 0.0,
+        "remediation_priority": 4
+      }
+    ]
+  }
+}

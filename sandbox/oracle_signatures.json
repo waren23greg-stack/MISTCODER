@@ -1,0 +1,613 @@
+{
+  "6976099df0da1ac155f3d92b5232d6062ba175b849c5d24adfdec3269bf8d098": {
+    "first_seen": "2026-04-24",
+    "sightings": 17,
+    "finding_ids": [
+      "PATH-0001",
+      "PATH-0003",
+      "PATH-0001",
+      "PATH-0003",
+      "PATH-0001",
+      "PATH-0003",
+      "PATH-0001",
+      "PATH-0003",
+      "PATH-0001",
+      "PATH-0003",
+      "PATH-0001",
+      "PATH-0003",
+      "PATH-0001",
+      "PATH-0001",
+      "NEURAL-002",
+      "UNIFIED-PY-0001",
+      "UNIFIED-PY-0003"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "sql_query",
+      "CWE-89",
+      "file_path",
+      "CWE-22"
+    ],
+    "score_range": [
+      7.5,
+      7.5
+    ]
+  },
+  "5391532d5f517242cd3c4d1f6620039bc3f10063fa62f4bd6e5f58438df356e5": {
+    "first_seen": "2026-04-24",
+    "sightings": 6,
+    "finding_ids": [
+      "PATH-0002",
+      "PATH-0002",
+      "PATH-0002",
+      "PATH-0002",
+      "PATH-0002",
+      "PATH-0002"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "file_path",
+      "CWE-22"
+    ],
+    "score_range": [
+      5.25,
+      5.25
+    ]
+  },
+  "0a41922495282b670a55713fa66baed28c6ef0ed0db00b39c6fed8e25745b0b9": {
+    "first_seen": "2026-04-24",
+    "sightings": 10,
+    "finding_ids": [
+      "PATH-0004",
+      "PATH-0004",
+      "PATH-0004",
+      "PATH-0004",
+      "PATH-0004",
+      "PATH-0004",
+      "PATH-0004",
+      "PATH-0004",
+      "NEURAL-001",
+      "UNIFIED-PY-0004"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "eval_exec",
+      "CWE-94",
+      "Password",
+      "CWE-312"
+    ],
+    "score_range": [
+      8.25,
+      8.5
+    ]
+  },
+  "2b51dc8ab970f06fa6f9e375bddbd409f4e9f33dc8e6659fcdeae03f6e438d86": {
+    "first_seen": "2026-04-24",
+    "sightings": 6,
+    "finding_ids": [
+      "PATH-0005",
+      "PATH-0005",
+      "PATH-0005",
+      "PATH-0005",
+      "PATH-0005",
+      "PATH-0005"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "eval_exec",
+      "CWE-94",
+      "file_path",
+      "CWE-22",
+      "Password",
+      "CWE-312"
+    ],
+    "score_range": [
+      7.88,
+      7.88
+    ]
+  },
+  "05d7b4c035a5bc0fc2e6fdc9d4c107565ac1bc37d78c7376dd922b027e151db2": {
+    "first_seen": "2026-04-24",
+    "sightings": 36,
+    "finding_ids": [
+      "PATH-0006",
+      "PATH-0007",
+      "PATH-0008",
+      "PATH-0011",
+      "PATH-0014",
+      "PATH-0006",
+      "PATH-0007",
+      "PATH-0008",
+      "PATH-0011",
+      "PATH-0014",
+      "PATH-0006",
+      "PATH-0007",
+      "PATH-0008",
+      "PATH-0011",
+      "PATH-0014",
+      "PATH-0006",
+      "PATH-0007",
+      "PATH-0008",
+      "PATH-0011",
+      "PATH-0014",
+      "PATH-0006",
+      "PATH-0007",
+      "PATH-0008",
+      "PATH-0011",
+      "PATH-0014",
+      "PATH-0006",
+      "PATH-0007",
+      "PATH-0008",
+      "PATH-0011",
+      "PATH-0014",
+      "UNIFIED-PY-0002",
+      "UNIFIED-PY-0006",
+      "UNIFIED-PY-0007",
+      "UNIFIED-PY-0008",
+      "UNIFIED-PY-0011",
+      "UNIFIED-PY-0014"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "file_path",
+      "CWE-22"
+    ],
+    "score_range": [
+      6.38,
+      7.5
+    ]
+  },
+  "635993ff1cb78944b44391a6f43912d5855c0d3fd3ae7037559b3b28e7cbf46d": {
+    "first_seen": "2026-04-24",
+    "sightings": 7,
+    "finding_ids": [
+      "PATH-0009",
+      "PATH-0009",
+      "PATH-0009",
+      "PATH-0009",
+      "PATH-0009",
+      "PATH-0009",
+      "UNIFIED-PY-0009"
+    ],
+    "verdict": "NOVEL",
+    "steps": [
+      "High Entropy String",
+      "CWE-312"
+    ],
+    "score_range": [
+      5.0,
+      5.0
+    ]
+  },
+  "06444da3df67023bcfa0efdef0df7be1ea97e52f1677c77f4bc7fc25e31d973f": {
+    "first_seen": "2026-04-24",
+    "sightings": 6,
+    "finding_ids": [
+      "PATH-0010",
+      "PATH-0010",
+      "PATH-0010",
+      "PATH-0010",
+      "PATH-0010",
+      "PATH-0010"
+    ],
+    "verdict": "NOVEL",
+    "steps": [
+      "Password",
+      "CWE-312",
+      "High Entropy String"
+    ],
+    "score_range": [
+      6.25,
+      6.25
+    ]
+  },
+  "da0c1e57b28868fc537aea7aa7809851b162c001575f9f0b38c30914a984f89a": {
+    "first_seen": "2026-04-24",
+    "sightings": 9,
+    "finding_ids": [
+      "PATH-0012",
+      "PATH-0012",
+      "PATH-0012",
+      "PATH-0012",
+      "PATH-0012",
+      "PATH-0012",
+      "PATH-0012",
+      "PATH-0012",
+      "UNIFIED-PY-0012"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "Weak Hash",
+      "CWE-327"
+    ],
+    "score_range": [
+      5.0,
+      5.0
+    ]
+  },
+  "4c6cb13186bd42eaac3b397a2a872f7492e8feec3a4508dc74e66519a56e44e8": {
+    "first_seen": "2026-04-24",
+    "sightings": 7,
+    "finding_ids": [
+      "PATH-0013",
+      "PATH-0013",
+      "PATH-0013",
+      "PATH-0013",
+      "PATH-0013",
+      "PATH-0013",
+      "UNIFIED-PY-0013"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "sql_query",
+      "CWE-89",
+      "file_path",
+      "CWE-22",
+      "High Entropy String",
+      "CWE-312"
+    ],
+    "score_range": [
+      6.1,
+      6.67
+    ]
+  },
+  "531f047b9167998194264cfd887b9fc189ee5e068c9b3d15217a3511c68b0617": {
+    "first_seen": "2026-04-25",
+    "sightings": 3,
+    "finding_ids": [
+      "PATH-NEW",
+      "LIVE-001",
+      "PR-123"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "eval_exec",
+      "CWE-94"
+    ],
+    "score_range": [
+      8.1,
+      8.5
+    ]
+  },
+  "9541c0a3c431336277de2abd58ece48660796907cc2de8ba8c5fdde3b0b7c899": {
+    "first_seen": "2026-04-25",
+    "sightings": 1,
+    "finding_ids": [
+      "NEURAL-003"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "unknown_pattern",
+      "CWE-999"
+    ],
+    "score_range": [
+      3.0,
+      3.0
+    ]
+  },
+  "95b505551da20ac0bbb892e8a065b00ad7aae052ba1590daa40a738909a89fdf": {
+    "first_seen": "2026-04-25",
+    "sightings": 2,
+    "finding_ids": [
+      "CHECK-001",
+      "CHECK-001"
+    ],
+    "verdict": "NOVEL",
+    "steps": [
+      "eval_exec",
+      "CWE-94",
+      "Password"
+    ],
+    "score_range": [
+      8.5,
+      8.5
+    ]
+  },
+  "3cd932908676252e85da05ef57184b2e590dd2785686073e1af05405edab4307": {
+    "first_seen": "2026-04-25",
+    "sightings": 2,
+    "finding_ids": [
+      "CHECK-002",
+      "CHECK-002"
+    ],
+    "verdict": "NOVEL",
+    "steps": [
+      "unknown_func",
+      "CWE-999"
+    ],
+    "score_range": [
+      3.0,
+      3.0
+    ]
+  },
+  "7a9e5e432357e817d84c4d68417dc59dd5e399d556c4392e59abfa3d8baf417d": {
+    "first_seen": "2026-04-25",
+    "sightings": 2,
+    "finding_ids": [
+      "CHECK-003",
+      "CHECK-003"
+    ],
+    "verdict": "DISPUTED",
+    "steps": [
+      "conflicting_signal",
+      "CWE-362"
+    ],
+    "score_range": [
+      4.5,
+      4.5
+    ]
+  },
+  "ac7898817a008c21c7ddd7a57d42f28dbbffc2f1c57b52ab3c8ea578da845e7b": {
+    "first_seen": "2026-04-25",
+    "sightings": 2,
+    "finding_ids": [
+      "LANG-JA-0001",
+      "UNIFIED-JA-0001"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "sql_query",
+      "CWE-89",
+      "eval_exec",
+      "CWE-94",
+      "cmd_inject",
+      "CWE-78",
+      "hardcoded_secret",
+      "CWE-312",
+      "weak_hash",
+      "CWE-327",
+      "xss_inject",
+      "CWE-79"
+    ],
+    "score_range": [
+      7.92,
+      7.92
+    ]
+  },
+  "9d4126f7474b85dc12ad83073486d0c9d38b554c4a0ebf61acab76824015415e": {
+    "first_seen": "2026-04-25",
+    "sightings": 2,
+    "finding_ids": [
+      "LANG-JA-0002",
+      "UNIFIED-JA-0002"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "hardcoded_secret",
+      "CWE-312",
+      "xss_inject",
+      "CWE-79",
+      "eval_exec",
+      "CWE-94",
+      "cmd_inject",
+      "CWE-78"
+    ],
+    "score_range": [
+      7.88,
+      7.88
+    ]
+  },
+  "23e19a49961e6b0cf379b794cc10a644f1790d829a078ed102be423ab1e7be7c": {
+    "first_seen": "2026-04-25",
+    "sightings": 2,
+    "finding_ids": [
+      "LANG-GO-0001",
+      "UNIFIED-GO-0001"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "hardcoded_secret",
+      "CWE-312",
+      "sql_query",
+      "CWE-89",
+      "cmd_inject",
+      "CWE-78",
+      "weak_hash",
+      "CWE-327"
+    ],
+    "score_range": [
+      7.88,
+      7.88
+    ]
+  },
+  "9c5b3aaa9c0a1ebfe69ffcd371697b480c2670256b0f4f7fb1fb3fab9bc0fdf0": {
+    "first_seen": "2026-04-25",
+    "sightings": 1,
+    "finding_ids": [
+      "UNIFIED-PY-0005"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "eval_exec",
+      "CWE-94",
+      "file_path",
+      "CWE-22",
+      "Password",
+      "CWE-312"
+    ],
+    "score_range": [
+      8.0,
+      8.0
+    ]
+  },
+  "7c19161cebcd469dfe6c760ca16b58657af35392e6fa75a64c291bfcb5a1ff6b": {
+    "first_seen": "2026-04-25",
+    "sightings": 1,
+    "finding_ids": [
+      "UNIFIED-PY-0010"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "Password",
+      "CWE-312"
+    ],
+    "score_range": [
+      7.5,
+      7.5
+    ]
+  },
+  "cfffd8c1d09076228f7327ded985f13729d0ecfe3b59cb4ac26c971a47f92921": {
+    "first_seen": "2026-04-25",
+    "sightings": 5,
+    "finding_ids": [
+      "EDEN-NV-0001",
+      "EDEN-NV-0002",
+      "EDEN-NV-0023",
+      "EDEN-NV-0031",
+      "EDEN-NV-0032"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "illegal_clearing",
+      "ECO-006"
+    ],
+    "score_range": [
+      8.7,
+      8.7
+    ]
+  },
+  "66e78b809cec153a9e77ce4d1d4b9f53a338c728efae735e135a4458aeebc7a1": {
+    "first_seen": "2026-04-25",
+    "sightings": 3,
+    "finding_ids": [
+      "EDEN-NV-0003",
+      "EDEN-NV-0014",
+      "EDEN-NV-0026"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "vegetation_stress",
+      "ECO-005"
+    ],
+    "score_range": [
+      6.8,
+      6.8
+    ]
+  },
+  "0c632295d38b45b0991570ed0c99a77b7c275e9dc3436c66d50aa344799c41d9": {
+    "first_seen": "2026-04-25",
+    "sightings": 13,
+    "finding_ids": [
+      "EDEN-NV-0004",
+      "EDEN-NV-0006",
+      "EDEN-NV-0007",
+      "EDEN-NV-0009",
+      "EDEN-NV-0013",
+      "EDEN-NV-0018",
+      "EDEN-NV-0021",
+      "EDEN-NV-0027",
+      "EDEN-NV-0029",
+      "EDEN-NV-0030",
+      "EDEN-NV-0034",
+      "EDEN-NV-0035",
+      "EDEN-NV-0036"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "soil_degradation",
+      "ECO-004"
+    ],
+    "score_range": [
+      5.5,
+      5.5
+    ]
+  },
+  "866329aaf618dea625aa116498939cf448739809f70d7359bd460cbbf39b2f3c": {
+    "first_seen": "2026-04-25",
+    "sightings": 7,
+    "finding_ids": [
+      "EDEN-NV-0005",
+      "EDEN-NV-0008",
+      "EDEN-NV-0019",
+      "EDEN-NV-0020",
+      "EDEN-NV-0022",
+      "EDEN-NV-0024",
+      "EDEN-NV-0028"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "edge_effect",
+      "ECO-008"
+    ],
+    "score_range": [
+      4.2,
+      4.2
+    ]
+  },
+  "74f0b541b4107cb0251331cc2485b3d45b2419e0fcad6d9137d6f8ff44969364": {
+    "first_seen": "2026-04-25",
+    "sightings": 2,
+    "finding_ids": [
+      "EDEN-NV-0010",
+      "EDEN-NV-0015"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "habitat_fragmentation",
+      "ECO-002"
+    ],
+    "score_range": [
+      7.5,
+      7.5
+    ]
+  },
+  "b2d59ce681bf3723c26c6b06d90080f91bc61c3a79ec3d47bf8f665218cb177b": {
+    "first_seen": "2026-04-25",
+    "sightings": 6,
+    "finding_ids": [
+      "EDEN-NV-0011",
+      "EDEN-NV-0012",
+      "EDEN-NV-0016",
+      "EDEN-NV-0017",
+      "EDEN-NV-0025",
+      "EDEN-NV-0033"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "deforestation_event",
+      "ECO-001"
+    ],
+    "score_range": [
+      9.2,
+      9.2
+    ]
+  },
+  "a0ea2693d40d7a9cac8683b6331f766f42c6082512bc3524df170ab74e47bfe8": {
+    "first_seen": "2026-04-25",
+    "sightings": 1,
+    "finding_ids": [
+      "EDEN-AC-0001"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "human_activity",
+      "ECO-008",
+      "fire_crackle",
+      "ECO-007"
+    ],
+    "score_range": [
+      6.5,
+      6.5
+    ]
+  },
+  "3be26e3b370bf5c1e3e3e900b32511f6e116c2b85bd819ba7d65d849ea5d1fde": {
+    "first_seen": "2026-04-25",
+    "sightings": 1,
+    "finding_ids": [
+      "EDEN-AC-0002"
+    ],
+    "verdict": "CONFIRMED",
+    "steps": [
+      "human_activity",
+      "ECO-008",
+      "heavy_vehicle",
+      "ECO-002",
+      "chainsaw_detected",
+      "ECO-001"
+    ],
+    "score_range": [
+      7.6,
+      7.6
+    ]
+  }
+}

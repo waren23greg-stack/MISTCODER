@@ -1,0 +1,78 @@
+{
+  "engine": "MISTCODER MOD-02 Static Analysis Engine v0.1.0",
+  "generated": "2026-04-16T14:31:23.623647+00:00",
+  "meta": {
+    "ir_files": [
+      "sandbox/sample_js_ir_output.json"
+    ]
+  },
+  "summary": {
+    "total": 5,
+    "critical": 4,
+    "high": 0,
+    "medium": 1,
+    "low": 0
+  },
+  "findings": [
+    {
+      "finding_id": "FD0001",
+      "call_name": "eval",
+      "file": "sandbox/sample_target.js",
+      "line": 20,
+      "severity": "CRITICAL",
+      "cvss_score": 10.0,
+      "cwe_id": "CWE-95",
+      "description": "Improper neutralization of directives in eval",
+      "taint_path": [],
+      "context": null
+    },
+    {
+      "finding_id": "FD0005",
+      "call_name": "eval",
+      "file": "sandbox/sample_target.js",
+      "line": 40,
+      "severity": "CRITICAL",
+      "cvss_score": 10.0,
+      "cwe_id": "CWE-95",
+      "description": "Improper neutralization of directives in eval",
+      "taint_path": [],
+      "context": "parseUserData"
+    },
+    {
+      "finding_id": "FD0003",
+      "call_name": "Function",
+      "file": "sandbox/sample_target.js",
+      "line": 36,
+      "severity": "CRITICAL",
+      "cvss_score": 9.4,
+      "cwe_id": "CWE-95",
+      "description": "Code injection via Function constructor",
+      "taint_path": [],
+      "context": "parseUserData"
+    },
+    {
+      "finding_id": "FD0002",
+      "call_name": "execSync",
+      "file": "sandbox/sample_target.js",
+      "line": 32,
+      "severity": "CRITICAL",
+      "cvss_score": 9.3,
+      "cwe_id": "CWE-78",
+      "description": "Synchronous OS command injection",
+      "taint_path": [],
+      "context": "runSystemCommand"
+    },
+    {
+      "finding_id": "FD0004",
+      "call_name": "setTimeout",
+      "file": "sandbox/sample_target.js",
+      "line": 39,
+      "severity": "MEDIUM",
+      "cvss_score": 5.3,
+      "cwe_id": "CWE-95",
+      "description": "Deferred eval via setTimeout",
+      "taint_path": [],
+      "context": "parseUserData"
+    }
+  ]
+}

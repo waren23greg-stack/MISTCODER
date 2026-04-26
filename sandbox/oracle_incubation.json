@@ -1,0 +1,220 @@
+{
+  "f99678bdb5c7fe5cd1e17250272e84abe972bd1c1129829a9b25a0202002c080": {
+    "steps": [
+      "High Entropy String",
+      "CWE-312"
+    ],
+    "sightings": 6,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-24",
+    "scores": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "status": "PROMOTED"
+  },
+  "854adfe610a831723d0122d27d41b35f4745371f7b81e08080fdf51dd12d960b": {
+    "steps": [
+      "Password",
+      "CWE-312",
+      "High Entropy String"
+    ],
+    "sightings": 6,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-24",
+    "scores": [
+      6.25,
+      6.25,
+      6.25,
+      6.25,
+      6.25,
+      6.25
+    ],
+    "status": "PROMOTED"
+  },
+  "6ec599e05e355c796b235b1407f8aaffd8409c901aa69d173076928d063ea9de": {
+    "steps": [
+      "unknown_pattern",
+      "CWE-999"
+    ],
+    "sightings": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      3.0
+    ],
+    "status": "INCUBATING"
+  },
+  "d888c076f1c128b128c619ddfee1d75e0500fd2354c80a763c0577ce865b4344": {
+    "steps": [
+      "unknown_func",
+      "CWE-999"
+    ],
+    "sightings": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      3.0,
+      3.0
+    ],
+    "status": "INCUBATING"
+  },
+  "1938a076269deb85de483f16fcb55bcaf2517382b2845029fee83aed9968beb1": {
+    "steps": [
+      "conflicting_signal",
+      "CWE-362"
+    ],
+    "sightings": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      4.5,
+      4.5
+    ],
+    "status": "INCUBATING"
+  },
+  "abdf251ea5f95f5a574d4a5a3b621b8de75b5d8747d96db10aafd7acd5aa9f5e": {
+    "steps": [
+      "illegal_clearing",
+      "ECO-006"
+    ],
+    "sightings": 5,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      8.7,
+      8.7,
+      8.7,
+      8.7,
+      8.7
+    ],
+    "status": "INCUBATING"
+  },
+  "2b6447f5bfcc6910ae49942948cccd6bf7e5e4a452367763d06b8ed631a8ab9a": {
+    "steps": [
+      "vegetation_stress",
+      "ECO-005"
+    ],
+    "sightings": 3,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      6.8,
+      6.8,
+      6.8
+    ],
+    "status": "INCUBATING"
+  },
+  "38a2962a9e9008c63ecc5ffa0997f8406d450724e5ca4f6317c14800fad0aec0": {
+    "steps": [
+      "soil_degradation",
+      "ECO-004"
+    ],
+    "sightings": 13,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5,
+      5.5
+    ],
+    "status": "INCUBATING"
+  },
+  "ca7a73ac49962b1cd4f45f30c48cb5b99cc4d59725862fa343b8b2ca8aa0e617": {
+    "steps": [
+      "edge_effect",
+      "ECO-008"
+    ],
+    "sightings": 7,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      4.2,
+      4.2,
+      4.2,
+      4.2,
+      4.2,
+      4.2,
+      4.2
+    ],
+    "status": "INCUBATING"
+  },
+  "e6c350f49325b1e6336408da3838df56c7910088341e00c3e6e3c4610ab388dc": {
+    "steps": [
+      "habitat_fragmentation",
+      "ECO-002"
+    ],
+    "sightings": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      7.5,
+      7.5
+    ],
+    "status": "INCUBATING"
+  },
+  "cda04c5d8b859073f5db27d71cb95a8a7a6c4a51bb2b555e318f1d9484b134cd": {
+    "steps": [
+      "deforestation_event",
+      "ECO-001"
+    ],
+    "sightings": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      9.2,
+      9.2,
+      9.2,
+      9.2,
+      9.2,
+      9.2
+    ],
+    "status": "INCUBATING"
+  },
+  "314d92f0aa5848be46f9bae89baf959779bba9a2a0cf61e194aadf5f849ea634": {
+    "steps": [
+      "human_activity",
+      "ECO-008",
+      "fire_crackle",
+      "ECO-007"
+    ],
+    "sightings": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      6.5
+    ],
+    "status": "INCUBATING"
+  },
+  "36bce7989e3fac305c0c142e4f486e75abed4e024f7296f7acf9834b23c9119d": {
+    "steps": [
+      "human_activity",
+      "ECO-008",
+      "heavy_vehicle",
+      "ECO-002",
+      "chainsaw_detected",
+      "ECO-001"
+    ],
+    "sightings": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25",
+    "scores": [
+      7.6
+    ],
+    "status": "INCUBATING"
+  }
+}

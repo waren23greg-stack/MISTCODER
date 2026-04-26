@@ -1,0 +1,1488 @@
+{
+  "scanned_at": "2026-04-25T18:23:55.472850+00:00",
+  "elapsed_s": 19.9,
+  "trinity": {
+    "certified": 31,
+    "blocked": 7,
+    "deduplicated": 0
+  },
+  "certified_events": [
+    {
+      "chain_id": "EDEN-NV-0001",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 77,
+      "hash": "000be9d395b74055d3b0ecfc",
+      "bio_score": 8.7,
+      "carbon_tco2": 6649.4,
+      "species_risk": [
+        "All canopy species"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0001",
+        "block_index": 77,
+        "block_hash": "000be9d395b74055d3b0ecfc26260fbace219b6715faaff7f53b789c467fef58",
+        "certified_at": "2026-04-25T18:23:49.134648+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.316347,
+          "lng": 35.645186
+        },
+        "impact": {
+          "bio_score": 8.7,
+          "carbon_tco2": 6649.4,
+          "area_ha": 40.5,
+          "ndvi_delta": -0.2612,
+          "species_risk": [
+            "All canopy species"
+          ],
+          "eco_codes": [
+            "ECO-006"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.91,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "CITES-2022",
+            "CBD-COP15"
+          ],
+          "signature": "37ddb4bdf41fcb2e",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 8.7/10 ecological event. ~6649.4 tCO2 impacted. Block #77 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0002",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 78,
+      "hash": "0004515375fc0e6ee3e4c545",
+      "bio_score": 8.7,
+      "carbon_tco2": 27376.8,
+      "species_risk": [
+        "All canopy species"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0002",
+        "block_index": 78,
+        "block_hash": "0004515375fc0e6ee3e4c5456fcbc60a9bd515f95ca570c3ca161a844d81c05e",
+        "certified_at": "2026-04-25T18:23:49.202375+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.407831,
+          "lng": 35.710775
+        },
+        "impact": {
+          "bio_score": 8.7,
+          "carbon_tco2": 27376.8,
+          "area_ha": 170.0,
+          "ndvi_delta": -0.2562,
+          "species_risk": [
+            "All canopy species"
+          ],
+          "eco_codes": [
+            "ECO-006"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.9624,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "CITES-2022",
+            "CBD-COP15"
+          ],
+          "signature": "37ddb4bdf41fcb2e",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 8.7/10 ecological event. ~27376.8 tCO2 impacted. Block #78 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0003",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 79,
+      "hash": "000539c611505d73da2c47bd",
+      "bio_score": 6.8,
+      "carbon_tco2": 1089.7,
+      "species_risk": [
+        "Grassland grazers"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0003",
+        "block_index": 79,
+        "block_hash": "000539c611505d73da2c47bd91ea8e7940aa89ba653d9d764c93b1ac03be14a1",
+        "certified_at": "2026-04-25T18:23:49.438665+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.268599,
+          "lng": 35.752264
+        },
+        "impact": {
+          "bio_score": 6.8,
+          "carbon_tco2": 1089.7,
+          "area_ha": 55.5,
+          "ndvi_delta": -0.1718,
+          "species_risk": [
+            "Grassland grazers"
+          ],
+          "eco_codes": [
+            "ECO-005"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.82,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "NASA-MODIS-2023"
+          ],
+          "signature": "2d9898b29a601ea1",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 6.8/10 ecological event. ~1089.7 tCO2 impacted. Block #79 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0004",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 80,
+      "hash": "00016cdb40e27f3050c31a29",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0004",
+        "block_index": 80,
+        "block_hash": "00016cdb40e27f3050c31a29779a5850372865d890e1fe4bd5fda30006d9f035",
+        "certified_at": "2026-04-25T18:23:49.484637+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.216832,
+          "lng": 35.758238
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 84.2,
+          "ndvi_delta": -0.1321,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.7,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #80 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0006",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 81,
+      "hash": "000f282be90bf3f47dadfc15",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0006",
+        "block_index": 81,
+        "block_hash": "000f282be90bf3f47dadfc15fbd3681e9f8260000c0fffdf2867d976567a858c",
+        "certified_at": "2026-04-25T18:23:49.544600+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.202335,
+          "lng": 35.687269
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 197.7,
+          "ndvi_delta": -0.1006,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.75,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #81 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0007",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 82,
+      "hash": "00062b6d7f93c20153db7a9e",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0007",
+        "block_index": 82,
+        "block_hash": "00062b6d7f93c20153db7a9ebe89c8a5b3512152f9428b7c8da5f4ba2e7801d8",
+        "certified_at": "2026-04-25T18:23:49.652533+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.397389,
+          "lng": 35.571627
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 199.6,
+          "ndvi_delta": -0.1316,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.8,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #82 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0009",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 83,
+      "hash": "000258a5a1a957dbb3c4b562",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0009",
+        "block_index": 83,
+        "block_hash": "000258a5a1a957dbb3c4b562f04253bf552402f313b6a92ae66b203882c2db00",
+        "certified_at": "2026-04-25T18:23:49.863934+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.333396,
+          "lng": 35.583689
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 59.2,
+          "ndvi_delta": -0.1484,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #83 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0010",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 84,
+      "hash": "0006b5bdf949156ea2638c7d",
+      "bio_score": 7.5,
+      "carbon_tco2": 9363.7,
+      "species_risk": [
+        "Large mammals",
+        "Migratory birds"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0010",
+        "block_index": 84,
+        "block_hash": "0006b5bdf949156ea2638c7d4a9db5583e8098154aef9dcfa021a1ad047a43cf",
+        "certified_at": "2026-04-25T18:23:50.016578+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.277478,
+          "lng": 35.520369
+        },
+        "impact": {
+          "bio_score": 7.5,
+          "carbon_tco2": 9363.7,
+          "area_ha": 198.0,
+          "ndvi_delta": -0.2069,
+          "species_risk": [
+            "Large mammals",
+            "Migratory birds"
+          ],
+          "eco_codes": [
+            "ECO-002"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.87,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IPBES-2019",
+            "WWF-LPI-2022"
+          ],
+          "signature": "65498ef62f758ea3",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 7.5/10 ecological event. ~9363.7 tCO2 impacted. Block #84 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0011",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 85,
+      "hash": "0006d080cc179269e293dd94",
+      "bio_score": 9.2,
+      "carbon_tco2": 1688.1,
+      "species_risk": [
+        "Forest elephants",
+        "Colobus monkey"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0011",
+        "block_index": 85,
+        "block_hash": "0006d080cc179269e293dd94a1bddc66833ac3eae045794e184d180e946fcdf8",
+        "certified_at": "2026-04-25T18:23:50.076198+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.228012,
+          "lng": 35.68394
+        },
+        "impact": {
+          "bio_score": 9.2,
+          "carbon_tco2": 1688.1,
+          "area_ha": 5.5,
+          "ndvi_delta": -0.4297,
+          "species_risk": [
+            "Forest elephants",
+            "Colobus monkey"
+          ],
+          "eco_codes": [
+            "ECO-001"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.95,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IUCN-REDLIST-2023",
+            "IPBES-2019"
+          ],
+          "signature": "70b44018c79b33f2",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 9.2/10 ecological event. ~1688.1 tCO2 impacted. Block #85 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0012",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 86,
+      "hash": "000662e3b992cfd718291a9d",
+      "bio_score": 9.2,
+      "carbon_tco2": 16239.9,
+      "species_risk": [
+        "Forest elephants",
+        "Colobus monkey"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0012",
+        "block_index": 86,
+        "block_hash": "000662e3b992cfd718291a9d5d7a1bd03db80ef3529a0edd5ec00e7742e64f0d",
+        "certified_at": "2026-04-25T18:23:50.211950+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.224628,
+          "lng": 35.717647
+        },
+        "impact": {
+          "bio_score": 9.2,
+          "carbon_tco2": 16239.9,
+          "area_ha": 48.8,
+          "ndvi_delta": -0.4659,
+          "species_risk": [
+            "Forest elephants",
+            "Colobus monkey"
+          ],
+          "eco_codes": [
+            "ECO-001"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IUCN-REDLIST-2023",
+            "IPBES-2019"
+          ],
+          "signature": "70b44018c79b33f2",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 9.2/10 ecological event. ~16239.9 tCO2 impacted. Block #86 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0013",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 87,
+      "hash": "000076b2d449a7f390fa36b6",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0013",
+        "block_index": 87,
+        "block_hash": "000076b2d449a7f390fa36b6feb67daa20ea3beca2e1f2e4b91032f15ff50a29",
+        "certified_at": "2026-04-25T18:23:50.634688+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.41012,
+          "lng": 35.715868
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 174.6,
+          "ndvi_delta": -0.1345,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #87 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0014",
+      "source": "ndvi",
+      "region": "Mau Forest",
+      "block": 88,
+      "hash": "000744ef41d65405d9634a10",
+      "bio_score": 6.8,
+      "carbon_tco2": 2189.0,
+      "species_risk": [
+        "Grassland grazers"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0014",
+        "block_index": 88,
+        "block_hash": "000744ef41d65405d9634a10a49536a5f4f9488cca949186c5af0447c2a84077",
+        "certified_at": "2026-04-25T18:23:50.759744+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.321467,
+          "lng": 35.738519
+        },
+        "impact": {
+          "bio_score": 6.8,
+          "carbon_tco2": 2189.0,
+          "area_ha": 124.7,
+          "ndvi_delta": -0.1536,
+          "species_risk": [
+            "Grassland grazers"
+          ],
+          "eco_codes": [
+            "ECO-005"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.8751,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "NASA-MODIS-2023"
+          ],
+          "signature": "2d9898b29a601ea1",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 6.8/10 ecological event. ~2189.0 tCO2 impacted. Block #88 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0015",
+      "source": "ndvi",
+      "region": "Nairobi Eastlands",
+      "block": 89,
+      "hash": "0008683816953a882610b66d",
+      "bio_score": 7.5,
+      "carbon_tco2": 664.2,
+      "species_risk": [
+        "Large mammals",
+        "Migratory birds"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0015",
+        "block_index": 89,
+        "block_hash": "0008683816953a882610b66d43f1afeb793f5da7792757a5c288d56d3d41b40e",
+        "certified_at": "2026-04-25T18:23:51.120059+00:00",
+        "region": "Nairobi Eastlands",
+        "coordinates": {
+          "lat": -1.245716,
+          "lng": 36.778802
+        },
+        "impact": {
+          "bio_score": 7.5,
+          "carbon_tco2": 664.2,
+          "area_ha": 12.7,
+          "ndvi_delta": -0.2288,
+          "species_risk": [
+            "Large mammals",
+            "Migratory birds"
+          ],
+          "eco_codes": [
+            "ECO-002"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.9236,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IPBES-2019",
+            "WWF-LPI-2022"
+          ],
+          "signature": "65498ef62f758ea3",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 7.5/10 ecological event. ~664.2 tCO2 impacted. Block #89 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0016",
+      "source": "ndvi",
+      "region": "Nairobi Eastlands",
+      "block": 90,
+      "hash": "0008726a878cb0138a1739e2",
+      "bio_score": 9.2,
+      "carbon_tco2": 13391.0,
+      "species_risk": [
+        "Forest elephants",
+        "Colobus monkey"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0016",
+        "block_index": 90,
+        "block_hash": "0008726a878cb0138a1739e213376be8443f73a2f54d11fe0c58a35eaa491ce4",
+        "certified_at": "2026-04-25T18:23:51.176160+00:00",
+        "region": "Nairobi Eastlands",
+        "coordinates": {
+          "lat": -1.340855,
+          "lng": 36.798577
+        },
+        "impact": {
+          "bio_score": 9.2,
+          "carbon_tco2": 13391.0,
+          "area_ha": 49.9,
+          "ndvi_delta": -0.3757,
+          "species_risk": [
+            "Forest elephants",
+            "Colobus monkey"
+          ],
+          "eco_codes": [
+            "ECO-001"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IUCN-REDLIST-2023",
+            "IPBES-2019"
+          ],
+          "signature": "70b44018c79b33f2",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 9.2/10 ecological event. ~13391.0 tCO2 impacted. Block #90 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0017",
+      "source": "ndvi",
+      "region": "Nairobi Eastlands",
+      "block": 91,
+      "hash": "000d7c09129de382e864a617",
+      "bio_score": 9.2,
+      "carbon_tco2": 5847.8,
+      "species_risk": [
+        "Forest elephants",
+        "Colobus monkey"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0017",
+        "block_index": 91,
+        "block_hash": "000d7c09129de382e864a617e49417a4ade69f6ca5d392b6ea4d310b2b703859",
+        "certified_at": "2026-04-25T18:23:51.473205+00:00",
+        "region": "Nairobi Eastlands",
+        "coordinates": {
+          "lat": -1.262154,
+          "lng": 36.880649
+        },
+        "impact": {
+          "bio_score": 9.2,
+          "carbon_tco2": 5847.8,
+          "area_ha": 19.2,
+          "ndvi_delta": -0.4264,
+          "species_risk": [
+            "Forest elephants",
+            "Colobus monkey"
+          ],
+          "eco_codes": [
+            "ECO-001"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IUCN-REDLIST-2023",
+            "IPBES-2019"
+          ],
+          "signature": "70b44018c79b33f2",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 9.2/10 ecological event. ~5847.8 tCO2 impacted. Block #91 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0018",
+      "source": "ndvi",
+      "region": "Nairobi Eastlands",
+      "block": 92,
+      "hash": "000fc0d51bcf05703043969c",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0018",
+        "block_index": 92,
+        "block_hash": "000fc0d51bcf05703043969c88ee5f68648890f1866827b10274449bfd23b35e",
+        "certified_at": "2026-04-25T18:23:51.751478+00:00",
+        "region": "Nairobi Eastlands",
+        "coordinates": {
+          "lat": -1.231295,
+          "lng": 36.781392
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 116.5,
+          "ndvi_delta": -0.132,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #92 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0021",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 93,
+      "hash": "0002a85f6ae5973c6510ba08",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0021",
+        "block_index": 93,
+        "block_hash": "0002a85f6ae5973c6510ba08a599408aaea90fe628d1f5474251765e3e64aa60",
+        "certified_at": "2026-04-25T18:23:52.132762+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.106457,
+          "lng": 34.659826
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 30.9,
+          "ndvi_delta": -0.1398,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #93 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0023",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 94,
+      "hash": "00066e5bc67b12d6e5cf3ff8",
+      "bio_score": 8.7,
+      "carbon_tco2": 16201.5,
+      "species_risk": [
+        "All canopy species"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0023",
+        "block_index": 94,
+        "block_hash": "00066e5bc67b12d6e5cf3ff879d5dc04a4d28a19d598a30df7913d55a36723f3",
+        "certified_at": "2026-04-25T18:23:52.486039+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.100373,
+          "lng": 34.656153
+        },
+        "impact": {
+          "bio_score": 8.7,
+          "carbon_tco2": 16201.5,
+          "area_ha": 96.5,
+          "ndvi_delta": -0.2671,
+          "species_risk": [
+            "All canopy species"
+          ],
+          "eco_codes": [
+            "ECO-006"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "CITES-2022",
+            "CBD-COP15"
+          ],
+          "signature": "37ddb4bdf41fcb2e",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 8.7/10 ecological event. ~16201.5 tCO2 impacted. Block #94 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0025",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 95,
+      "hash": "0000bcc0276b201fa09dbeaf",
+      "bio_score": 9.2,
+      "carbon_tco2": 64638.5,
+      "species_risk": [
+        "Forest elephants",
+        "Colobus monkey"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0025",
+        "block_index": 95,
+        "block_hash": "0000bcc0276b201fa09dbeaf02c4d1c52a67861ef48feb005a762df043068e5e",
+        "certified_at": "2026-04-25T18:23:53.377203+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.130744,
+          "lng": 34.782801
+        },
+        "impact": {
+          "bio_score": 9.2,
+          "carbon_tco2": 64638.5,
+          "area_ha": 191.4,
+          "ndvi_delta": -0.4728,
+          "species_risk": [
+            "Forest elephants",
+            "Colobus monkey"
+          ],
+          "eco_codes": [
+            "ECO-001"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IUCN-REDLIST-2023",
+            "IPBES-2019"
+          ],
+          "signature": "70b44018c79b33f2",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 9.2/10 ecological event. ~64638.5 tCO2 impacted. Block #95 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0026",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 96,
+      "hash": "000e3ef1de8177854459a3c2",
+      "bio_score": 6.8,
+      "carbon_tco2": 3030.0,
+      "species_risk": [
+        "Grassland grazers"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0026",
+        "block_index": 96,
+        "block_hash": "000e3ef1de8177854459a3c20709b0e00f148d8d5ada02750e55d919a61ac77f",
+        "certified_at": "2026-04-25T18:23:53.683464+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.201375,
+          "lng": 34.753128
+        },
+        "impact": {
+          "bio_score": 6.8,
+          "carbon_tco2": 3030.0,
+          "area_ha": 151.5,
+          "ndvi_delta": -0.175,
+          "species_risk": [
+            "Grassland grazers"
+          ],
+          "eco_codes": [
+            "ECO-005"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.93,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "NASA-MODIS-2023"
+          ],
+          "signature": "2d9898b29a601ea1",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 6.8/10 ecological event. ~3030.0 tCO2 impacted. Block #96 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0027",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 97,
+      "hash": "00090a34b10c50e943a5841b",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0027",
+        "block_index": 97,
+        "block_hash": "00090a34b10c50e943a5841b938874359c2ebddae561963f37dffd14db0aa6e1",
+        "certified_at": "2026-04-25T18:23:53.881748+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.099098,
+          "lng": 34.885541
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 36.7,
+          "ndvi_delta": -0.1345,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #97 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0029",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 98,
+      "hash": "000a1be722565425d99af8b6",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0029",
+        "block_index": 98,
+        "block_hash": "000a1be722565425d99af8b6ab1acef3e6699b48b095fa0a960be10159f94378",
+        "certified_at": "2026-04-25T18:23:54.011134+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.155275,
+          "lng": 34.916161
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 152.5,
+          "ndvi_delta": -0.1473,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #98 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0030",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 99,
+      "hash": "0008e9bd330f650d68a59dd0",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0030",
+        "block_index": 99,
+        "block_hash": "0008e9bd330f650d68a59dd001c21b75b06c27ff3663c9fb1937a341435899d3",
+        "certified_at": "2026-04-25T18:23:54.068429+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.126465,
+          "lng": 34.655944
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 161.4,
+          "ndvi_delta": -0.139,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #99 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0031",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 100,
+      "hash": "00063cbcdd0ed2a2344e5db8",
+      "bio_score": 8.7,
+      "carbon_tco2": 27750.8,
+      "species_risk": [
+        "All canopy species"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0031",
+        "block_index": 100,
+        "block_hash": "00063cbcdd0ed2a2344e5db8c6ab920c177f91fec3292d2759b16a611f8ba9cc",
+        "certified_at": "2026-04-25T18:23:54.623000+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.267499,
+          "lng": 34.59993
+        },
+        "impact": {
+          "bio_score": 8.7,
+          "carbon_tco2": 27750.8,
+          "area_ha": 148.6,
+          "ndvi_delta": -0.2971,
+          "species_risk": [
+            "All canopy species"
+          ],
+          "eco_codes": [
+            "ECO-006"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "CITES-2022",
+            "CBD-COP15"
+          ],
+          "signature": "37ddb4bdf41fcb2e",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 8.7/10 ecological event. ~27750.8 tCO2 impacted. Block #100 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0032",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 101,
+      "hash": "00027a3e0bfa261e7ce55110",
+      "bio_score": 8.7,
+      "carbon_tco2": 24379.3,
+      "species_risk": [
+        "All canopy species"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0032",
+        "block_index": 101,
+        "block_hash": "00027a3e0bfa261e7ce55110c03515c0cf43ffb56a01c1ca9f581eadf26364d0",
+        "certified_at": "2026-04-25T18:23:54.739514+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.228971,
+          "lng": 34.730773
+        },
+        "impact": {
+          "bio_score": 8.7,
+          "carbon_tco2": 24379.3,
+          "area_ha": 154.4,
+          "ndvi_delta": -0.2512,
+          "species_risk": [
+            "All canopy species"
+          ],
+          "eco_codes": [
+            "ECO-006"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "CITES-2022",
+            "CBD-COP15"
+          ],
+          "signature": "37ddb4bdf41fcb2e",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 8.7/10 ecological event. ~24379.3 tCO2 impacted. Block #101 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0033",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 102,
+      "hash": "0003fc26ea2fac406f1e448f",
+      "bio_score": 9.2,
+      "carbon_tco2": 57402.0,
+      "species_risk": [
+        "Forest elephants",
+        "Colobus monkey"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0033",
+        "block_index": 102,
+        "block_hash": "0003fc26ea2fac406f1e448fb38aad54eb0959ed0196cf695086bbf864817b7e",
+        "certified_at": "2026-04-25T18:23:54.776493+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.141457,
+          "lng": 34.736217
+        },
+        "impact": {
+          "bio_score": 9.2,
+          "carbon_tco2": 57402.0,
+          "area_ha": 186.5,
+          "ndvi_delta": -0.4309,
+          "species_risk": [
+            "Forest elephants",
+            "Colobus monkey"
+          ],
+          "eco_codes": [
+            "ECO-001"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.99,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "IUCN-REDLIST-2023",
+            "IPBES-2019"
+          ],
+          "signature": "70b44018c79b33f2",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 9.2/10 ecological event. ~57402.0 tCO2 impacted. Block #102 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0034",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 103,
+      "hash": "000337147dbc10e07b747074",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0034",
+        "block_index": 103,
+        "block_hash": "000337147dbc10e07b74707493a334900d28eb95ec5214c331a18a9f0978b9ff",
+        "certified_at": "2026-04-25T18:23:54.904502+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": 0.059713,
+          "lng": 34.822445
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 144.6,
+          "ndvi_delta": -0.1476,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #103 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0035",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 104,
+      "hash": "0002a7c4109b1b60ea21761b",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0035",
+        "block_index": 104,
+        "block_hash": "0002a7c4109b1b60ea21761bdeb6ba0fcda1d1c5d2fc0babee2f305ccc5f45e3",
+        "certified_at": "2026-04-25T18:23:55.021189+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.072092,
+          "lng": 34.651827
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 44.1,
+          "ndvi_delta": -0.1318,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #104 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-NV-0036",
+      "source": "ndvi",
+      "region": "Rift Valley",
+      "block": 105,
+      "hash": "000e3ea77b6f93cf5ae029af",
+      "bio_score": 5.5,
+      "carbon_tco2": 0,
+      "species_risk": [],
+      "verdict": "EMERGING_THREAT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-NV-0036",
+        "block_index": 105,
+        "block_hash": "000e3ea77b6f93cf5ae029af4873363ac8da606849f1c4ef88e5393e92c7aec6",
+        "certified_at": "2026-04-25T18:23:55.109135+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -0.037682,
+          "lng": 34.760047
+        },
+        "impact": {
+          "bio_score": 5.5,
+          "carbon_tco2": 0,
+          "area_ha": 113.0,
+          "ndvi_delta": -0.1213,
+          "species_risk": [],
+          "eco_codes": [
+            "ECO-004"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.85,
+          "oracle_verdict": "EMERGING_THREAT",
+          "impact_refs": [],
+          "signature": "64660f82686432a9",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 5.5/10 ecological event. ~0 tCO2 impacted. Block #105 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-AC-0001",
+      "source": "acoustic",
+      "region": "Mau Forest",
+      "block": 106,
+      "hash": "0005949f3bedd39755ed4d62",
+      "bio_score": 6.5,
+      "carbon_tco2": 857.1,
+      "species_risk": [
+        "Ground-nesting species",
+        "Small mammals"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-AC-0001",
+        "block_index": 106,
+        "block_hash": "0005949f3bedd39755ed4d6260625b96b21c76edee2b3373e002237448629a1a",
+        "certified_at": "2026-04-25T18:23:55.227574+00:00",
+        "region": "Mau Forest",
+        "coordinates": {
+          "lat": -0.315,
+          "lng": 35.634
+        },
+        "impact": {
+          "bio_score": 6.5,
+          "carbon_tco2": 857.1,
+          "area_ha": 0,
+          "ndvi_delta": 0,
+          "species_risk": [
+            "Ground-nesting species",
+            "Small mammals"
+          ],
+          "eco_codes": [
+            "ECO-008",
+            "ECO-007"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.88,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "FIRMS-NASA-2023"
+          ],
+          "signature": "8ccd5f8ee62a0a04",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 6.5/10 ecological event. ~857.1 tCO2 impacted. Block #106 \u2014 tamper-proof, immutable, real."
+      }
+    },
+    {
+      "chain_id": "EDEN-AC-0002",
+      "source": "acoustic",
+      "region": "Rift Valley",
+      "block": 107,
+      "hash": "0009829693c604586f7a78dd",
+      "bio_score": 7.6,
+      "carbon_tco2": 1028.6,
+      "species_risk": [
+        "Nesting birds",
+        "Tree-dwelling primates"
+      ],
+      "verdict": "VERIFIED_IMPACT",
+      "token_payload": {
+        "token_type": "BioImpact",
+        "version": "1.0",
+        "chain_id": "EDEN-AC-0002",
+        "block_index": 107,
+        "block_hash": "0009829693c604586f7a78dd6d53d75823ad313d56c470e911b83ea852b5f122",
+        "certified_at": "2026-04-25T18:23:55.422265+00:00",
+        "region": "Rift Valley",
+        "coordinates": {
+          "lat": -1.31,
+          "lng": 36.798
+        },
+        "impact": {
+          "bio_score": 7.6,
+          "carbon_tco2": 1028.6,
+          "area_ha": 0,
+          "ndvi_delta": 0,
+          "species_risk": [
+            "Nesting birds",
+            "Tree-dwelling primates"
+          ],
+          "eco_codes": [
+            "ECO-008",
+            "ECO-002",
+            "ECO-001"
+          ]
+        },
+        "verification": {
+          "oracle_confidence": 0.98,
+          "oracle_verdict": "VERIFIED_IMPACT",
+          "impact_refs": [
+            "REDD-PLUS-2023"
+          ],
+          "signature": "50155be2e3cf4488",
+          "lex0_cleared": true,
+          "trinity_consensus": true
+        },
+        "investor_note": "Verified 7.6/10 ecological event. ~1028.6 tCO2 impacted. Block #107 \u2014 tamper-proof, immutable, real."
+      }
+    }
+  ]
+}

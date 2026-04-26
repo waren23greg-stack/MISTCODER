@@ -1,0 +1,143 @@
+{
+  "eval_exec": {
+    "cves": [
+      "CVE-2023-27043",
+      "CVE-2022-48560"
+    ],
+    "confidence": 0.9644,
+    "verdict": "CONFIRMED",
+    "sightings": 23,
+    "first_seen": "2026-01-01",
+    "last_seen": "2026-04-25",
+    "associated_cwes": [
+      "CWE-94",
+      "CWE-78",
+      "CWE-312",
+      "CWE-22"
+    ],
+    "description": "Arbitrary code execution via eval/exec on untrusted input"
+  },
+  "sql_query": {
+    "cves": [
+      "CVE-2023-23397",
+      "CVE-2022-32250"
+    ],
+    "confidence": 0.9503,
+    "verdict": "CONFIRMED",
+    "sightings": 24,
+    "first_seen": "2026-01-01",
+    "last_seen": "2026-04-25",
+    "associated_cwes": [
+      "CWE-89",
+      "CWE-22",
+      "CWE-312"
+    ],
+    "description": "SQL injection via unparameterised query construction"
+  },
+  "hardcoded_secret": {
+    "cves": [
+      "CVE-2022-1471"
+    ],
+    "confidence": 0.8983,
+    "verdict": "CONFIRMED",
+    "sightings": 7,
+    "first_seen": "2026-01-01",
+    "last_seen": "2026-04-25",
+    "associated_cwes": [
+      "CWE-312",
+      "CWE-798",
+      "CWE-89",
+      "CWE-94",
+      "CWE-78",
+      "CWE-327",
+      "CWE-79"
+    ],
+    "description": "Hardcoded credentials exposed in source"
+  },
+  "path_traversal": {
+    "cves": [
+      "CVE-2023-44487"
+    ],
+    "confidence": 0.85,
+    "verdict": "CONFIRMED",
+    "sightings": 1,
+    "first_seen": "2026-01-01",
+    "last_seen": "2026-01-01",
+    "associated_cwes": [
+      "CWE-22"
+    ],
+    "description": "Directory traversal via unsanitised file path"
+  },
+  "deserialization": {
+    "cves": [
+      "CVE-2022-42889"
+    ],
+    "confidence": 0.89,
+    "verdict": "CONFIRMED",
+    "sightings": 1,
+    "first_seen": "2026-01-01",
+    "last_seen": "2026-01-01",
+    "associated_cwes": [
+      "CWE-502"
+    ],
+    "description": "Unsafe deserialization of untrusted data"
+  },
+  "weak_hash": {
+    "cves": [
+      "CVE-2023-36665"
+    ],
+    "confidence": 0.8912,
+    "verdict": "CONFIRMED",
+    "sightings": 10,
+    "first_seen": "2026-01-01",
+    "last_seen": "2026-04-25",
+    "associated_cwes": [
+      "CWE-327",
+      "CWE-328"
+    ],
+    "description": "Weak cryptographic hash algorithm in use"
+  },
+  "file_path": {
+    "cves": [
+      "CVE-2023-44487"
+    ],
+    "confidence": 0.9427,
+    "verdict": "CONFIRMED",
+    "sightings": 43,
+    "first_seen": "2026-01-01",
+    "last_seen": "2026-04-25",
+    "associated_cwes": [
+      "CWE-22",
+      "CWE-73"
+    ],
+    "description": "Unvalidated file path used in file system operation"
+  },
+  "high_entropy_string": {
+    "cves": [],
+    "confidence": 0.7642,
+    "verdict": "CONFIRMED",
+    "sightings": 8,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25",
+    "associated_cwes": [
+      "CWE-312",
+      "CWE-89",
+      "CWE-22"
+    ],
+    "description": "ORACLE-discovered pattern. Promoted after 6 sightings. Avg score: 5.00. No CVE assigned — pattern precedes public disclosure.",
+    "source": "ORACLE_SELF_AUTHORED"
+  },
+  "password": {
+    "cves": [],
+    "confidence": 0.7572,
+    "verdict": "CONFIRMED",
+    "sightings": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25",
+    "associated_cwes": [
+      "CWE-312"
+    ],
+    "description": "ORACLE-discovered pattern. Promoted after 6 sightings. Avg score: 6.25. No CVE assigned — pattern precedes public disclosure.",
+    "source": "ORACLE_SELF_AUTHORED"
+  }
+}

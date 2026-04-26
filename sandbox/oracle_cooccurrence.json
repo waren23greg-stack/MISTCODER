@@ -1,0 +1,828 @@
+{
+  "cwe-89|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "CWE-89",
+    "count": 28,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "file_path|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "file_path",
+    "count": 24,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "CWE-22",
+    "count": 24,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-89|file_path": {
+    "step_a": "CWE-89",
+    "step_b": "file_path",
+    "count": 24,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|cwe-89": {
+    "step_a": "CWE-89",
+    "step_b": "CWE-22",
+    "count": 24,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|file_path": {
+    "step_a": "file_path",
+    "step_b": "CWE-22",
+    "count": 73,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-94|eval_exec": {
+    "step_a": "eval_exec",
+    "step_b": "CWE-94",
+    "count": 26,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "eval_exec|password": {
+    "step_a": "eval_exec",
+    "step_b": "Password",
+    "count": 19,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|eval_exec": {
+    "step_a": "eval_exec",
+    "step_b": "CWE-312",
+    "count": 21,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-94|password": {
+    "step_a": "CWE-94",
+    "step_b": "Password",
+    "count": 19,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|cwe-94": {
+    "step_a": "CWE-94",
+    "step_b": "CWE-312",
+    "count": 21,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|password": {
+    "step_a": "Password",
+    "step_b": "CWE-312",
+    "count": 24,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "eval_exec|file_path": {
+    "step_a": "eval_exec",
+    "step_b": "file_path",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|eval_exec": {
+    "step_a": "eval_exec",
+    "step_b": "CWE-22",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-94|file_path": {
+    "step_a": "CWE-94",
+    "step_b": "file_path",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|cwe-94": {
+    "step_a": "CWE-94",
+    "step_b": "CWE-22",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "file_path|password": {
+    "step_a": "file_path",
+    "step_b": "Password",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|file_path": {
+    "step_a": "file_path",
+    "step_b": "CWE-312",
+    "count": 14,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|password": {
+    "step_a": "CWE-22",
+    "step_b": "Password",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|cwe-312": {
+    "step_a": "CWE-22",
+    "step_b": "CWE-312",
+    "count": 14,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|high entropy string": {
+    "step_a": "High Entropy String",
+    "step_b": "CWE-312",
+    "count": 20,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "high entropy string|password": {
+    "step_a": "Password",
+    "step_b": "High Entropy String",
+    "count": 6,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-24"
+  },
+  "cwe-327|weak hash": {
+    "step_a": "Weak Hash",
+    "step_b": "CWE-327",
+    "count": 9,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "high entropy string|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "High Entropy String",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "CWE-312",
+    "count": 11,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-89|high entropy string": {
+    "step_a": "CWE-89",
+    "step_b": "High Entropy String",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|cwe-89": {
+    "step_a": "CWE-89",
+    "step_b": "CWE-312",
+    "count": 11,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "file_path|high entropy string": {
+    "step_a": "file_path",
+    "step_b": "High Entropy String",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-22|high entropy string": {
+    "step_a": "CWE-22",
+    "step_b": "High Entropy String",
+    "count": 7,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-999|unknown_pattern": {
+    "step_a": "unknown_pattern",
+    "step_b": "CWE-999",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-999|unknown_func": {
+    "step_a": "unknown_func",
+    "step_b": "CWE-999",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "conflicting_signal|cwe-362": {
+    "step_a": "conflicting_signal",
+    "step_b": "CWE-362",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eval_exec|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "eval_exec",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-94|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "CWE-94",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "cmd_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "CWE-78",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "hardcoded_secret|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "hardcoded_secret",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "sql_query|weak_hash": {
+    "step_a": "sql_query",
+    "step_b": "weak_hash",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "CWE-327",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "sql_query|xss_inject": {
+    "step_a": "sql_query",
+    "step_b": "xss_inject",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-79|sql_query": {
+    "step_a": "sql_query",
+    "step_b": "CWE-79",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-89|eval_exec": {
+    "step_a": "CWE-89",
+    "step_b": "eval_exec",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-89|cwe-94": {
+    "step_a": "CWE-89",
+    "step_b": "CWE-94",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|cwe-89": {
+    "step_a": "CWE-89",
+    "step_b": "cmd_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|cwe-89": {
+    "step_a": "CWE-89",
+    "step_b": "CWE-78",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-89|hardcoded_secret": {
+    "step_a": "CWE-89",
+    "step_b": "hardcoded_secret",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-89|weak_hash": {
+    "step_a": "CWE-89",
+    "step_b": "weak_hash",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|cwe-89": {
+    "step_a": "CWE-89",
+    "step_b": "CWE-327",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-89|xss_inject": {
+    "step_a": "CWE-89",
+    "step_b": "xss_inject",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-79|cwe-89": {
+    "step_a": "CWE-89",
+    "step_b": "CWE-79",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|eval_exec": {
+    "step_a": "eval_exec",
+    "step_b": "cmd_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|eval_exec": {
+    "step_a": "eval_exec",
+    "step_b": "CWE-78",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eval_exec|hardcoded_secret": {
+    "step_a": "eval_exec",
+    "step_b": "hardcoded_secret",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eval_exec|weak_hash": {
+    "step_a": "eval_exec",
+    "step_b": "weak_hash",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|eval_exec": {
+    "step_a": "eval_exec",
+    "step_b": "CWE-327",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eval_exec|xss_inject": {
+    "step_a": "eval_exec",
+    "step_b": "xss_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-79|eval_exec": {
+    "step_a": "eval_exec",
+    "step_b": "CWE-79",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|cwe-94": {
+    "step_a": "CWE-94",
+    "step_b": "cmd_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|cwe-94": {
+    "step_a": "CWE-94",
+    "step_b": "CWE-78",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-94|hardcoded_secret": {
+    "step_a": "CWE-94",
+    "step_b": "hardcoded_secret",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-94|weak_hash": {
+    "step_a": "CWE-94",
+    "step_b": "weak_hash",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|cwe-94": {
+    "step_a": "CWE-94",
+    "step_b": "CWE-327",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-94|xss_inject": {
+    "step_a": "CWE-94",
+    "step_b": "xss_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-79|cwe-94": {
+    "step_a": "CWE-94",
+    "step_b": "CWE-79",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|cwe-78": {
+    "step_a": "cmd_inject",
+    "step_b": "CWE-78",
+    "count": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|hardcoded_secret": {
+    "step_a": "cmd_inject",
+    "step_b": "hardcoded_secret",
+    "count": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|cwe-312": {
+    "step_a": "cmd_inject",
+    "step_b": "CWE-312",
+    "count": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|weak_hash": {
+    "step_a": "cmd_inject",
+    "step_b": "weak_hash",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|cwe-327": {
+    "step_a": "cmd_inject",
+    "step_b": "CWE-327",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|xss_inject": {
+    "step_a": "cmd_inject",
+    "step_b": "xss_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cmd_inject|cwe-79": {
+    "step_a": "cmd_inject",
+    "step_b": "CWE-79",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|hardcoded_secret": {
+    "step_a": "CWE-78",
+    "step_b": "hardcoded_secret",
+    "count": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|cwe-78": {
+    "step_a": "CWE-78",
+    "step_b": "CWE-312",
+    "count": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|weak_hash": {
+    "step_a": "CWE-78",
+    "step_b": "weak_hash",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|cwe-78": {
+    "step_a": "CWE-78",
+    "step_b": "CWE-327",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|xss_inject": {
+    "step_a": "CWE-78",
+    "step_b": "xss_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-78|cwe-79": {
+    "step_a": "CWE-78",
+    "step_b": "CWE-79",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|hardcoded_secret": {
+    "step_a": "hardcoded_secret",
+    "step_b": "CWE-312",
+    "count": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "hardcoded_secret|weak_hash": {
+    "step_a": "hardcoded_secret",
+    "step_b": "weak_hash",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|hardcoded_secret": {
+    "step_a": "hardcoded_secret",
+    "step_b": "CWE-327",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "hardcoded_secret|xss_inject": {
+    "step_a": "hardcoded_secret",
+    "step_b": "xss_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-79|hardcoded_secret": {
+    "step_a": "hardcoded_secret",
+    "step_b": "CWE-79",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|weak_hash": {
+    "step_a": "CWE-312",
+    "step_b": "weak_hash",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|cwe-327": {
+    "step_a": "CWE-312",
+    "step_b": "CWE-327",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|xss_inject": {
+    "step_a": "CWE-312",
+    "step_b": "xss_inject",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-312|cwe-79": {
+    "step_a": "CWE-312",
+    "step_b": "CWE-79",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|weak_hash": {
+    "step_a": "weak_hash",
+    "step_b": "CWE-327",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "weak_hash|xss_inject": {
+    "step_a": "weak_hash",
+    "step_b": "xss_inject",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-79|weak_hash": {
+    "step_a": "weak_hash",
+    "step_b": "CWE-79",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|xss_inject": {
+    "step_a": "CWE-327",
+    "step_b": "xss_inject",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-327|cwe-79": {
+    "step_a": "CWE-327",
+    "step_b": "CWE-79",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "cwe-79|xss_inject": {
+    "step_a": "xss_inject",
+    "step_b": "CWE-79",
+    "count": 4,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-006|illegal_clearing": {
+    "step_a": "illegal_clearing",
+    "step_b": "ECO-006",
+    "count": 5,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-005|vegetation_stress": {
+    "step_a": "vegetation_stress",
+    "step_b": "ECO-005",
+    "count": 3,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-004|soil_degradation": {
+    "step_a": "soil_degradation",
+    "step_b": "ECO-004",
+    "count": 13,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-008|edge_effect": {
+    "step_a": "edge_effect",
+    "step_b": "ECO-008",
+    "count": 7,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-002|habitat_fragmentation": {
+    "step_a": "habitat_fragmentation",
+    "step_b": "ECO-002",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "deforestation_event|eco-001": {
+    "step_a": "deforestation_event",
+    "step_b": "ECO-001",
+    "count": 6,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-008|human_activity": {
+    "step_a": "human_activity",
+    "step_b": "ECO-008",
+    "count": 2,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "fire_crackle|human_activity": {
+    "step_a": "human_activity",
+    "step_b": "fire_crackle",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-007|human_activity": {
+    "step_a": "human_activity",
+    "step_b": "ECO-007",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-008|fire_crackle": {
+    "step_a": "ECO-008",
+    "step_b": "fire_crackle",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-007|eco-008": {
+    "step_a": "ECO-008",
+    "step_b": "ECO-007",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-007|fire_crackle": {
+    "step_a": "fire_crackle",
+    "step_b": "ECO-007",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "heavy_vehicle|human_activity": {
+    "step_a": "human_activity",
+    "step_b": "heavy_vehicle",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-002|human_activity": {
+    "step_a": "human_activity",
+    "step_b": "ECO-002",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "chainsaw_detected|human_activity": {
+    "step_a": "human_activity",
+    "step_b": "chainsaw_detected",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-001|human_activity": {
+    "step_a": "human_activity",
+    "step_b": "ECO-001",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-008|heavy_vehicle": {
+    "step_a": "ECO-008",
+    "step_b": "heavy_vehicle",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-002|eco-008": {
+    "step_a": "ECO-008",
+    "step_b": "ECO-002",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "chainsaw_detected|eco-008": {
+    "step_a": "ECO-008",
+    "step_b": "chainsaw_detected",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-001|eco-008": {
+    "step_a": "ECO-008",
+    "step_b": "ECO-001",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-002|heavy_vehicle": {
+    "step_a": "heavy_vehicle",
+    "step_b": "ECO-002",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "chainsaw_detected|heavy_vehicle": {
+    "step_a": "heavy_vehicle",
+    "step_b": "chainsaw_detected",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-001|heavy_vehicle": {
+    "step_a": "heavy_vehicle",
+    "step_b": "ECO-001",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "chainsaw_detected|eco-002": {
+    "step_a": "ECO-002",
+    "step_b": "chainsaw_detected",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "eco-001|eco-002": {
+    "step_a": "ECO-002",
+    "step_b": "ECO-001",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  },
+  "chainsaw_detected|eco-001": {
+    "step_a": "chainsaw_detected",
+    "step_b": "ECO-001",
+    "count": 1,
+    "first_seen": "2026-04-25",
+    "last_seen": "2026-04-25"
+  }
+}

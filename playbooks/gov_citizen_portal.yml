@@ -1,0 +1,18 @@
+{
+  "name": "gov_citizen_portal",
+  "playbook_version": "1.0",
+  "sector": "government",
+  "system_type": "web portal",
+  "risk_priorities": ["citizen identity protection", "service continuity", "record integrity"],
+  "thresholds": {"max_critical": 0, "max_high": 1, "max_medium": 3},
+  "reporting": {"executive": "plain_language", "technical": "full"},
+  "impact_narratives": {
+    "severity": {
+      "CRITICAL": "Attackers could manipulate citizen records or disable critical services.",
+      "HIGH": "Attackers could access confidential citizen data or escalate privileges.",
+      "MEDIUM": "Attackers could degrade service quality and trust in public systems."
+    },
+    "default": "Weaknesses could interrupt public service delivery and accountability."
+  },
+  "effort_estimates": {"critical": "high", "high": "high", "medium": "medium", "low": "low", "info": "low"}
+}

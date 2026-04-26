@@ -1,0 +1,139 @@
+{
+  "file": "https://example.com",
+  "language": "url",
+  "scan_type": "remote_url",
+  "nodes": [
+    {
+      "id": "url_root_0",
+      "type": "url_target",
+      "name": "https://example.com",
+      "line": 0,
+      "props": {
+        "status": 200,
+        "server": "cloudflare",
+        "elapsed_ms": 551.2,
+        "final_url": "https://example.com"
+      }
+    },
+    {
+      "id": "finding_1",
+      "type": "url_finding",
+      "name": "MISSING_HEADER_STRICT_TRANSPORT_SECURITY",
+      "line": 0,
+      "props": {
+        "dangerous": false,
+        "severity": "MEDIUM",
+        "confidence": 1.0,
+        "cwe_ids": [
+          "CWE-693"
+        ],
+        "detail": "Security header 'strict-transport-security' is absent",
+        "url": "https://example.com"
+      }
+    },
+    {
+      "id": "finding_2",
+      "type": "url_finding",
+      "name": "MISSING_HEADER_CONTENT_SECURITY_POLICY",
+      "line": 0,
+      "props": {
+        "dangerous": false,
+        "severity": "MEDIUM",
+        "confidence": 1.0,
+        "cwe_ids": [
+          "CWE-693"
+        ],
+        "detail": "Security header 'content-security-policy' is absent",
+        "url": "https://example.com"
+      }
+    },
+    {
+      "id": "finding_3",
+      "type": "url_finding",
+      "name": "MISSING_HEADER_X_FRAME_OPTIONS",
+      "line": 0,
+      "props": {
+        "dangerous": false,
+        "severity": "MEDIUM",
+        "confidence": 1.0,
+        "cwe_ids": [
+          "CWE-693"
+        ],
+        "detail": "Security header 'x-frame-options' is absent",
+        "url": "https://example.com"
+      }
+    },
+    {
+      "id": "finding_4",
+      "type": "url_finding",
+      "name": "MISSING_HEADER_X_CONTENT_TYPE_OPTIONS",
+      "line": 0,
+      "props": {
+        "dangerous": false,
+        "severity": "MEDIUM",
+        "confidence": 1.0,
+        "cwe_ids": [
+          "CWE-693"
+        ],
+        "detail": "Security header 'x-content-type-options' is absent",
+        "url": "https://example.com"
+      }
+    },
+    {
+      "id": "finding_5",
+      "type": "url_finding",
+      "name": "INFO_DISCLOSURE_HEADER",
+      "line": 0,
+      "props": {
+        "dangerous": false,
+        "severity": "LOW",
+        "confidence": 1.0,
+        "cwe_ids": [
+          "CWE-200"
+        ],
+        "detail": "Header 'server: cloudflare' reveals server technology",
+        "url": "https://example.com"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "src": "url_root_0",
+      "dst": "finding_1",
+      "type": "has_finding"
+    },
+    {
+      "src": "url_root_0",
+      "dst": "finding_2",
+      "type": "has_finding"
+    },
+    {
+      "src": "url_root_0",
+      "dst": "finding_3",
+      "type": "has_finding"
+    },
+    {
+      "src": "url_root_0",
+      "dst": "finding_4",
+      "type": "has_finding"
+    },
+    {
+      "src": "url_root_0",
+      "dst": "finding_5",
+      "type": "has_finding"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "target_url": "https://example.com",
+    "final_url": "https://example.com",
+    "status_code": 200,
+    "server": "cloudflare",
+    "elapsed_ms": 551.2,
+    "dangerous_calls": 0,
+    "secret_flags": 0,
+    "endpoints_found": 0,
+    "sha256": "24ef4893a2492f180bf15d9746c5c9a2a0a58f6438e52ae9106e9a53a75ebc12",
+    "parsed_at": "2026-04-17T07:29:25.535628+00:00"
+  }
+}

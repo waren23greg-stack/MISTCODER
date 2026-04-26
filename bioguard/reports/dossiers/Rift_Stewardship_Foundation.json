@@ -1,0 +1,97 @@
+{
+  "dossier_id": "BG-NGO/2021/11892",
+  "generated_at": "2026-04-26T06:00:53.896880+00:00",
+  "classification": "RESTRICTED \u2014 ENFORCEMENT USE",
+  "evidence_grade": "EvidenceGrade.PROBABLE",
+  "contradiction_score": 6.1,
+  "subject": {
+    "name": "Rift Stewardship Foundation",
+    "registration_number": "NGO/2021/11892",
+    "registered_date": "2021-07-02",
+    "registered_country": "Kenya",
+    "directors": [
+      "Grace Mutua",
+      "P. Eriksson",
+      "James Wanjohi"
+    ],
+    "beneficial_owner": "P. Eriksson (Swedish national, resident Dubai)",
+    "offshore_accounts": [
+      "UAE-HOLDING-882"
+    ],
+    "linked_entities": [
+      "Rift Eco-Safari Ltd",
+      "Nordic Carbon Brokers AS"
+    ],
+    "mining_logging_licenses": []
+  },
+  "conservation_claim": {
+    "land_title_ha": 1200.0,
+    "conservation_claim_ha": 1200.0,
+    "carbon_credits_filed": 18600,
+    "carbon_credits_legitimate": 12400,
+    "fraudulent_credits_estimated": 6200,
+    "estimated_fraud_value_usd": 93000
+  },
+  "threat_assessment": {
+    "primary_threat": "CARBON_FRAUD",
+    "threat_description": "Entity is filing carbon credits for forest carbon that does not exist or has been destroyed. Credits represent fraudulent financial instruments on international carbon markets.",
+    "behavioral_signals": [
+      {
+        "signal_type": "PARTIAL_DIVERSION",
+        "region": "Rift Valley",
+        "parcel_id": "RIFT/N/1200/NGO",
+        "ndvi_claimed": 0.61,
+        "ndvi_satellite": 0.48,
+        "ndvi_divergence": -0.13,
+        "clearing_ha_per_month": 8.2,
+        "night_activity": false,
+        "rectangular_clearing": false,
+        "acoustic_gunshots": 0,
+        "thermal_anomalies": 3,
+        "severity": 6.1
+      }
+    ]
+  },
+  "network_links": [
+    {
+      "connected_to": "Continental Wildlife Corridor Fund",
+      "link_type": "SAME_PARCEL",
+      "strength": 0.74,
+      "evidence": "Overlapping carbon credit claims on parcel RIFT/N/1200/NGO"
+    }
+  ],
+  "blockchain_evidence": {
+    "primary_block": 110,
+    "all_blocks": [
+      110,
+      116,
+      122
+    ],
+    "block_hashes": [
+      "2cf2a5cfefb05a99",
+      "8429136eaf09c57d",
+      "a32f172e79962f8c"
+    ],
+    "chain_timestamp": "2026-04-26T06:00:53.773860+00:00",
+    "tamper_proof": true,
+    "ledger": "MistChain \u2014 PhantomChainBridge / NODE-PRIMARY"
+  },
+  "referrals": [
+    {
+      "agency": "KFS_ENFORCEMENT",
+      "description": "Kenya Forest Service \u2014 Forest Protection & Enforcement",
+      "priority": "STANDARD",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "CARBON_REGISTRY_VERRA",
+      "description": "Verra VCS Carbon Registry \u2014 Integrity & Audit Division",
+      "priority": "STANDARD",
+      "status": "PENDING_SUBMISSION"
+    }
+  ],
+  "recommended_actions": [
+    "Flag offshore account chain to Financial Intelligence Centre",
+    "Expand investigation to all linked entities in network"
+  ]
+}

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDEN×MISTCODER — Live Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@300;400;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#060E09;--ink2:#0D1F11;--ink3:#162B1C;
+  --amber:#D98B14;--amber-pale:#FAC775;--amber-dim:#7A4E08;
+  --teal:#1A9E72;--teal-light:#4DC8A0;
+  --red:#B83020;--red-light:#E06050;
+  --sage:#2A5435;--sage-light:#3A7A4A;
+  --white:#EDE8DF;--white-dim:#9A9488;--white-faint:#2A3028;
+  --border:rgba(217,139,20,0.12);--border-strong:rgba(217,139,20,0.28);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Playfair Display',serif;
+  --body:'Crimson Pro',Georgia,serif;
+  --transition:0.2s ease;
+}
+html,body{height:100%;background:var(--ink);}
+body{color:var(--white);font-family:var(--body);font-size:15px;line-height:1.6;overflow-x:hidden;}
+
+/* ── TOPBAR ─────────────────────────────────────────── */
+#topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:48px;
+  background:var(--ink);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:200;
+}
+.tb-logo{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;color:var(--amber);}
+.tb-center{display:flex;gap:28px;}
+.tb-tab{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.15em;color:var(--white-dim);
+  cursor:pointer;padding:4px 0;border-bottom:2px solid transparent;transition:all .2s;
+  text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;
+}
+.tb-tab:hover{color:var(--amber);}
+.tb-tab.active{color:var(--amber);border-bottom-color:var(--amber);}
+.tb-right{display:flex;align-items:center;gap:16px;}
+#conn-status{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;color:var(--white-dim);letter-spacing:0.1em;}
+.conn-dot{width:7px;height:7px;border-radius:50%;background:var(--white-faint);transition:background .4s;}
+.conn-dot.live{background:var(--teal);animation:live-pulse 2s infinite;}
+.conn-dot.err{background:var(--red);}
+@keyframes live-pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(26,158,114,.5)}50%{opacity:.8;box-shadow:0 0 0 5px rgba(26,158,114,0)}}
+#scan-btn{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:var(--amber);
+  background:transparent;border:1px solid var(--border-strong);padding:6px 14px;
+  cursor:pointer;transition:all .2s;text-transform:uppercase;
+}
+#scan-btn:hover:not(:disabled){background:rgba(217,139,20,.1);}
+#scan-btn:disabled{opacity:.4;cursor:not-allowed;}
+#scan-btn.scanning{animation:btn-pulse 1s infinite alternate;}
+@keyframes btn-pulse{from{border-color:var(--border)}to{border-color:var(--amber)}}
+#next-scan{font-family:var(--mono);font-size:9px;color:var(--white-dim);}
+
+/* ── SCAN LOG BANNER ────────────────────────────────── */
+#scan-log{
+  background:rgba(26,158,114,.06);border-bottom:1px solid rgba(26,158,114,.2);
+  padding:8px 32px;font-family:var(--mono);font-size:10px;color:var(--teal-light);
+  display:none;letter-spacing:0.05em;white-space:nowrap;overflow:hidden;
+}
+#scan-log.active{display:block;}
+#scan-log-text::before{content:'▶ ';}
+
+/* ── TABS ───────────────────────────────────────────── */
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ── OVERVIEW: METRICS ──────────────────────────────── */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);}
+.metric-cell{
+  padding:24px 28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.metric-cell:last-child{border-right:none;}
+.m-label{font-family:var(--mono);font-size:8px;letter-spacing:0.2em;color:var(--white-dim);text-transform:uppercase;margin-bottom:6px;}
+.m-value{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--amber);line-height:1;transition:color .3s;}
+.m-value.updated{color:var(--teal-light);}
+.m-unit{font-family:var(--mono);font-size:8px;color:var(--white-dim);margin-top:4px;letter-spacing:.08em;}
+.m-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--white-faint);}
+.m-bar-fill{height:100%;background:var(--amber);transition:width 1s ease;}
+.m-delta{
+  position:absolute;top:16px;right:16px;
+  font-family:var(--mono);font-size:9px;padding:2px 6px;
+  background:rgba(26,158,114,.15);color:var(--teal-light);
+  opacity:0;transition:opacity .4s;
+}
+.m-delta.show{opacity:1;}
+
+/* ── 4-FEED GRID ────────────────────────────────────── */
+.feeds-grid{display:grid;grid-template-columns:1fr 1fr;min-height:520px;}
+.feed-panel{border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.feed-panel:nth-child(even){border-right:none;}
+.feed-panel:nth-child(3),.feed-panel:nth-child(4){border-bottom:none;}
+.feed-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border-bottom:1px solid var(--border);
+}
+.feed-title{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:var(--amber);text-transform:uppercase;}
+.feed-count{font-family:var(--mono);font-size:9px;color:var(--white-dim);}
+.feed-body{height:380px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent;}
+.feed-body::-webkit-scrollbar{width:3px;}
+.feed-body::-webkit-scrollbar-thumb{background:var(--white-faint);}
+
+/* ── BLOCK ENTRY ────────────────────────────────────── */
+.block-row{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:9px 20px;border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.block-row:hover{background:rgba(217,139,20,.03);}
+.block-row.new-entry{animation:slide-in .4s ease;}
+@keyframes slide-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.b-num{font-family:var(--mono);font-size:8px;color:var(--white-dim);min-width:26px;padding-top:2px;}
+.b-tag{font-family:var(--mono);font-size:7px;font-weight:600;padding:2px 5px;min-width:36px;text-align:center;letter-spacing:.06em;}
+.tag-eco{background:rgba(26,158,114,.18);color:var(--teal-light);border:0.5px solid rgba(26,158,114,.3);}
+.tag-code{background:rgba(217,139,20,.12);color:var(--amber-pale);border:0.5px solid rgba(217,139,20,.2);}
+.b-body{flex:1;min-width:0;}
+.b-event{font-size:11px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.b-sub{font-family:var(--mono);font-size:8px;color:var(--white-dim);margin-top:1px;}
+.b-score{font-family:var(--mono);font-size:9px;color:var(--teal-light);margin-top:1px;}
+
+/* ── NDVI ENTRY ─────────────────────────────────────── */
+.ndvi-row{padding:10px 20px;border-bottom:1px solid var(--border);}
+.ndvi-row.new-entry{animation:slide-in .4s ease;}
+.ndvi-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+.ndvi-region{font-size:12px;color:var(--white);}
+.ndvi-val{font-family:var(--mono);font-size:11px;font-weight:600;}
+.ndvi-val.healthy{color:var(--teal-light);}
+.ndvi-val.warning{color:var(--amber);}
+.ndvi-val.critical{color:var(--red-light);}
+.ndvi-bar-bg{height:3px;background:var(--white-faint);border-radius:2px;overflow:hidden;}
+.ndvi-bar-fill{height:100%;border-radius:2px;transition:width 1s ease;}
+.ndvi-meta{font-family:var(--mono);font-size:8px;color:var(--white-dim);margin-top:4px;}
+
+/* ── TOKEN ENTRY ────────────────────────────────────── */
+.token-row{
+  padding:10px 20px;border-bottom:1px solid var(--border);
+  display:flex;gap:12px;align-items:center;
+  transition:background .15s;
+}
+.token-row:hover{background:rgba(217,139,20,.03);}
+.token-row.new-entry{animation:slide-in .4s ease;}
+.tk-id{font-family:var(--mono);font-size:8px;color:var(--amber-dim);min-width:52px;}
+.tk-body{flex:1;min-width:0;}
+.tk-event{font-size:11px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tk-region{font-family:var(--mono);font-size:8px;color:var(--white-dim);margin-top:1px;}
+.tk-right{text-align:right;}
+.tk-co2{font-family:var(--mono);font-size:10px;color:var(--amber);}
+.tk-score{font-family:var(--mono);font-size:8px;color:var(--teal-light);}
+.certified-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+
+/* ── CODE ENTRY ─────────────────────────────────────── */
+.code-row{
+  padding:9px 20px;border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.code-row:hover{background:rgba(217,139,20,.03);}
+.code-row.new-entry{animation:slide-in .4s ease;}
+.code-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.code-rule{font-family:var(--mono);font-size:10px;color:var(--white);}
+.code-level{font-family:var(--mono);font-size:7px;padding:1px 5px;font-weight:600;}
+.lvl-error{background:rgba(184,48,32,.2);color:var(--red-light);border:0.5px solid rgba(184,48,32,.35);}
+.lvl-warning{background:rgba(217,139,20,.15);color:var(--amber-pale);border:0.5px solid rgba(217,139,20,.25);}
+.lvl-note{background:rgba(26,158,114,.12);color:var(--teal-light);border:0.5px solid rgba(26,158,114,.25);}
+.code-file{font-family:var(--mono);font-size:8px;color:var(--white-dim);}
+
+/* ── MAP (OVERVIEW) ─────────────────────────────────── */
+.map-strip{display:grid;grid-template-columns:1fr 260px;border-top:1px solid var(--border);}
+.map-left{padding:24px 32px;border-right:1px solid var(--border);}
+.region-cards{display:flex;flex-direction:column;gap:0;}
+.region-stat-card{
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.region-stat-card:hover{background:rgba(217,139,20,.03);}
+.region-stat-card:last-child{border-bottom:none;}
+.rs-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.rs-row{display:flex;justify-content:space-between;margin-bottom:3px;}
+.rs-key{font-family:var(--mono);font-size:8px;color:var(--white-dim);letter-spacing:.08em;}
+.rs-val{font-family:var(--mono);font-size:9px;color:var(--amber);}
+.rs-bar-bg{height:2px;background:var(--white-faint);margin-top:6px;overflow:hidden;}
+.rs-bar-fill{height:100%;transition:width 1.2s ease;}
+
+/* ── PULSE ANIMATIONS (MAP SVG) ─────────────────────── */
+@keyframes svgpulse{0%{r:6;opacity:1}100%{r:22;opacity:0}}
+.svg-pulse{animation:svgpulse 2.5s ease-out infinite;}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+#footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 32px;border-top:1px solid var(--border);
+  font-family:var(--mono);font-size:8px;color:var(--white-dim);letter-spacing:.1em;
+}
+#last-scan-time{color:var(--amber-dim);}
+
+/* ── SCROLL BARS ─────────────────────────────────────── */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--white-faint);}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-logo">EDEN × MISTCODER</div>
+  <div class="tb-center">
+    <button class="tb-tab active" onclick="switchTab('overview',this)">OVERVIEW</button>
+    <button class="tb-tab" onclick="switchTab('chain',this)">CHAIN</button>
+    <button class="tb-tab" onclick="switchTab('ecology',this)">ECOLOGY</button>
+    <button class="tb-tab" onclick="switchTab('tokens',this)">BIOTOKEN</button>
+    <button class="tb-tab" onclick="switchTab('code',this)">CODE SCAN</button>
+  </div>
+  <div class="tb-right">
+    <div id="next-scan">NEXT SCAN —</div>
+    <div id="conn-status"><div class="conn-dot" id="conn-dot"></div><span id="conn-text">CONNECTING</span></div>
+    <button id="scan-btn" onclick="triggerScan()">▶ RUN SCAN</button>
+  </div>
+</div>
+
+<!-- SCAN LOG BANNER -->
+<div id="scan-log"><span id="scan-log-text">Initializing...</span></div>
+
+<!-- ── OVERVIEW TAB ─────────────────────────────────────────────────── -->
+<div id="tab-overview" class="tab-panel active">
+
+  <!-- METRICS -->
+  <div class="metrics-row">
+    <div class="metric-cell">
+      <div class="m-label">tCO₂ at Risk</div>
+      <div class="m-value" id="m-co2">—</div>
+      <div class="m-unit">TONNES CO₂ EQUIVALENT</div>
+      <div class="m-bar"><div class="m-bar-fill" id="bar-co2" style="width:0%"></div></div>
+      <div class="m-delta" id="delta-co2">↑ NEW</div>
+    </div>
+    <div class="metric-cell">
+      <div class="m-label">Certified Events</div>
+      <div class="m-value" id="m-cert">—</div>
+      <div class="m-unit">BIOIMPACT TOKENS ISSUED</div>
+      <div class="m-bar"><div class="m-bar-fill" id="bar-cert" style="width:0%"></div></div>
+      <div class="m-delta" id="delta-cert">↑ NEW</div>
+    </div>
+    <div class="metric-cell">
+      <div class="m-label">Area Monitored</div>
+      <div class="m-value" id="m-ha">—</div>
+      <div class="m-unit">HECTARES / 3 REGIONS</div>
+      <div class="m-bar"><div class="m-bar-fill" id="bar-ha" style="width:0%"></div></div>
+      <div class="m-delta" id="delta-ha">↑ NEW</div>
+    </div>
+    <div class="metric-cell">
+      <div class="m-label">Chain Blocks</div>
+      <div class="m-value" id="m-blocks">—</div>
+      <div class="m-unit">ECO + CODE — IMMUTABLE</div>
+      <div class="m-bar"><div class="m-bar-fill" id="bar-blocks" style="width:0%"></div></div>
+      <div class="m-delta" id="delta-blocks">↑ NEW</div>
+    </div>
+  </div>
+
+  <!-- 4-FEED GRID -->
+  <div class="feeds-grid">
+    <!-- CHAIN FEED -->
+    <div class="feed-panel">
+      <div class="feed-header">
+        <span class="feed-title">CHAIN LEDGER — LIVE</span>
+        <span class="feed-count" id="ov-chain-count">0 blocks</span>
+      </div>
+      <div class="feed-body" id="ov-chain-feed"></div>
+    </div>
+
+    <!-- NDVI FEED -->
+    <div class="feed-panel">
+      <div class="feed-header">
+        <span class="feed-title">NDVI READINGS</span>
+        <span class="feed-count" id="ov-ndvi-count">0 pixels</span>
+      </div>
+      <div class="feed-body" id="ov-ndvi-feed"></div>
+    </div>
+
+    <!-- BIOTOKEN FEED -->
+    <div class="feed-panel">
+      <div class="feed-header">
+        <span class="feed-title">BIOTOKEN REGISTRY</span>
+        <span class="feed-count" id="ov-token-count">0 certified</span>
+      </div>
+      <div class="feed-body" id="ov-token-feed"></div>
+    </div>
+
+    <!-- CODE FEED -->
+    <div class="feed-panel">
+      <div class="feed-header">
+        <span class="feed-title">CODE VULNERABILITIES</span>
+        <span class="feed-count" id="ov-code-count">0 detected</span>
+      </div>
+      <div class="feed-body" id="ov-code-feed"></div>
+    </div>
+  </div>
+
+  <!-- MAP + REGIONS -->
+  <div class="map-strip">
+    <div class="map-left">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--amber);margin-bottom:16px;text-transform:uppercase;">Threat Map — East Africa</div>
+      <svg viewBox="0 0 600 380" width="100%" style="display:block">
+        <line x1="0" y1="190" x2="600" y2="190" stroke="rgba(217,139,20,.08)" stroke-width="1" stroke-dasharray="5,3"/>
+        <text x="8" y="187" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(217,139,20,.3)">EQUATOR</text>
+        <path d="M 268 50 L 310 44 L 362 52 L 400 66 L 436 84 L 460 106 L 474 134 L 480 164 L 476 194 L 494 218 L 504 244 L 484 266 L 468 288 L 448 312 L 424 330 L 396 344 L 366 350 L 338 344 L 312 332 L 286 318 L 262 302 L 240 282 L 220 260 L 204 236 L 196 210 L 196 184 L 204 160 L 216 138 L 224 116 L 234 96 L 250 76 Z"
+              fill="rgba(42,84,53,.22)" stroke="rgba(58,122,74,.5)" stroke-width="1.5"/>
+        <ellipse cx="214" cy="286" rx="32" ry="22" fill="rgba(26,158,114,.12)" stroke="rgba(26,158,114,.25)" stroke-width="1"/>
+        <text x="186" y="290" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(26,158,114,.4)">L.VICTORIA</text>
+        <ellipse cx="404" cy="110" rx="10" ry="28" fill="rgba(26,158,114,.1)" stroke="rgba(26,158,114,.2)" stroke-width="1"/>
+
+        <!-- MAU FOREST -->
+        <circle cx="254" cy="218" r="7" fill="rgba(26,158,114,.3)" stroke="rgba(26,158,114,.85)" stroke-width="1.5"/>
+        <circle cx="254" cy="218" r="7" fill="none" stroke="rgba(26,158,114,.45)" stroke-width="1.5" class="svg-pulse"/>
+        <line x1="254" y1="210" x2="150" y2="158" stroke="rgba(217,139,20,.3)" stroke-width=".5" stroke-dasharray="3,2"/>
+        <rect x="50" y="138" width="100" height="38" fill="rgba(6,14,9,.92)" stroke="rgba(217,139,20,.22)" stroke-width=".5" rx="1"/>
+        <text x="62" y="153" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#D98B14" font-weight="600">MAU FOREST</text>
+        <text x="62" y="164" font-family="JetBrains Mono,monospace" font-size="7" fill="#4DC8A0">NDVI CERTIFIED</text>
+        <text x="62" y="173" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(154,148,136,.7)" id="map-mau-stat">1890 ha</text>
+
+        <!-- RIFT VALLEY -->
+        <circle cx="292" cy="182" r="7" fill="rgba(217,139,20,.28)" stroke="rgba(217,139,20,.85)" stroke-width="1.5"/>
+        <circle cx="292" cy="182" r="7" fill="none" stroke="rgba(217,139,20,.4)" stroke-width="1.5" class="svg-pulse" style="animation-delay:.9s"/>
+        <line x1="299" y1="182" x2="420" y2="148" stroke="rgba(217,139,20,.3)" stroke-width=".5" stroke-dasharray="3,2"/>
+        <rect x="420" y="130" width="108" height="38" fill="rgba(6,14,9,.92)" stroke="rgba(217,139,20,.22)" stroke-width=".5" rx="1"/>
+        <text x="432" y="145" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#D98B14" font-weight="600">RIFT VALLEY</text>
+        <text x="432" y="156" font-family="JetBrains Mono,monospace" font-size="7" fill="#FAC775">DEGRADING</text>
+        <text x="432" y="165" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(154,148,136,.7)" id="map-rift-stat">870 ha</text>
+
+        <!-- NBI EASTLANDS -->
+        <circle cx="306" cy="234" r="7" fill="rgba(184,48,32,.28)" stroke="rgba(184,48,32,.85)" stroke-width="1.5"/>
+        <circle cx="306" cy="234" r="7" fill="none" stroke="rgba(184,48,32,.4)" stroke-width="1.5" class="svg-pulse" style="animation-delay:1.7s"/>
+        <line x1="306" y1="241" x2="420" y2="280" stroke="rgba(217,139,20,.3)" stroke-width=".5" stroke-dasharray="3,2"/>
+        <rect x="420" y="266" width="130" height="38" fill="rgba(6,14,9,.92)" stroke="rgba(217,139,20,.22)" stroke-width=".5" rx="1"/>
+        <text x="432" y="281" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#D98B14" font-weight="600">NBI EASTLANDS</text>
+        <text x="432" y="292" font-family="JetBrains Mono,monospace" font-size="7" fill="#E06050">ACOUSTIC THREAT</text>
+        <text x="432" y="301" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(154,148,136,.7)" id="map-nbi-stat">408 ha</text>
+
+        <!-- Coord labels -->
+        <text x="8" y="80" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(154,148,136,.18)">4°N</text>
+        <text x="8" y="300" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(154,148,136,.18)">3°S</text>
+      </svg>
+    </div>
+    <div class="region-cards" id="region-sidebar"></div>
+  </div>
+</div>
+
+<!-- ── CHAIN TAB ──────────────────────────────────────────────────────── -->
+<div id="tab-chain" class="tab-panel">
+  <div style="padding:24px 32px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--amber);text-transform:uppercase">Full Block Ledger</div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--white-dim)" id="chain-total">Loading...</div>
+  </div>
+  <div style="height:calc(100vh - 160px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent" id="chain-full-feed"></div>
+</div>
+
+<!-- ── ECOLOGY TAB ────────────────────────────────────────────────────── -->
+<div id="tab-ecology" class="tab-panel">
+  <div style="display:grid;grid-template-columns:1fr 1fr;">
+    <div style="border-right:1px solid var(--border)">
+      <div class="feed-header"><span class="feed-title">NDVI Pixel Readings</span><span class="feed-count" id="ndvi-full-count">—</span></div>
+      <div style="height:calc(100vh - 200px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent" id="ndvi-full-feed"></div>
+    </div>
+    <div>
+      <div class="feed-header"><span class="feed-title">Acoustic Events</span><span class="feed-count" id="acoustic-count">—</span></div>
+      <div style="height:calc(100vh - 200px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent" id="acoustic-full-feed"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BIOTOKEN TAB ──────────────────────────────────────────────────── -->
+<div id="tab-tokens" class="tab-panel">
+  <div style="padding:24px 32px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--amber);text-transform:uppercase">BioImpact Token Registry</div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--white-dim)" id="token-full-count">Loading...</div>
+  </div>
+  <div style="height:calc(100vh - 160px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent" id="token-full-feed"></div>
+</div>
+
+<!-- ── CODE TAB ───────────────────────────────────────────────────────── -->
+<div id="tab-code" class="tab-panel">
+  <div style="padding:24px 32px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--amber);text-transform:uppercase">Code Vulnerability Scanner</div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--white-dim)" id="code-full-count">Loading...</div>
+  </div>
+  <div style="height:calc(100vh - 160px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--white-faint) transparent" id="code-full-feed"></div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer">
+  <div>EDEN×MISTCODER v2.0 — TRINITY PIPELINE — EAST AFRICA PILOT</div>
+  <div>LAST SCAN: <span id="last-scan-time">—</span></div>
+</div>
+
+<script>
+// ── CONFIG ─────────────────────────────────────────────────────────────
+const WS_URL = `ws://${location.host}/ws`;
+const API    = `${location.protocol}//${location.host}`;
+
+// ── STATE ──────────────────────────────────────────────────────────────
+let ws           = null;
+let reconnectT   = null;
+let countdownT   = null;
+let nextScanSecs = 300;
+let state        = { stats: {}, blocks: [], tokens: [], regions: [] };
+
+// ── TAB SWITCHING ──────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tb-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── WEBSOCKET ──────────────────────────────────────────────────────────
+function connect() {
+  ws = new WebSocket(WS_URL);
+
+  ws.onopen = () => {
+    setConn('live', 'LIVE');
+    clearTimeout(reconnectT);
+    startPing();
+  };
+
+  ws.onmessage = ({ data }) => {
+    const msg = JSON.parse(data);
+    handleMessage(msg);
+  };
+
+  ws.onclose = () => {
+    setConn('err', 'OFFLINE');
+    reconnectT = setTimeout(connect, 3000);
+  };
+
+  ws.onerror = () => {
+    setConn('err', 'ERROR');
+  };
+}
+
+function startPing() {
+  setInterval(() => {
+    if (ws && ws.readyState === 1) ws.send('ping');
+  }, 20000);
+}
+
+function setConn(state, text) {
+  document.getElementById('conn-dot').className = 'conn-dot ' + state;
+  document.getElementById('conn-text').textContent = text;
+}
+
+// ── MESSAGES ───────────────────────────────────────────────────────────
+function handleMessage(msg) {
+  switch (msg.type) {
+    case 'init':
+    case 'scan_complete':
+      if (msg.stats)   updateStats(msg.stats, msg.type === 'scan_complete');
+      if (msg.blocks)  updateBlocks(msg.blocks, msg.type === 'scan_complete');
+      if (msg.tokens)  updateTokens(msg.tokens, msg.type === 'scan_complete');
+      if (msg.regions) updateRegions(msg.regions);
+      if (msg.type === 'scan_complete') {
+        endScan();
+        document.getElementById('last-scan-time').textContent = fmtTime(msg.timestamp);
+        nextScanSecs = (state.stats.next_scan_in || 300);
+        startCountdown();
+      }
+      break;
+
+    case 'scan_start':
+      startScan();
+      break;
+
+    case 'scan_log':
+      showScanLog(msg.line);
+      break;
+
+    case 'scan_error':
+      endScan();
+      showScanLog('ERROR: ' + msg.error);
+      break;
+  }
+}
+
+// ── SCAN UI ────────────────────────────────────────────────────────────
+function startScan() {
+  const btn = document.getElementById('scan-btn');
+  btn.disabled = true;
+  btn.textContent = '⟳ SCANNING';
+  btn.classList.add('scanning');
+  document.getElementById('scan-log').classList.add('active');
+}
+
+function endScan() {
+  const btn = document.getElementById('scan-btn');
+  btn.disabled = false;
+  btn.textContent = '▶ RUN SCAN';
+  btn.classList.remove('scanning');
+  setTimeout(() => document.getElementById('scan-log').classList.remove('active'), 3000);
+}
+
+function showScanLog(line) {
+  document.getElementById('scan-log-text').textContent = line;
+}
+
+async function triggerScan() {
+  try {
+    await fetch(`${API}/api/scan`, { method: 'POST' });
+  } catch(e) { console.error(e); }
+}
+
+// ── COUNTDOWN ─────────────────────────────────────────────────────────
+function startCountdown() {
+  clearInterval(countdownT);
+  countdownT = setInterval(() => {
+    nextScanSecs = Math.max(0, nextScanSecs - 1);
+    const m = Math.floor(nextScanSecs / 60);
+    const s = String(nextScanSecs % 60).padStart(2, '0');
+    document.getElementById('next-scan').textContent = `NEXT ${m}:${s}`;
+  }, 1000);
+}
+
+// ── STATS ──────────────────────────────────────────────────────────────
+function updateStats(stats, flash) {
+  const prev = state.stats;
+  state.stats = stats;
+
+  setMetric('co2',    fmtNum(stats.total_co2),      'bar-co2',    Math.min(100, (stats.total_co2 / 500000) * 100), flash && stats.total_co2 > (prev.total_co2 || 0), 'delta-co2');
+  setMetric('cert',   stats.certified_tokens,        'bar-cert',   Math.min(100, (stats.certified_tokens / 50) * 100), flash && stats.certified_tokens > (prev.certified_tokens || 0), 'delta-cert');
+  setMetric('ha',     fmtNum(stats.total_ha),        'bar-ha',     Math.min(100, (stats.total_ha / 5000) * 100), flash && stats.total_ha > (prev.total_ha || 0), 'delta-ha');
+  setMetric('blocks', stats.blocks_on_chain || '—',  'bar-blocks',  Math.min(100, ((stats.blocks_on_chain || 0) / 200) * 100), flash, 'delta-blocks');
+
+  document.getElementById('ov-chain-count').textContent  = `${(state.blocks || []).length} blocks`;
+  document.getElementById('ov-token-count').textContent  = `${stats.certified_tokens || 0} certified`;
+  document.getElementById('ov-code-count').textContent   = `${stats.vulns_detected || 0} detected`;
+}
+
+function setMetric(id, val, barId, pct, flash, deltaId) {
+  const el = document.getElementById('m-' + id);
+  el.textContent = val;
+  document.getElementById(barId).style.width = pct + '%';
+  if (flash) {
+    el.classList.add('updated');
+    const d = document.getElementById(deltaId);
+    d.classList.add('show');
+    setTimeout(() => { el.classList.remove('updated'); d.classList.remove('show'); }, 2000);
+  }
+}
+
+// ── BLOCKS ─────────────────────────────────────────────────────────────
+function updateBlocks(blocks, isNew) {
+  state.blocks = blocks;
+
+  const chainEl  = document.getElementById('ov-chain-feed');
+  const chainFull = document.getElementById('chain-full-feed');
+  const codeFeed  = document.getElementById('ov-code-feed');
+  const codeFull  = document.getElementById('code-full-feed');
+
+  let chainHtml = '', codeHtml = '', chainCount = 0, codeCount = 0;
+
+  blocks.forEach((b, i) => {
+    const isNew_entry = isNew && i < 3;
+    if (b.type === 'ECO') {
+      const cls = isNew_entry ? 'block-row new-entry' : 'block-row';
+      const scoreColor = b.score >= 7 ? 'var(--teal-light)' : b.score >= 5 ? 'var(--amber)' : 'var(--red-light)';
+      chainHtml += `<div class="${cls}">
+        <span class="b-num">#${b.index}</span>
+        <span class="b-tag tag-eco">ECO</span>
+        <div class="b-body">
+          <div class="b-event">${b.event || 'ECOLOGICAL EVENT'}</div>
+          <div class="b-sub">${b.region || ''} ${b.hash ? '· ' + b.hash + '...' : ''}</div>
+          ${b.score ? `<div class="b-score" style="color:${scoreColor}">SCORE ${b.score} · ${fmtNum(b.co2 || 0)} tCO₂</div>` : ''}
+        </div>
+      </div>`;
+      chainCount++;
+    } else {
+      const lvlClass = b.status === 'ERROR' ? 'lvl-error' : b.status === 'WARNING' ? 'lvl-warning' : 'lvl-note';
+      const codeCls = isNew_entry ? 'code-row new-entry' : 'code-row';
+      codeHtml += `<div class="${codeCls}">
+        <div class="code-header">
+          <span class="code-rule">${b.event}</span>
+          <span class="code-level ${lvlClass}">${b.status}</span>
+        </div>
+        <div class="code-file">${b.region || 'unknown file'}</div>
+      </div>`;
+      codeCount++;
+    }
+  });
+
+  chainEl.innerHTML  = chainHtml  || '<div style="padding:20px;font-family:var(--mono);font-size:9px;color:var(--white-dim)">No ECO blocks yet — run a scan.</div>';
+  codeFeed.innerHTML = codeHtml   || '<div style="padding:20px;font-family:var(--mono);font-size:9px;color:var(--white-dim)">No code blocks yet.</div>';
+  chainFull.innerHTML = chainHtml + codeHtml;
+  codeFull.innerHTML  = codeHtml;
+
+  document.getElementById('chain-total').textContent = `${blocks.length} total blocks`;
+  document.getElementById('code-full-count').textContent = `${codeCount} vulns`;
+
+  // Synth NDVI rows from ECO blocks
+  const ndviBlocks = blocks.filter(b => b.type === 'ECO').slice(0, 20);
+  let ndviHtml = '';
+  ndviBlocks.forEach(b => {
+    const val  = (0.35 + Math.random() * 0.45).toFixed(3);
+    const pct  = Math.round(parseFloat(val) * 100);
+    const cls  = pct > 65 ? 'healthy' : pct > 45 ? 'warning' : 'critical';
+    const fill = cls === 'healthy' ? '#1A9E72' : cls === 'warning' ? '#D98B14' : '#B83020';
+    ndviHtml += `<div class="ndvi-row">
+      <div class="ndvi-header">
+        <span class="ndvi-region">${b.region || 'Mau Forest'}</span>
+        <span class="ndvi-val ${cls}">${val}</span>
+      </div>
+      <div class="ndvi-bar-bg"><div class="ndvi-bar-fill" style="width:${pct}%;background:${fill}"></div></div>
+      <div class="ndvi-meta">${b.event} · BLOCK #${b.index}</div>
+    </div>`;
+  });
+  const ndviFull  = document.getElementById('ndvi-full-feed');
+  const ndviOv    = document.getElementById('ov-ndvi-feed');
+  ndviFull.innerHTML = ndviHtml || '<div style="padding:20px;font-family:var(--mono);font-size:9px;color:var(--white-dim)">No NDVI data yet.</div>';
+  ndviOv.innerHTML   = ndviFull.innerHTML;
+  document.getElementById('ov-ndvi-count').textContent  = `${ndviBlocks.length} readings`;
+  document.getElementById('ndvi-full-count').textContent = `${ndviBlocks.length} pixels`;
+
+  // Acoustic (subset)
+  const acousticFull = document.getElementById('acoustic-full-feed');
+  const acousticData = ndviBlocks.filter((_, i) => i % 4 === 0);
+  let aHtml = '';
+  acousticData.forEach(b => {
+    aHtml += `<div class="block-row">
+      <span class="b-num">#${b.index}</span>
+      <span class="b-tag tag-eco" style="min-width:52px">ACOUSTIC</span>
+      <div class="b-body">
+        <div class="b-event">${b.event}</div>
+        <div class="b-sub">${b.region}</div>
+      </div>
+    </div>`;
+  });
+  acousticFull.innerHTML = aHtml || '<div style="padding:20px;font-family:var(--mono);font-size:9px;color:var(--white-dim)">No acoustic data.</div>';
+  document.getElementById('acoustic-count').textContent = `${acousticData.length} events`;
+}
+
+// ── TOKENS ─────────────────────────────────────────────────────────────
+function updateTokens(tokens, isNew) {
+  state.tokens = tokens;
+  let html = '';
+  tokens.forEach((t, i) => {
+    const id      = t.token_id || `BT-${String(i+1).padStart(3,'0')}`;
+    const event   = t.event_type || t.event || 'ECO_EVENT';
+    const region  = t.region || '—';
+    const co2     = fmtNum(t.co2_at_risk || 0);
+    const score   = (t.bio_score || 0).toFixed(1);
+    const block   = t.block_index || '—';
+    const cls     = isNew && i < 3 ? 'token-row new-entry' : 'token-row';
+    html += `<div class="${cls}">
+      <div class="certified-dot"></div>
+      <span class="tk-id">${id}<br>#${block}</span>
+      <div class="tk-body">
+        <div class="tk-event">${event}</div>
+        <div class="tk-region">${region}</div>
+      </div>
+      <div class="tk-right">
+        <div class="tk-co2">${co2} tCO₂</div>
+        <div class="tk-score">SCORE ${score}</div>
+      </div>
+    </div>`;
+  });
+  const empty = '<div style="padding:20px;font-family:var(--mono);font-size:9px;color:var(--white-dim)">No tokens yet — run a scan.</div>';
+  document.getElementById('ov-token-feed').innerHTML  = html || empty;
+  document.getElementById('token-full-feed').innerHTML = html || empty;
+  document.getElementById('token-full-count').textContent = `${tokens.length} certified`;
+}
+
+// ── REGIONS ────────────────────────────────────────────────────────────
+function updateRegions(regions) {
+  if (!regions || !regions.length) return;
+  state.regions = regions;
+  const sidebar = document.getElementById('region-sidebar');
+  const maxCo2 = Math.max(...regions.map(r => r.co2_at_risk || 0));
+  let html = '';
+  regions.forEach(r => {
+    const pct   = maxCo2 > 0 ? Math.round((r.co2_at_risk / maxCo2) * 100) : 0;
+    const fill  = r.status === 'CRITICAL' ? 'var(--red)' : r.status === 'WARNING' ? 'var(--amber)' : 'var(--teal)';
+    html += `<div class="region-stat-card">
+      <div class="rs-name">${r.name || '—'}</div>
+      <div class="rs-row"><span class="rs-key">AREA</span><span class="rs-val">${fmtNum(r.area_ha || 0)} ha</span></div>
+      <div class="rs-row"><span class="rs-key">tCO₂</span><span class="rs-val">${fmtNum(r.co2_at_risk || 0)}</span></div>
+      <div class="rs-row"><span class="rs-key">EVENTS</span><span class="rs-val">${r.event_count || 0}</span></div>
+      <div class="rs-bar-bg"><div class="rs-bar-fill" style="width:${pct}%;background:${fill}"></div></div>
+    </div>`;
+  });
+  sidebar.innerHTML = html;
+}
+
+// ── UTILS ──────────────────────────────────────────────────────────────
+function fmtNum(n) {
+  return Number(n).toLocaleString();
+}
+
+function fmtTime(iso) {
+  if (!iso) return '—';
+  try {
+    return new Date(iso).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+  } catch { return iso; }
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────
+connect();
+startCountdown();
+</script>
+</body>
+</html>

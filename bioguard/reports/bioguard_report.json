@@ -1,0 +1,657 @@
+{
+  "scan_timestamp": "2026-04-26T06:00:53.783853+00:00",
+  "total_blocks": 14,
+  "confirmed_violations": 9,
+  "probable_violations": 5,
+  "fraudulent_credits": 865979,
+  "apex_nodes": [
+    "Continental Wildlife Corridor Fund"
+  ],
+  "entities_scanned": 6,
+  "network_links": 6,
+  "blocks": [
+    {
+      "block_index": 109,
+      "block_hash": "2031869b1a86978d",
+      "block_type": "ACTOR",
+      "threat_class": "CARBON_FRAUD",
+      "entity": "GreenVeil Conservation Partners Ltd",
+      "region": "Multiple",
+      "parcel_id": "CPK/2023/04471",
+      "summary": "Entity claims 2840ha conservation. Filed 34,200 carbon credits, legitimate: 1,800. Offshore: YES. Mining licenses: 1. Linked entities: 2. Contradiction score: 9.4/10.",
+      "contradiction_score": 9.4,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 32400,
+      "land_ha": 2840.0,
+      "dossier_ref": "BG-DOSSIER-CPK/2023/04471",
+      "timestamp": "2026-04-26T06:00:53.772855+00:00",
+      "linked_blocks": [],
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "UNFCCC_INTEGRITY"
+      ]
+    },
+    {
+      "block_index": 110,
+      "block_hash": "2cf2a5cfefb05a99",
+      "block_type": "ACTOR",
+      "threat_class": "CARBON_FRAUD",
+      "entity": "Rift Stewardship Foundation",
+      "region": "Multiple",
+      "parcel_id": "NGO/2021/11892",
+      "summary": "Entity claims 1200ha conservation. Filed 18,600 carbon credits, legitimate: 12,400. Offshore: NO. Mining licenses: 0. Linked entities: 2. Contradiction score: 6.1/10.",
+      "contradiction_score": 6.1,
+      "evidence_grade": "PROBABLE",
+      "carbon_credits_at_risk": 6200,
+      "land_ha": 1200.0,
+      "dossier_ref": "BG-DOSSIER-NGO/2021/11892",
+      "timestamp": "2026-04-26T06:00:53.773860+00:00",
+      "linked_blocks": [],
+      "referred_to": [
+        "KFS_ENFORCEMENT",
+        "CARBON_REGISTRY_VERRA"
+      ]
+    },
+    {
+      "block_index": 111,
+      "block_hash": "1b9cb22623d8e00a",
+      "block_type": "ACTOR",
+      "threat_class": "CARBON_FRAUD",
+      "entity": "SilverLeaf Carbon Investments",
+      "region": "Multiple",
+      "parcel_id": "CMP/2022/33019",
+      "summary": "Entity claims 4800ha conservation. Filed 61,000 carbon credits, legitimate: 4,200. Offshore: YES. Mining licenses: 2. Linked entities: 2. Contradiction score: 9.8/10.",
+      "contradiction_score": 9.8,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 56800,
+      "land_ha": 5100.0,
+      "dossier_ref": "BG-DOSSIER-CMP/2022/33019",
+      "timestamp": "2026-04-26T06:00:53.774861+00:00",
+      "linked_blocks": [],
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "UNFCCC_INTEGRITY"
+      ]
+    },
+    {
+      "block_index": 112,
+      "block_hash": "2de66b2d30c7e6d6",
+      "block_type": "ACTOR",
+      "threat_class": "CARBON_FRAUD",
+      "entity": "Continental Wildlife Corridor Fund",
+      "region": "Multiple",
+      "parcel_id": "INTL/2023/KE/00871",
+      "summary": "Entity claims 7200ha conservation. Filed 94,000 carbon credits, legitimate: 3,100. Offshore: YES. Mining licenses: 3. Linked entities: 4. Contradiction score: 9.9/10.",
+      "contradiction_score": 9.9,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 90900,
+      "land_ha": 7200.0,
+      "dossier_ref": "BG-DOSSIER-INTL/2023/KE/00871",
+      "timestamp": "2026-04-26T06:00:53.775861+00:00",
+      "linked_blocks": [],
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "UNFCCC_INTEGRITY"
+      ]
+    },
+    {
+      "block_index": 113,
+      "block_hash": "82bb4040205700a7",
+      "block_type": "VIOLATION",
+      "threat_class": "LAND_GRAB",
+      "entity": "GreenVeil Conservation Partners Ltd",
+      "region": "Mau Forest",
+      "parcel_id": "MAU/N/2840/KFS",
+      "summary": "NDVI_FRAUD: NDVI claimed 0.72 vs satellite actual 0.31 (delta -0.41). Clearing 38.4 ha/month. Night activity: YES. Gunshot events: 6. Rectangular pattern: YES \u2014 commercial signature.",
+      "contradiction_score": 9.4,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 69120,
+      "land_ha": 0,
+      "dossier_ref": "BG-SIG-MAU/N/2840/KFS",
+      "timestamp": "2026-04-26T06:00:53.776858+00:00",
+      "linked_blocks": [
+        109
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "SATELLITE_EVIDENCE_UNIT"
+      ]
+    },
+    {
+      "block_index": 114,
+      "block_hash": "1a3ade15f344f567",
+      "block_type": "VIOLATION",
+      "threat_class": "LAND_GRAB",
+      "entity": "SilverLeaf Carbon Investments",
+      "region": "Rift Valley",
+      "parcel_id": "RIFT/S/5100/KLC",
+      "summary": "MASS_CLEARING: NDVI claimed 0.68 vs satellite actual 0.22 (delta -0.46). Clearing 127.0 ha/month. Night activity: YES. Gunshot events: 0. Rectangular pattern: YES \u2014 commercial signature.",
+      "contradiction_score": 9.8,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 228600,
+      "land_ha": 0,
+      "dossier_ref": "BG-SIG-RIFT/S/5100/KLC",
+      "timestamp": "2026-04-26T06:00:53.776858+00:00",
+      "linked_blocks": [
+        111
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "SATELLITE_EVIDENCE_UNIT"
+      ]
+    },
+    {
+      "block_index": 115,
+      "block_hash": "0d97b801b2010df0",
+      "block_type": "VIOLATION",
+      "threat_class": "LAND_GRAB",
+      "entity": "Continental Wildlife Corridor Fund",
+      "region": "Mau Forest",
+      "parcel_id": "MAU/S/7200/INTL",
+      "summary": "SYSTEMATIC_EXTRACTION: NDVI claimed 0.74 vs satellite actual 0.24 (delta -0.50). Clearing 204.0 ha/month. Night activity: YES. Gunshot events: 22. Rectangular pattern: YES \u2014 commercial signature.",
+      "contradiction_score": 9.9,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 367200,
+      "land_ha": 0,
+      "dossier_ref": "BG-SIG-MAU/S/7200/INTL",
+      "timestamp": "2026-04-26T06:00:53.777857+00:00",
+      "linked_blocks": [
+        112
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "SATELLITE_EVIDENCE_UNIT"
+      ]
+    },
+    {
+      "block_index": 116,
+      "block_hash": "8429136eaf09c57d",
+      "block_type": "VIOLATION",
+      "threat_class": "CARBON_FRAUD",
+      "entity": "Rift Stewardship Foundation",
+      "region": "Rift Valley",
+      "parcel_id": "RIFT/N/1200/NGO",
+      "summary": "PARTIAL_DIVERSION: NDVI claimed 0.61 vs satellite actual 0.48 (delta -0.13). Clearing 8.2 ha/month. Night activity: NO. Gunshot events: 0. Rectangular pattern: NO.",
+      "contradiction_score": 6.1,
+      "evidence_grade": "PROBABLE",
+      "carbon_credits_at_risk": 14759,
+      "land_ha": 0,
+      "dossier_ref": "BG-SIG-RIFT/N/1200/NGO",
+      "timestamp": "2026-04-26T06:00:53.777857+00:00",
+      "linked_blocks": [
+        110
+      ],
+      "referred_to": [
+        "KFS_ENFORCEMENT",
+        "CARBON_REGISTRY_VERRA"
+      ]
+    },
+    {
+      "block_index": 117,
+      "block_hash": "f9840eba59e29ed2",
+      "block_type": "NETWORK",
+      "threat_class": "SHELL_CONSERVANCY",
+      "entity": "GreenVeil Conservation Partners Ltd \u2194 SilverLeaf Carbon Investments",
+      "region": "Network",
+      "parcel_id": "NET-SHARED_DIRECTOR",
+      "summary": "LINK TYPE: SHARED_DIRECTOR. Strength: 95%. Evidence: Thomas Reinholt appears as director on both entities.",
+      "contradiction_score": 9.5,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 0,
+      "land_ha": 0,
+      "dossier_ref": "BG-NET-GreenVei",
+      "timestamp": "2026-04-26T06:00:53.778856+00:00",
+      "linked_blocks": [
+        109,
+        111,
+        113,
+        114
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "FINANCIAL_INTELLIGENCE_UNIT",
+        "INTERPOL_FINANCIAL_CRIMES"
+      ]
+    },
+    {
+      "block_index": 118,
+      "block_hash": "995016314249865f",
+      "block_type": "NETWORK",
+      "threat_class": "SHELL_CONSERVANCY",
+      "entity": "SilverLeaf Carbon Investments \u2194 Continental Wildlife Corridor Fund",
+      "region": "Network",
+      "parcel_id": "NET-SHARED_DIRECTOR",
+      "summary": "LINK TYPE: SHARED_DIRECTOR. Strength: 95%. Evidence: Ravi Menon appears as director on both entities.",
+      "contradiction_score": 9.5,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 0,
+      "land_ha": 0,
+      "dossier_ref": "BG-NET-SilverLe",
+      "timestamp": "2026-04-26T06:00:53.779855+00:00",
+      "linked_blocks": [
+        111,
+        112,
+        114,
+        115
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "FINANCIAL_INTELLIGENCE_UNIT",
+        "INTERPOL_FINANCIAL_CRIMES"
+      ]
+    },
+    {
+      "block_index": 119,
+      "block_hash": "d22dd51b19ed339a",
+      "block_type": "NETWORK",
+      "threat_class": "MONEY_LAUNDERING",
+      "entity": "Continental Wildlife Corridor Fund \u2194 Pan-Africa Timber Corp",
+      "region": "Network",
+      "parcel_id": "NET-FINANCIAL_FLOW",
+      "summary": "LINK TYPE: FINANCIAL_FLOW. Strength: 88%. Evidence: Carbon credit payments traced to Pan-Africa Timber accounts.",
+      "contradiction_score": 8.8,
+      "evidence_grade": "PROBABLE",
+      "carbon_credits_at_risk": 0,
+      "land_ha": 0,
+      "dossier_ref": "BG-NET-Continen",
+      "timestamp": "2026-04-26T06:00:53.779855+00:00",
+      "linked_blocks": [
+        112,
+        115
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "FINANCIAL_INTELLIGENCE_UNIT",
+        "INTERPOL_FINANCIAL_CRIMES"
+      ]
+    },
+    {
+      "block_index": 120,
+      "block_hash": "e5d5e9e563c63af9",
+      "block_type": "NETWORK",
+      "threat_class": "SHELL_CONSERVANCY",
+      "entity": "GreenVeil Conservation Partners Ltd \u2194 Veil Timber Holdings",
+      "region": "Network",
+      "parcel_id": "NET-SHARED_ADDRESS",
+      "summary": "LINK TYPE: SHARED_ADDRESS. Strength: 91%. Evidence: Registered address: Suite 4B, Waiyaki Way, Nairobi \u2014 identical.",
+      "contradiction_score": 9.1,
+      "evidence_grade": "CONFIRMED",
+      "carbon_credits_at_risk": 0,
+      "land_ha": 0,
+      "dossier_ref": "BG-NET-GreenVei",
+      "timestamp": "2026-04-26T06:00:53.779855+00:00",
+      "linked_blocks": [
+        109,
+        113
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "FINANCIAL_INTELLIGENCE_UNIT",
+        "INTERPOL_FINANCIAL_CRIMES"
+      ]
+    },
+    {
+      "block_index": 121,
+      "block_hash": "aaf94afa121f1b78",
+      "block_type": "NETWORK",
+      "threat_class": "MONEY_LAUNDERING",
+      "entity": "SilverLeaf Carbon Investments \u2194 Continental Wildlife Corridor Fund",
+      "region": "Network",
+      "parcel_id": "NET-FINANCIAL_FLOW",
+      "summary": "LINK TYPE: FINANCIAL_FLOW. Strength: 82%. Evidence: Mauritius \u2192 Panama offshore flow pattern matches both entities.",
+      "contradiction_score": 8.2,
+      "evidence_grade": "PROBABLE",
+      "carbon_credits_at_risk": 0,
+      "land_ha": 0,
+      "dossier_ref": "BG-NET-SilverLe",
+      "timestamp": "2026-04-26T06:00:53.780858+00:00",
+      "linked_blocks": [
+        111,
+        112,
+        114,
+        115
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "FINANCIAL_INTELLIGENCE_UNIT",
+        "INTERPOL_FINANCIAL_CRIMES"
+      ]
+    },
+    {
+      "block_index": 122,
+      "block_hash": "a32f172e79962f8c",
+      "block_type": "NETWORK",
+      "threat_class": "SHELL_CONSERVANCY",
+      "entity": "Continental Wildlife Corridor Fund \u2194 Rift Stewardship Foundation",
+      "region": "Network",
+      "parcel_id": "NET-SAME_PARCEL",
+      "summary": "LINK TYPE: SAME_PARCEL. Strength: 74%. Evidence: Overlapping carbon credit claims on parcel RIFT/N/1200/NGO.",
+      "contradiction_score": 7.4,
+      "evidence_grade": "PROBABLE",
+      "carbon_credits_at_risk": 0,
+      "land_ha": 0,
+      "dossier_ref": "BG-NET-Continen",
+      "timestamp": "2026-04-26T06:00:53.780858+00:00",
+      "linked_blocks": [
+        110,
+        112,
+        115,
+        116
+      ],
+      "referred_to": [
+        "DCI_KENYA",
+        "FINANCIAL_INTELLIGENCE_UNIT",
+        "INTERPOL_FINANCIAL_CRIMES"
+      ]
+    }
+  ],
+  "dossiers": {
+    "GreenVeil Conservation Partners Ltd": {
+      "entity": {
+        "name": "GreenVeil Conservation Partners Ltd",
+        "registration_number": "CPK/2023/04471",
+        "registered_date": "2023-03-14",
+        "registered_country": "Kenya (BVI beneficial)",
+        "directors": [
+          "Thomas Reinholt",
+          "Amina Osei-Bonsu",
+          "D. Whitmore"
+        ],
+        "beneficial_owner": "UNKNOWN \u2014 British Virgin Islands",
+        "land_title_ha": 2840.0,
+        "conservation_claim_ha": 2840.0,
+        "carbon_credits_filed": 34200,
+        "carbon_credits_legitimate": 1800,
+        "offshore_accounts": [
+          "BVI-TRUST-447",
+          "SEYCHELLES-GL-09"
+        ],
+        "linked_entities": [
+          "Veil Timber Holdings",
+          "GV Agriforest Kenya"
+        ],
+        "mining_licenses": [
+          "MINING/MAU/2022/117"
+        ],
+        "contradiction_score": 9.4,
+        "evidence_grade": "EvidenceGrade.CONFIRMED"
+      },
+      "block_ref": 109,
+      "fraud_credits": 32400,
+      "offshore": true,
+      "mining_licenses": true,
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "UNFCCC_INTEGRITY"
+      ],
+      "note": ""
+    },
+    "Rift Stewardship Foundation": {
+      "entity": {
+        "name": "Rift Stewardship Foundation",
+        "registration_number": "NGO/2021/11892",
+        "registered_date": "2021-07-02",
+        "registered_country": "Kenya",
+        "directors": [
+          "Grace Mutua",
+          "P. Eriksson",
+          "James Wanjohi"
+        ],
+        "beneficial_owner": "P. Eriksson (Swedish national, resident Dubai)",
+        "land_title_ha": 1200.0,
+        "conservation_claim_ha": 1200.0,
+        "carbon_credits_filed": 18600,
+        "carbon_credits_legitimate": 12400,
+        "offshore_accounts": [
+          "UAE-HOLDING-882"
+        ],
+        "linked_entities": [
+          "Rift Eco-Safari Ltd",
+          "Nordic Carbon Brokers AS"
+        ],
+        "mining_licenses": [],
+        "contradiction_score": 6.1,
+        "evidence_grade": "EvidenceGrade.PROBABLE"
+      },
+      "block_ref": 110,
+      "fraud_credits": 6200,
+      "offshore": false,
+      "mining_licenses": false,
+      "referred_to": [
+        "KFS_ENFORCEMENT",
+        "CARBON_REGISTRY_VERRA"
+      ],
+      "note": "Safari revenue declared, carbon credit diversion suspected"
+    },
+    "SilverLeaf Carbon Investments": {
+      "entity": {
+        "name": "SilverLeaf Carbon Investments",
+        "registration_number": "CMP/2022/33019",
+        "registered_date": "2022-11-28",
+        "registered_country": "Mauritius (Kenya operations)",
+        "directors": [
+          "Ravi Menon",
+          "Clara Oduya",
+          "H. Stenmark",
+          "T. Reinholt"
+        ],
+        "beneficial_owner": "UNKNOWN \u2014 Mauritius trust chain",
+        "land_title_ha": 5100.0,
+        "conservation_claim_ha": 4800.0,
+        "carbon_credits_filed": 61000,
+        "carbon_credits_legitimate": 4200,
+        "offshore_accounts": [
+          "MAURITIUS-SL-001",
+          "MAURITIUS-SL-002",
+          "SINGAPORE-SL-T"
+        ],
+        "linked_entities": [
+          "GreenVeil Conservation Partners Ltd",
+          "SL Agri Rift Ltd"
+        ],
+        "mining_licenses": [
+          "MINING/RIFT/2023/044",
+          "LOGGING/MAU/2021/088"
+        ],
+        "contradiction_score": 9.8,
+        "evidence_grade": "EvidenceGrade.CONFIRMED"
+      },
+      "block_ref": 111,
+      "fraud_credits": 56800,
+      "offshore": true,
+      "mining_licenses": true,
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "UNFCCC_INTEGRITY"
+      ],
+      "note": "T. Reinholt also director of GreenVeil \u2014 network confirmed"
+    },
+    "Continental Wildlife Corridor Fund": {
+      "entity": {
+        "name": "Continental Wildlife Corridor Fund",
+        "registration_number": "INTL/2023/KE/00871",
+        "registered_date": "2023-01-09",
+        "registered_country": "Kenya (Delaware USA parent)",
+        "directors": [
+          "M. Ashworth",
+          "Fatuma Issa",
+          "C. Bauer",
+          "Ravi Menon"
+        ],
+        "beneficial_owner": "UNKNOWN \u2014 Delaware LLC chain \u2192 Panama",
+        "land_title_ha": 7200.0,
+        "conservation_claim_ha": 7200.0,
+        "carbon_credits_filed": 94000,
+        "carbon_credits_legitimate": 3100,
+        "offshore_accounts": [
+          "DELAWARE-CWC-LLC",
+          "PANAMA-HOLDING-07",
+          "CAYMAN-CWC-T"
+        ],
+        "linked_entities": [
+          "SilverLeaf Carbon Investments",
+          "Rift Stewardship Foundation",
+          "Continental Agri-Rift SA",
+          "Pan-Africa Timber Corp"
+        ],
+        "mining_licenses": [
+          "LOGGING/MAU/2023/012",
+          "LOGGING/RIFT/2022/091",
+          "MINING/COAST/2023/034"
+        ],
+        "contradiction_score": 9.9,
+        "evidence_grade": "EvidenceGrade.CONFIRMED"
+      },
+      "block_ref": 112,
+      "fraud_credits": 90900,
+      "offshore": true,
+      "mining_licenses": true,
+      "referred_to": [
+        "DCI_KENYA",
+        "KFS_ENFORCEMENT",
+        "INTERPOL_WILDLIFE",
+        "CARBON_REGISTRY_VERRA",
+        "UNFCCC_INTEGRITY"
+      ],
+      "note": "APEX NODE: Ravi Menon links this entity to SilverLeaf. M. Ashworth linked to Pan-Africa Timber. 94k carbon credits filed on land with 67% NDVI loss."
+    }
+  },
+  "actor_network": [
+    {
+      "actor_a": "GreenVeil Conservation Partners Ltd",
+      "actor_b": "SilverLeaf Carbon Investments",
+      "link_type": "SHARED_DIRECTOR",
+      "strength": 0.95,
+      "evidence": "Thomas Reinholt appears as director on both entities"
+    },
+    {
+      "actor_a": "SilverLeaf Carbon Investments",
+      "actor_b": "Continental Wildlife Corridor Fund",
+      "link_type": "SHARED_DIRECTOR",
+      "strength": 0.95,
+      "evidence": "Ravi Menon appears as director on both entities"
+    },
+    {
+      "actor_a": "Continental Wildlife Corridor Fund",
+      "actor_b": "Pan-Africa Timber Corp",
+      "link_type": "FINANCIAL_FLOW",
+      "strength": 0.88,
+      "evidence": "Carbon credit payments traced to Pan-Africa Timber accounts"
+    },
+    {
+      "actor_a": "GreenVeil Conservation Partners Ltd",
+      "actor_b": "Veil Timber Holdings",
+      "link_type": "SHARED_ADDRESS",
+      "strength": 0.91,
+      "evidence": "Registered address: Suite 4B, Waiyaki Way, Nairobi \u2014 identical"
+    },
+    {
+      "actor_a": "SilverLeaf Carbon Investments",
+      "actor_b": "Continental Wildlife Corridor Fund",
+      "link_type": "FINANCIAL_FLOW",
+      "strength": 0.82,
+      "evidence": "Mauritius \u2192 Panama offshore flow pattern matches both entities"
+    },
+    {
+      "actor_a": "Continental Wildlife Corridor Fund",
+      "actor_b": "Rift Stewardship Foundation",
+      "link_type": "SAME_PARCEL",
+      "strength": 0.74,
+      "evidence": "Overlapping carbon credit claims on parcel RIFT/N/1200/NGO"
+    }
+  ],
+  "behavioral_signals": [
+    {
+      "entity_name": "GreenVeil Conservation Partners Ltd",
+      "signal_type": "NDVI_FRAUD",
+      "region": "Mau Forest",
+      "parcel_id": "MAU/N/2840/KFS",
+      "detected_at": "2026-04-26T06:00:53.776858+00:00",
+      "ndvi_claimed": 0.72,
+      "ndvi_actual": 0.31,
+      "ndvi_delta": -0.41,
+      "clearing_rate_ha_per_month": 38.4,
+      "night_activity_detected": true,
+      "vehicle_tracks_detected": true,
+      "rectangular_clearing": true,
+      "thermal_anomalies": 14,
+      "acoustic_gunshot_events": 6,
+      "severity": 9.4
+    },
+    {
+      "entity_name": "SilverLeaf Carbon Investments",
+      "signal_type": "MASS_CLEARING",
+      "region": "Rift Valley",
+      "parcel_id": "RIFT/S/5100/KLC",
+      "detected_at": "2026-04-26T06:00:53.776858+00:00",
+      "ndvi_claimed": 0.68,
+      "ndvi_actual": 0.22,
+      "ndvi_delta": -0.46,
+      "clearing_rate_ha_per_month": 127.0,
+      "night_activity_detected": true,
+      "vehicle_tracks_detected": true,
+      "rectangular_clearing": true,
+      "thermal_anomalies": 31,
+      "acoustic_gunshot_events": 0,
+      "severity": 9.8
+    },
+    {
+      "entity_name": "Continental Wildlife Corridor Fund",
+      "signal_type": "SYSTEMATIC_EXTRACTION",
+      "region": "Mau Forest",
+      "parcel_id": "MAU/S/7200/INTL",
+      "detected_at": "2026-04-26T06:00:53.777857+00:00",
+      "ndvi_claimed": 0.74,
+      "ndvi_actual": 0.24,
+      "ndvi_delta": -0.5,
+      "clearing_rate_ha_per_month": 204.0,
+      "night_activity_detected": true,
+      "vehicle_tracks_detected": true,
+      "rectangular_clearing": true,
+      "thermal_anomalies": 58,
+      "acoustic_gunshot_events": 22,
+      "severity": 9.9
+    },
+    {
+      "entity_name": "Rift Stewardship Foundation",
+      "signal_type": "PARTIAL_DIVERSION",
+      "region": "Rift Valley",
+      "parcel_id": "RIFT/N/1200/NGO",
+      "detected_at": "2026-04-26T06:00:53.777857+00:00",
+      "ndvi_claimed": 0.61,
+      "ndvi_actual": 0.48,
+      "ndvi_delta": -0.13,
+      "clearing_rate_ha_per_month": 8.2,
+      "night_activity_detected": false,
+      "vehicle_tracks_detected": true,
+      "rectangular_clearing": false,
+      "thermal_anomalies": 3,
+      "acoustic_gunshot_events": 0,
+      "severity": 6.1
+    }
+  ]
+}

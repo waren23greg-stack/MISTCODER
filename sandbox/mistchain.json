@@ -1,0 +1,5480 @@
+{
+  "version": "1.0",
+  "saved_at": "2026-04-25T18:23:55.423270+00:00",
+  "difficulty": 3,
+  "block_count": 108,
+  "blocks": [
+    {
+      "index": 0,
+      "timestamp": 1777063119.1036086,
+      "transactions": [
+        {
+          "type": "GENESIS",
+          "message": "MISTCODER chain initialised"
+        }
+      ],
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": 1452,
+      "hash": "0005f8305c1ce6f01409df8187ec814d67105b1249fe3310d49c28126e9f7d95"
+    },
+    {
+      "index": 1,
+      "timestamp": 1777063119.374733,
+      "transactions": [
+        {
+          "tx_id": "1d388c580b2fdfc0",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.3743162
+        },
+        {
+          "tx_id": "c5f2f5082f724b5b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.3743162
+        },
+        {
+          "tx_id": "2cd5c3cbe66f2688",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.3743162
+        }
+      ],
+      "previous_hash": "0005f8305c1ce6f01409df8187ec814d67105b1249fe3310d49c28126e9f7d95",
+      "nonce": 1315,
+      "hash": "0004651f9f3ebe717e93b7f881158afc7299af5e3e528f18eb0bb6e8fef6b4ee"
+    },
+    {
+      "index": 2,
+      "timestamp": 1777063119.4301314,
+      "transactions": [
+        {
+          "tx_id": "cad80b970af07fce",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 5.25,
+            "stealth": 0.53,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.4301314
+        },
+        {
+          "tx_id": "4196407e8bb0c5c8",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.4301314
+        },
+        {
+          "tx_id": "187b75b480ff32ce",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "certified": true,
+            "reason": "Score 5.25 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.4301314
+        }
+      ],
+      "previous_hash": "0004651f9f3ebe717e93b7f881158afc7299af5e3e528f18eb0bb6e8fef6b4ee",
+      "nonce": 1836,
+      "hash": "00049773246125cabd89fec5f2fa98895766417014280e642398dd01bd8bc328"
+    },
+    {
+      "index": 3,
+      "timestamp": 1777063119.5040853,
+      "transactions": [
+        {
+          "tx_id": "9074717788ccf970",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.5040853
+        },
+        {
+          "tx_id": "532988b0ab5459bf",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.5040853
+        },
+        {
+          "tx_id": "10ece5fa888936ca",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.5040853
+        }
+      ],
+      "previous_hash": "00049773246125cabd89fec5f2fa98895766417014280e642398dd01bd8bc328",
+      "nonce": 192,
+      "hash": "000dbad6e5eb17da38699b099b74ba2b8e6eb61c1f4e93892478d3b4d4b82e16"
+    },
+    {
+      "index": 4,
+      "timestamp": 1777063119.520169,
+      "transactions": [
+        {
+          "tx_id": "58d2ee7115648d0d",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 8.5,
+            "stealth": 0.86,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.520169
+        },
+        {
+          "tx_id": "aaed93f292c89fe3",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.520169
+        },
+        {
+          "tx_id": "410102095fa168e9",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "certified": true,
+            "reason": "Score 8.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.520169
+        }
+      ],
+      "previous_hash": "000dbad6e5eb17da38699b099b74ba2b8e6eb61c1f4e93892478d3b4d4b82e16",
+      "nonce": 1133,
+      "hash": "00066b67b919e5d5f924f0986923cb43b7d0eee3bacc715cc830498bb7b78d66"
+    },
+    {
+      "index": 5,
+      "timestamp": 1777063119.570139,
+      "transactions": [
+        {
+          "tx_id": "4a7b0dcdab08d71d",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "file_path",
+              "CWE-22",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 7.88,
+            "stealth": 0.79,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.569139
+        },
+        {
+          "tx_id": "fbfac822b63f9c61",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.569139
+        },
+        {
+          "tx_id": "53ae8cb470457c3a",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.569139
+        }
+      ],
+      "previous_hash": "00066b67b919e5d5f924f0986923cb43b7d0eee3bacc715cc830498bb7b78d66",
+      "nonce": 2577,
+      "hash": "000aeeb21b87f1d3195fc4f3ebf065a406f643e453da5f2974eb4ef6c6383542"
+    },
+    {
+      "index": 6,
+      "timestamp": 1777063119.6700761,
+      "transactions": [
+        {
+          "tx_id": "a839694772e99b8b",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.6700761
+        },
+        {
+          "tx_id": "26e298ad26982364",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.6700761
+        },
+        {
+          "tx_id": "c73f69a639b546b3",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.6700761
+        }
+      ],
+      "previous_hash": "000aeeb21b87f1d3195fc4f3ebf065a406f643e453da5f2974eb4ef6c6383542",
+      "nonce": 4566,
+      "hash": "000c6486e5be224b9aec3348e0d2f9d7bada779f611658f9422dbf95eee6e8c4"
+    },
+    {
+      "index": 7,
+      "timestamp": 1777063119.8296402,
+      "transactions": [
+        {
+          "tx_id": "844f488f6ccdea65",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 6.38,
+            "stealth": 0.64,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.8296402
+        },
+        {
+          "tx_id": "283438859ca26c58",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.8296402
+        },
+        {
+          "tx_id": "0a36fa1165dfd44b",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "certified": true,
+            "reason": "Score 6.38 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.8296402
+        }
+      ],
+      "previous_hash": "000c6486e5be224b9aec3348e0d2f9d7bada779f611658f9422dbf95eee6e8c4",
+      "nonce": 818,
+      "hash": "00021478f92e554340c858a3878c44430863c7e5c8ccf391fda34d9a9f0d9f68"
+    },
+    {
+      "index": 8,
+      "timestamp": 1777063119.865903,
+      "transactions": [
+        {
+          "tx_id": "331375062e0e73a8",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063119.865903
+        },
+        {
+          "tx_id": "9e4fec01496f93f3",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063119.865903
+        },
+        {
+          "tx_id": "c4e85cf3b91545cb",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063119.865903
+        }
+      ],
+      "previous_hash": "00021478f92e554340c858a3878c44430863c7e5c8ccf391fda34d9a9f0d9f68",
+      "nonce": 4139,
+      "hash": "0003906938456a4195e7b24b73f36775c5fd0bd373843375ea5cd7d8a3c799a8"
+    },
+    {
+      "index": 9,
+      "timestamp": 1777063120.0099413,
+      "transactions": [
+        {
+          "tx_id": "c38b2aa258572d31",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "steps": [
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063120.0099413
+        },
+        {
+          "tx_id": "1eb8e043ae7a684d",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "confidence": 0.85,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063120.0099413
+        },
+        {
+          "tx_id": "0c0e93882d45a8d9",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.85.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063120.0099413
+        }
+      ],
+      "previous_hash": "0003906938456a4195e7b24b73f36775c5fd0bd373843375ea5cd7d8a3c799a8",
+      "nonce": 2336,
+      "hash": "000ab2da0968705c9d804570534aabe7fe5dc2d09a87e29a08897cbaa37c7b35"
+    },
+    {
+      "index": 10,
+      "timestamp": 1777063120.0943081,
+      "transactions": [
+        {
+          "tx_id": "46d50b49043ac0f1",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "steps": [
+              "Password",
+              "CWE-312",
+              "High Entropy String"
+            ],
+            "score": 6.25,
+            "stealth": 0.65,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063120.0934048
+        },
+        {
+          "tx_id": "e503bda5afe4e370",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "confidence": 0.8333,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063120.0934048
+        },
+        {
+          "tx_id": "82669b9c0a3c436f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "certified": true,
+            "reason": "Score 6.25 meets threshold. ORACLE CONFIRMED at 0.8333.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063120.0934048
+        }
+      ],
+      "previous_hash": "000ab2da0968705c9d804570534aabe7fe5dc2d09a87e29a08897cbaa37c7b35",
+      "nonce": 2076,
+      "hash": "000896e52d1ac2363687f9a57660773a1f558d908dfc7bca7f3636f6e9c74088"
+    },
+    {
+      "index": 11,
+      "timestamp": 1777063120.1706421,
+      "transactions": [
+        {
+          "tx_id": "f8bd3c6a2b00c000",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063120.1706421
+        },
+        {
+          "tx_id": "5037c4ccb7b9f0f4",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063120.1706421
+        },
+        {
+          "tx_id": "6b1e5f8d3049f726",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063120.1706421
+        }
+      ],
+      "previous_hash": "000896e52d1ac2363687f9a57660773a1f558d908dfc7bca7f3636f6e9c74088",
+      "nonce": 3901,
+      "hash": "000a9c6badb86771125aa83281e69f277d08577bbea5af3d3f75a830e08dbcf0"
+    },
+    {
+      "index": 12,
+      "timestamp": 1777063120.3073704,
+      "transactions": [
+        {
+          "tx_id": "0868c1899a972a82",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "steps": [
+              "Weak Hash",
+              "CWE-327"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 1.0
+          },
+          "timestamp": 1777063120.306747
+        },
+        {
+          "tx_id": "853a2afcb1d5310e",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "confidence": 0.9677,
+            "cve_refs": [
+              "CVE-2023-36665"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063120.306747
+        },
+        {
+          "tx_id": "90d6f0f8c92bef5c",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.9677.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063120.306747
+        }
+      ],
+      "previous_hash": "000a9c6badb86771125aa83281e69f277d08577bbea5af3d3f75a830e08dbcf0",
+      "nonce": 652,
+      "hash": "000a5930d65138f08a4a2194fdbdd8e25ca2933a9938d90a7aa79852b2b61bde"
+    },
+    {
+      "index": 13,
+      "timestamp": 1777063120.3376682,
+      "transactions": [
+        {
+          "tx_id": "64c2650fdcdbc57c",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22",
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 6.1,
+            "stealth": 0.62,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063120.3373814
+        },
+        {
+          "tx_id": "414bbcf4477ac804",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063120.3373814
+        },
+        {
+          "tx_id": "1ff2ce212314a93a",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "certified": true,
+            "reason": "Score 6.1 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063120.3373814
+        }
+      ],
+      "previous_hash": "000a5930d65138f08a4a2194fdbdd8e25ca2933a9938d90a7aa79852b2b61bde",
+      "nonce": 18462,
+      "hash": "000c4de6946daa66009c3098ec70f57b10d3cf1898e5c4d7966df611789e9e87"
+    },
+    {
+      "index": 14,
+      "timestamp": 1777063120.9582748,
+      "transactions": [
+        {
+          "tx_id": "34b84b82d533188f",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063120.9572759
+        },
+        {
+          "tx_id": "1ce61bdbee6f1ba7",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063120.9572759
+        },
+        {
+          "tx_id": "e7db84c7d68b0cd9",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063120.9572759
+        }
+      ],
+      "previous_hash": "000c4de6946daa66009c3098ec70f57b10d3cf1898e5c4d7966df611789e9e87",
+      "nonce": 581,
+      "hash": "000311a788e2719736c658ac424a17d5dfa29d5360f84c42f8e46264a6b89734"
+    },
+    {
+      "index": 15,
+      "timestamp": 1777063124.629171,
+      "transactions": [
+        {
+          "tx_id": "718a257c8885e1a2",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063124.6281724
+        },
+        {
+          "tx_id": "be2a8f3f251d34b6",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063124.629171
+        },
+        {
+          "tx_id": "bfe62947d2c504f5",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063124.629171
+        }
+      ],
+      "previous_hash": "000311a788e2719736c658ac424a17d5dfa29d5360f84c42f8e46264a6b89734",
+      "nonce": 2778,
+      "hash": "00013157210c0fb99635ebfbfc396eea2bc4c749dc2ea0cf89dc145dd28a04dc"
+    },
+    {
+      "index": 16,
+      "timestamp": 1777063124.7378762,
+      "transactions": [
+        {
+          "tx_id": "4cf2aafab8881885",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 5.25,
+            "stealth": 0.53,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063124.7370985
+        },
+        {
+          "tx_id": "d0afe4e53904b086",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063124.7370985
+        },
+        {
+          "tx_id": "8600115c1e3f8b69",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "certified": true,
+            "reason": "Score 5.25 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063124.7370985
+        }
+      ],
+      "previous_hash": "00013157210c0fb99635ebfbfc396eea2bc4c749dc2ea0cf89dc145dd28a04dc",
+      "nonce": 3287,
+      "hash": "00026df33f9d73c5fdb5c4a18920509709b9e7550ba8d245dc1cd4600be20e7e"
+    },
+    {
+      "index": 17,
+      "timestamp": 1777063124.860006,
+      "transactions": [
+        {
+          "tx_id": "1c87ea9e950a32c7",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063124.8590095
+        },
+        {
+          "tx_id": "c8b3ee8e9379df00",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063124.8590095
+        },
+        {
+          "tx_id": "32fe93c4fd446dd7",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063124.8590095
+        }
+      ],
+      "previous_hash": "00026df33f9d73c5fdb5c4a18920509709b9e7550ba8d245dc1cd4600be20e7e",
+      "nonce": 12182,
+      "hash": "0006c7234f23a18ad204bbd54ab8b8f5887f9670f4e81ff0526298fbe5e00454"
+    },
+    {
+      "index": 18,
+      "timestamp": 1777063125.2727518,
+      "transactions": [
+        {
+          "tx_id": "e4dba3ebf6b4f4fb",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 8.5,
+            "stealth": 0.86,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063125.2717545
+        },
+        {
+          "tx_id": "4217358c1bab9763",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063125.2717545
+        },
+        {
+          "tx_id": "6eeba111e5cd7f87",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "certified": true,
+            "reason": "Score 8.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063125.2717545
+        }
+      ],
+      "previous_hash": "0006c7234f23a18ad204bbd54ab8b8f5887f9670f4e81ff0526298fbe5e00454",
+      "nonce": 578,
+      "hash": "000ffa3828fafe8b5f5bcbb9cdbd6d427b90f244b58197ac22bb244ae666c01f"
+    },
+    {
+      "index": 19,
+      "timestamp": 1777063125.3029022,
+      "transactions": [
+        {
+          "tx_id": "aa74dc32cb4cb9aa",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "file_path",
+              "CWE-22",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 7.88,
+            "stealth": 0.79,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063125.3019023
+        },
+        {
+          "tx_id": "7e8d9dc6de881b98",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063125.3029022
+        },
+        {
+          "tx_id": "a379a8a87e6eb6f5",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063125.3029022
+        }
+      ],
+      "previous_hash": "000ffa3828fafe8b5f5bcbb9cdbd6d427b90f244b58197ac22bb244ae666c01f",
+      "nonce": 12672,
+      "hash": "0009e728ab866d09831dc476352a2618754eeccfe0dedb815dcbaa5396eafa36"
+    },
+    {
+      "index": 20,
+      "timestamp": 1777063125.7387447,
+      "transactions": [
+        {
+          "tx_id": "4019e2e0036c3719",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063125.7377493
+        },
+        {
+          "tx_id": "ad94d24242376109",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063125.7377493
+        },
+        {
+          "tx_id": "0124eaa1cfe24f61",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063125.7377493
+        }
+      ],
+      "previous_hash": "0009e728ab866d09831dc476352a2618754eeccfe0dedb815dcbaa5396eafa36",
+      "nonce": 2716,
+      "hash": "0002821f3ef2122df026ba29d203b56cd9593eb3b63071cc6efeac309d419573"
+    },
+    {
+      "index": 21,
+      "timestamp": 1777063125.8408215,
+      "transactions": [
+        {
+          "tx_id": "28bab609aba68dd3",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 6.38,
+            "stealth": 0.64,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063125.839822
+        },
+        {
+          "tx_id": "8bb47a67a33241f7",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063125.839822
+        },
+        {
+          "tx_id": "9bf559ad75218d0e",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "certified": true,
+            "reason": "Score 6.38 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063125.839822
+        }
+      ],
+      "previous_hash": "0002821f3ef2122df026ba29d203b56cd9593eb3b63071cc6efeac309d419573",
+      "nonce": 3316,
+      "hash": "0009e7c11eaadb43d43edad7bf356bb0879c13eb096b6a7bc5258cabbabf5d34"
+    },
+    {
+      "index": 22,
+      "timestamp": 1777063125.9624865,
+      "transactions": [
+        {
+          "tx_id": "d04994c23256a372",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063125.9614882
+        },
+        {
+          "tx_id": "89d7f055093a528f",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063125.9614882
+        },
+        {
+          "tx_id": "41b3de1ea4d1fa24",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063125.9614882
+        }
+      ],
+      "previous_hash": "0009e7c11eaadb43d43edad7bf356bb0879c13eb096b6a7bc5258cabbabf5d34",
+      "nonce": 1264,
+      "hash": "00047e100d0a683ae39bdb527cb604f7323e27d408a9a585ea9546b1e03b19a8"
+    },
+    {
+      "index": 23,
+      "timestamp": 1777063126.0145183,
+      "transactions": [
+        {
+          "tx_id": "b02c6eab6e0d9c49",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "steps": [
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063126.013515
+        },
+        {
+          "tx_id": "ad1bf769af1b5cab",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "confidence": 0.85,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063126.013515
+        },
+        {
+          "tx_id": "6eb7a9260b1801c2",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.85.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063126.013515
+        }
+      ],
+      "previous_hash": "00047e100d0a683ae39bdb527cb604f7323e27d408a9a585ea9546b1e03b19a8",
+      "nonce": 8584,
+      "hash": "000d1427cf094b5e2cdce248b2d54499c72a90c6d05a5cda70fed42d1dd983ba"
+    },
+    {
+      "index": 24,
+      "timestamp": 1777063126.2953925,
+      "transactions": [
+        {
+          "tx_id": "54ad7fcd1077363c",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "steps": [
+              "Password",
+              "CWE-312",
+              "High Entropy String"
+            ],
+            "score": 6.25,
+            "stealth": 0.65,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063126.2950044
+        },
+        {
+          "tx_id": "b9abe1caff83d76f",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "confidence": 0.85,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063126.2950044
+        },
+        {
+          "tx_id": "6a7e36eb4fbe9d18",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "certified": true,
+            "reason": "Score 6.25 meets threshold. ORACLE CONFIRMED at 0.85.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063126.2950044
+        }
+      ],
+      "previous_hash": "000d1427cf094b5e2cdce248b2d54499c72a90c6d05a5cda70fed42d1dd983ba",
+      "nonce": 1624,
+      "hash": "0009c33a30c0e7be49c717e0f7eeea61b7a1676cb402c357624ea29c7db49529"
+    },
+    {
+      "index": 25,
+      "timestamp": 1777063126.3583572,
+      "transactions": [
+        {
+          "tx_id": "7e122b627b5e5693",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063126.3573573
+        },
+        {
+          "tx_id": "d8bff94af9d3f749",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063126.3573573
+        },
+        {
+          "tx_id": "45d92ac21e1a4866",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063126.3573573
+        }
+      ],
+      "previous_hash": "0009c33a30c0e7be49c717e0f7eeea61b7a1676cb402c357624ea29c7db49529",
+      "nonce": 2336,
+      "hash": "0007b6911a2dfd4bea6945cc7ae8102bdbcd431a30773e5518eb41d604a85d66"
+    },
+    {
+      "index": 26,
+      "timestamp": 1777063126.4453042,
+      "transactions": [
+        {
+          "tx_id": "e26926db33733b0c",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "steps": [
+              "Weak Hash",
+              "CWE-327"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 1.0
+          },
+          "timestamp": 1777063126.4443042
+        },
+        {
+          "tx_id": "3dc9553a3ba6b5b8",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-36665"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063126.4443042
+        },
+        {
+          "tx_id": "24afde764b3a0dcc",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063126.4443042
+        }
+      ],
+      "previous_hash": "0007b6911a2dfd4bea6945cc7ae8102bdbcd431a30773e5518eb41d604a85d66",
+      "nonce": 1518,
+      "hash": "00021c9316eca08e7a9c905e66c6124d293c32294d1a8d33ccf046df1325c6e8"
+    },
+    {
+      "index": 27,
+      "timestamp": 1777063126.5052657,
+      "transactions": [
+        {
+          "tx_id": "1cddc40798329f40",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22",
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 6.1,
+            "stealth": 0.62,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063126.5052657
+        },
+        {
+          "tx_id": "055635b8c0690b99",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063126.5052657
+        },
+        {
+          "tx_id": "4a475254c3c0c4b6",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "certified": true,
+            "reason": "Score 6.1 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063126.5052657
+        }
+      ],
+      "previous_hash": "00021c9316eca08e7a9c905e66c6124d293c32294d1a8d33ccf046df1325c6e8",
+      "nonce": 62,
+      "hash": "00053d66452e15874ea96701723e9dfc239a8e7da2871ba24edbf3af827fc344"
+    },
+    {
+      "index": 28,
+      "timestamp": 1777063126.5172586,
+      "transactions": [
+        {
+          "tx_id": "fee5cadc2e2b2099",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063126.5172586
+        },
+        {
+          "tx_id": "f57a239437d5362e",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063126.5172586
+        },
+        {
+          "tx_id": "e405baec125e4f03",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063126.5172586
+        }
+      ],
+      "previous_hash": "00053d66452e15874ea96701723e9dfc239a8e7da2871ba24edbf3af827fc344",
+      "nonce": 185,
+      "hash": "0009b87c9ecf97722b696c399b3c2216e95c3418fccdfa4e9fe2f835b93a2352"
+    },
+    {
+      "index": 29,
+      "timestamp": 1777063139.9707997,
+      "transactions": [
+        {
+          "tx_id": "de92a18bb5c27299",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063139.970277
+        },
+        {
+          "tx_id": "9c4b67964d1035be",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063139.970277
+        },
+        {
+          "tx_id": "3d16d07f59c8d807",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063139.970277
+        }
+      ],
+      "previous_hash": "0009b87c9ecf97722b696c399b3c2216e95c3418fccdfa4e9fe2f835b93a2352",
+      "nonce": 1942,
+      "hash": "0005c0a97569380a3e946009f102d6f84b84c3b93005bc69efcfb1033bd57ae9"
+    },
+    {
+      "index": 30,
+      "timestamp": 1777063140.049755,
+      "transactions": [
+        {
+          "tx_id": "1b9e2521ca00227d",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 5.25,
+            "stealth": 0.53,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063140.049755
+        },
+        {
+          "tx_id": "12f395c416fd918d",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063140.049755
+        },
+        {
+          "tx_id": "8f4738acc01bf701",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "certified": true,
+            "reason": "Score 5.25 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063140.049755
+        }
+      ],
+      "previous_hash": "0005c0a97569380a3e946009f102d6f84b84c3b93005bc69efcfb1033bd57ae9",
+      "nonce": 3404,
+      "hash": "000cd75491f9c28c23d0a65e576f7c3f36eb6027752d74c5a9bd6b1d62934f32"
+    },
+    {
+      "index": 31,
+      "timestamp": 1777063140.1750884,
+      "transactions": [
+        {
+          "tx_id": "4828d655667e6e3a",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063140.1750884
+        },
+        {
+          "tx_id": "75e588db5f66d1b5",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063140.1750884
+        },
+        {
+          "tx_id": "a82e4c56a38040e7",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063140.1750884
+        }
+      ],
+      "previous_hash": "000cd75491f9c28c23d0a65e576f7c3f36eb6027752d74c5a9bd6b1d62934f32",
+      "nonce": 8156,
+      "hash": "000f8492e6cc7dca0962b62eb4463de7f9e30b8360693d26d1f5d14f963ee199"
+    },
+    {
+      "index": 32,
+      "timestamp": 1777063140.4570737,
+      "transactions": [
+        {
+          "tx_id": "486b81650daf6528",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 8.5,
+            "stealth": 0.86,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063140.4563894
+        },
+        {
+          "tx_id": "69e6c5563f380906",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063140.4563894
+        },
+        {
+          "tx_id": "69a3c1a28f6d2a8f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "certified": true,
+            "reason": "Score 8.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063140.4563894
+        }
+      ],
+      "previous_hash": "000f8492e6cc7dca0962b62eb4463de7f9e30b8360693d26d1f5d14f963ee199",
+      "nonce": 7260,
+      "hash": "000285de240bfd606caeb88d7e3df62ae91cbe00c165ff34aabefeb4e897ee03"
+    },
+    {
+      "index": 33,
+      "timestamp": 1777063140.7057528,
+      "transactions": [
+        {
+          "tx_id": "e7ad48af37c1b985",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "file_path",
+              "CWE-22",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 7.88,
+            "stealth": 0.79,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063140.7041237
+        },
+        {
+          "tx_id": "ac3bb270befa8ffd",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063140.7051234
+        },
+        {
+          "tx_id": "76334715418aaf1a",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063140.7051234
+        }
+      ],
+      "previous_hash": "000285de240bfd606caeb88d7e3df62ae91cbe00c165ff34aabefeb4e897ee03",
+      "nonce": 13638,
+      "hash": "0004d5bb6d71cc0743e774fa74a0298240e06653c87dbeaca15f8c02e2059c14"
+    },
+    {
+      "index": 34,
+      "timestamp": 1777063141.1673427,
+      "transactions": [
+        {
+          "tx_id": "8ac1fcc224891ddb",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063141.1663418
+        },
+        {
+          "tx_id": "cd827bfa7bebeee4",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.1663418
+        },
+        {
+          "tx_id": "ea7807f36614ce48",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.1663418
+        }
+      ],
+      "previous_hash": "0004d5bb6d71cc0743e774fa74a0298240e06653c87dbeaca15f8c02e2059c14",
+      "nonce": 399,
+      "hash": "0002a5aa18a2271565f1da0bf8654826d0d753d2e6c2610d3161b5e8a6951370"
+    },
+    {
+      "index": 35,
+      "timestamp": 1777063141.1893277,
+      "transactions": [
+        {
+          "tx_id": "19e6e5388458ec10",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 6.38,
+            "stealth": 0.64,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063141.1893277
+        },
+        {
+          "tx_id": "5bd33139974b3bf9",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.1893277
+        },
+        {
+          "tx_id": "ea525d556f7efee9",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "certified": true,
+            "reason": "Score 6.38 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.1893277
+        }
+      ],
+      "previous_hash": "0002a5aa18a2271565f1da0bf8654826d0d753d2e6c2610d3161b5e8a6951370",
+      "nonce": 2114,
+      "hash": "0000c9e3c218a1be1997b5f28f5371bbbb7bbe5ff129958a2ac4a137bd41a559"
+    },
+    {
+      "index": 36,
+      "timestamp": 1777063141.2692785,
+      "transactions": [
+        {
+          "tx_id": "91975d14614985e7",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063141.2682793
+        },
+        {
+          "tx_id": "0381ea7f72a98e70",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.2682793
+        },
+        {
+          "tx_id": "f9bbcb2a77b178de",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.2682793
+        }
+      ],
+      "previous_hash": "0000c9e3c218a1be1997b5f28f5371bbbb7bbe5ff129958a2ac4a137bd41a559",
+      "nonce": 6068,
+      "hash": "000be005903b87d8f91c145764fe4f7ff12d7922dc994149ff5f8d7357e4e177"
+    },
+    {
+      "index": 37,
+      "timestamp": 1777063141.4752207,
+      "transactions": [
+        {
+          "tx_id": "0ae73999f278a5de",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "steps": [
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063141.474218
+        },
+        {
+          "tx_id": "9750f9ad570e0860",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "confidence": 0.85,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.474218
+        },
+        {
+          "tx_id": "d9a4916e2f06a220",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.85.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.474218
+        }
+      ],
+      "previous_hash": "000be005903b87d8f91c145764fe4f7ff12d7922dc994149ff5f8d7357e4e177",
+      "nonce": 1467,
+      "hash": "00014b38131c3d18ce3b77cf4eb23212c01ea62cb4ab0b9ffa8d8abe2ea9b0b9"
+    },
+    {
+      "index": 38,
+      "timestamp": 1777063141.5311866,
+      "transactions": [
+        {
+          "tx_id": "d6a7e4513d4bc065",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "steps": [
+              "Password",
+              "CWE-312",
+              "High Entropy String"
+            ],
+            "score": 6.25,
+            "stealth": 0.65,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063141.5311866
+        },
+        {
+          "tx_id": "50bb2b3d226a2c6b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "confidence": 0.85,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.5311866
+        },
+        {
+          "tx_id": "89c816122f914392",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "certified": true,
+            "reason": "Score 6.25 meets threshold. ORACLE CONFIRMED at 0.85.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.5311866
+        }
+      ],
+      "previous_hash": "00014b38131c3d18ce3b77cf4eb23212c01ea62cb4ab0b9ffa8d8abe2ea9b0b9",
+      "nonce": 3417,
+      "hash": "000abf7e076fb1545b226f0693c8f9dd30414adf5993787069b16831cae35f50"
+    },
+    {
+      "index": 39,
+      "timestamp": 1777063141.653126,
+      "transactions": [
+        {
+          "tx_id": "9fc03c0598040e3a",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063141.653126
+        },
+        {
+          "tx_id": "45677cd3b5d7aa3b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.653126
+        },
+        {
+          "tx_id": "aeb484e406f431a2",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.653126
+        }
+      ],
+      "previous_hash": "000abf7e076fb1545b226f0693c8f9dd30414adf5993787069b16831cae35f50",
+      "nonce": 617,
+      "hash": "000592a5f1d7bb698d42063088fecbc7445a86e1164472d694a1d11a05508bd2"
+    },
+    {
+      "index": 40,
+      "timestamp": 1777063141.6841102,
+      "transactions": [
+        {
+          "tx_id": "ba1c4bc685010123",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "steps": [
+              "Weak Hash",
+              "CWE-327"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 1.0
+          },
+          "timestamp": 1777063141.68311
+        },
+        {
+          "tx_id": "c9620231e01fed2e",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-36665"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.68311
+        },
+        {
+          "tx_id": "6a5cdbabd5e15aab",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.68311
+        }
+      ],
+      "previous_hash": "000592a5f1d7bb698d42063088fecbc7445a86e1164472d694a1d11a05508bd2",
+      "nonce": 6294,
+      "hash": "000ef9d59c860ebacfcc8cfc516f2d92812194ed31faa19546b0013bbb7a77aa"
+    },
+    {
+      "index": 41,
+      "timestamp": 1777063141.8960133,
+      "transactions": [
+        {
+          "tx_id": "3f9136f66ae602e8",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22",
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 6.1,
+            "stealth": 0.62,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063141.895419
+        },
+        {
+          "tx_id": "a9785dc484d769a6",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063141.895419
+        },
+        {
+          "tx_id": "661f7b23df9de424",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "certified": true,
+            "reason": "Score 6.1 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063141.895419
+        }
+      ],
+      "previous_hash": "000ef9d59c860ebacfcc8cfc516f2d92812194ed31faa19546b0013bbb7a77aa",
+      "nonce": 3488,
+      "hash": "0003daf7dfc5cec451601f78ab76bf9117acd2fc403a96b1c3155a2c1484ccc0"
+    },
+    {
+      "index": 42,
+      "timestamp": 1777063142.0226934,
+      "transactions": [
+        {
+          "tx_id": "9a199c59e59ebd0b",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063142.0225518
+        },
+        {
+          "tx_id": "cf5fa9be65c30d9d",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063142.0225518
+        },
+        {
+          "tx_id": "2db394e3dc20cccb",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063142.0225518
+        }
+      ],
+      "previous_hash": "0003daf7dfc5cec451601f78ab76bf9117acd2fc403a96b1c3155a2c1484ccc0",
+      "nonce": 6995,
+      "hash": "000ac736409c7163d141b87077eee832647745200bb0a88d8c35a7195912e2c6"
+    },
+    {
+      "index": 43,
+      "timestamp": 1777063304.5867002,
+      "transactions": [
+        {
+          "tx_id": "68912a870d0a003f",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063304.5857015
+        },
+        {
+          "tx_id": "fcf5f58b08d8f0f2",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063304.5857015
+        },
+        {
+          "tx_id": "09ff0ac0c1076028",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0001",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063304.5857015
+        }
+      ],
+      "previous_hash": "000ac736409c7163d141b87077eee832647745200bb0a88d8c35a7195912e2c6",
+      "nonce": 2969,
+      "hash": "000838dfd0f4cb72d23ce9265da85c55f410081089b6fbb2d69109a1a9fcfcb5"
+    },
+    {
+      "index": 44,
+      "timestamp": 1777063304.7019873,
+      "transactions": [
+        {
+          "tx_id": "ccbcc01142b47bed",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 5.25,
+            "stealth": 0.53,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063304.7004724
+        },
+        {
+          "tx_id": "839276d729ea3c6b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063304.7014716
+        },
+        {
+          "tx_id": "63f0a061aec5aaaf",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0002",
+            "certified": true,
+            "reason": "Score 5.25 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063304.7014716
+        }
+      ],
+      "previous_hash": "000838dfd0f4cb72d23ce9265da85c55f410081089b6fbb2d69109a1a9fcfcb5",
+      "nonce": 1333,
+      "hash": "0006e3d7f2becf05f6ec4e539bc8c6757292421ff769d79faab23d40ecc71270"
+    },
+    {
+      "index": 45,
+      "timestamp": 1777063304.7590005,
+      "transactions": [
+        {
+          "tx_id": "407d633d88db1bdf",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063304.7580028
+        },
+        {
+          "tx_id": "ecde2ff1e35f3a58",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063304.7580028
+        },
+        {
+          "tx_id": "e980a3ed1dfa5f06",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0003",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063304.7580028
+        }
+      ],
+      "previous_hash": "0006e3d7f2becf05f6ec4e539bc8c6757292421ff769d79faab23d40ecc71270",
+      "nonce": 9374,
+      "hash": "000419ec7b7e9b0fc31ec2e622e6f60a9668b4946a6d043b832a344932d2e716"
+    },
+    {
+      "index": 46,
+      "timestamp": 1777063305.0795891,
+      "transactions": [
+        {
+          "tx_id": "0a259cb9be2733cc",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 8.5,
+            "stealth": 0.86,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063305.0786834
+        },
+        {
+          "tx_id": "7bf9d221bd8f1e4b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063305.0786834
+        },
+        {
+          "tx_id": "7ab271a0c3118626",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0004",
+            "certified": true,
+            "reason": "Score 8.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063305.0786834
+        }
+      ],
+      "previous_hash": "000419ec7b7e9b0fc31ec2e622e6f60a9668b4946a6d043b832a344932d2e716",
+      "nonce": 11344,
+      "hash": "0009cd6b2fbca938a1a5371160efd1c8d4c7a640257ae76071f5fb860e4dd6f2"
+    },
+    {
+      "index": 47,
+      "timestamp": 1777063305.4641984,
+      "transactions": [
+        {
+          "tx_id": "f374c10bd8163d4d",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "file_path",
+              "CWE-22",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 7.88,
+            "stealth": 0.79,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063305.4631975
+        },
+        {
+          "tx_id": "ac265560e705c6af",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063305.4631975
+        },
+        {
+          "tx_id": "5a9d3d82991bb155",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0005",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063305.4631975
+        }
+      ],
+      "previous_hash": "0009cd6b2fbca938a1a5371160efd1c8d4c7a640257ae76071f5fb860e4dd6f2",
+      "nonce": 1567,
+      "hash": "000270d2cdd1c0f72539ca7c71fbd495101ae5a79c48e6a1fe10e7bb6c8d6a5f"
+    },
+    {
+      "index": 48,
+      "timestamp": 1777063305.5309434,
+      "transactions": [
+        {
+          "tx_id": "6a3845a298e763de",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063305.530273
+        },
+        {
+          "tx_id": "3e8b909e1c770ed6",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063305.530273
+        },
+        {
+          "tx_id": "2a4f7dabad0f2543",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0006",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063305.530273
+        }
+      ],
+      "previous_hash": "000270d2cdd1c0f72539ca7c71fbd495101ae5a79c48e6a1fe10e7bb6c8d6a5f",
+      "nonce": 1982,
+      "hash": "0003ee0a74bffb8ef048ffe6afcb9fb7c0b1ed77ec783c7eb0bbc21b3e24ab66"
+    },
+    {
+      "index": 49,
+      "timestamp": 1777063305.609574,
+      "transactions": [
+        {
+          "tx_id": "d660909f9bf1d023",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 6.38,
+            "stealth": 0.64,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063305.609574
+        },
+        {
+          "tx_id": "27456558edc7d6c9",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063305.609574
+        },
+        {
+          "tx_id": "44381f1527257cff",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0007",
+            "certified": true,
+            "reason": "Score 6.38 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063305.609574
+        }
+      ],
+      "previous_hash": "0003ee0a74bffb8ef048ffe6afcb9fb7c0b1ed77ec783c7eb0bbc21b3e24ab66",
+      "nonce": 8503,
+      "hash": "0009c6c8410f2845269eb714cdd817652b36c099e5856607571e55cff2971702"
+    },
+    {
+      "index": 50,
+      "timestamp": 1777063305.8934329,
+      "transactions": [
+        {
+          "tx_id": "0f8797e051d36408",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063305.8924334
+        },
+        {
+          "tx_id": "ecc08d3d0b994ffe",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063305.8924334
+        },
+        {
+          "tx_id": "46cefac251de039f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0008",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063305.8924334
+        }
+      ],
+      "previous_hash": "0009c6c8410f2845269eb714cdd817652b36c099e5856607571e55cff2971702",
+      "nonce": 5199,
+      "hash": "000357f079376ecdcbbb41c6d70c67d758a4e38b8c74a0e0ec3c0a0d673fa005"
+    },
+    {
+      "index": 51,
+      "timestamp": 1777063306.0733216,
+      "transactions": [
+        {
+          "tx_id": "3f14b79abec3325f",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "steps": [
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063306.0733216
+        },
+        {
+          "tx_id": "95f7bf41e86d3174",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "confidence": 0.85,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063306.0733216
+        },
+        {
+          "tx_id": "797deebe43b4beb6",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0009",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.85.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063306.0733216
+        }
+      ],
+      "previous_hash": "000357f079376ecdcbbb41c6d70c67d758a4e38b8c74a0e0ec3c0a0d673fa005",
+      "nonce": 14221,
+      "hash": "000cace60d1b94cea6676ec3967bc88edb014a2e5834fb034cb5b379225771f4"
+    },
+    {
+      "index": 52,
+      "timestamp": 1777063306.5417666,
+      "transactions": [
+        {
+          "tx_id": "ac3d6757a1fa87c1",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "steps": [
+              "Password",
+              "CWE-312",
+              "High Entropy String"
+            ],
+            "score": 6.25,
+            "stealth": 0.65,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063306.5417666
+        },
+        {
+          "tx_id": "0973ae880992b390",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "confidence": 0.85,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063306.5417666
+        },
+        {
+          "tx_id": "7ad66695426bb42e",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0010",
+            "certified": true,
+            "reason": "Score 6.25 meets threshold. ORACLE CONFIRMED at 0.85.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063306.5417666
+        }
+      ],
+      "previous_hash": "000cace60d1b94cea6676ec3967bc88edb014a2e5834fb034cb5b379225771f4",
+      "nonce": 3396,
+      "hash": "0001cd910a7fe7fb782d43dfad9423ffbe96b76d19123c3f1833221008ba697f"
+    },
+    {
+      "index": 53,
+      "timestamp": 1777063306.6626916,
+      "transactions": [
+        {
+          "tx_id": "c694247a4b75795a",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063306.6616914
+        },
+        {
+          "tx_id": "0a8a760b8526ef22",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063306.6616914
+        },
+        {
+          "tx_id": "822b82fd06f1b2db",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0011",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063306.6616914
+        }
+      ],
+      "previous_hash": "0001cd910a7fe7fb782d43dfad9423ffbe96b76d19123c3f1833221008ba697f",
+      "nonce": 5319,
+      "hash": "000350f39e1309759e7f740c90608ce21bd113f76a42c5efb406649e3389ba03"
+    },
+    {
+      "index": 54,
+      "timestamp": 1777063306.850113,
+      "transactions": [
+        {
+          "tx_id": "4fca8eb204201b25",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "steps": [
+              "Weak Hash",
+              "CWE-327"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 1.0
+          },
+          "timestamp": 1777063306.8494825
+        },
+        {
+          "tx_id": "e76fbd08818b35df",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-36665"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063306.8494825
+        },
+        {
+          "tx_id": "c5c34049fd41337b",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0012",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063306.8494825
+        }
+      ],
+      "previous_hash": "000350f39e1309759e7f740c90608ce21bd113f76a42c5efb406649e3389ba03",
+      "nonce": 285,
+      "hash": "000f68d2c0ee9a2ca7598eeee2467a625286d261908c10501b4086a82abc249a"
+    },
+    {
+      "index": 55,
+      "timestamp": 1777063306.8697836,
+      "transactions": [
+        {
+          "tx_id": "d12c486c9007f408",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22",
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 6.1,
+            "stealth": 0.62,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063306.8691828
+        },
+        {
+          "tx_id": "c453ce1bc9f6cb98",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063306.8691828
+        },
+        {
+          "tx_id": "08f8295c4462a2d2",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0013",
+            "certified": true,
+            "reason": "Score 6.1 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063306.8691828
+        }
+      ],
+      "previous_hash": "000f68d2c0ee9a2ca7598eeee2467a625286d261908c10501b4086a82abc249a",
+      "nonce": 4626,
+      "hash": "000271893681ae1805dc397362a79c47dc3917d1e7603b2e19793d379d25ffd2"
+    },
+    {
+      "index": 56,
+      "timestamp": 1777063307.0397816,
+      "transactions": [
+        {
+          "tx_id": "da3c391fd8e66c0d",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.0
+          },
+          "timestamp": 1777063307.0397816
+        },
+        {
+          "tx_id": "d58d8576da039d35",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777063307.0397816
+        },
+        {
+          "tx_id": "6534773ebfe6c501",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "PATH-0014",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777063307.0397816
+        }
+      ],
+      "previous_hash": "000271893681ae1805dc397362a79c47dc3917d1e7603b2e19793d379d25ffd2",
+      "nonce": 934,
+      "hash": "000f0ff7aa5b1a1cf726c6bd284aaf1987f547f87ad456a166361f238499ec41"
+    },
+    {
+      "index": 57,
+      "timestamp": 1777101193.6407833,
+      "transactions": [
+        {
+          "tx_id": "43c8e9382ce549b2",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "LANG-JA-0001",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "eval_exec",
+              "CWE-94",
+              "cmd_inject",
+              "CWE-78",
+              "hardcoded_secret",
+              "CWE-312",
+              "weak_hash",
+              "CWE-327",
+              "xss_inject",
+              "CWE-79"
+            ],
+            "score": 7.92,
+            "stealth": 0.8,
+            "novelty": 0.5
+          },
+          "timestamp": 1777101193.6397839
+        },
+        {
+          "tx_id": "2252497d1aef2b68",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "LANG-JA-0001",
+            "confidence": 0.986,
+            "cve_refs": [
+              "CVE-2022-1471"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777101193.6407833
+        },
+        {
+          "tx_id": "8f5b6a67d651747a",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "LANG-JA-0001",
+            "certified": true,
+            "reason": "Score 7.92 meets threshold. ORACLE CONFIRMED at 0.986.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777101193.6407833
+        }
+      ],
+      "previous_hash": "000f0ff7aa5b1a1cf726c6bd284aaf1987f547f87ad456a166361f238499ec41",
+      "nonce": 93,
+      "hash": "00004b06417e796603e08d78a0d1c71ab6376a8eb4d05b75e5004cba504f1911"
+    },
+    {
+      "index": 58,
+      "timestamp": 1777101193.6577728,
+      "transactions": [
+        {
+          "tx_id": "5a0247fe9a147187",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "LANG-JA-0002",
+            "steps": [
+              "hardcoded_secret",
+              "CWE-312",
+              "xss_inject",
+              "CWE-79",
+              "eval_exec",
+              "CWE-94",
+              "cmd_inject",
+              "CWE-78"
+            ],
+            "score": 7.88,
+            "stealth": 0.79,
+            "novelty": 0.5
+          },
+          "timestamp": 1777101193.6577728
+        },
+        {
+          "tx_id": "f28bb4bcd42000be",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "LANG-JA-0002",
+            "confidence": 0.9776,
+            "cve_refs": [
+              "CVE-2022-1471"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777101193.6577728
+        },
+        {
+          "tx_id": "c3529f3aee587fe8",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "LANG-JA-0002",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.9776.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777101193.6577728
+        }
+      ],
+      "previous_hash": "00004b06417e796603e08d78a0d1c71ab6376a8eb4d05b75e5004cba504f1911",
+      "nonce": 11535,
+      "hash": "0002c7f2af35228ae3160a7f4d1c05fa8ca000d7d05d2962e54db494db19eb16"
+    },
+    {
+      "index": 59,
+      "timestamp": 1777101209.7782536,
+      "transactions": [
+        {
+          "tx_id": "0ab19781129ab551",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "LANG-GO-0001",
+            "steps": [
+              "hardcoded_secret",
+              "CWE-312",
+              "sql_query",
+              "CWE-89",
+              "cmd_inject",
+              "CWE-78",
+              "weak_hash",
+              "CWE-327"
+            ],
+            "score": 7.88,
+            "stealth": 0.78,
+            "novelty": 0.5
+          },
+          "timestamp": 1777101209.7782536
+        },
+        {
+          "tx_id": "6e564d95deb62cf5",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "LANG-GO-0001",
+            "confidence": 0.9832,
+            "cve_refs": [
+              "CVE-2022-1471"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777101209.7782536
+        },
+        {
+          "tx_id": "042208bf21ddc5ab",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "LANG-GO-0001",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.9832.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777101209.7782536
+        }
+      ],
+      "previous_hash": "0002c7f2af35228ae3160a7f4d1c05fa8ca000d7d05d2962e54db494db19eb16",
+      "nonce": 2776,
+      "hash": "000804ab606093eac61402861c95c5570e02c1aedc9b23bcbedc687384518c6b"
+    },
+    {
+      "index": 60,
+      "timestamp": 1777101476.8612819,
+      "transactions": [
+        {
+          "tx_id": "b879db7f94c6a066",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-JA-0001",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "eval_exec",
+              "CWE-94",
+              "cmd_inject",
+              "CWE-78",
+              "hardcoded_secret",
+              "CWE-312",
+              "weak_hash",
+              "CWE-327",
+              "xss_inject",
+              "CWE-79"
+            ],
+            "score": 7.92,
+            "stealth": 0.8,
+            "novelty": 0.5
+          },
+          "timestamp": 1777101476.8612819
+        },
+        {
+          "tx_id": "eb0dc0e5809cfc16",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-JA-0001",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2022-1471"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777101476.8612819
+        },
+        {
+          "tx_id": "5e899535f740ef2a",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-JA-0001",
+            "certified": true,
+            "reason": "Score 7.92 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777101476.8612819
+        }
+      ],
+      "previous_hash": "000804ab606093eac61402861c95c5570e02c1aedc9b23bcbedc687384518c6b",
+      "nonce": 2258,
+      "hash": "0005c5c828a642f6e29894026fa284674d2f80ee828b4e68b4805e09e1178d1c"
+    },
+    {
+      "index": 61,
+      "timestamp": 1777101476.9592216,
+      "transactions": [
+        {
+          "tx_id": "d0a2ff3c14aead90",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-JA-0002",
+            "steps": [
+              "hardcoded_secret",
+              "CWE-312",
+              "xss_inject",
+              "CWE-79",
+              "eval_exec",
+              "CWE-94",
+              "cmd_inject",
+              "CWE-78"
+            ],
+            "score": 7.88,
+            "stealth": 0.79,
+            "novelty": 0.5
+          },
+          "timestamp": 1777101476.9592216
+        },
+        {
+          "tx_id": "60813349c3f083f8",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-JA-0002",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2022-1471"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777101476.9592216
+        },
+        {
+          "tx_id": "8a8547abf039e665",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-JA-0002",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777101476.9592216
+        }
+      ],
+      "previous_hash": "0005c5c828a642f6e29894026fa284674d2f80ee828b4e68b4805e09e1178d1c",
+      "nonce": 5549,
+      "hash": "0005c9756707397be7a7182239c0bc5a907a6ca899dc3650c516d82317cb01f3"
+    },
+    {
+      "index": 62,
+      "timestamp": 1777101477.171183,
+      "transactions": [
+        {
+          "tx_id": "58032b75b4d7a46d",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-GO-0001",
+            "steps": [
+              "hardcoded_secret",
+              "CWE-312",
+              "sql_query",
+              "CWE-89",
+              "cmd_inject",
+              "CWE-78",
+              "weak_hash",
+              "CWE-327"
+            ],
+            "score": 7.88,
+            "stealth": 0.78,
+            "novelty": 0.5
+          },
+          "timestamp": 1777101477.1701918
+        },
+        {
+          "tx_id": "ee5070e521d09b73",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-GO-0001",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2022-1471"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777101477.1701918
+        },
+        {
+          "tx_id": "0278bc67835c2799",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-GO-0001",
+            "certified": true,
+            "reason": "Score 7.88 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777101477.171183
+        }
+      ],
+      "previous_hash": "0005c9756707397be7a7182239c0bc5a907a6ca899dc3650c516d82317cb01f3",
+      "nonce": 746,
+      "hash": "00004a0b0012e2ce92027b5784fca9902c03108ca119c816356ac46a5f7c960e"
+    },
+    {
+      "index": 63,
+      "timestamp": 1777103758.3948102,
+      "transactions": [
+        {
+          "tx_id": "311ee187566e2f46",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0001",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103758.3938105
+        },
+        {
+          "tx_id": "7ac4d8d080f36994",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0001",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103758.3938105
+        },
+        {
+          "tx_id": "e40e58908e5f5cc1",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0001",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103758.3938105
+        }
+      ],
+      "previous_hash": "00004a0b0012e2ce92027b5784fca9902c03108ca119c816356ac46a5f7c960e",
+      "nonce": 2523,
+      "hash": "0001b442a51982db7313a3b80ba8d9770454931a73fa459f0bb9bb79773a9083"
+    },
+    {
+      "index": 64,
+      "timestamp": 1777103758.4969614,
+      "transactions": [
+        {
+          "tx_id": "69840bd01d2ff175",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0002",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103758.4959586
+        },
+        {
+          "tx_id": "49b4ab096b962028",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0002",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103758.4959586
+        },
+        {
+          "tx_id": "dee3ca1bccd53eb7",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0002",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103758.4959586
+        }
+      ],
+      "previous_hash": "0001b442a51982db7313a3b80ba8d9770454931a73fa459f0bb9bb79773a9083",
+      "nonce": 414,
+      "hash": "000480c84b6d221481dbacc5cf962d48ff301d3ff87b00a89e71ac5f1a9844f9"
+    },
+    {
+      "index": 65,
+      "timestamp": 1777103758.525944,
+      "transactions": [
+        {
+          "tx_id": "b9ba04775696b84b",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0003",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103758.525944
+        },
+        {
+          "tx_id": "595322d807ea3469",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0003",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-23397",
+              "CVE-2022-32250"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103758.525944
+        },
+        {
+          "tx_id": "7d357da4f9fe545c",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0003",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103758.525944
+        }
+      ],
+      "previous_hash": "000480c84b6d221481dbacc5cf962d48ff301d3ff87b00a89e71ac5f1a9844f9",
+      "nonce": 2456,
+      "hash": "000a8e08295dc3f619169857b0b02eec78e3d9de525acfcd1bcd31c5de59f2d6"
+    },
+    {
+      "index": 66,
+      "timestamp": 1777103758.6257403,
+      "transactions": [
+        {
+          "tx_id": "2071f956d2703cf3",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0004",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 8.25,
+            "stealth": 0.83,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103758.6247418
+        },
+        {
+          "tx_id": "cb9076d29b32dcf7",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0004",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103758.6257403
+        },
+        {
+          "tx_id": "77add48378c699ff",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0004",
+            "certified": true,
+            "reason": "Score 8.25 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103758.6257403
+        }
+      ],
+      "previous_hash": "000a8e08295dc3f619169857b0b02eec78e3d9de525acfcd1bcd31c5de59f2d6",
+      "nonce": 1612,
+      "hash": "000c22450b1792a7632df38c3d1e3b4783add731cf018afb440e6da0f6eb7fd3"
+    },
+    {
+      "index": 67,
+      "timestamp": 1777103758.6986952,
+      "transactions": [
+        {
+          "tx_id": "359a56cec3534ff6",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0005",
+            "steps": [
+              "eval_exec",
+              "CWE-94",
+              "file_path",
+              "CWE-22",
+              "Password",
+              "CWE-312"
+            ],
+            "score": 8.0,
+            "stealth": 0.81,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103758.6976962
+        },
+        {
+          "tx_id": "2590165122819679",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0005",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-27043",
+              "CVE-2022-48560"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103758.6976962
+        },
+        {
+          "tx_id": "429ad88a5444bd53",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0005",
+            "certified": true,
+            "reason": "Score 8.0 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103758.6976962
+        }
+      ],
+      "previous_hash": "000c22450b1792a7632df38c3d1e3b4783add731cf018afb440e6da0f6eb7fd3",
+      "nonce": 2083,
+      "hash": "000759159589d61329d4355854af9030f0fe238af5b51c44ab7f21f4fe54dc4c"
+    },
+    {
+      "index": 68,
+      "timestamp": 1777103758.7866411,
+      "transactions": [
+        {
+          "tx_id": "dfa6cf013a231bc7",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0006",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103758.7856424
+        },
+        {
+          "tx_id": "027ca8e8e6f73d60",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0006",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103758.7856424
+        },
+        {
+          "tx_id": "871cdfaa0ca9821d",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0006",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103758.7856424
+        }
+      ],
+      "previous_hash": "000759159589d61329d4355854af9030f0fe238af5b51c44ab7f21f4fe54dc4c",
+      "nonce": 0,
+      "hash": "000bc33d3454dd7f2d2eed1341d91dc4bc8f318c0be978c47c86a89628adbb46"
+    },
+    {
+      "index": 69,
+      "timestamp": 1777103758.7992628,
+      "transactions": [
+        {
+          "tx_id": "2549f04144636e3e",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0007",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103758.7992628
+        },
+        {
+          "tx_id": "79d52d14913e8f90",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0007",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103758.7992628
+        },
+        {
+          "tx_id": "d47da890751395b4",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0007",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103758.7992628
+        }
+      ],
+      "previous_hash": "000bc33d3454dd7f2d2eed1341d91dc4bc8f318c0be978c47c86a89628adbb46",
+      "nonce": 11474,
+      "hash": "000edba9d4010d97bc064d6d6b32812c570e57fd0646ab6c2f93df62e5ddee24"
+    },
+    {
+      "index": 70,
+      "timestamp": 1777103759.2183053,
+      "transactions": [
+        {
+          "tx_id": "847b26dbec324489",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0008",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103759.218059
+        },
+        {
+          "tx_id": "eb9929cc01fc24ad",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0008",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103759.218059
+        },
+        {
+          "tx_id": "fa7b1223481cf324",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0008",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103759.218059
+        }
+      ],
+      "previous_hash": "000edba9d4010d97bc064d6d6b32812c570e57fd0646ab6c2f93df62e5ddee24",
+      "nonce": 518,
+      "hash": "000a6e6ba36f5ae72ce385213bb3b7684719c09dc215bc032b11d9472cb47c72"
+    },
+    {
+      "index": 71,
+      "timestamp": 1777103759.249861,
+      "transactions": [
+        {
+          "tx_id": "91839ad6d7de85bb",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0009",
+            "steps": [
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103759.249861
+        },
+        {
+          "tx_id": "48a1fdb5598d2df5",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0009",
+            "confidence": 0.9598,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103759.249861
+        },
+        {
+          "tx_id": "5c3e99a7b42dcbe6",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0009",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.9598.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103759.249861
+        }
+      ],
+      "previous_hash": "000a6e6ba36f5ae72ce385213bb3b7684719c09dc215bc032b11d9472cb47c72",
+      "nonce": 4404,
+      "hash": "0000e8377e811daac13f740a68b66bb589697c4050e8491f3afa4781368e5f02"
+    },
+    {
+      "index": 72,
+      "timestamp": 1777103759.4080887,
+      "transactions": [
+        {
+          "tx_id": "f4ae0d16d6b86b86",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0010",
+            "steps": [
+              "Password",
+              "CWE-312"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103759.4070888
+        },
+        {
+          "tx_id": "7acf2b8dc8dbd3f8",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0010",
+            "confidence": 0.9598,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103759.4070888
+        },
+        {
+          "tx_id": "20533a6b845154b4",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0010",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.9598.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103759.4070888
+        }
+      ],
+      "previous_hash": "0000e8377e811daac13f740a68b66bb589697c4050e8491f3afa4781368e5f02",
+      "nonce": 9099,
+      "hash": "000f2262e0f17022b454a3fc99fbf839c7d5430d50e25e85c6b0c353f160c2da"
+    },
+    {
+      "index": 73,
+      "timestamp": 1777103759.712201,
+      "transactions": [
+        {
+          "tx_id": "a9b8b78d6a707e1e",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0011",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103759.7115986
+        },
+        {
+          "tx_id": "de65175c7006b540",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0011",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103759.7115986
+        },
+        {
+          "tx_id": "7dbac613ace1b72f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0011",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103759.7115986
+        }
+      ],
+      "previous_hash": "000f2262e0f17022b454a3fc99fbf839c7d5430d50e25e85c6b0c353f160c2da",
+      "nonce": 3002,
+      "hash": "000328ee2b3ffcec6dc193a941ff44e27b5e93835c0448d899fc2aee02f5b0c7"
+    },
+    {
+      "index": 74,
+      "timestamp": 1777103759.8251348,
+      "transactions": [
+        {
+          "tx_id": "28719103951c34f3",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0012",
+            "steps": [
+              "Weak Hash",
+              "CWE-327"
+            ],
+            "score": 5.0,
+            "stealth": 0.55,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103759.824516
+        },
+        {
+          "tx_id": "6203c58d0416346b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0012",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-36665"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103759.824516
+        },
+        {
+          "tx_id": "84816c5193cbe902",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0012",
+            "certified": true,
+            "reason": "Score 5.0 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103759.824516
+        }
+      ],
+      "previous_hash": "000328ee2b3ffcec6dc193a941ff44e27b5e93835c0448d899fc2aee02f5b0c7",
+      "nonce": 749,
+      "hash": "000048c658baf0e8f6cd98d0d6a6eceb90542a002739ca7b35ae21feb1af90c3"
+    },
+    {
+      "index": 75,
+      "timestamp": 1777103759.8643787,
+      "transactions": [
+        {
+          "tx_id": "51768bd718bad855",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0013",
+            "steps": [
+              "sql_query",
+              "CWE-89",
+              "file_path",
+              "CWE-22",
+              "High Entropy String",
+              "CWE-312"
+            ],
+            "score": 6.67,
+            "stealth": 0.68,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103759.8633852
+        },
+        {
+          "tx_id": "aaddb9c64281d88f",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0013",
+            "confidence": 0.9629,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103759.8633852
+        },
+        {
+          "tx_id": "27c278dbe68f57e1",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0013",
+            "certified": true,
+            "reason": "Score 6.67 meets threshold. ORACLE CONFIRMED at 0.9629.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103759.8633852
+        }
+      ],
+      "previous_hash": "000048c658baf0e8f6cd98d0d6a6eceb90542a002739ca7b35ae21feb1af90c3",
+      "nonce": 3381,
+      "hash": "000e8f889e54c721760f28613c3b57a0751a2c5cb24b4d944f18248f7fc6de5f"
+    },
+    {
+      "index": 76,
+      "timestamp": 1777103759.9961972,
+      "transactions": [
+        {
+          "tx_id": "2e20e92d5f41c08a",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0014",
+            "steps": [
+              "file_path",
+              "CWE-22"
+            ],
+            "score": 7.5,
+            "stealth": 0.75,
+            "novelty": 0.5
+          },
+          "timestamp": 1777103759.995198
+        },
+        {
+          "tx_id": "779621a851978f48",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0014",
+            "confidence": 0.99,
+            "cve_refs": [
+              "CVE-2023-44487"
+            ],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777103759.995198
+        },
+        {
+          "tx_id": "6b2a34ff6e1acd4f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "UNIFIED-PY-0014",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.99.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777103759.995198
+        }
+      ],
+      "previous_hash": "000e8f889e54c721760f28613c3b57a0751a2c5cb24b4d944f18248f7fc6de5f",
+      "nonce": 4166,
+      "hash": "000d95bd865d5b16d50c2225bd0e61602c9ce03f52c17d4efe3332ad2cfcd3d4"
+    },
+    {
+      "index": 77,
+      "timestamp": 1777141428.8198323,
+      "transactions": [
+        {
+          "tx_id": "62d3de3b36e8f187",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0001",
+            "steps": [
+              "illegal_clearing",
+              "ECO-006"
+            ],
+            "score": 8.7,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141428.8192792
+        },
+        {
+          "tx_id": "1d272fc0f232c812",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0001",
+            "confidence": 0.8799,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141428.8192792
+        },
+        {
+          "tx_id": "2b6fb68f24aa8acb",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0001",
+            "certified": true,
+            "reason": "Score 8.7 meets threshold. ORACLE CONFIRMED at 0.8799.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141428.8192792
+        }
+      ],
+      "previous_hash": "000d95bd865d5b16d50c2225bd0e61602c9ce03f52c17d4efe3332ad2cfcd3d4",
+      "nonce": 9751,
+      "hash": "000be9d395b74055d3b0ecfc26260fbace219b6715faaff7f53b789c467fef58"
+    },
+    {
+      "index": 78,
+      "timestamp": 1777141429.152061,
+      "transactions": [
+        {
+          "tx_id": "861138e8ebabc08e",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0002",
+            "steps": [
+              "illegal_clearing",
+              "ECO-006"
+            ],
+            "score": 8.7,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.150976
+        },
+        {
+          "tx_id": "e7296c42bbecb5fd",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0002",
+            "confidence": 0.8999,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.150976
+        },
+        {
+          "tx_id": "4110a53699f4c39f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0002",
+            "certified": true,
+            "reason": "Score 8.7 meets threshold. ORACLE CONFIRMED at 0.8999.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141429.150976
+        }
+      ],
+      "previous_hash": "000be9d395b74055d3b0ecfc26260fbace219b6715faaff7f53b789c467fef58",
+      "nonce": 1484,
+      "hash": "0004515375fc0e6ee3e4c5456fcbc60a9bd515f95ca570c3ca161a844d81c05e"
+    },
+    {
+      "index": 79,
+      "timestamp": 1777141429.2198026,
+      "transactions": [
+        {
+          "tx_id": "772f0aa8cbd6d078",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0003",
+            "steps": [
+              "vegetation_stress",
+              "ECO-005"
+            ],
+            "score": 6.8,
+            "stealth": 0.78,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.218802
+        },
+        {
+          "tx_id": "d561d392378ab095",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0003",
+            "confidence": 0.8796,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.218802
+        },
+        {
+          "tx_id": "ae36e526f329a51d",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0003",
+            "certified": true,
+            "reason": "Score 6.8 meets threshold. ORACLE CONFIRMED at 0.8796.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141429.2198026
+        }
+      ],
+      "previous_hash": "0004515375fc0e6ee3e4c5456fcbc60a9bd515f95ca570c3ca161a844d81c05e",
+      "nonce": 6612,
+      "hash": "000539c611505d73da2c47bd91ea8e7940aa89ba653d9d764c93b1ac03be14a1"
+    },
+    {
+      "index": 80,
+      "timestamp": 1777141429.4546566,
+      "transactions": [
+        {
+          "tx_id": "3c43221a93cafd18",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0004",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.4546566
+        },
+        {
+          "tx_id": "ce7827a89485056e",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0004",
+            "confidence": 0.8783,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.4546566
+        },
+        {
+          "tx_id": "43ecce80550afe05",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0004",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.8783.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141429.4546566
+        }
+      ],
+      "previous_hash": "000539c611505d73da2c47bd91ea8e7940aa89ba653d9d764c93b1ac03be14a1",
+      "nonce": 842,
+      "hash": "00016cdb40e27f3050c31a29779a5850372865d890e1fe4bd5fda30006d9f035"
+    },
+    {
+      "index": 81,
+      "timestamp": 1777141429.5206156,
+      "transactions": [
+        {
+          "tx_id": "c4846df16835bbf2",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0005",
+            "steps": [
+              "edge_effect",
+              "ECO-008"
+            ],
+            "score": 4.2,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.5016274
+        },
+        {
+          "tx_id": "44e7ca94cf680fce",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0005",
+            "confidence": 0.8708,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.5016274
+        },
+        {
+          "tx_id": "3faed278b866ff97",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0005",
+            "certified": false,
+            "reason": "Score 4.2 below actionable threshold of 5.0",
+            "jurisdiction": "OPEN"
+          },
+          "timestamp": 1777141429.5016274
+        },
+        {
+          "tx_id": "84816dacd577c9d7",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0006",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.5196166
+        },
+        {
+          "tx_id": "948622bc4408a56b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0006",
+            "confidence": 0.8983,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.5196166
+        },
+        {
+          "tx_id": "5822a2535d7f2408",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0006",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.8983.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141429.5196166
+        }
+      ],
+      "previous_hash": "00016cdb40e27f3050c31a29779a5850372865d890e1fe4bd5fda30006d9f035",
+      "nonce": 419,
+      "hash": "000f282be90bf3f47dadfc15fbd3681e9f8260000c0fffdf2867d976567a858c"
+    },
+    {
+      "index": 82,
+      "timestamp": 1777141429.5625894,
+      "transactions": [
+        {
+          "tx_id": "5faa5ed501b7932c",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0007",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.5615907
+        },
+        {
+          "tx_id": "4b3a770c64640764",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0007",
+            "confidence": 0.9183,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.5625894
+        },
+        {
+          "tx_id": "50efd52fd432937d",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0007",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9183.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141429.5625894
+        }
+      ],
+      "previous_hash": "000f282be90bf3f47dadfc15fbd3681e9f8260000c0fffdf2867d976567a858c",
+      "nonce": 2659,
+      "hash": "00062b6d7f93c20153db7a9ebe89c8a5b3512152f9428b7c8da5f4ba2e7801d8"
+    },
+    {
+      "index": 83,
+      "timestamp": 1777141429.6865134,
+      "transactions": [
+        {
+          "tx_id": "168b9be90bc04499",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0008",
+            "steps": [
+              "edge_effect",
+              "ECO-008"
+            ],
+            "score": 4.2,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.667524
+        },
+        {
+          "tx_id": "85dcf078858cf9d9",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0008",
+            "confidence": 0.8908,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.667524
+        },
+        {
+          "tx_id": "2d2b38d131cce063",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0008",
+            "certified": false,
+            "reason": "Score 4.2 below actionable threshold of 5.0",
+            "jurisdiction": "OPEN"
+          },
+          "timestamp": 1777141429.667524
+        },
+        {
+          "tx_id": "6d9d06697b736e60",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0009",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.6855147
+        },
+        {
+          "tx_id": "f02b327a98edb9e3",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0009",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.6855147
+        },
+        {
+          "tx_id": "465af8aec71efae6",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0009",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141429.6855147
+        }
+      ],
+      "previous_hash": "00062b6d7f93c20153db7a9ebe89c8a5b3512152f9428b7c8da5f4ba2e7801d8",
+      "nonce": 3414,
+      "hash": "000258a5a1a957dbb3c4b562f04253bf552402f313b6a92ae66b203882c2db00"
+    },
+    {
+      "index": 84,
+      "timestamp": 1777141429.8816774,
+      "transactions": [
+        {
+          "tx_id": "fb4e6528ea8cf7a6",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0010",
+            "steps": [
+              "habitat_fragmentation",
+              "ECO-002"
+            ],
+            "score": 7.5,
+            "stealth": 0.78,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141429.8810158
+        },
+        {
+          "tx_id": "7e2055dba2ccf8c8",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0010",
+            "confidence": 0.8798,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141429.8810158
+        },
+        {
+          "tx_id": "dbd6a6981b1a977d",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0010",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.8798.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141429.8810158
+        }
+      ],
+      "previous_hash": "000258a5a1a957dbb3c4b562f04253bf552402f313b6a92ae66b203882c2db00",
+      "nonce": 4139,
+      "hash": "0006b5bdf949156ea2638c7d4a9db5583e8098154aef9dcfa021a1ad047a43cf"
+    },
+    {
+      "index": 85,
+      "timestamp": 1777141430.0344222,
+      "transactions": [
+        {
+          "tx_id": "80ec7f34b0937823",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0011",
+            "steps": [
+              "deforestation_event",
+              "ECO-001"
+            ],
+            "score": 9.2,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141430.0338235
+        },
+        {
+          "tx_id": "416aff8b06135f6c",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0011",
+            "confidence": 0.88,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141430.0338235
+        },
+        {
+          "tx_id": "61775dbb948d14e5",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0011",
+            "certified": true,
+            "reason": "Score 9.2 meets threshold. ORACLE CONFIRMED at 0.88.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141430.0338235
+        }
+      ],
+      "previous_hash": "0006b5bdf949156ea2638c7d4a9db5583e8098154aef9dcfa021a1ad047a43cf",
+      "nonce": 1229,
+      "hash": "0006d080cc179269e293dd94a1bddc66833ac3eae045794e184d180e946fcdf8"
+    },
+    {
+      "index": 86,
+      "timestamp": 1777141430.0950232,
+      "transactions": [
+        {
+          "tx_id": "21bc5f4eab68ec2b",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0012",
+            "steps": [
+              "deforestation_event",
+              "ECO-001"
+            ],
+            "score": 9.2,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141430.094023
+        },
+        {
+          "tx_id": "e00792fdf1bea58f",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0012",
+            "confidence": 0.9,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141430.094023
+        },
+        {
+          "tx_id": "6f2a2f99faed523f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0012",
+            "certified": true,
+            "reason": "Score 9.2 meets threshold. ORACLE CONFIRMED at 0.9.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141430.094023
+        }
+      ],
+      "previous_hash": "0006d080cc179269e293dd94a1bddc66833ac3eae045794e184d180e946fcdf8",
+      "nonce": 3518,
+      "hash": "000662e3b992cfd718291a9d5d7a1bd03db80ef3529a0edd5ec00e7742e64f0d"
+    },
+    {
+      "index": 87,
+      "timestamp": 1777141430.230939,
+      "transactions": [
+        {
+          "tx_id": "f1899048c1c55973",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0013",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141430.229939
+        },
+        {
+          "tx_id": "efcd73a72e4b4bdc",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0013",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141430.229939
+        },
+        {
+          "tx_id": "0b75f63e4cbc9c1b",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0013",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141430.229939
+        }
+      ],
+      "previous_hash": "000662e3b992cfd718291a9d5d7a1bd03db80ef3529a0edd5ec00e7742e64f0d",
+      "nonce": 12223,
+      "hash": "000076b2d449a7f390fa36b6feb67daa20ea3beca2e1f2e4b91032f15ff50a29"
+    },
+    {
+      "index": 88,
+      "timestamp": 1777141430.6528103,
+      "transactions": [
+        {
+          "tx_id": "f34700be4b435620",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0014",
+            "steps": [
+              "vegetation_stress",
+              "ECO-005"
+            ],
+            "score": 6.8,
+            "stealth": 0.78,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141430.6518123
+        },
+        {
+          "tx_id": "9ff80c0f31028aa7",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0014",
+            "confidence": 0.8996,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141430.6518123
+        },
+        {
+          "tx_id": "96c0a69646e50da8",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0014",
+            "certified": true,
+            "reason": "Score 6.8 meets threshold. ORACLE CONFIRMED at 0.8996.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141430.6518123
+        }
+      ],
+      "previous_hash": "000076b2d449a7f390fa36b6feb67daa20ea3beca2e1f2e4b91032f15ff50a29",
+      "nonce": 3228,
+      "hash": "000744ef41d65405d9634a10a49536a5f4f9488cca949186c5af0447c2a84077"
+    },
+    {
+      "index": 89,
+      "timestamp": 1777141430.7767396,
+      "transactions": [
+        {
+          "tx_id": "6270448d47932eba",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0015",
+            "steps": [
+              "habitat_fragmentation",
+              "ECO-002"
+            ],
+            "score": 7.5,
+            "stealth": 0.78,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141430.7767396
+        },
+        {
+          "tx_id": "b4340093a398caed",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0015",
+            "confidence": 0.8998,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141430.7767396
+        },
+        {
+          "tx_id": "65cf015df49aea80",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0015",
+            "certified": true,
+            "reason": "Score 7.5 meets threshold. ORACLE CONFIRMED at 0.8998.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141430.7767396
+        }
+      ],
+      "previous_hash": "000744ef41d65405d9634a10a49536a5f4f9488cca949186c5af0447c2a84077",
+      "nonce": 10662,
+      "hash": "0008683816953a882610b66d43f1afeb793f5da7792757a5c288d56d3d41b40e"
+    },
+    {
+      "index": 90,
+      "timestamp": 1777141431.1371737,
+      "transactions": [
+        {
+          "tx_id": "5e0a8e6613440de2",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0016",
+            "steps": [
+              "deforestation_event",
+              "ECO-001"
+            ],
+            "score": 9.2,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141431.1371737
+        },
+        {
+          "tx_id": "2a76214b87225e24",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0016",
+            "confidence": 0.92,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141431.1371737
+        },
+        {
+          "tx_id": "6b4b7ad53ddb6daf",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0016",
+            "certified": true,
+            "reason": "Score 9.2 meets threshold. ORACLE CONFIRMED at 0.92.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141431.1371737
+        }
+      ],
+      "previous_hash": "0008683816953a882610b66d43f1afeb793f5da7792757a5c288d56d3d41b40e",
+      "nonce": 1141,
+      "hash": "0008726a878cb0138a1739e213376be8443f73a2f54d11fe0c58a35eaa491ce4"
+    },
+    {
+      "index": 91,
+      "timestamp": 1777141431.1941342,
+      "transactions": [
+        {
+          "tx_id": "c901dc59af8a4117",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0017",
+            "steps": [
+              "deforestation_event",
+              "ECO-001"
+            ],
+            "score": 9.2,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141431.1932318
+        },
+        {
+          "tx_id": "03f8638c3fa554c2",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0017",
+            "confidence": 0.94,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141431.1932318
+        },
+        {
+          "tx_id": "920330258dd63088",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0017",
+            "certified": true,
+            "reason": "Score 9.2 meets threshold. ORACLE CONFIRMED at 0.94.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141431.1932318
+        }
+      ],
+      "previous_hash": "0008726a878cb0138a1739e213376be8443f73a2f54d11fe0c58a35eaa491ce4",
+      "nonce": 8690,
+      "hash": "000d7c09129de382e864a617e49417a4ade69f6ca5d392b6ea4d310b2b703859"
+    },
+    {
+      "index": 92,
+      "timestamp": 1777141431.5120316,
+      "transactions": [
+        {
+          "tx_id": "a970b05862513e93",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0018",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141431.5120316
+        },
+        {
+          "tx_id": "81d44869a35e442e",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0018",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141431.5120316
+        },
+        {
+          "tx_id": "a9dd9215ec7babc3",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0018",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141431.5120316
+        }
+      ],
+      "previous_hash": "000d7c09129de382e864a617e49417a4ade69f6ca5d392b6ea4d310b2b703859",
+      "nonce": 7376,
+      "hash": "000fc0d51bcf05703043969c88ee5f68648890f1866827b10274449bfd23b35e"
+    },
+    {
+      "index": 93,
+      "timestamp": 1777141431.8069887,
+      "transactions": [
+        {
+          "tx_id": "aa6713a334c2670a",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0019",
+            "steps": [
+              "edge_effect",
+              "ECO-008"
+            ],
+            "score": 4.2,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141431.7692127
+        },
+        {
+          "tx_id": "34e67fd94ed438aa",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0019",
+            "confidence": 0.9108,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141431.7692127
+        },
+        {
+          "tx_id": "51ab195c42456eb2",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0019",
+            "certified": false,
+            "reason": "Score 4.2 below actionable threshold of 5.0",
+            "jurisdiction": "OPEN"
+          },
+          "timestamp": 1777141431.7692127
+        },
+        {
+          "tx_id": "337e2b86eeca4a76",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0020",
+            "steps": [
+              "edge_effect",
+              "ECO-008"
+            ],
+            "score": 4.2,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141431.7880027
+        },
+        {
+          "tx_id": "188b19b2e3cb1eb2",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0020",
+            "confidence": 0.9308,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141431.7880027
+        },
+        {
+          "tx_id": "ee98b9f23a731855",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0020",
+            "certified": false,
+            "reason": "Score 4.2 below actionable threshold of 5.0",
+            "jurisdiction": "OPEN"
+          },
+          "timestamp": 1777141431.7880027
+        },
+        {
+          "tx_id": "f7bfa3157e320561",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0021",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141431.8059916
+        },
+        {
+          "tx_id": "7b552a11f7cc2a9f",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0021",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141431.8059916
+        },
+        {
+          "tx_id": "4997dfa1683572f2",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0021",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141431.8059916
+        }
+      ],
+      "previous_hash": "000fc0d51bcf05703043969c88ee5f68648890f1866827b10274449bfd23b35e",
+      "nonce": 4783,
+      "hash": "0002a85f6ae5973c6510ba08a599408aaea90fe628d1f5474251765e3e64aa60"
+    },
+    {
+      "index": 94,
+      "timestamp": 1777141432.1697085,
+      "transactions": [
+        {
+          "tx_id": "38b9ca044c076d1e",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0022",
+            "steps": [
+              "edge_effect",
+              "ECO-008"
+            ],
+            "score": 4.2,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141432.1508868
+        },
+        {
+          "tx_id": "ee82050ae9f14cf7",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0022",
+            "confidence": 0.9308,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141432.1508868
+        },
+        {
+          "tx_id": "21cfa30337a519f9",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0022",
+            "certified": false,
+            "reason": "Score 4.2 below actionable threshold of 5.0",
+            "jurisdiction": "OPEN"
+          },
+          "timestamp": 1777141432.1508868
+        },
+        {
+          "tx_id": "57be4e67b0812696",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0023",
+            "steps": [
+              "illegal_clearing",
+              "ECO-006"
+            ],
+            "score": 8.7,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141432.1687076
+        },
+        {
+          "tx_id": "71d1f5fda0a2a68d",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0023",
+            "confidence": 0.9199,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141432.1697085
+        },
+        {
+          "tx_id": "3e6fc12fbfd64710",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0023",
+            "certified": true,
+            "reason": "Score 8.7 meets threshold. ORACLE CONFIRMED at 0.9199.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141432.1697085
+        }
+      ],
+      "previous_hash": "0002a85f6ae5973c6510ba08a599408aaea90fe628d1f5474251765e3e64aa60",
+      "nonce": 6334,
+      "hash": "00066e5bc67b12d6e5cf3ff879d5dc04a4d28a19d598a30df7913d55a36723f3"
+    },
+    {
+      "index": 95,
+      "timestamp": 1777141432.5227273,
+      "transactions": [
+        {
+          "tx_id": "ce7d2317b099522f",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0024",
+            "steps": [
+              "edge_effect",
+              "ECO-008"
+            ],
+            "score": 4.2,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141432.503142
+        },
+        {
+          "tx_id": "9de04bbfb9b56b37",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0024",
+            "confidence": 0.9308,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141432.503142
+        },
+        {
+          "tx_id": "b791073515259aa7",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0024",
+            "certified": false,
+            "reason": "Score 4.2 below actionable threshold of 5.0",
+            "jurisdiction": "OPEN"
+          },
+          "timestamp": 1777141432.503142
+        },
+        {
+          "tx_id": "70b7d2cab7e24773",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0025",
+            "steps": [
+              "deforestation_event",
+              "ECO-001"
+            ],
+            "score": 9.2,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141432.522105
+        },
+        {
+          "tx_id": "a0a2b2b4a79eeef2",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0025",
+            "confidence": 0.94,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141432.522105
+        },
+        {
+          "tx_id": "c4fd2d178255063f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0025",
+            "certified": true,
+            "reason": "Score 9.2 meets threshold. ORACLE CONFIRMED at 0.94.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141432.522105
+        }
+      ],
+      "previous_hash": "00066e5bc67b12d6e5cf3ff879d5dc04a4d28a19d598a30df7913d55a36723f3",
+      "nonce": 17447,
+      "hash": "0000bcc0276b201fa09dbeaf02c4d1c52a67861ef48feb005a762df043068e5e"
+    },
+    {
+      "index": 96,
+      "timestamp": 1777141433.3945239,
+      "transactions": [
+        {
+          "tx_id": "3a68f5a937841d01",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0026",
+            "steps": [
+              "vegetation_stress",
+              "ECO-005"
+            ],
+            "score": 6.8,
+            "stealth": 0.78,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141433.3945239
+        },
+        {
+          "tx_id": "eee73e0c5b7069f9",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0026",
+            "confidence": 0.9196,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141433.3945239
+        },
+        {
+          "tx_id": "76196349587b6097",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0026",
+            "certified": true,
+            "reason": "Score 6.8 meets threshold. ORACLE CONFIRMED at 0.9196.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141433.3945239
+        }
+      ],
+      "previous_hash": "0000bcc0276b201fa09dbeaf02c4d1c52a67861ef48feb005a762df043068e5e",
+      "nonce": 8961,
+      "hash": "000e3ef1de8177854459a3c20709b0e00f148d8d5ada02750e55d919a61ac77f"
+    },
+    {
+      "index": 97,
+      "timestamp": 1777141433.7016363,
+      "transactions": [
+        {
+          "tx_id": "2e11c24fa5b2a13a",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0027",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141433.7010076
+        },
+        {
+          "tx_id": "961f831551c67baa",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0027",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141433.7010076
+        },
+        {
+          "tx_id": "22251ba2ee4e34ab",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0027",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141433.7010076
+        }
+      ],
+      "previous_hash": "000e3ef1de8177854459a3c20709b0e00f148d8d5ada02750e55d919a61ac77f",
+      "nonce": 5467,
+      "hash": "00090a34b10c50e943a5841b938874359c2ebddae561963f37dffd14db0aa6e1"
+    },
+    {
+      "index": 98,
+      "timestamp": 1777141433.917708,
+      "transactions": [
+        {
+          "tx_id": "74866f5e36a7adef",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0028",
+            "steps": [
+              "edge_effect",
+              "ECO-008"
+            ],
+            "score": 4.2,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141433.8986466
+        },
+        {
+          "tx_id": "ad6e853554111540",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0028",
+            "confidence": 0.9308,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141433.8986466
+        },
+        {
+          "tx_id": "5ca11f89b0f566dc",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0028",
+            "certified": false,
+            "reason": "Score 4.2 below actionable threshold of 5.0",
+            "jurisdiction": "OPEN"
+          },
+          "timestamp": 1777141433.8986466
+        },
+        {
+          "tx_id": "95d6762b3f8b1502",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0029",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141433.9167113
+        },
+        {
+          "tx_id": "aad07d828218ba08",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0029",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141433.9167113
+        },
+        {
+          "tx_id": "5a7521b822e82155",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0029",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141433.9167113
+        }
+      ],
+      "previous_hash": "00090a34b10c50e943a5841b938874359c2ebddae561963f37dffd14db0aa6e1",
+      "nonce": 1826,
+      "hash": "000a1be722565425d99af8b6ab1acef3e6699b48b095fa0a960be10159f94378"
+    },
+    {
+      "index": 99,
+      "timestamp": 1777141434.028451,
+      "transactions": [
+        {
+          "tx_id": "f6ecd45ac2f0ce8d",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0030",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141434.028451
+        },
+        {
+          "tx_id": "791989145772ea45",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0030",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141434.028451
+        },
+        {
+          "tx_id": "6aed0f5ae0fdb1ee",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0030",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141434.028451
+        }
+      ],
+      "previous_hash": "000a1be722565425d99af8b6ab1acef3e6699b48b095fa0a960be10159f94378",
+      "nonce": 1159,
+      "hash": "0008e9bd330f650d68a59dd001c21b75b06c27ff3663c9fb1937a341435899d3"
+    },
+    {
+      "index": 100,
+      "timestamp": 1777141434.0885453,
+      "transactions": [
+        {
+          "tx_id": "2a60f1cccda4cabd",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0031",
+            "steps": [
+              "illegal_clearing",
+              "ECO-006"
+            ],
+            "score": 8.7,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141434.088031
+        },
+        {
+          "tx_id": "1cac6e84cad6198b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0031",
+            "confidence": 0.9399,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141434.088031
+        },
+        {
+          "tx_id": "5a0e7e249fad8955",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0031",
+            "certified": true,
+            "reason": "Score 8.7 meets threshold. ORACLE CONFIRMED at 0.9399.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141434.088031
+        }
+      ],
+      "previous_hash": "0008e9bd330f650d68a59dd001c21b75b06c27ff3663c9fb1937a341435899d3",
+      "nonce": 16943,
+      "hash": "00063cbcdd0ed2a2344e5db8c6ab920c177f91fec3292d2759b16a611f8ba9cc"
+    },
+    {
+      "index": 101,
+      "timestamp": 1777141434.6413643,
+      "transactions": [
+        {
+          "tx_id": "824f7858c6344437",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0032",
+            "steps": [
+              "illegal_clearing",
+              "ECO-006"
+            ],
+            "score": 8.7,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141434.6406138
+        },
+        {
+          "tx_id": "6e4f0e360aeab23e",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0032",
+            "confidence": 0.9399,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141434.6406138
+        },
+        {
+          "tx_id": "3b6710404d417176",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0032",
+            "certified": true,
+            "reason": "Score 8.7 meets threshold. ORACLE CONFIRMED at 0.9399.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141434.6406138
+        }
+      ],
+      "previous_hash": "00063cbcdd0ed2a2344e5db8c6ab920c177f91fec3292d2759b16a611f8ba9cc",
+      "nonce": 2989,
+      "hash": "00027a3e0bfa261e7ce55110c03515c0cf43ffb56a01c1ca9f581eadf26364d0"
+    },
+    {
+      "index": 102,
+      "timestamp": 1777141434.7585015,
+      "transactions": [
+        {
+          "tx_id": "42dc980016a14cd9",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0033",
+            "steps": [
+              "deforestation_event",
+              "ECO-001"
+            ],
+            "score": 9.2,
+            "stealth": 0.92,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141434.7585015
+        },
+        {
+          "tx_id": "6de15bfe8ebef6b6",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0033",
+            "confidence": 0.94,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141434.7585015
+        },
+        {
+          "tx_id": "2e8164f1f8ce437b",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0033",
+            "certified": true,
+            "reason": "Score 9.2 meets threshold. ORACLE CONFIRMED at 0.94.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141434.7585015
+        }
+      ],
+      "previous_hash": "00027a3e0bfa261e7ce55110c03515c0cf43ffb56a01c1ca9f581eadf26364d0",
+      "nonce": 499,
+      "hash": "0003fc26ea2fac406f1e448fb38aad54eb0959ed0196cf695086bbf864817b7e"
+    },
+    {
+      "index": 103,
+      "timestamp": 1777141434.798306,
+      "transactions": [
+        {
+          "tx_id": "4aa07422de9b43d4",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0034",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141434.7974799
+        },
+        {
+          "tx_id": "2281c9849f282f8b",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0034",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141434.7974799
+        },
+        {
+          "tx_id": "aef697aafb0d46d7",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0034",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141434.7974799
+        }
+      ],
+      "previous_hash": "0003fc26ea2fac406f1e448fb38aad54eb0959ed0196cf695086bbf864817b7e",
+      "nonce": 3203,
+      "hash": "000337147dbc10e07b74707493a334900d28eb95ec5214c331a18a9f0978b9ff"
+    },
+    {
+      "index": 104,
+      "timestamp": 1777141434.948235,
+      "transactions": [
+        {
+          "tx_id": "97abe62410fb12a5",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0035",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141434.9472377
+        },
+        {
+          "tx_id": "06f130ad0ff86431",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0035",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141434.9472377
+        },
+        {
+          "tx_id": "32c5909c5a47bc5b",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0035",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141434.9472377
+        }
+      ],
+      "previous_hash": "000337147dbc10e07b74707493a334900d28eb95ec5214c331a18a9f0978b9ff",
+      "nonce": 2200,
+      "hash": "0002a7c4109b1b60ea21761bdeb6ba0fcda1d1c5d2fc0babee2f305ccc5f45e3"
+    },
+    {
+      "index": 105,
+      "timestamp": 1777141435.0391786,
+      "transactions": [
+        {
+          "tx_id": "da5de7bfe6fabfec",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-NV-0036",
+            "steps": [
+              "soil_degradation",
+              "ECO-004"
+            ],
+            "score": 5.5,
+            "stealth": 0.55,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141435.0391786
+        },
+        {
+          "tx_id": "9b8744a9e94bea91",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-NV-0036",
+            "confidence": 0.9383,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141435.0391786
+        },
+        {
+          "tx_id": "6395bdc5884501ad",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-NV-0036",
+            "certified": true,
+            "reason": "Score 5.5 meets threshold. ORACLE CONFIRMED at 0.9383.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141435.0391786
+        }
+      ],
+      "previous_hash": "0002a7c4109b1b60ea21761bdeb6ba0fcda1d1c5d2fc0babee2f305ccc5f45e3",
+      "nonce": 2130,
+      "hash": "000e3ea77b6f93cf5ae029af4873363ac8da606849f1c4ef88e5393e92c7aec6"
+    },
+    {
+      "index": 106,
+      "timestamp": 1777141435.1294436,
+      "transactions": [
+        {
+          "tx_id": "87cb258638252f66",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-AC-0001",
+            "steps": [
+              "human_activity",
+              "ECO-008",
+              "fire_crackle",
+              "ECO-007"
+            ],
+            "score": 6.5,
+            "stealth": 0.67,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141435.1284409
+        },
+        {
+          "tx_id": "fd4982db058c838c",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-AC-0001",
+            "confidence": 0.8775,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141435.1284409
+        },
+        {
+          "tx_id": "7304a1900ab2538f",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-AC-0001",
+            "certified": true,
+            "reason": "Score 6.5 meets threshold. ORACLE CONFIRMED at 0.8775.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141435.1284409
+        }
+      ],
+      "previous_hash": "000e3ea77b6f93cf5ae029af4873363ac8da606849f1c4ef88e5393e92c7aec6",
+      "nonce": 2947,
+      "hash": "0005949f3bedd39755ed4d6260625b96b21c76edee2b3373e002237448629a1a"
+    },
+    {
+      "index": 107,
+      "timestamp": 1777141435.248068,
+      "transactions": [
+        {
+          "tx_id": "38a6b41270a667c5",
+          "tx_type": "PHANTOM",
+          "payload": {
+            "finding_id": "EDEN-AC-0002",
+            "steps": [
+              "human_activity",
+              "ECO-008",
+              "heavy_vehicle",
+              "ECO-002",
+              "chainsaw_detected",
+              "ECO-001"
+            ],
+            "score": 7.6,
+            "stealth": 0.75,
+            "novelty": 0.4
+          },
+          "timestamp": 1777141435.2470691
+        },
+        {
+          "tx_id": "046143e09fc5d3f2",
+          "tx_type": "ORACLE",
+          "payload": {
+            "finding_id": "EDEN-AC-0002",
+            "confidence": 0.8965,
+            "cve_refs": [],
+            "verdict": "CONFIRMED"
+          },
+          "timestamp": 1777141435.2470691
+        },
+        {
+          "tx_id": "6d49ce55abba6008",
+          "tx_type": "COVENANT",
+          "payload": {
+            "finding_id": "EDEN-AC-0002",
+            "certified": true,
+            "reason": "Score 7.6 meets threshold. ORACLE CONFIRMED at 0.8965.",
+            "jurisdiction": "CFAA"
+          },
+          "timestamp": 1777141435.2470691
+        }
+      ],
+      "previous_hash": "0005949f3bedd39755ed4d6260625b96b21c76edee2b3373e002237448629a1a",
+      "nonce": 5237,
+      "hash": "0009829693c604586f7a78dd6d53d75823ad313d56c470e911b83ea852b5f122"
+    }
+  ]
+}

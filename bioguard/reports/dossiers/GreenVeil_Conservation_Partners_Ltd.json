@@ -1,0 +1,134 @@
+{
+  "dossier_id": "BG-CPK/2023/04471",
+  "generated_at": "2026-04-26T06:00:53.896880+00:00",
+  "classification": "RESTRICTED \u2014 ENFORCEMENT USE",
+  "evidence_grade": "EvidenceGrade.CONFIRMED",
+  "contradiction_score": 9.4,
+  "subject": {
+    "name": "GreenVeil Conservation Partners Ltd",
+    "registration_number": "CPK/2023/04471",
+    "registered_date": "2023-03-14",
+    "registered_country": "Kenya (BVI beneficial)",
+    "directors": [
+      "Thomas Reinholt",
+      "Amina Osei-Bonsu",
+      "D. Whitmore"
+    ],
+    "beneficial_owner": "UNKNOWN \u2014 British Virgin Islands",
+    "offshore_accounts": [
+      "BVI-TRUST-447",
+      "SEYCHELLES-GL-09"
+    ],
+    "linked_entities": [
+      "Veil Timber Holdings",
+      "GV Agriforest Kenya"
+    ],
+    "mining_logging_licenses": [
+      "MINING/MAU/2022/117"
+    ]
+  },
+  "conservation_claim": {
+    "land_title_ha": 2840.0,
+    "conservation_claim_ha": 2840.0,
+    "carbon_credits_filed": 34200,
+    "carbon_credits_legitimate": 1800,
+    "fraudulent_credits_estimated": 32400,
+    "estimated_fraud_value_usd": 486000
+  },
+  "threat_assessment": {
+    "primary_threat": "CARBON_FRAUD",
+    "threat_description": "Entity is filing carbon credits for forest carbon that does not exist or has been destroyed. Credits represent fraudulent financial instruments on international carbon markets.",
+    "behavioral_signals": [
+      {
+        "signal_type": "NDVI_FRAUD",
+        "region": "Mau Forest",
+        "parcel_id": "MAU/N/2840/KFS",
+        "ndvi_claimed": 0.72,
+        "ndvi_satellite": 0.31,
+        "ndvi_divergence": -0.41,
+        "clearing_ha_per_month": 38.4,
+        "night_activity": true,
+        "rectangular_clearing": true,
+        "acoustic_gunshots": 6,
+        "thermal_anomalies": 14,
+        "severity": 9.4
+      }
+    ]
+  },
+  "network_links": [
+    {
+      "connected_to": "SilverLeaf Carbon Investments",
+      "link_type": "SHARED_DIRECTOR",
+      "strength": 0.95,
+      "evidence": "Thomas Reinholt appears as director on both entities"
+    },
+    {
+      "connected_to": "Veil Timber Holdings",
+      "link_type": "SHARED_ADDRESS",
+      "strength": 0.91,
+      "evidence": "Registered address: Suite 4B, Waiyaki Way, Nairobi \u2014 identical"
+    }
+  ],
+  "blockchain_evidence": {
+    "primary_block": 109,
+    "all_blocks": [
+      109,
+      113,
+      117,
+      120
+    ],
+    "block_hashes": [
+      "2031869b1a86978d",
+      "82bb4040205700a7",
+      "f9840eba59e29ed2",
+      "e5d5e9e563c63af9"
+    ],
+    "chain_timestamp": "2026-04-26T06:00:53.772855+00:00",
+    "tamper_proof": true,
+    "ledger": "MistChain \u2014 PhantomChainBridge / NODE-PRIMARY"
+  },
+  "referrals": [
+    {
+      "agency": "DCI_KENYA",
+      "description": "Kenya Directorate of Criminal Investigations \u2014 Economic Crimes Unit",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "KFS_ENFORCEMENT",
+      "description": "Kenya Forest Service \u2014 Forest Protection & Enforcement",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "INTERPOL_WILDLIFE",
+      "description": "INTERPOL \u2014 Project Predator (Wildlife & Forest Crime)",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "CARBON_REGISTRY_VERRA",
+      "description": "Verra VCS Carbon Registry \u2014 Integrity & Audit Division",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    },
+    {
+      "agency": "UNFCCC_INTEGRITY",
+      "description": "UNFCCC \u2014 Article 6 Carbon Market Integrity Unit",
+      "priority": "URGENT",
+      "status": "PENDING_SUBMISSION"
+    }
+  ],
+  "recommended_actions": [
+    "IMMEDIATE: Freeze carbon credit issuance pending investigation",
+    "IMMEDIATE: Alert KFS for ground-truthing aerial survey",
+    "URGENT: Submit evidence package to DCI Economic Crimes Unit",
+    "URGENT: Notify INTERPOL Project Predator if wildlife crime confirmed",
+    "HIGH: Refer to Verra/Gold Standard for credit suspension",
+    "HIGH: Conduct beneficial ownership tracing via KFIC",
+    "Flag offshore account chain to Financial Intelligence Centre",
+    "Cross-check mining/logging licenses with Ministry of Environment",
+    "Expand investigation to all linked entities in network",
+    "Quantify financial exposure: ~32,400 credits \u00d7 $15 = $486,000 estimated fraud value"
+  ]
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MISTCODER Security Report -- VulnFlask Demo Application (sandbox/vulnerable_app/app.py)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+     font-size:14px;line-height:1.6;color:#1a1a2e;background:#f4f5f7}
+.cover{background:#1a1a2e;color:#fff;padding:56px 64px 44px}
+.cover-logo{font-size:28px;font-weight:700;letter-spacing:5px;
+            color:#e74c3c;margin-bottom:6px}
+.cover-sub{font-size:11px;letter-spacing:2px;color:#7777aa;
+           text-transform:uppercase;margin-bottom:44px}
+.confid{display:inline-block;background:#e74c3c;color:#fff;font-size:10px;
+        letter-spacing:2px;text-transform:uppercase;padding:5px 14px;
+        margin-bottom:20px}
+.cover-title{font-size:20px;font-weight:600;color:#fff;margin-bottom:4px}
+.cover-target{font-size:13px;color:#9999bb;margin-bottom:36px}
+.cover-meta{display:flex;gap:44px}
+.cover-meta-item label{font-size:10px;text-transform:uppercase;
+                        letter-spacing:1px;color:#555577;display:block}
+.cover-meta-item span{font-size:15px;font-weight:600}
+.main{max-width:940px;margin:0 auto;padding:40px 28px}
+.sec{margin-bottom:48px}
+.sec-title{font-size:17px;font-weight:600;color:#1a1a2e;
+           border-bottom:2px solid #e74c3c;padding-bottom:8px;
+           margin-bottom:22px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+         margin-bottom:28px}
+.mc{background:#fff;border:1px solid #dde0e6;border-radius:8px;
+    padding:18px 20px;text-align:center}
+.mc .n{font-size:30px;font-weight:700;line-height:1}
+.mc .l{font-size:11px;text-transform:uppercase;letter-spacing:1px;
+       color:#888;margin-top:6px}
+.mc.cr .n{color:#c0392b}.mc.hi .n{color:#e67e22}
+.mc.me .n{color:#e6a817}.mc.to .n{color:#1a1a2e}
+table{width:100%;border-collapse:collapse;background:#fff;
+      border:1px solid #dde0e6;border-radius:8px;overflow:hidden}
+th{background:#1a1a2e;color:#fff;padding:11px 14px;text-align:left;
+   font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:500}
+td{padding:11px 14px;border-bottom:1px solid #f0f1f4;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even){background:#fafbfc}
+.badge{display:inline-block;padding:2px 9px;border-radius:3px;
+       font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.chain-card{background:#fff;border:1px solid #dde0e6;
+            border-left:4px solid #888;border-radius:8px;
+            padding:18px 22px;margin-bottom:14px}
+.chain-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.chain-id{font-size:11px;color:#888;font-family:monospace}
+.chain-narr{font-size:13px;color:#444;line-height:1.75}
+.exec{background:#fff;border:1px solid #dde0e6;border-radius:8px;
+      padding:22px 26px}
+.exec p{margin-bottom:10px;color:#333;line-height:1.8}
+.exec p:last-child{margin-bottom:0}
+.risk-row{display:flex;align-items:center;gap:14px;padding:18px 22px;
+          background:#fff;border:1px solid #dde0e6;border-radius:8px;
+          margin-bottom:22px}
+.risk-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0}
+.risk-val{font-size:18px;font-weight:700;text-transform:uppercase}
+.risk-lbl{font-size:12px;color:#888}
+.foot{background:#1a1a2e;color:#444466;text-align:center;
+      padding:22px;font-size:11px;margin-top:40px}
+.empty{color:#aaa;font-style:italic;padding:16px 0}
+pre{background:#f4f5f7;border:1px solid #dde0e6;border-radius:4px;
+    padding:10px 14px;font-size:11px;overflow-x:auto;
+    white-space:pre-wrap;word-break:break-all}
+.path-row td:first-child{font-family:monospace;font-size:12px;color:#555}
+.conf-bar{display:inline-block;height:6px;border-radius:3px;
+          background:#e74c3c;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-logo">MISTCODER</div>
+  <div class="cover-sub">Multi-Intelligence Security &amp; Threat Cognition</div>
+  <div class="confid">DEMO -- NOT FOR DISTRIBUTION</div>
+  <div class="cover-title">Security Analysis Report</div>
+  <div class="cover-target">VulnFlask Demo Application (sandbox/vulnerable_app/app.py)</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <label>Date</label>
+      <span>18 April 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Time</label>
+      <span>06:55 UTC</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Analyst</label>
+      <span>MISTCODER Autonomous Pipeline v0.1.0</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Overall risk</label>
+      <span style="color:#c0392b">CRITICAL</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="sec">
+    <div class="sec-title">Executive Summary</div>
+    <div class="risk-row"><div class="risk-dot" style="background:#c0392b"></div><div><div class="risk-val" style="color:#c0392b">critical</div><div class="risk-lbl">Overall risk rating</div></div></div>
+    <div class="exec"><p>The target presents a <strong>critical</strong> risk posture. Immediate remediation is required before continued operation.</p><p>MISTCODER completed a full five-stage intelligence pipeline on <strong>VulnFlask Demo Application (sandbox/vulnerable_app/app.py)</strong>, producing 9 finding(s) across all severity tiers.</p><p>MISTCODER identified 24 vulnerability chain(s) — cases where individually minor weaknesses combine to create a complete breach path.</p><p>No behavioral anomalies were detected beyond the findings listed.</p></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Finding Summary</div>
+    <div class="metrics"><div class="mc to"><div class="n">9</div><div class="l">Total findings</div></div><div class="mc cr"><div class="n">0</div><div class="l">Critical</div></div><div class="mc hi"><div class="n">4</div><div class="l">High</div></div><div class="mc me"><div class="n">5</div><div class="l">Medium</div></div></div>
+    <table><thead><tr><th>ID</th><th>Category</th><th>Severity</th><th>Description</th><th>Line</th></tr></thead><tbody><tr><td style='font-family:monospace;font-size:12px'>MIST-00002</td><td>DANGEROUS_CALL</td><td><span class="badge" style="background:#e67e22;color:#fff;">high</span></td><td>Dangerous function &#x27;os.system&#x27; called at line 80.</td><td style='text-align:center'>80</td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00003</td><td>DANGEROUS_CALL</td><td><span class="badge" style="background:#e67e22;color:#fff;">high</span></td><td>Dangerous function &#x27;eval&#x27; called at line 92.</td><td style='text-align:center'>92</td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00004</td><td>DANGEROUS_CALL</td><td><span class="badge" style="background:#e67e22;color:#fff;">high</span></td><td>Dangerous function &#x27;pickle.loads&#x27; called at line 104.</td><td style='text-align:center'>104</td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00005</td><td>DANGEROUS_CALL</td><td><span class="badge" style="background:#e67e22;color:#fff;">high</span></td><td>Dangerous function &#x27;open&#x27; called at line 116.</td><td style='text-align:center'>116</td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00001</td><td>TAINT_FLOW</td><td><span class="badge" style="background:#e6a817;color:#000;">medium</span></td><td>Unsanitized data flows from &#x27;open&#x27; to &#x27;open&#x27; with no sanitizer on path.</td><td style='text-align:center'></td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00006</td><td>SECRET_EXPOSURE</td><td><span class="badge" style="background:#e6a817;color:#000;">medium</span></td><td>Potential secret or credential assigned to &#x27;SECRET_KEY&#x27; at line 30.</td><td style='text-align:center'>30</td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00007</td><td>SECRET_EXPOSURE</td><td><span class="badge" style="background:#e6a817;color:#000;">medium</span></td><td>Potential secret or credential assigned to &#x27;DB_PASSWORD&#x27; at line 31.</td><td style='text-align:center'>31</td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00008</td><td>SECRET_EXPOSURE</td><td><span class="badge" style="background:#e6a817;color:#000;">medium</span></td><td>Potential secret or credential assigned to &#x27;API_KEY&#x27; at line 32.</td><td style='text-align:center'>32</td></tr><tr><td style='font-family:monospace;font-size:12px'>MIST-00009</td><td>SECRET_EXPOSURE</td><td><span class="badge" style="background:#e6a817;color:#000;">medium</span></td><td>Potential secret or credential assigned to &#x27;password&#x27; at line 61.</td><td style='text-align:center'>61</td></tr></tbody></table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Vulnerability Chains</div>
+    <div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0001</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;DANGEROUS_CALL&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0002</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;DANGEROUS_CALL&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0003</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;DANGEROUS_CALL&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0004</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;DANGEROUS_CALL&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0005</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0006</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0007</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#e67e22"><div class="chain-hdr"><span class="badge" style="background:#e67e22;color:#fff;">high</span><span class="chain-id">CH-0008</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;TAINT_FLOW&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a HIGH severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0009</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0010</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0011</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0012</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0013</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0014</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0015</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0016</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0017</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0018</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0019</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0020</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0021</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0022</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0023</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div><div class="chain-card" style="border-left-color:#c0392b"><div class="chain-hdr"><span class="badge" style="background:#c0392b;color:#fff;">critical</span><span class="chain-id">CH-0024</span><span style="font-size:11px;color:#aaa;margin-left:auto">confidence <span class="conf-bar" style="width:68px"></span> 85%</span></div><div class="chain-narr">Vulnerability chain detected. &#x27;DANGEROUS_CALL&#x27; combined with &#x27;SECRET_EXPOSURE&#x27; produces a CRITICAL severity breach path. Neither finding is critical in isolation -- their combination enables a complete exploitation scenario.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Attack Paths</div>
+    <p class="empty">No attack paths enumerated.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Behavioral Anomalies</div>
+    <p class="empty">No behavioral anomalies detected.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Technical Appendix</div>
+    <table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody><tr><td style='color:#888;width:200px'>Target</td><td style='font-family:monospace'>VulnFlask Demo Application (sandbox/vulnerable_app/app.py)</td></tr><tr><td style='color:#888;width:200px'>Language</td><td style='font-family:monospace'>--</td></tr><tr><td style='color:#888;width:200px'>Parser</td><td style='font-family:monospace'>PythonParser v0.2.0</td></tr><tr><td style='color:#888;width:200px'>Analyzer</td><td style='font-family:monospace'>AnalysisEngine v0.1.0</td></tr><tr><td style='color:#888;width:200px'>Reasoner</td><td style='font-family:monospace'>ReasoningCore v0.1.0 (demo mode)</td></tr><tr><td style='color:#888;width:200px'>IR Nodes</td><td style='font-family:monospace'>51</td></tr><tr><td style='color:#888;width:200px'>IR Edges</td><td style='font-family:monospace'>32</td></tr><tr><td style='color:#888;width:200px'>Graph nodes</td><td style='font-family:monospace'>51</td></tr><tr><td style='color:#888;width:200px'>Graph edges</td><td style='font-family:monospace'>32</td></tr><tr><td style='color:#888;width:200px'>Taint flows</td><td style='font-family:monospace'>1</td></tr><tr><td style='color:#888;width:200px'>CFG functions</td><td style='font-family:monospace'>8</td></tr><tr><td style='color:#888;width:200px'>Attack paths found</td><td style='font-family:monospace'>0</td></tr><tr><td style='color:#888;width:200px'>Chains detected</td><td style='font-family:monospace'>24</td></tr><tr><td style='color:#888;width:200px'>Anomalies</td><td style='font-family:monospace'>0</td></tr><tr><td style='color:#888;width:200px'>Analyzed at</td><td style='font-family:monospace'>2026-04-18T06:55:17.652000+00:00</td></tr><tr><td style='color:#888;width:200px'>Reasoned at</td><td style='font-family:monospace'>2026-04-18T06:55:17.659879Z</td></tr></tbody></table>
+  </div>
+
+</div>
+
+<div class="foot">
+  MISTCODER Security Analysis Report &nbsp;|&nbsp;
+  Generated 18 April 2026 at 06:55 UTC &nbsp;|&nbsp;
+  DEMO -- NOT FOR DISTRIBUTION &nbsp;|&nbsp;
+  Do not distribute without authorization
+</div>
+
+</body>
+</html>
