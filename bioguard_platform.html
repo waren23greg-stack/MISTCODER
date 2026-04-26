@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIOGUARD INTELLIGENCE — Field Operations Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root {
+  --void:#050608;--panel:#0a0c0f;--card:#0f1116;--card-h:#141820;
+  --border:#1e2530;--red:#e74c3c;--amber:#f39c12;--green:#27ae60;
+  --blue:#2980b9;--purple:#8e44ad;--teal:#16a085;
+  --t1:#e8eaf0;--t2:#7a8499;--t3:#3d4557;
+  --fd:'Barlow Condensed',sans-serif;--fm:'Share Tech Mono',monospace;--fu:'Rajdhani',sans-serif;
+  --rc:#e74c3c;--rb:rgba(231,76,60,0.08);
+}
+.role-dci{--rc:#e74c3c;--rb:rgba(231,76,60,0.08);}
+.role-lawfirm{--rc:#2980b9;--rb:rgba(41,128,185,0.08);}
+.role-warden{--rc:#27ae60;--rb:rgba(39,174,96,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--void);color:var(--t1);font-family:var(--fu);font-size:15px;min-height:100vh;overflow-x:hidden;}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;background:var(--panel);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:20px;font-weight:700;letter-spacing:3px;color:var(--rc);text-transform:uppercase;}
+.logo-shield{width:32px;height:32px;fill:none;stroke:var(--rc);stroke-width:2;}
+.nav-tabs{display:flex;gap:2px;}
+.nav-tab{padding:6px 16px;font-family:var(--fd);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--t2);cursor:pointer;border:1px solid transparent;background:none;transition:all .2s;}
+.nav-tab:hover{color:var(--t1);border-color:var(--border);}
+.nav-tab.active{color:var(--rc);border-color:var(--rc);background:var(--rb);}
+.nav-tab.aerial-tab{color:#16a085;border-color:rgba(22,160,133,0.4);animation:aerial-glow 2s infinite;}
+.nav-tab.aerial-tab.active{background:rgba(22,160,133,0.1);}
+@keyframes aerial-glow{0%,100%{box-shadow:0 0 0 0 rgba(22,160,133,0);}50%{box-shadow:0 0 8px rgba(22,160,133,0.3);}}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.role-switcher{display:flex;gap:2px;background:var(--void);border:1px solid var(--border);padding:3px;}
+.role-btn{padding:4px 12px;font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--t2);transition:all .2s;}
+.role-btn.active-dci{background:rgba(231,76,60,0.2);color:#e74c3c;}
+.role-btn.active-law{background:rgba(41,128,185,0.2);color:#2980b9;}
+.role-btn.active-warden{background:rgba(39,174,96,0.2);color:#27ae60;}
+.threat-counter{font-family:var(--fd);font-size:13px;font-weight:700;letter-spacing:2px;color:var(--red);border:1px solid var(--red);padding:4px 12px;animation:pulse-border 2s infinite;}
+@keyframes pulse-border{0%,100%{box-shadow:0 0 0 0 rgba(231,76,60,0);}50%{box-shadow:0 0 12px rgba(231,76,60,0.4);}}
+
+/* ROLE BANNER */
+.role-banner{padding:8px 24px;background:var(--rb);border-bottom:1px solid var(--rc);display:flex;align-items:center;justify-content:space-between;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:2px;color:var(--rc);text-transform:uppercase;}
+.role-actions{display:flex;gap:8px;}
+.role-action-btn{padding:3px 12px;font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;background:var(--rc);color:var(--void);border:none;transition:opacity .2s;}
+.role-action-btn:hover{opacity:.85;}
+.role-action-btn.ghost{background:transparent;color:var(--rc);border:1px solid var(--rc);}
+
+/* STATS */
+.stats-strip{display:grid;grid-template-columns:repeat(6,1fr);border-bottom:1px solid var(--border);}
+.stat-cell{padding:14px 20px;border-right:1px solid var(--border);}
+.stat-cell:last-child{border-right:none;}
+.stat-label{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.stat-value{font-family:var(--fd);font-size:26px;font-weight:900;color:var(--rc);line-height:1;}
+.stat-value.teal{color:#16a085;}
+.stat-sub{font-family:var(--fm);font-size:9px;color:var(--t2);margin-top:2px;}
+
+/* TABS */
+.tab-content{display:none;}
+.tab-content.active{display:flex;flex:1;flex-direction:column;}
+
+/* COMMON MAIN */
+.main{display:flex;height:calc(100vh - 56px - 32px - 62px);min-height:600px;}
+
+/* EVIDENCE PANEL */
+.evidence-panel{width:480px;min-width:480px;border-right:1px solid var(--border);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.panel-header{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--panel);z-index:10;}
+.panel-title{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--t2);}
+.filter-row{display:flex;gap:4px;}
+.filter-chip{padding:2px 8px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--t3);transition:all .2s;}
+.filter-chip.active{border-color:var(--rc);color:var(--rc);background:var(--rb);}
+
+.ev-card{padding:14px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.ev-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--card-accent,#3d4557);}
+.ev-card:hover{background:var(--card-h);}
+.ev-card.selected{background:var(--card);}
+.ev-card.selected::before{background:var(--rc);}
+.ev-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;}
+.ev-type-row{display:flex;align-items:center;gap:8px;}
+.ev-category{font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t2);}
+.ev-type{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:1px 6px;}
+.ev-type.CARBON_FRAUD{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);}
+.ev-type.LAND_GRAB{background:rgba(243,156,18,0.15);color:#f39c12;border:1px solid rgba(243,156,18,0.3);}
+.ev-type.SHELL_CONSERVANCY{background:rgba(142,68,173,0.15);color:#9b59b6;border:1px solid rgba(142,68,173,0.3);}
+.ev-type.MONEY_LAUNDERING{background:rgba(41,128,185,0.15);color:#3498db;border:1px solid rgba(41,128,185,0.3);}
+.ev-status{font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;}
+.ev-status.CONFIRMED{background:rgba(231,76,60,0.12);color:#e74c3c;border:1px solid rgba(231,76,60,0.25);}
+.ev-status.PROBABLE{background:rgba(243,156,18,0.12);color:#f39c12;border:1px solid rgba(243,156,18,0.25);}
+.ev-block{font-family:var(--fm);font-size:10px;color:var(--t3);margin-bottom:6px;}
+.ev-summary{font-family:var(--fu);font-size:13px;color:var(--t2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.ev-card.selected .ev-summary{-webkit-line-clamp:unset;}
+.ev-footer{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+.ev-score{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;color:var(--t3);}
+.ev-score-bar{width:60px;height:3px;background:var(--border);position:relative;}
+.ev-score-fill{position:absolute;left:0;top:0;height:100%;background:var(--rc);}
+.ev-expand-hint{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:1px;}
+.ev-card.selected .ev-expand-hint{display:none;}
+
+/* MAP */
+.map-panel{flex:1;display:flex;flex-direction:column;border-right:1px solid var(--border);}
+.map-header{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--panel);}
+.map-title{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--t2);}
+.map-controls{display:flex;gap:6px;}
+.map-btn{padding:3px 10px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;background:transparent;color:var(--t3);border:1px solid var(--border);transition:all .2s;}
+.map-btn:hover,.map-btn.active{color:var(--rc);border-color:var(--rc);background:var(--rb);}
+#crime-map{flex:1;background:#0a0e14;}
+.map-legend{padding:8px 16px;background:var(--panel);border-top:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);}
+.legend-dot{width:10px;height:10px;border-radius:50%;}
+
+/* DETAIL */
+.detail-panel{width:360px;min-width:360px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;display:flex;flex-direction:column;}
+.detail-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--t3);gap:12px;padding:40px;text-align:center;}
+.detail-empty p{font-family:var(--fm);font-size:11px;letter-spacing:2px;text-transform:uppercase;line-height:1.8;}
+.detail-content{display:none;flex-direction:column;}
+.detail-content.visible{display:flex;}
+.detail-section{padding:14px 18px;border-bottom:1px solid var(--border);}
+.detail-section-title{font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.detail-section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.detail-heading{font-family:var(--fd);font-size:20px;font-weight:900;color:var(--t1);letter-spacing:1px;line-height:1.1;margin-bottom:6px;text-transform:uppercase;}
+.detail-entity{font-family:var(--fd);font-size:14px;font-weight:600;color:var(--rc);letter-spacing:1px;margin-bottom:4px;}
+.detail-meta{font-family:var(--fm);font-size:10px;color:var(--t3);line-height:1.8;}
+.ndvi-compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ndvi-box{background:var(--void);border:1px solid var(--border);padding:10px;}
+.ndvi-label{font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:6px;}
+.ndvi-value{font-family:var(--fd);font-size:26px;font-weight:900;line-height:1;margin-bottom:4px;}
+.ndvi-value.claimed{color:#27ae60;}
+.ndvi-value.actual{color:#e74c3c;}
+.ndvi-bar{height:4px;background:var(--border);margin-top:6px;}
+.ndvi-bar-fill{height:100%;}
+.ndvi-bar-fill.claimed{background:#27ae60;}
+.ndvi-bar-fill.actual{background:#e74c3c;}
+.ndvi-delta{grid-column:1/-1;background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.2);padding:8px 12px;font-family:var(--fm);font-size:11px;color:#e74c3c;text-align:center;letter-spacing:1px;}
+.chain-item{display:flex;gap:12px;margin-bottom:12px;position:relative;}
+.chain-item::before{content:'';position:absolute;left:11px;top:22px;bottom:-12px;width:1px;background:var(--border);}
+.chain-item:last-child::before{display:none;}
+.chain-dot{width:23px;height:23px;min-width:23px;border-radius:50%;background:var(--void);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:9px;color:var(--t3);}
+.chain-dot.hot{border-color:var(--rc);color:var(--rc);}
+.chain-body{flex:1;padding-top:2px;}
+.chain-timestamp{font-family:var(--fm);font-size:9px;color:var(--t3);margin-bottom:2px;}
+.chain-text{font-family:var(--fu);font-size:13px;color:var(--t2);line-height:1.4;}
+.legal-ref{background:var(--void);border:1px solid var(--border);border-left:3px solid var(--rc);padding:10px 12px;margin-bottom:8px;}
+.legal-ref-title{font-family:var(--fd);font-size:12px;font-weight:700;color:var(--t1);letter-spacing:1px;margin-bottom:4px;}
+.legal-ref-text{font-family:var(--fu);font-size:12px;color:var(--t2);line-height:1.4;}
+.actor-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--void);border:1px solid var(--border);margin:3px 3px 3px 0;font-family:var(--fm);font-size:10px;color:var(--t2);cursor:pointer;transition:all .2s;}
+.actor-chip:hover{border-color:var(--rc);color:var(--rc);}
+.actor-dot-sm{width:6px;height:6px;border-radius:50%;}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:14px 18px;border-bottom:1px solid var(--border);}
+.action-btn{padding:9px 8px;font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border:1px solid var(--rc);background:transparent;color:var(--rc);transition:all .2s;text-align:center;}
+.action-btn:hover,.action-btn.primary{background:var(--rc);color:var(--void);}
+
+/* POPUP */
+.leaflet-popup-content-wrapper{background:var(--card)!important;border:1px solid var(--border)!important;border-radius:0!important;box-shadow:0 8px 32px rgba(0,0,0,0.6)!important;color:var(--t1)!important;}
+.leaflet-popup-content{margin:12px 16px!important;font-family:var(--fu)!important;}
+.leaflet-popup-tip-container{display:none;}
+.map-popup-type{font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:4px;}
+.map-popup-name{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--t1);letter-spacing:1px;margin-bottom:6px;}
+.map-popup-detail{font-family:var(--fu);font-size:12px;color:var(--t2);line-height:1.5;}
+.map-popup-btn{display:block;width:100%;padding:6px;margin-top:10px;background:transparent;border:1px solid #e74c3c;color:#e74c3c;font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .2s;}
+.map-popup-btn:hover{background:rgba(231,76,60,0.15);}
+.leaflet-tile{filter:brightness(0.85) saturate(0.5) hue-rotate(180deg) invert(1);}
+
+/* NETWORK TAB */
+.network-view{flex:1;padding:24px;display:flex;gap:24px;}
+.actor-list{width:280px;}
+.actor-card{background:var(--card);border:1px solid var(--border);margin-bottom:8px;padding:14px 16px;cursor:pointer;transition:all .2s;border-left:3px solid transparent;}
+.actor-card:hover{border-left-color:var(--rc);background:var(--card-h);}
+.actor-card.flagged{border-left-color:#e74c3c;}
+.actor-card.cleared{border-left-color:#27ae60;}
+.actor-name{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--t1);letter-spacing:0.5px;margin-bottom:4px;}
+.actor-role{font-family:var(--fm);font-size:10px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.network-canvas{flex:1;background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden;}
+svg.network-svg{width:100%;height:100%;}
+
+/* DOSSIER TAB */
+.dossiers-layout{display:flex;flex:1;height:100%;overflow:hidden;}
+.apex-alert{padding:10px 24px;background:rgba(231,76,60,0.07);border-bottom:1px solid rgba(231,76,60,0.3);display:flex;align-items:center;gap:14px;font-family:var(--fm);font-size:11px;color:#e74c3c;letter-spacing:1px;}
+.apex-icon{font-size:14px;animation:blink 1.5s step-end infinite;}
+.apex-confirmed{margin-left:auto;background:#e74c3c;color:var(--void);padding:4px 12px;font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:2px;text-align:center;line-height:1.3;}
+.entity-sidebar{width:300px;min-width:300px;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.entity-sidebar-header{padding:12px 20px;border-bottom:1px solid var(--border);font-family:var(--fm);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--t3);background:var(--panel);}
+.entity-list{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.entity-card{padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s;border-left:3px solid transparent;position:relative;}
+.entity-card:hover{background:var(--card-h);}
+.entity-card.active-entity{background:var(--card);border-left-color:var(--rc);}
+.entity-card.confirmed-entity{border-left-color:#e74c3c;}
+.entity-card.probable-entity{border-left-color:#f39c12;}
+.entity-card.cleared-entity{border-left-color:#27ae60;}
+.entity-badge{display:inline-block;padding:1px 7px;font-family:var(--fm);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;}
+.entity-badge.CONFIRMED{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);}
+.entity-badge.PROBABLE{background:rgba(243,156,18,0.15);color:#f39c12;border:1px solid rgba(243,156,18,0.3);}
+.entity-badge.CLEARED{background:rgba(39,174,96,0.15);color:#27ae60;border:1px solid rgba(39,174,96,0.3);}
+.entity-name{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--t1);letter-spacing:0.5px;margin-bottom:8px;line-height:1.2;}
+.entity-score-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.entity-score-track{flex:1;height:3px;background:var(--border);}
+.entity-score-fill{height:100%;}
+.entity-score-num{font-family:var(--fm);font-size:10px;min-width:36px;text-align:right;}
+.entity-sub{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;}
+.dossier-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.dossier-entity-header{padding:18px 24px;border-bottom:1px solid var(--border);background:var(--panel);display:flex;align-items:flex-start;justify-content:space-between;gap:20px;}
+.dossier-entity-name{font-family:var(--fd);font-size:24px;font-weight:900;color:var(--t1);letter-spacing:1px;line-height:1;margin-bottom:6px;text-transform:uppercase;}
+.dossier-entity-meta{font-family:var(--fm);font-size:10px;color:var(--t3);letter-spacing:1px;line-height:1.8;}
+.dossier-score-big{text-align:right;min-width:120px;}
+.dossier-score-num{font-family:var(--fd);font-size:42px;font-weight:900;color:var(--rc);line-height:1;}
+.dossier-score-label{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;}
+.dossier-body{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.fraud-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);}
+.fraud-metric{padding:14px 20px;border-right:1px solid var(--border);}
+.fraud-metric:last-child{border-right:none;}
+.fraud-metric-label{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.fraud-metric-value{font-family:var(--fd);font-size:22px;font-weight:900;color:#e74c3c;line-height:1;}
+.fraud-metric-value.green{color:#27ae60;}
+.fraud-metric-value.amber{color:#f39c12;}
+.action-playbook{padding:0;}
+.playbook-section-header{padding:10px 24px;background:var(--panel);font-family:var(--fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t3);border-bottom:1px solid var(--border);}
+.playbook-action{display:flex;align-items:center;gap:16px;padding:12px 24px;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s;}
+.playbook-action:hover{background:var(--card-h);}
+.playbook-arrow{color:var(--rc);font-size:14px;min-width:16px;}
+.playbook-priority{font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;min-width:90px;text-align:center;}
+.playbook-priority.URGENT{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);}
+.playbook-priority.HIGH{background:rgba(243,156,18,0.12);color:#f39c12;border:1px solid rgba(243,156,18,0.25);}
+.playbook-priority.STANDARD{background:rgba(41,128,185,0.1);color:#3498db;border:1px solid rgba(41,128,185,0.2);}
+.playbook-priority.INFO{background:rgba(61,69,87,0.3);color:var(--t2);border:1px solid var(--border);}
+.playbook-text{font-family:var(--fu);font-size:14px;color:var(--t2);flex:1;line-height:1.4;}
+.playbook-text strong{color:var(--t1);font-weight:600;}
+.playbook-cta{padding:4px 12px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--rc);color:var(--rc);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.playbook-cta:hover{background:var(--rc);color:var(--void);}
+.dossier-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--t3);gap:12px;padding:60px;text-align:center;}
+.dossier-empty p{font-family:var(--fm);font-size:11px;letter-spacing:2px;text-transform:uppercase;line-height:1.8;}
+
+/* EXPORT */
+.dossier-panel{padding:24px;display:flex;flex-direction:column;gap:16px;}
+.dossier-format{background:var(--card);border:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .2s;}
+.dossier-format:hover{border-color:var(--rc);background:var(--card-h);}
+.dossier-format-name{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--t1);letter-spacing:1px;margin-bottom:4px;}
+.dossier-format-desc{font-family:var(--fu);font-size:13px;color:var(--t2);}
+.dossier-format-icon{font-family:var(--fm);font-size:11px;color:var(--rc);letter-spacing:1px;}
+
+/* ═══════════════════════════════════════
+   AERIAL SURVEILLANCE TAB
+═══════════════════════════════════════ */
+.aerial-main{display:flex;flex:1;height:calc(100vh - 56px - 32px - 62px);min-height:600px;}
+
+/* Zone panel */
+.aerial-zones{width:300px;min-width:300px;border-right:1px solid var(--border);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.aerial-zone-header{padding:12px 20px;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:5;}
+.aerial-zone-title{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#16a085;margin-bottom:4px;}
+.aerial-zone-sub{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:1px;}
+
+.zone-card{padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s;border-left:3px solid transparent;position:relative;}
+.zone-card:hover{background:var(--card-h);}
+.zone-card.active-zone{background:var(--card);border-left-color:#16a085;}
+.zone-card.escalated{border-left-color:#e74c3c;}
+.zone-card.monitoring{border-left-color:#f39c12;}
+.zone-card.clear{border-left-color:#27ae60;}
+
+.zone-alert{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.zone-alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.zone-alert-dot.red{background:#e74c3c;animation:pulse-dot 1.5s infinite;}
+.zone-alert-dot.amber{background:#f39c12;animation:pulse-dot 2s infinite;}
+.zone-alert-dot.green{background:#27ae60;}
+.zone-alert-dot.teal{background:#16a085;animation:pulse-dot 3s infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(231,76,60,0.6);}50%{opacity:.8;box-shadow:0 0 0 6px rgba(231,76,60,0);}}
+
+.zone-name{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--t1);letter-spacing:0.5px;line-height:1.2;margin-bottom:6px;}
+.zone-status{font-family:var(--fm);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.zone-status.ESCALATED{color:#e74c3c;}
+.zone-status.MONITORING{color:#f39c12;}
+.zone-status.NOMINAL{color:#27ae60;}
+.zone-status.ACTIVE_SCAN{color:#16a085;}
+
+.zone-metrics{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.zone-metric{background:var(--void);padding:6px 8px;}
+.zone-metric-label{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.zone-metric-value{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--t1);}
+.zone-metric-value.danger{color:#e74c3c;}
+.zone-metric-value.warn{color:#f39c12;}
+.zone-metric-value.safe{color:#27ae60;}
+.zone-metric-value.teal{color:#16a085;}
+
+/* Aerial map */
+.aerial-map-panel{flex:1;display:flex;flex-direction:column;border-right:1px solid var(--border);}
+.aerial-map-header{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--panel);}
+.aerial-map-title{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#16a085;}
+.aerial-map-controls{display:flex;gap:6px;align-items:center;}
+.aerial-btn{padding:3px 10px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;background:transparent;color:var(--t3);border:1px solid var(--border);transition:all .2s;}
+.aerial-btn:hover,.aerial-btn.active{color:#16a085;border-color:#16a085;background:rgba(22,160,133,0.08);}
+.aerial-btn.danger-btn{color:#e74c3c;border-color:#e74c3c;background:rgba(231,76,60,0.08);}
+#aerial-map{flex:1;background:#080c10;}
+.aerial-map-status{padding:8px 16px;background:var(--panel);border-top:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.aerial-status-item{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);}
+.aerial-pulse{width:8px;height:8px;border-radius:50%;}
+
+/* Sensor feed panel */
+.sensor-panel{width:360px;min-width:360px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;display:flex;flex-direction:column;}
+.sensor-header{padding:12px 18px;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:5;}
+.sensor-title{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#16a085;margin-bottom:2px;}
+.sensor-sub{font-family:var(--fm);font-size:9px;color:var(--t3);}
+.sensor-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--t3);gap:12px;padding:40px;text-align:center;font-family:var(--fm);font-size:10px;letter-spacing:2px;text-transform:uppercase;line-height:1.8;}
+
+/* Sensor event feed */
+.sensor-event{padding:12px 16px;border-bottom:1px solid var(--border);position:relative;}
+.sensor-event.new-event{animation:slide-in .4s ease;}
+@keyframes slide-in{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:none;}}
+.sensor-event-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.sensor-event-type{font-family:var(--fm);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 6px;}
+.sensor-event-type.THERMAL{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3);}
+.sensor-event-type.ACOUSTIC{background:rgba(243,156,18,0.15);color:#f39c12;border:1px solid rgba(243,156,18,0.3);}
+.sensor-event-type.NDVI{background:rgba(39,174,96,0.12);color:#27ae60;border:1px solid rgba(39,174,96,0.25);}
+.sensor-event-type.VEHICLE{background:rgba(142,68,173,0.15);color:#9b59b6;border:1px solid rgba(142,68,173,0.3);}
+.sensor-event-type.CLEARING{background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid rgba(231,76,60,0.4);font-weight:700;}
+.sensor-event-type.SATELLITE{background:rgba(22,160,133,0.12);color:#16a085;border:1px solid rgba(22,160,133,0.3);}
+.sensor-event-ts{font-family:var(--fm);font-size:9px;color:var(--t3);}
+.sensor-event-body{font-family:var(--fu);font-size:13px;color:var(--t2);line-height:1.5;margin-bottom:6px;}
+.sensor-event-body strong{color:var(--t1);}
+.sensor-event-meta{font-family:var(--fm);font-size:9px;color:var(--t3);display:flex;gap:12px;flex-wrap:wrap;}
+.sensor-event-action{display:flex;gap:6px;margin-top:8px;}
+.sensor-action-btn{padding:3px 10px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--t3);transition:all .2s;}
+.sensor-action-btn:hover{border-color:var(--rc);color:var(--rc);}
+.sensor-action-btn.primary-action{border-color:#e74c3c;color:#e74c3c;}
+.sensor-action-btn.teal-action{border-color:#16a085;color:#16a085;}
+
+/* Pattern alert */
+.pattern-alert{margin:12px 16px;background:rgba(231,76,60,0.06);border:1px solid rgba(231,76,60,0.25);border-left:3px solid #e74c3c;padding:12px 14px;}
+.pattern-alert-title{font-family:var(--fm);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#e74c3c;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.pattern-alert-blink{animation:blink 1s step-end infinite;}
+.pattern-alert-body{font-family:var(--fu);font-size:13px;color:var(--t2);line-height:1.5;}
+.pattern-alert-body strong{color:#e74c3c;}
+.pattern-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.pattern-btn{padding:5px 12px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid;font-weight:600;}
+.pattern-btn.escalate{border-color:#e74c3c;color:#e74c3c;background:rgba(231,76,60,0.1);}
+.pattern-btn.escalate:hover{background:#e74c3c;color:var(--void);}
+.pattern-btn.satellite{border-color:#16a085;color:#16a085;background:rgba(22,160,133,0.1);}
+.pattern-btn.satellite:hover{background:#16a085;color:var(--void);}
+.pattern-btn.log{border-color:var(--border);color:var(--t3);}
+
+/* Satellite pass indicator */
+.sat-pass{margin:0 16px 8px;background:var(--void);border:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;gap:12px;}
+.sat-pass-icon{font-size:16px;color:#16a085;}
+.sat-pass-info{flex:1;}
+.sat-pass-label{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.sat-pass-time{font-family:var(--fd);font-size:15px;font-weight:700;color:#16a085;}
+.sat-pass-countdown{font-family:var(--fm);font-size:10px;color:var(--t1);letter-spacing:1px;}
+.sat-pass-btn{padding:4px 10px;font-family:var(--fm);font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1px solid #16a085;color:#16a085;background:transparent;transition:all .2s;}
+.sat-pass-btn:hover{background:#16a085;color:var(--void);}
+
+/* Misc */
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+.ev-card{animation:fadeIn .3s ease both;}
+.blink{animation:blink 1.2s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);}
+</style>
+</head>
+<body class="role-dci">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <svg class="logo-shield" viewBox="0 0 32 32"><path d="M16 3 L28 8 L28 18 C28 24 22 29 16 31 C10 29 4 24 4 18 L4 8 Z"/><path d="M11 16 L14 19 L21 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    BIOGUARD INTELLIGENCE
+  </div>
+  <nav class="nav-tabs">
+    <button class="nav-tab" onclick="switchTab('dossiers',this)">DOSSIERS</button>
+    <button class="nav-tab active" onclick="switchTab('evidence',this)">CHAIN EVIDENCE</button>
+    <button class="nav-tab" onclick="switchTab('network',this)">ACTOR NETWORK</button>
+    <button class="nav-tab aerial-tab" onclick="switchTab('aerial',this)">⬡ AERIAL SURVEILLANCE</button>
+    <button class="nav-tab" onclick="switchTab('export',this)">EXPORT</button>
+  </nav>
+  <div class="topbar-right">
+    <div class="role-switcher">
+      <button class="role-btn active-dci" onclick="setRole('dci',this)">⬡ DCI</button>
+      <button class="role-btn" onclick="setRole('lawfirm',this)">⚖ LAW</button>
+      <button class="role-btn" onclick="setRole('warden',this)">⬡ WARDEN</button>
+    </div>
+    <div class="threat-counter"><span class="blink">●</span> 14 ACTIVE THREATS</div>
+  </div>
+</div>
+
+<div class="role-banner">
+  <span id="role-label">DIRECTORATE OF CRIMINAL INVESTIGATIONS — WILDLIFE & ENVIRONMENT UNIT</span>
+  <div class="role-actions">
+    <button class="role-action-btn ghost" id="role-action-2" onclick="roleAction2()">REQUEST WARRANT</button>
+    <button class="role-action-btn" id="role-action-1" onclick="roleAction1()">SUBMIT TO DPP</button>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div class="stat-cell"><div class="stat-label">tCO₂ UNDER FRAUD</div><div class="stat-value">865,979</div><div class="stat-sub">ACROSS 3 ENTITIES</div></div>
+  <div class="stat-cell"><div class="stat-label">CONFIRMED VIOLATIONS</div><div class="stat-value">11</div><div class="stat-sub">CHAIN VERIFIED</div></div>
+  <div class="stat-cell"><div class="stat-label">FLAGGED ACTORS</div><div class="stat-value">7</div><div class="stat-sub">CROSS-REFERENCED</div></div>
+  <div class="stat-cell"><div class="stat-label">CHAIN BLOCKS</div><div class="stat-value">108</div><div class="stat-sub">IMMUTABLE LEDGER</div></div>
+  <div class="stat-cell"><div class="stat-label">AERIAL ZONES</div><div class="stat-value teal" id="aerial-zone-count">5</div><div class="stat-sub">ACTIVE MONITORING</div></div>
+  <div class="stat-cell"><div class="stat-label">NEXT SAT PASS</div><div class="stat-value teal" id="next-pass-stat">00:00</div><div class="stat-sub">SENTINEL-2 · MAU NORTH</div></div>
+</div>
+
+<!-- ── TAB: DOSSIERS ─────────────────────────────────────── -->
+<div class="tab-content" id="tab-dossiers">
+  <div class="apex-alert">
+    <span class="apex-icon">⚠</span>
+    <span>APEX THREAT NODE: Continental Wildlife Corridor Fund — Score 9.9/10 — Immediate referral: DCI Kenya · INTERPOL · Verra Carbon Registry</span>
+    <div class="apex-confirmed">9<br>CONFIRMED</div>
+  </div>
+  <div class="dossiers-layout">
+    <div class="entity-sidebar">
+      <div class="entity-sidebar-header">FLAGGED ENTITIES</div>
+      <div class="entity-list" id="entity-list"></div>
+    </div>
+    <div class="dossier-main" id="dossier-main">
+      <div class="dossier-empty" id="dossier-empty">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2"><rect x="10" y="6" width="28" height="36" rx="1"/><line x1="16" y1="16" x2="32" y2="16"/><line x1="16" y1="22" x2="32" y2="22"/><line x1="16" y1="28" x2="24" y2="28"/></svg>
+        <p>SELECT AN ENTITY<br>TO VIEW DOSSIER & ACTION PLAYBOOK</p>
+      </div>
+      <div id="dossier-detail" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+        <div class="dossier-entity-header" id="dossier-header"></div>
+        <div class="fraud-metrics" id="dossier-metrics"></div>
+        <div class="dossier-body"><div class="action-playbook" id="dossier-playbook"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB: EVIDENCE ─────────────────────────────────────── -->
+<div class="tab-content active" id="tab-evidence">
+  <div class="main">
+    <div class="evidence-panel">
+      <div class="panel-header">
+        <span class="panel-title">EVIDENCE BLOCKS</span>
+        <div class="filter-row">
+          <button class="filter-chip active" onclick="filterCards('ALL',this)">ALL</button>
+          <button class="filter-chip" onclick="filterCards('CARBON_FRAUD',this)">FRAUD</button>
+          <button class="filter-chip" onclick="filterCards('LAND_GRAB',this)">LAND</button>
+          <button class="filter-chip" onclick="filterCards('NETWORK',this)">NETWORK</button>
+          <button class="filter-chip" onclick="filterCards('CONFIRMED',this)">CONFIRMED</button>
+        </div>
+      </div>
+      <div id="evidence-list"></div>
+    </div>
+    <div class="map-panel">
+      <div class="map-header">
+        <span class="map-title">GEOSPATIAL INTELLIGENCE — EAST AFRICA THEATRE</span>
+        <div class="map-controls">
+          <button class="map-btn active" onclick="setMapLayer('dark',this)">DARK</button>
+          <button class="map-btn" onclick="centerMap()">RESET VIEW</button>
+        </div>
+      </div>
+      <div id="crime-map"></div>
+      <div class="map-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#e74c3c"></div>CONFIRMED CRIME ZONE</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f39c12"></div>PROBABLE VIOLATION</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#9b59b6"></div>SHELL ENTITY</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3498db"></div>FINANCIAL FLOW NODE</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#27ae60"></div>CLEARED</div>
+      </div>
+    </div>
+    <div class="detail-panel">
+      <div class="detail-empty" id="detail-empty">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 6 L38 12 L38 26 C38 34 32 41 24 44 C16 41 10 34 10 26 L10 12 Z"/><circle cx="24" cy="22" r="4"/><path d="M24 26 L24 32"/></svg>
+        <p>SELECT AN EVIDENCE BLOCK<br>TO VIEW FULL DOSSIER</p>
+      </div>
+      <div class="detail-content" id="detail-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB: NETWORK ──────────────────────────────────────── -->
+<div class="tab-content" id="tab-network">
+  <div class="network-view">
+    <div class="actor-list">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--t3);margin-bottom:12px;text-transform:uppercase;">FLAGGED ACTORS</div>
+      <div id="actor-list-content"></div>
+    </div>
+    <div class="network-canvas"><svg class="network-svg" id="network-svg"></svg></div>
+  </div>
+</div>
+
+<!-- ── TAB: AERIAL SURVEILLANCE ─────────────────────────── -->
+<div class="tab-content" id="tab-aerial">
+  <div class="aerial-main">
+
+    <!-- LEFT: Zone list -->
+    <div class="aerial-zones">
+      <div class="aerial-zone-header">
+        <div class="aerial-zone-title">SURVEILLANCE ZONES</div>
+        <div class="aerial-zone-sub" id="aerial-scan-status">SCANNING — AUTO-REFRESH 30s</div>
+      </div>
+      <div id="zone-list"></div>
+    </div>
+
+    <!-- CENTER: Aerial map -->
+    <div class="aerial-map-panel">
+      <div class="aerial-map-header">
+        <span class="aerial-map-title">AERIAL INTELLIGENCE MAP — REAL-TIME</span>
+        <div class="aerial-map-controls">
+          <button class="aerial-btn active" onclick="setAerialLayer('thermal',this)">THERMAL</button>
+          <button class="aerial-btn" onclick="setAerialLayer('ndvi',this)">NDVI</button>
+          <button class="aerial-btn" onclick="setAerialLayer('acoustic',this)">ACOUSTIC</button>
+          <button class="aerial-btn" onclick="setAerialLayer('all',this)">ALL SENSORS</button>
+          <button class="aerial-btn danger-btn" onclick="requestAerialDeploy()">▶ TASK ASSET</button>
+        </div>
+      </div>
+      <div id="aerial-map"></div>
+      <div class="aerial-map-status">
+        <div class="aerial-status-item"><div class="aerial-pulse" style="background:#e74c3c;animation:pulse-dot 1.5s infinite;border-radius:50%;width:8px;height:8px;"></div>3 ESCALATED ZONES</div>
+        <div class="aerial-status-item"><div class="aerial-pulse" style="background:#f39c12;animation:pulse-dot 2s infinite;border-radius:50%;width:8px;height:8px;"></div>2 MONITORING</div>
+        <div class="aerial-status-item"><div class="aerial-pulse" style="background:#16a085;animation:pulse-dot 3s infinite;border-radius:50%;width:8px;height:8px;"></div>SAT PASS ACTIVE</div>
+        <div class="aerial-status-item" style="margin-left:auto;color:#16a085;font-family:var(--fm);font-size:9px;" id="aerial-time">SYNCING...</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Sensor feed -->
+    <div class="sensor-panel">
+      <div class="sensor-header">
+        <div class="sensor-title">LIVE SENSOR FEED</div>
+        <div class="sensor-sub" id="sensor-sub">FUSING NDVI · THERMAL · ACOUSTIC · VEHICLE</div>
+      </div>
+      <div id="sensor-feed-content"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── TAB: EXPORT ───────────────────────────────────────── -->
+<div class="tab-content" id="tab-export">
+  <div class="dossier-panel">
+    <div style="font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;">SELECT EXPORT FORMAT FOR YOUR JURISDICTION</div>
+    <div id="dossier-formats"></div>
+  </div>
+</div>
+
+<script>
+// ══════════ DATA ══════════════════════════════════════════════════════════
+
+const EVIDENCE=[
+  {id:'BG-112',block:'#112',category:'ACTOR',type:'CARBON_FRAUD',status:'CONFIRMED',entity:'Continental Wildlife Corridor Fund',headline:'FRAUDULENT CARBON CREDIT CLAIM — 94,000 tCO₂',summary:'Entity claims 7,200ha conservation. Filed 94,000 carbon credits; legitimate: 3,100. Offshore beneficial owner. 3 active mining licenses overlap claim boundary.',score:9.9,lat:0.5,lng:35.7,color:'#e74c3c',ndvi:{claimed:0.72,actual:0.31,delta:-0.41},clearing:204,actors:['Ravi Menon','Thomas Reinholt','SilverLeaf Conservation Ltd'],legalRefs:[{title:'Environment Management Act Cap 387',text:'Section 67(1): Fraudulent misrepresentation of environmental data carries 15yr imprisonment.'},{title:'REDD+ Article 5 Paris Agreement',text:'False NDVI constitutes fraud under Article 13 MRV provisions.'},{title:'Anti-Money Laundering Act 2009 (Kenya)',text:'Offshore account receiving carbon payments without legitimate conservation constitutes proceeds of crime.'}],chain:[{t:'2024-01-14 06:32 UTC',text:'NDVI scan initiated over Mau North claim boundary (7,200 ha)'},{t:'2024-01-14 06:45 UTC',text:'Satellite confirms canopy index 0.31 vs filed 0.72 — delta −0.41 flagged critical'},{t:'2024-01-14 07:01 UTC',text:'Night thermal: 12 vehicle-length heat signatures on unpaved track'},{t:'2024-01-14 07:18 UTC',text:'Corporate registry: 3 mining exploration licenses overlap claim zone'},{t:'2024-01-14 07:44 UTC',text:'Beneficial owner: SHELL — Mauritius 2023-11-02, no operational history'},{t:'2024-01-14 08:01 UTC',text:'Block #112 mined — hash 2de66b2d30c7e6d6... — CONFIRMED'}],wardenActions:['DEPLOY RANGERS TO GRID REF MF-N44','PLACE GPS MONITORS ON CLEARING PATHS'],dcaActions:['FREEZE CARBON CREDIT DISBURSEMENT','ISSUE PRODUCTION ORDER — COMPANY RECORDS'],lawActions:['FILE INJUNCTION — MINING OPERATIONS','ATTACH OFFSHORE ACCOUNTS']},
+  {id:'BG-113',block:'#113',category:'VIOLATION',type:'LAND_GRAB',status:'CONFIRMED',entity:'GreenVeil Conservation Ltd',headline:'NDVI FRAUD + ARMED ACTIVITY — MAU SOUTH',summary:'NDVI claimed 0.72 vs satellite 0.31 (delta −0.41). Clearing 38.4 ha/month. Night gunshot acoustic signatures. Armed group confirmed at boundary.',score:9.2,lat:-0.3,lng:35.2,color:'#e74c3c',ndvi:{claimed:0.72,actual:0.31,delta:-0.41},clearing:38.4,actors:['Thomas Reinholt','SilverLeaf Conservation Ltd','Pan-Africa Timber'],legalRefs:[{title:'Wildlife Conservation & Management Act 2013',text:'Section 92: Armed activity within conservation area — 15 years.'},{title:'Land Registration Act (Kenya) 2012',text:'Section 26: Title obtained through fraud is voidable.'}],chain:[{t:'2024-01-15 03:11 UTC',text:'Acoustic AG-07: gunshot signature 800m inside protected boundary'},{t:'2024-01-15 03:28 UTC',text:'Thermal: 4 human, 2 vehicle signatures — no authorized ranger presence'},{t:'2024-01-15 05:00 UTC',text:'NDVI confirms 38.4 ha cleared this month'},{t:'2024-01-15 05:45 UTC',text:'Block #113 mined — CONFIRMED'}],wardenActions:['ARMED PATROL DISPATCH TO MAU SOUTH','COORDINATE KWS RAPID RESPONSE'],dcaActions:['OPEN CRIMINAL FILE','DIRECTORS ON TRAVEL WATCH'],lawActions:['APPLY FOR SEARCH WARRANT','FILE EVIDENCE PRESERVATION ORDER']},
+  {id:'BG-114',block:'#114',category:'VIOLATION',type:'LAND_GRAB',status:'CONFIRMED',entity:'SilverLeaf Conservation Ltd',headline:'MASS CLEARING — RIFT VALLEY ESCARPMENT',summary:'NDVI claimed 0.68 vs actual 0.22 (delta −0.46). Clearing 127 ha/month. Rectangular pattern consistent with commercial timber extraction.',score:9.5,lat:-0.7,lng:36.1,color:'#e74c3c',ndvi:{claimed:0.68,actual:0.22,delta:-0.46},clearing:127,actors:['Ravi Menon','Continental Wildlife Corridor Fund'],legalRefs:[{title:'Forests Conservation & Management Act 2016',text:'Section 34: Unauthorised commercial harvesting — 10yr / KES 5M fine.'},{title:'Environmental Impact Assessment Act',text:'127 ha/month triggers mandatory EIA — none on record.'}],chain:[{t:'2024-01-16 06:00 UTC',text:'Sentinel-2: rectangular clearing 850m × 1,500m — new since Dec 2023'},{t:'2024-01-16 06:20 UTC',text:'Pattern: commercial extraction (rectangular grid, skid tracks visible)'},{t:'2024-01-16 07:10 UTC',text:'Director cross-ref: Ravi Menon also director of Continental WCF'},{t:'2024-01-16 07:55 UTC',text:'Block #114 mined — CONFIRMED'}],wardenActions:['AERIAL RECONNAISSANCE REQUEST','CAMERA TRAPS AT EXTRACTION ROUTES'],dcaActions:['RAVI MENON — SUMMONS','FREEZE TIMBER SALE PROCEEDS'],lawActions:['INJUNCT FURTHER CLEARING IMMEDIATELY','SECURE SATELLITE EVIDENCE CHAIN']},
+  {id:'BG-115',block:'#115',category:'VIOLATION',type:'LAND_GRAB',status:'CONFIRMED',entity:'Continental Wildlife Corridor Fund',headline:'SYSTEMATIC EXTRACTION — NORTHERN SECTOR',summary:'NDVI claimed 0.74 vs actual 0.24 (delta −0.50). Clearing 204 ha/month — highest rate detected.',score:9.8,lat:1.1,lng:36.3,color:'#e74c3c',ndvi:{claimed:0.74,actual:0.24,delta:-0.50},clearing:204,actors:['Ravi Menon','Thomas Reinholt'],legalRefs:[{title:'UNCAC Article 17',text:'Embezzlement of entrusted property — carbon credits received and misappropriated.'},{title:'Proceeds of Crime & AML (Kenya)',text:'Section 47: Concealing proceeds of environmental crime — 14yr max.'}],chain:[{t:'2024-01-17 05:30 UTC',text:'Monthly NDVI differential: −0.50 — largest single-entity delta in dataset'},{t:'2024-01-17 05:48 UTC',text:'Cross-reference BG-112: same beneficial owner, same Mauritius incorporation date'},{t:'2024-01-17 06:15 UTC',text:'KES 48M in carbon credits received Q4 2023 — no community disbursement'},{t:'2024-01-17 07:00 UTC',text:'Block #115 mined — CONFIRMED'}],wardenActions:['JOINT OP WITH KFS INTELLIGENCE UNIT','DOCUMENT ALL ACCESS ROADS'],dcaActions:['INTERPOL GREEN NOTICE REQUEST','FREEZE ALL ENTITY BANK ACCOUNTS'],lawActions:['CLASS ACTION — AFFECTED COMMUNITIES','ASSET FORFEITURE APPLICATION']},
+  {id:'BG-116',block:'#116',category:'VIOLATION',type:'CARBON_FRAUD',status:'PROBABLE',entity:'GreenVeil Conservation Ltd',headline:'PARTIAL CARBON DIVERSION — LAMU COAST',summary:'NDVI claimed 0.61 vs actual 0.48 (delta −0.13). Clearing 8.2 ha/month. Partial diversion — internal billing fraud suspected.',score:6.7,lat:-2.2,lng:40.9,color:'#f39c12',ndvi:{claimed:0.61,actual:0.48,delta:-0.13},clearing:8.2,actors:['Thomas Reinholt'],legalRefs:[{title:'Verra VCS Standard v4.4',text:'Misrepresentation of monitoring data — credit invalidation + registry debarment.'}],chain:[{t:'2024-01-18 08:00 UTC',text:'NDVI anomaly: delta −0.13, borderline threshold'},{t:'2024-01-18 08:30 UTC',text:'No armed activity — classified PROBABLE pending monitoring'},{t:'2024-01-18 09:00 UTC',text:'Block #116 mined — PROBABLE'}],wardenActions:['INCREASE PATROL FREQUENCY','NDVI GROUND-TRUTH SENSORS'],dcaActions:['OPEN MONITORING FILE','REQUEST VERRA AUDIT'],lawActions:['FORMAL NOTICE — REGISTRY INVESTIGATION','HOLD 30-DAY REVIEW']},
+  {id:'BG-117',block:'#117',category:'NETWORK',type:'SHELL_CONSERVANCY',status:'CONFIRMED',entity:'Thomas Reinholt → SilverLeaf / GreenVeil',headline:'SHARED DIRECTOR LINK — 95% CONFIDENCE',summary:'Thomas Reinholt appears as director on both SilverLeaf and GreenVeil. Dual directorship enables coordinated fraud.',score:9.1,lat:-1.2,lng:36.8,color:'#9b59b6',ndvi:null,clearing:null,actors:['Thomas Reinholt','SilverLeaf Conservation Ltd','GreenVeil Conservation Ltd'],legalRefs:[{title:'Companies Act Kenya 2015 — Section 194',text:'Non-disclosure of conflict during carbon credit co-applications constitutes criminal breach.'}],chain:[{t:'2024-01-19 10:00 UTC',text:'Company registry: GreenVeil directors extracted'},{t:'2024-01-19 10:15 UTC',text:'Cross-match: Thomas Reinholt ID 12847-K in SilverLeaf registry'},{t:'2024-01-19 10:30 UTC',text:'95% confidence confirmed — Block #117 mined'}],wardenActions:['SHARE WITH KWS INTELLIGENCE','FLAG FOR JOINT BRIEFING'],dcaActions:['INTERVIEW REINHOLT — CONFLICT DISCLOSURE','PULL FULL CORPORATE TREE'],lawActions:['EVIDENCE OF JOINT ENTERPRISE','INCLUDE IN CONSPIRACY CHARGES']},
+  {id:'BG-118',block:'#118',category:'NETWORK',type:'SHELL_CONSERVANCY',status:'CONFIRMED',entity:'Ravi Menon → SilverLeaf / Continental',headline:'SHARED DIRECTOR — APEX NODE CONFIRMED',summary:'Ravi Menon confirmed director of both SilverLeaf and Continental WCF. Combined fraudulent tCO₂: 865,979. Apex of the network.',score:9.9,lat:-1.3,lng:36.85,color:'#9b59b6',ndvi:null,clearing:null,actors:['Ravi Menon','SilverLeaf Conservation Ltd','Continental Wildlife Corridor Fund'],legalRefs:[{title:'Organised Crime Act (Kenya) 2010',text:'Coordinating criminal enterprise across multiple entities — up to 25 years.'}],chain:[{t:'2024-01-20 09:00 UTC',text:'Network analysis: Ravi Menon — highest-degree node'},{t:'2024-01-20 09:20 UTC',text:'Confirmed: director of SilverLeaf AND Continental — 865,979 tCO₂ combined fraud'},{t:'2024-01-20 09:40 UTC',text:'APEX NODE — Block #118 mined'}],wardenActions:['RED FLAG — PASS TO INTERPOL WILDLIFE UNIT'],dcaActions:['ARREST WARRANT CONSIDERATION','INTERPOL RED NOTICE'],lawActions:['LEAD DEFENDANT IN CONSOLIDATED PROSECUTION','FREEZE ALL PERSONAL ASSETS']},
+  {id:'BG-119',block:'#119',category:'NETWORK',type:'MONEY_LAUNDERING',status:'PROBABLE',entity:'Pan-Africa Timber Accounts',headline:'FINANCIAL FLOW — CARBON TO TIMBER — 88%',summary:'Carbon credit payments traced to Pan-Africa Timber. KES 48M routed through conservation entity to timber trading company.',score:8.8,lat:-1.1,lng:37.0,color:'#3498db',ndvi:null,clearing:null,actors:['Pan-Africa Timber','Continental Wildlife Corridor Fund','Ravi Menon'],legalRefs:[{title:'Proceeds of Crime Act (Kenya) 2009',text:'Section 3: Laundering — KES 48M constitutes serious money laundering.'},{title:'FATF Recommendation 40',text:'Environmental crime proceeds are predicate offenses — international cooperation mandated.'}],chain:[{t:'2024-01-21 11:00 UTC',text:'Financial: KES 48M carbon receipt traced to Continental account'},{t:'2024-01-21 11:30 UTC',text:'72% transferred within 48hr to Pan-Africa Timber'},{t:'2024-01-21 12:00 UTC',text:'88% confidence — PROBABLE. Block #119 mined.'}],wardenActions:['NOT APPLICABLE — FINANCIAL CRIME'],dcaActions:['PRODUCTION ORDER — BANK RECORDS','FRC FINANCIAL INTELLIGENCE REFERRAL'],lawActions:['RESTRAINING ORDER — PAN-AFRICA ACCOUNTS','CO-DEFENDANT IN MONEY LAUNDERING COUNT']}
+];
+
+const ACTORS=[
+  {name:'Ravi Menon',role:'Director — SilverLeaf & Continental',score:9.9,status:'flagged',color:'#e74c3c'},
+  {name:'Thomas Reinholt',role:'Director — SilverLeaf & GreenVeil',score:9.1,status:'flagged',color:'#e74c3c'},
+  {name:'Continental Wildlife Corridor Fund',role:'Shell Conservancy — Apex Entity',score:9.9,status:'flagged',color:'#9b59b6'},
+  {name:'SilverLeaf Conservation Ltd',role:'Shell Conservancy',score:9.5,status:'flagged',color:'#9b59b6'},
+  {name:'GreenVeil Conservation Ltd',role:'Shell Conservancy',score:8.7,status:'flagged',color:'#f39c12'},
+  {name:'Pan-Africa Timber',role:'Money Laundering Vehicle',score:8.8,status:'flagged',color:'#3498db'},
+  {name:'Mau Indigenous Communities Alliance',role:'Community Conservancy — CLEARED',score:0.3,status:'cleared',color:'#27ae60'},
+  {name:'Eastlands Urban Forest Trust',role:'Community Conservancy — CLEARED',score:0.8,status:'cleared',color:'#27ae60'}
+];
+
+const DOSSIER_ENTITIES=[
+  {name:'Continental Wildlife Corridor Fund',type:'SHELL CONSERVANCY — APEX NODE',status:'CONFIRMED',score:9.9,scoreColor:'#e74c3c',fraudTco2:90900,fraudValue:'$1,363,500',violations:3,links:4,registered:'Mauritius — 2023-11-02',registration:'< 2 years · No operational history',beneficial:'UNKNOWN OFFSHORE OWNER',miningLicenses:3,playbook:{dci:[{priority:'URGENT',text:'Notify <strong>INTERPOL Project Predator</strong> — apex node confirmed',cta:'SEND REFERRAL'},{priority:'URGENT',text:'Apply for <strong>Arrest Warrant</strong> for Ravi Menon — apex director',cta:'DRAFT WARRANT'},{priority:'HIGH',text:'Refer to <strong>Verra / Gold Standard</strong> — 90,900 credits at risk',cta:'NOTIFY REGISTRY'},{priority:'HIGH',text:'Beneficial ownership trace via <strong>KFIC</strong> — Mauritius offshore structure',cta:'REQUEST TRACE'},{priority:'HIGH',text:'Flag <strong>3 offshore accounts</strong> to KFIC — KES 48M flow',cta:'FLAG ACCOUNTS'},{priority:'STANDARD',text:'Cross-reference <strong>3 mining licenses</strong> with Ministry of Environment',cta:'REQUEST RECORDS'},{priority:'INFO',text:'Financial exposure: <strong>90,900 × $15 = $1,363,500</strong>',cta:'LOG'}],lawfirm:[{priority:'URGENT',text:'<strong>Urgent injunction</strong> — halt all carbon credit disbursements',cta:'DRAFT INJUNCTION'},{priority:'URGENT',text:'<strong>Asset freezing order</strong> — Mauritius offshore + Kenya assets',cta:'FILE APPLICATION'},{priority:'HIGH',text:'<strong>Community land rights claim</strong> — Mau Forest communities',cta:'OPEN MATTER'},{priority:'HIGH',text:'<strong>Civil suit</strong> — NDVI delta −0.50 material misrepresentation',cta:'DRAFT PLEADINGS'},{priority:'INFO',text:'Civil claim: <strong>$1,363,500 + consequential loss</strong>',cta:'LOG'}],warden:[{priority:'URGENT',text:'<strong>Armed ranger patrol</strong> — Grid Ref MF-N44, night vehicle confirmed',cta:'DISPATCH NOW'},{priority:'URGENT',text:'<strong>KWS aerial recon</strong> — Mau North, 204 ha/month clearing',cta:'REQUEST AERIAL'},{priority:'HIGH',text:'<strong>Joint op with KFS Intelligence Unit</strong>',cta:'COORDINATE'},{priority:'HIGH',text:'<strong>GPS monitors</strong> on all clearing paths',cta:'DEPLOY SENSORS'},{priority:'INFO',text:'Area at risk: <strong>7,200 ha</strong> — 90,900 tCO₂ under threat',cta:'LOG'}]}},
+  {name:'SilverLeaf Conservation Ltd',type:'SHELL CONSERVANCY — RIFT VALLEY',status:'CONFIRMED',score:9.8,scoreColor:'#e74c3c',fraudTco2:56800,fraudValue:'$852,000',violations:2,links:3,registered:'Kenya — 2022-06-14',registration:'2 years · Minimal history',beneficial:'Ravi Menon (Director)',miningLicenses:1,playbook:{dci:[{priority:'URGENT',text:'Summon <strong>Ravi Menon</strong> — dual directorship = criminal conflict',cta:'ISSUE SUMMONS'},{priority:'HIGH',text:'Freeze <strong>timber sale proceeds</strong> — 127 ha/month without EIA',cta:'FREEZE ORDER'},{priority:'HIGH',text:'<strong>NEMA EIA compliance audit</strong> — no assessment on record',cta:'NOTIFY NEMA'},{priority:'INFO',text:'Fraud exposure: <strong>$852,000</strong>',cta:'LOG'}],lawfirm:[{priority:'URGENT',text:'Injunction — <strong>halt clearing operations</strong> 127 ha/month = irreversible harm',cta:'FILE URGENTLY'},{priority:'HIGH',text:'Consolidated action with <strong>Continental</strong> — shared director Ravi Menon',cta:'AMEND CLAIM'},{priority:'INFO',text:'Civil exposure: <strong>$852,000 + restoration</strong>',cta:'LOG'}],warden:[{priority:'URGENT',text:'Aerial recon — <strong>Rift Valley Escarpment</strong> rectangular clearing',cta:'REQUEST AERIAL'},{priority:'HIGH',text:'Camera traps at <strong>extraction routes</strong>',cta:'DEPLOY CAMERAS'},{priority:'INFO',text:'Zone: <strong>approx. −0.75°N, 36.1°E</strong>',cta:'MAP ZONE'}]}},
+  {name:'GreenVeil Conservation Ltd',type:'SHELL CONSERVANCY — MAU SOUTH',status:'CONFIRMED',score:9.2,scoreColor:'#e74c3c',fraudTco2:38400,fraudValue:'$576,000',violations:2,links:2,registered:'Kenya — 2021-03-08',registration:'3 years · No community benefit',beneficial:'Thomas Reinholt (Director)',miningLicenses:0,playbook:{dci:[{priority:'URGENT',text:'<strong>Armed threat criminal file</strong> — gunshot 800m inside boundary',cta:'OPEN FILE'},{priority:'HIGH',text:'<strong>Thomas Reinholt</strong> — travel watch list',cta:'TRAVEL WATCH'},{priority:'HIGH',text:'<strong>Search warrant</strong> — GreenVeil Nairobi office',cta:'APPLY NOW'},{priority:'INFO',text:'Estimated fraud: <strong>$576,000</strong>',cta:'LOG'}],lawfirm:[{priority:'URGENT',text:'<strong>Evidence preservation order</strong> — acoustic + thermal + blocks #113, #116',cta:'FILE ORDER'},{priority:'HIGH',text:'<strong>Land title challenge</strong> — s.26 Land Registration Act, voidable via fraud',cta:'FILE CHALLENGE'},{priority:'INFO',text:'Quantum: <strong>$576,000 + restoration</strong>',cta:'LOG'}],warden:[{priority:'URGENT',text:'<strong>Armed ranger response</strong> Mau South — gunshot confirmed',cta:'DISPATCH NOW'},{priority:'URGENT',text:'<strong>KWS Rapid Response Unit</strong> — armed threat protocol',cta:'ACTIVATE RRU'},{priority:'HIGH',text:'<strong>Acoustic sensor AG-07</strong> — increase monitoring frequency',cta:'RECONFIGURE'}]}},
+  {name:'Mau Indigenous Communities Alliance',type:'COMMUNITY CONSERVANCY — CLEARED',status:'CLEARED',score:0.3,scoreColor:'#27ae60',fraudTco2:0,fraudValue:'— LEGITIMATE —',violations:0,links:0,registered:'Kenya — 2011-07-04',registration:'13 years · Active governance · Audited',beneficial:'Mau Forest Community Members',miningLicenses:0,playbook:{dci:[{priority:'INFO',text:'<strong>CLEARED:</strong> Genuine community conservancy — exclude from investigation',cta:'CONFIRM CLEARED'},{priority:'INFO',text:'Issue <strong>cleared status certificate</strong>',cta:'ISSUE CERT'}],lawfirm:[{priority:'INFO',text:'<strong>CLEARED:</strong> Potential <strong>plaintiffs</strong> — victims of land pressure',cta:'ENGAGE AS CLIENT'}],warden:[{priority:'INFO',text:'<strong>CLEARED:</strong> Allied rangers — share threat intelligence',cta:'BRIEF RANGERS'}]}},
+  {name:'Eastlands Urban Forest Trust',type:'COMMUNITY CONSERVANCY — CLEARED',status:'CLEARED',score:0.8,scoreColor:'#27ae60',fraudTco2:0,fraudValue:'— LEGITIMATE —',violations:0,links:0,registered:'Kenya — 2016-02-19',registration:'8 years · Transparent · Audited',beneficial:'Eastlands Community Board',miningLicenses:0,playbook:{dci:[{priority:'INFO',text:'<strong>CLEARED:</strong> Legitimate urban forestry trust',cta:'CONFIRM CLEARED'}],lawfirm:[{priority:'INFO',text:'<strong>CLEARED:</strong> May provide witness testimony',cta:'NOTE'}],warden:[{priority:'INFO',text:'<strong>CLEARED:</strong> Coordinate Nairobi urban boundary',cta:'COORDINATE'}]}}
+];
+
+// AERIAL ZONES
+const AERIAL_ZONES=[
+  {id:'MAU-N',name:'Mau North',status:'ESCALATED',lat:0.5,lng:35.75,color:'#e74c3c',radius:18000,triggerPattern:'NDVI_FRAUD + THERMAL + CLEARING',ndviDelta:-0.41,clearing:204,thermal:12,acoustic:0,lastPass:'14 MIN AGO',nextPass:'38 MIN',satellite:'SENTINEL-2 B',confidence:96,entity:'Continental WCF',blockRef:'#112, #115'},
+  {id:'MAU-S',name:'Mau South',status:'ESCALATED',lat:-0.3,lng:35.2,color:'#e74c3c',radius:14000,triggerPattern:'ARMED ACTIVITY + NDVI + ACOUSTIC',ndviDelta:-0.41,clearing:38.4,thermal:4,acoustic:6,lastPass:'22 MIN AGO',nextPass:'52 MIN',satellite:'SENTINEL-2 A',confidence:92,entity:'GreenVeil Conservation',blockRef:'#113, #116'},
+  {id:'RIFT-V',name:'Rift Valley Escarpment',status:'ESCALATED',lat:-0.7,lng:36.1,color:'#e74c3c',radius:16000,triggerPattern:'MASS_CLEARING + RECTANGULAR PATTERN',ndviDelta:-0.46,clearing:127,thermal:31,acoustic:0,lastPass:'8 MIN AGO',nextPass:'67 MIN',satellite:'SENTINEL-2 B',confidence:95,entity:'SilverLeaf Conservation',blockRef:'#114'},
+  {id:'LAMU',name:'Lamu Coast',status:'MONITORING',lat:-2.2,lng:40.9,color:'#f39c12',radius:10000,triggerPattern:'PARTIAL DIVERSION — WATCH',ndviDelta:-0.13,clearing:8.2,thermal:3,acoustic:0,lastPass:'45 MIN AGO',nextPass:'18 MIN',satellite:'LANDSAT-9',confidence:67,entity:'GreenVeil — Lamu',blockRef:'#116'},
+  {id:'NBX-NORTH',name:'Nairobi Northern Corridor',status:'MONITORING',lat:1.1,lng:36.3,color:'#f39c12',radius:12000,triggerPattern:'SYSTEMATIC_EXTRACTION',ndviDelta:-0.50,clearing:204,thermal:58,acoustic:22,lastPass:'5 MIN AGO',nextPass:'12 MIN',satellite:'SENTINEL-2 A',confidence:98,entity:'Continental WCF — Northern',blockRef:'#115'}
+];
+
+// SENSOR EVENT TEMPLATES
+const SENSOR_EVENTS=[
+  {type:'THERMAL',zone:'MAU-N',body:'<strong>12 vehicle-length heat signatures</strong> detected on unpaved track inside claim boundary — consistent with logging convoy.',meta:['CONF: 96%','GRID: MF-N44-07','NODE: THERMAL-MAU-02'],actions:['TASK AERIAL','DISPATCH RANGERS','CERTIFY BLOCK']},
+  {type:'CLEARING',zone:'MAU-N',body:'<strong>RECTANGULAR CLEARING PATTERN</strong> — 204 ha/month rate confirmed via Sentinel-2 differential. Commercial extraction signature.',meta:['CONF: 98%','GRID: MF-N44-09','SAT: SENTINEL-2 B'],actions:['VIEW NDVI DIFF','ESCALATE','ALERT KFS']},
+  {type:'ACOUSTIC',zone:'MAU-S',body:'<strong>6 gunshot events</strong> detected — sensor AG-07, 800m inside protected boundary. Signature matches high-calibre rifle.',meta:['CONF: 91%','GRID: MF-S22-03','NODE: ACOUSTIC-AG-07'],actions:['DISPATCH ARMED PATROL','CERTIFY BLOCK','INTERPOL ALERT']},
+  {type:'VEHICLE',zone:'RIFT-V',body:'Heavy vehicle movement — <strong>skid tracks visible on satellite</strong>. Rectangular extraction grid 850m × 1,500m. Timber removal in progress.',meta:['CONF: 94%','GRID: RV-13-E','SAT: SENTINEL-2 B'],actions:['AERIAL RECON','TASK SURVEILLANCE','CERTIFY BLOCK']},
+  {type:'NDVI',zone:'MAU-N',body:'NDVI reading: <strong>0.31 actual vs 0.72 claimed</strong>. Carbon credit filing vs satellite ground truth divergence: −0.41. Fraud confirmed.',meta:['CONF: 99%','PIXELS: 847','SAT: SENTINEL-2 B'],actions:['CERTIFY BLOCK','NOTIFY VERRA','OPEN DOSSIER']},
+  {type:'SATELLITE',zone:'RIFT-V',body:'Sentinel-2 B <strong>pass complete — Rift Valley sector</strong>. New imagery available. Clearing rate unchanged at 127 ha/month. Pattern escalated.',meta:['PASS: SENTINEL-2 B','BANDS: B4,B8,B12','RES: 10m'],actions:['VIEW IMAGERY','COMPARE PREVIOUS','CERTIFY']},
+  {type:'THERMAL',zone:'NBX-NORTH',body:'<strong>58 thermal anomalies</strong> detected — Northern sector. Night activity pattern consistent with coordinated extraction operation. 22 acoustic events correlated.',meta:['CONF: 98%','GRID: NB-N01-15','NODE: THERMAL-NB-03'],actions:['ESCALATE','JOINT OP REQUEST','CERTIFY BLOCK']},
+  {type:'ACOUSTIC',zone:'MAU-S',body:'Chainsaw signature detected — <strong>BIOGUARD-MAU-01</strong>. Confidence 0.94. Vehicle movement 45 minutes prior. Ongoing active extraction.',meta:['CONF: 94%','NODE: BIOGUARD-MAU-01','DUR: 18 MIN'],actions:['DISPATCH NOW','AERIAL RECON','CERTIFY']},
+];
+
+// ══════════ STATE ════════════════════════════════════════════════════════
+let currentRole='dci',selectedEv=null,crimeMap,aerialMap,selectedEntity=null,selectedZone=null;
+let sensorQueue=[...SENSOR_EVENTS];
+let sensorInterval=null,countdownIntervals={};
+
+const ROLE_CONFIG={
+  dci:{label:'DIRECTORATE OF CRIMINAL INVESTIGATIONS — WILDLIFE & ENVIRONMENT UNIT',a1:'SUBMIT TO DPP',a2:'REQUEST WARRANT',cssClass:'role-dci'},
+  lawfirm:{label:'LAW FIRM — ENVIRONMENTAL & LAND RIGHTS PRACTICE',a1:'FILE INJUNCTION',a2:'OPEN CASE FILE',cssClass:'role-lawfirm'},
+  warden:{label:'KENYA WILDLIFE SERVICE — FIELD OPERATIONS COMMAND',a1:'DISPATCH RANGERS',a2:'REQUEST AERIAL',cssClass:'role-warden'}
+};
+
+// ══════════ ROLE ════════════════════════════════════════════════════════
+function setRole(role,btn){
+  currentRole=role;
+  document.body.className=ROLE_CONFIG[role].cssClass;
+  document.getElementById('role-label').textContent=ROLE_CONFIG[role].label;
+  document.getElementById('role-action-1').textContent=ROLE_CONFIG[role].a1;
+  document.getElementById('role-action-2').textContent=ROLE_CONFIG[role].a2;
+  document.querySelectorAll('.role-btn').forEach(b=>b.className='role-btn');
+  btn.classList.add(role==='dci'?'active-dci':role==='lawfirm'?'active-law':'active-warden');
+  if(selectedEv)renderDetail(selectedEv);
+  if(selectedEntity!==null)renderEntityDossier(DOSSIER_ENTITIES[selectedEntity]);
+  renderDossierFormats();
+}
+function roleAction1(){showToast(ROLE_CONFIG[currentRole].a1+' — INITIATED');}
+function roleAction2(){showToast(ROLE_CONFIG[currentRole].a2+' — REQUEST SUBMITTED');}
+
+// ══════════ TABS ════════════════════════════════════════════════════════
+function switchTab(tab,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  btn.classList.add('active');
+  if(tab==='network')renderNetworkGraph();
+  if(tab==='export')renderDossierFormats();
+  if(tab==='dossiers')renderEntityList();
+  if(tab==='evidence')setTimeout(()=>crimeMap&&crimeMap.invalidateSize(),100);
+  if(tab==='aerial'){setTimeout(()=>{initAerialMap();aerialMap&&aerialMap.invalidateSize();},100);startSensorFeed();}
+}
+
+// ══════════ EVIDENCE ════════════════════════════════════════════════════
+function renderEvidenceList(filter){
+  const list=document.getElementById('evidence-list');
+  const items=filter==='ALL'?EVIDENCE:filter==='CONFIRMED'?EVIDENCE.filter(e=>e.status==='CONFIRMED'):filter==='NETWORK'?EVIDENCE.filter(e=>e.category==='NETWORK'):EVIDENCE.filter(e=>e.type===filter);
+  list.innerHTML=items.map((ev,i)=>`<div class="ev-card" id="card-${ev.id}" style="--card-accent:${ev.color};animation-delay:${i*40}ms" onclick="selectEvidence('${ev.id}')"><div class="ev-card-top"><div class="ev-type-row"><span class="ev-category">${ev.category}</span><span class="ev-type ${ev.type}">${ev.type.replace(/_/g,' ')}</span></div><span class="ev-status ${ev.status}">${ev.status}</span></div><div class="ev-block">BLOCK ${ev.block} · ${ev.id}</div><div class="ev-summary">${ev.summary}</div><div class="ev-footer"><div class="ev-score">THREAT SCORE<div class="ev-score-bar"><div class="ev-score-fill" style="width:${ev.score*10}%"></div></div>${ev.score}/10</div><span class="ev-expand-hint">CLICK TO EXPAND →</span></div></div>`).join('');
+}
+
+function filterCards(type,btn){
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  renderEvidenceList(type);
+}
+
+function selectEvidence(id){
+  const ev=EVIDENCE.find(e=>e.id===id);
+  if(!ev)return;
+  selectedEv=ev;
+  document.querySelectorAll('.ev-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('card-'+id)?.classList.add('selected');
+  renderDetail(ev);
+  if(crimeMap)crimeMap.setView([ev.lat,ev.lng],9,{animate:true});
+}
+
+function renderDetail(ev){
+  document.getElementById('detail-empty').style.display='none';
+  const content=document.getElementById('detail-content');
+  content.classList.add('visible');
+  const actions=currentRole==='dci'?ev.dcaActions:currentRole==='lawfirm'?ev.lawActions:ev.wardenActions;
+  const ndviHtml=ev.ndvi?`<div class="detail-section"><div class="detail-section-title">NDVI SATELLITE COMPARISON</div><div class="ndvi-compare"><div class="ndvi-box"><div class="ndvi-label">CLAIMED (FILED)</div><div class="ndvi-value claimed">${ev.ndvi.claimed.toFixed(2)}</div><div class="ndvi-bar"><div class="ndvi-bar-fill claimed" style="width:${ev.ndvi.claimed*100}%"></div></div></div><div class="ndvi-box"><div class="ndvi-label">ACTUAL (SATELLITE)</div><div class="ndvi-value actual">${ev.ndvi.actual.toFixed(2)}</div><div class="ndvi-bar"><div class="ndvi-bar-fill actual" style="width:${ev.ndvi.actual*100}%"></div></div></div><div class="ndvi-delta">DIVERGENCE: ${ev.ndvi.delta.toFixed(2)} — ${ev.clearing?ev.clearing+' HA/MONTH CLEARING':'FRAUD SIGNAL'}</div></div></div>`:'';
+  const chainHtml=ev.chain.map((c,i)=>`<div class="chain-item"><div class="chain-dot ${i===ev.chain.length-1?'hot':''}">${i+1}</div><div class="chain-body"><div class="chain-timestamp">${c.t}</div><div class="chain-text">${c.text}</div></div></div>`).join('');
+  const legalHtml=ev.legalRefs.map(r=>`<div class="legal-ref"><div class="legal-ref-title">${r.title}</div><div class="legal-ref-text">${r.text}</div></div>`).join('');
+  const actorsHtml=ev.actors.map(a=>`<span class="actor-chip"><span class="actor-dot-sm" style="background:${ACTORS.find(x=>x.name===a)?.color||'#666'}"></span>${a}</span>`).join('');
+  const actionsHtml=actions.map((a,i)=>`<button class="action-btn ${i===0?'primary':''}" onclick="showToast('${a}')">${a.length>26?a.substring(0,24)+'…':a}</button>`).join('');
+  content.innerHTML=`<div class="detail-section"><div class="detail-section-title">BLOCK ${ev.block} · ${ev.id}</div><div class="detail-heading">${ev.headline}</div><div class="detail-entity">${ev.entity}</div><div class="detail-meta">${ev.summary}</div></div>${ndviHtml}<div class="detail-section"><div class="detail-section-title">LINKED ACTORS</div><div>${actorsHtml}</div></div><div class="detail-section"><div class="detail-section-title">EVIDENCE CHAIN — BLOCKCHAIN VERIFIED</div>${chainHtml}</div><div class="detail-section"><div class="detail-section-title">LEGAL REFERENCES</div>${legalHtml}</div><div class="action-grid">${actionsHtml}</div>`;
+}
+
+// ══════════ CRIME MAP ════════════════════════════════════════════════════
+function initCrimeMap(){
+  if(crimeMap)return;
+  crimeMap=L.map('crime-map',{center:[-0.5,36.5],zoom:7,zoomControl:false,attributionControl:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,opacity:0.8}).addTo(crimeMap);
+  L.control.zoom({position:'bottomright'}).addTo(crimeMap);
+  const zones=[
+    {coords:[[0.3,35.5],[0.7,35.5],[0.7,36.0],[0.3,36.0]],color:'#e74c3c',label:'MAU NORTH — Continental WCF',id:'BG-112'},
+    {coords:[[-0.5,35.0],[-0.1,35.0],[-0.1,35.5],[-0.5,35.5]],color:'#e74c3c',label:'MAU SOUTH — GreenVeil',id:'BG-113'},
+    {coords:[[-1.0,35.8],[-0.5,35.8],[-0.5,36.4],[-1.0,36.4]],color:'#e74c3c',label:'RIFT VALLEY — SilverLeaf',id:'BG-114'},
+    {coords:[[0.9,36.0],[1.3,36.0],[1.3,36.6],[0.9,36.6]],color:'#e74c3c',label:'NORTHERN SECTOR — Continental',id:'BG-115'},
+    {coords:[[-2.5,40.6],[-1.9,40.6],[-1.9,41.2],[-2.5,41.2]],color:'#f39c12',label:'LAMU COAST — GreenVeil (Probable)',id:'BG-116'},
+  ];
+  zones.forEach(z=>{
+    L.polygon(z.coords,{color:z.color,fillColor:z.color,fillOpacity:0.15,weight:2,dashArray:'6,4'}).addTo(crimeMap)
+     .on('click',()=>{selectEvidence(z.id);document.getElementById('card-'+z.id)?.scrollIntoView({behavior:'smooth',block:'center'});})
+     .bindPopup(`<div class="map-popup-type">CRIME ZONE</div><div class="map-popup-name">${z.label}</div><button class="map-popup-btn" onclick="selectEvidence('${z.id}')">VIEW EVIDENCE →</button>`);
+  });
+  [{lat:-1.286,lng:36.817,label:'NAIROBI — Director Registry',color:'#9b59b6',detail:'Ravi Menon & Thomas Reinholt'},{lat:-1.1,lng:37.0,label:'PAN-AFRICA TIMBER',color:'#3498db',detail:'Financial flow — KES 48M'},{lat:-1.3,lng:36.85,label:'SHELL CO ADDRESS',color:'#9b59b6',detail:'Suite 4B, Waiyaki Way'}].forEach(n=>{
+    const icon=L.divIcon({className:'',html:`<div style="width:14px;height:14px;border-radius:50%;background:${n.color};border:2px solid ${n.color};box-shadow:0 0 8px ${n.color}66;"></div>`,iconSize:[14,14]});
+    L.marker([n.lat,n.lng],{icon}).addTo(crimeMap).bindPopup(`<div class="map-popup-type">ACTOR NODE</div><div class="map-popup-name">${n.label}</div><div class="map-popup-detail">${n.detail}</div>`);
+  });
+  [{coords:[[-0.8,36.5],[-0.4,36.5],[-0.4,37.0],[-0.8,37.0]],label:'MAU INDIGENOUS — CLEARED'},{coords:[[-1.4,36.9],[-1.1,36.9],[-1.1,37.3],[-1.4,37.3]],label:'EASTLANDS TRUST — CLEARED'}].forEach(c=>{
+    L.polygon(c.coords,{color:'#27ae60',fillColor:'#27ae60',fillOpacity:0.08,weight:1.5,dashArray:'3,6'}).addTo(crimeMap).bindPopup(`<div class="map-popup-type" style="color:#27ae60">CLEARED — LEGITIMATE</div><div class="map-popup-name">${c.label}</div>`);
+  });
+}
+function centerMap(){if(crimeMap)crimeMap.setView([-0.5,36.5],7,{animate:true});}
+function setMapLayer(type,btn){document.querySelectorAll('.map-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+// ══════════ AERIAL MAP ══════════════════════════════════════════════════
+function initAerialMap(){
+  if(aerialMap)return;
+  aerialMap=L.map('aerial-map',{center:[-0.2,36.2],zoom:7,zoomControl:false,attributionControl:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,opacity:0.6}).addTo(aerialMap);
+  L.control.zoom({position:'bottomright'}).addTo(aerialMap);
+
+  AERIAL_ZONES.forEach(z=>{
+    // Zone circle — pulsing
+    const circle=L.circle([z.lat,z.lng],{radius:z.radius,color:z.color,fillColor:z.color,fillOpacity:0.12,weight:2,dashArray:z.status==='ESCALATED'?'none':'6,4'}).addTo(aerialMap);
+    circle.on('click',()=>selectZone(z.id));
+
+    // Center marker
+    const icon=L.divIcon({
+      className:'',
+      html:`<div style="width:16px;height:16px;border-radius:50%;background:${z.color};border:2px solid rgba(255,255,255,0.7);box-shadow:0 0 12px ${z.color};cursor:pointer;"></div>`,
+      iconSize:[16,16],iconAnchor:[8,8]
+    });
+    L.marker([z.lat,z.lng],{icon}).addTo(aerialMap)
+     .on('click',()=>selectZone(z.id))
+     .bindPopup(`<div class="map-popup-type">SURVEILLANCE ZONE</div><div class="map-popup-name">${z.name}</div><div class="map-popup-detail" style="color:${z.color}">${z.status} · ${z.entity}</div><div class="map-popup-detail" style="margin-top:6px">CLEARING: ${z.clearing} ha/mo · THERMAL: ${z.thermal} · CONFIDENCE: ${z.confidence}%</div><button class="map-popup-btn" onclick="selectZone('${z.id}')">OPEN ZONE →</button>`);
+
+    // Satellite track overlay (simulated pass line)
+    if(z.status==='ESCALATED'){
+      const offset=0.8;
+      L.polyline([[z.lat+offset,z.lng-offset],[z.lat-offset,z.lng+offset]],{
+        color:'#16a085',weight:1.5,dashArray:'4,6',opacity:0.6
+      }).addTo(aerialMap);
+    }
+  });
+
+  // Acoustic sensor nodes
+  [{lat:-0.315,lng:35.634,id:'BIOGUARD-MAU-01',status:'5 events'},{lat:-0.298,lng:35.651,id:'BIOGUARD-MAU-02',status:'0 events'},{lat:-1.310,lng:36.798,id:'BIOGUARD-RFT-01',status:'Chainsaw confirmed'}].forEach(n=>{
+    const icon=L.divIcon({className:'',html:`<div style="width:10px;height:10px;background:#16a085;border-radius:50%;border:1px solid rgba(255,255,255,.6);box-shadow:0 0 6px #16a08566;"></div>`,iconSize:[10,10],iconAnchor:[5,5]});
+    L.marker([n.lat,n.lng],{icon}).addTo(aerialMap).bindPopup(`<div class="map-popup-type">ACOUSTIC NODE</div><div class="map-popup-name">${n.id}</div><div class="map-popup-detail">${n.status}</div>`);
+  });
+}
+
+function setAerialLayer(type,btn){
+  document.querySelectorAll('.aerial-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast('LAYER: '+type.toUpperCase()+' — ACTIVE');
+}
+
+function selectZone(id){
+  selectedZone=id;
+  const zone=AERIAL_ZONES.find(z=>z.id===id);
+  if(!zone)return;
+  document.querySelectorAll('.zone-card').forEach(c=>c.classList.remove('active-zone'));
+  document.getElementById('zone-'+id)?.classList.add('active-zone');
+  if(aerialMap)aerialMap.setView([zone.lat,zone.lng],10,{animate:true});
+  renderSensorFeedForZone(zone);
+}
+
+function requestAerialDeploy(){showToast('AERIAL ASSET TASKED — KWS AVIATION UNIT NOTIFIED');}
+
+// ══════════ ZONE LIST ══════════════════════════════════════════════════
+function renderZoneList(){
+  const el=document.getElementById('zone-list');
+  el.innerHTML=AERIAL_ZONES.map(z=>`
+    <div class="zone-card ${z.status.toLowerCase().replace(' ','_')} ${z.status==='ESCALATED'?'escalated':'monitoring'}" id="zone-${z.id}" onclick="selectZone('${z.id}')">
+      <div class="zone-alert">
+        <div class="zone-alert-dot ${z.status==='ESCALATED'?'red':'amber'}"></div>
+        <span class="zone-status ${z.status}">${z.status}</span>
+      </div>
+      <div class="zone-name">${z.name}</div>
+      <div style="font-family:var(--fm);font-size:9px;color:var(--t3);margin-bottom:8px;letter-spacing:.5px">${z.entity} · ${z.blockRef}</div>
+      <div class="zone-metrics">
+        <div class="zone-metric"><div class="zone-metric-label">NDVI DELTA</div><div class="zone-metric-value danger">${z.ndviDelta.toFixed(2)}</div></div>
+        <div class="zone-metric"><div class="zone-metric-label">CLEARING</div><div class="zone-metric-value warn">${z.clearing} ha/mo</div></div>
+        <div class="zone-metric"><div class="zone-metric-label">THERMAL</div><div class="zone-metric-value ${z.thermal>10?'danger':z.thermal>0?'warn':'safe'}">${z.thermal}</div></div>
+        <div class="zone-metric"><div class="zone-metric-label">CONFIDENCE</div><div class="zone-metric-value teal">${z.confidence}%</div></div>
+      </div>
+      <div style="margin-top:8px;font-family:var(--fm);font-size:9px;color:var(--t3)">NEXT PASS: <span style="color:#16a085">${z.nextPass}</span> · ${z.satellite}</div>
+    </div>
+  `).join('');
+}
+
+// ══════════ SENSOR FEED ════════════════════════════════════════════════
+function renderSensorFeedForZone(zone){
+  const el=document.getElementById('sensor-feed-content');
+  const zoneEvents=SENSOR_EVENTS.filter(e=>e.zone===zone.id);
+  const ts=new Date();
+
+  // Pattern alert if escalated
+  let html='';
+  if(zone.status==='ESCALATED'){
+    html+=`<div class="pattern-alert">
+      <div class="pattern-alert-title"><span class="pattern-alert-blink">▶</span> PATTERN CONFIRMED — IMMEDIATE ACTION REQUIRED</div>
+      <div class="pattern-alert-body">Converging signals detected: <strong>${zone.triggerPattern}</strong>. BioGuard intelligence threshold exceeded. Aerial monitoring escalated.</div>
+      <div class="pattern-actions">
+        <button class="pattern-btn escalate" onclick="showToast('ZONE ${zone.id} ESCALATED — KWS + DCI NOTIFIED')">▶ ESCALATE TO COMMAND</button>
+        <button class="pattern-btn satellite" onclick="showToast('SENTINEL-2 TASKED — MAU NORTH PRIORITY')">◉ TASK SATELLITE</button>
+        <button class="pattern-btn log" onclick="showToast('PATTERN LOGGED TO CHAIN')">LOG TO CHAIN</button>
+      </div>
+    </div>`;
+  }
+
+  // Satellite pass info
+  html+=`<div class="sat-pass">
+    <span class="sat-pass-icon">◉</span>
+    <div class="sat-pass-info">
+      <div class="sat-pass-label">NEXT SATELLITE PASS</div>
+      <div class="sat-pass-time">${zone.satellite}</div>
+      <div class="sat-pass-countdown">${zone.nextPass} · ${zone.name}</div>
+    </div>
+    <button class="sat-pass-btn" onclick="showToast('TASKING ${zone.satellite} — ${zone.name}')">TASK →</button>
+  </div>`;
+
+  // Events
+  zoneEvents.concat(SENSOR_EVENTS.filter(e=>e.zone!==zone.id).slice(0,2)).forEach((ev,i)=>{
+    const evTs=new Date(ts.getTime()-(i*4+Math.random()*3)*60000);
+    const minsAgo=Math.floor((ts-evTs)/60000);
+    html+=`<div class="sensor-event ${i<2?'new-event':''}">
+      <div class="sensor-event-top">
+        <span class="sensor-event-type ${ev.type}">${ev.type}</span>
+        <span class="sensor-event-ts">${minsAgo===0?'JUST NOW':minsAgo+'m ago'}</span>
+      </div>
+      <div class="sensor-event-body">${ev.body}</div>
+      <div class="sensor-event-meta">${ev.meta.map(m=>`<span>${m}</span>`).join('')}</div>
+      <div class="sensor-event-action">${ev.actions.map((a,ai)=>`<button class="${ai===0?'sensor-action-btn primary-action':ai===1?'sensor-action-btn teal-action':'sensor-action-btn'}" onclick="showToast('${a} — INITIATED')">${a}</button>`).join('')}</div>
+    </div>`;
+  });
+
+  el.innerHTML=html;
+}
+
+function startSensorFeed(){
+  // Initial state — show all zones summary
+  const el=document.getElementById('sensor-feed-content');
+  if(!selectedZone){
+    el.innerHTML=`<div class="sensor-empty">SELECT A ZONE<br>TO VIEW LIVE<br>SENSOR FEED</div>`;
+  }
+  // Auto-tick the aerial clock
+  clearInterval(sensorInterval);
+  sensorInterval=setInterval(()=>{
+    const now=new Date();
+    document.getElementById('aerial-time').textContent=now.toISOString().replace('T',' ').substring(0,19)+' UTC — LIVE';
+    // countdown stat
+    let mins=38,secs=Math.floor((Date.now()/1000)%60);
+    document.getElementById('next-pass-stat').textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+  },1000);
+}
+
+// ══════════ NETWORK GRAPH ═══════════════════════════════════════════════
+function renderActorList(){
+  document.getElementById('actor-list-content').innerHTML=ACTORS.map(a=>`<div class="actor-card ${a.status}"><div class="actor-name">${a.name}</div><div class="actor-role">${a.role}</div><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:3px;background:var(--border)"><div style="width:${a.score*10}%;height:100%;background:${a.color}"></div></div><span style="color:${a.color};font-family:var(--fm);font-size:10px">${a.score}/10</span></div></div>`).join('');
+}
+
+function renderNetworkGraph(){
+  renderActorList();
+  const svg=document.getElementById('network-svg');
+  const W=svg.parentElement.offsetWidth||700,H=svg.parentElement.offsetHeight||500;
+  const nodes=[{id:'Ravi Menon',x:W*.5,y:H*.25,r:28,color:'#e74c3c',label:'RAVI MENON'},{id:'Thomas Reinholt',x:W*.72,y:H*.2,r:22,color:'#e74c3c',label:'T. REINHOLT'},{id:'Continental Wildlife Corridor Fund',x:W*.28,y:H*.5,r:26,color:'#9b59b6',label:'CONTINENTAL WCF'},{id:'SilverLeaf Conservation Ltd',x:W*.55,y:H*.55,r:22,color:'#9b59b6',label:'SILVERLEAF'},{id:'GreenVeil Conservation Ltd',x:W*.8,y:H*.5,r:18,color:'#f39c12',label:'GREENVEIL'},{id:'Pan-Africa Timber',x:W*.35,y:H*.78,r:18,color:'#3498db',label:'PAN-AFRICA TIMBER'},{id:'Mau Indigenous Communities Alliance',x:W*.75,y:H*.82,r:14,color:'#27ae60',label:'MAU ICA'},{id:'Eastlands Urban Forest Trust',x:W*.9,y:H*.75,r:12,color:'#27ae60',label:'EASTLANDS UFT'}];
+  const links=[['Ravi Menon','Continental Wildlife Corridor Fund'],['Ravi Menon','SilverLeaf Conservation Ltd'],['Ravi Menon','Pan-Africa Timber'],['Thomas Reinholt','SilverLeaf Conservation Ltd'],['Thomas Reinholt','GreenVeil Conservation Ltd'],['Continental Wildlife Corridor Fund','Pan-Africa Timber']];
+  const nm=Object.fromEntries(nodes.map(n=>[n.id,n]));
+  svg.innerHTML=`<defs>${nodes.map(n=>`<radialGradient id="g${n.id.replace(/[^a-z]/gi,'')}"><stop offset="0%" stop-color="${n.color}" stop-opacity="0.6"/><stop offset="100%" stop-color="${n.color}" stop-opacity="0.1"/></radialGradient>`).join('')}</defs>${links.map(([a,b])=>`<line x1="${nm[a].x}" y1="${nm[a].y}" x2="${nm[b].x}" y2="${nm[b].y}" stroke="#1e2530" stroke-width="1.5" stroke-dasharray="4,4"/>`).join('')}${nodes.map(n=>`<g><circle cx="${n.x}" cy="${n.y}" r="${n.r+4}" fill="${n.color}" opacity="0.08"/><circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="url(#g${n.id.replace(/[^a-z]/gi,'')})" stroke="${n.color}" stroke-width="1.5"/><text x="${n.x}" y="${n.y+n.r+14}" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="9" fill="${n.color}" letter-spacing="1">${n.label}</text></g>`).join('')}`;
+}
+
+// ══════════ DOSSIER ══════════════════════════════════════════════════════
+function renderEntityList(){
+  const el=document.getElementById('entity-list');
+  if(!el)return;
+  el.innerHTML=DOSSIER_ENTITIES.map((e,i)=>{
+    const cls=e.status==='CONFIRMED'?'confirmed-entity':e.status==='PROBABLE'?'probable-entity':'cleared-entity';
+    return`<div class="entity-card ${cls}" id="ecard-${i}" onclick="selectEntity(${i})"><span class="entity-badge ${e.status}">${e.status}</span><div class="entity-name">${e.name}</div><div class="entity-score-row"><div class="entity-score-track"><div class="entity-score-fill" style="width:${e.status==='CLEARED'?3:e.score*10}%;background:${e.scoreColor}"></div></div><span class="entity-score-num" style="color:${e.scoreColor}">${e.score}/10</span></div><div class="entity-sub">${e.status==='CLEARED'?'LEGITIMATE — NO FRAUD SIGNALS':e.fraudTco2.toLocaleString()+' FRAUD tCO₂'}</div></div>`;
+  }).join('');
+}
+
+function selectEntity(i){
+  selectedEntity=i;
+  document.querySelectorAll('.entity-card').forEach(c=>c.classList.remove('active-entity'));
+  document.getElementById('ecard-'+i)?.classList.add('active-entity');
+  renderEntityDossier(DOSSIER_ENTITIES[i]);
+}
+
+function renderEntityDossier(e){
+  document.getElementById('dossier-empty').style.display='none';
+  const det=document.getElementById('dossier-detail');
+  det.style.display='flex';
+  document.getElementById('dossier-header').innerHTML=`<div style="flex:1"><div style="font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--t3);margin-bottom:6px;text-transform:uppercase">${e.type}</div><div class="dossier-entity-name">${e.name}</div><div class="dossier-entity-meta">REGISTERED: ${e.registered}<br>${e.registration}<br>BENEFICIAL OWNER: ${e.beneficial}${e.miningLicenses>0?`<br><span style="color:#e74c3c">⚠ ${e.miningLicenses} MINING LICENSE(S) OVERLAP CLAIM BOUNDARY</span>`:''}</div></div><div class="dossier-score-big"><div class="dossier-score-num" style="color:${e.scoreColor}">${e.score}</div><div class="dossier-score-label">THREAT SCORE /10</div><div style="margin-top:8px"><span class="entity-badge ${e.status}" style="display:inline-block">${e.status}</span></div></div>`;
+  document.getElementById('dossier-metrics').innerHTML=e.status==='CLEARED'?`<div class="fraud-metric"><div class="fraud-metric-label">STATUS</div><div class="fraud-metric-value green">CLEARED</div></div><div class="fraud-metric"><div class="fraud-metric-label">FRAUD tCO₂</div><div class="fraud-metric-value green">NONE</div></div><div class="fraud-metric"><div class="fraud-metric-label">VIOLATIONS</div><div class="fraud-metric-value green">0</div></div><div class="fraud-metric"><div class="fraud-metric-label">FRAUD VALUE</div><div class="fraud-metric-value green">—</div></div>`:`<div class="fraud-metric"><div class="fraud-metric-label">FRAUD tCO₂</div><div class="fraud-metric-value">${e.fraudTco2>0?e.fraudTco2.toLocaleString():'—'}</div></div><div class="fraud-metric"><div class="fraud-metric-label">FRAUD VALUE</div><div class="fraud-metric-value ${e.status==='PROBABLE'?'amber':''}">${e.fraudValue}</div></div><div class="fraud-metric"><div class="fraud-metric-label">VIOLATIONS</div><div class="fraud-metric-value">${e.violations}</div></div><div class="fraud-metric"><div class="fraud-metric-label">NETWORK LINKS</div><div class="fraud-metric-value">${e.links}</div></div>`;
+  const actions=e.playbook[currentRole]||e.playbook.dci;
+  const rl={dci:'DCI — CRIMINAL ACTION PLAYBOOK',lawfirm:'LAW FIRM — LEGAL ACTION PLAYBOOK',warden:'KWS WARDEN — FIELD ACTION PLAYBOOK'}[currentRole];
+  document.getElementById('dossier-playbook').innerHTML=`<div class="playbook-section-header">${rl}</div>${actions.map(a=>`<div class="playbook-action"><span class="playbook-arrow">▶</span><span class="playbook-priority ${a.priority}">${a.priority}</span><span class="playbook-text">${a.text}</span><button class="playbook-cta" onclick="showToast('${a.cta} — INITIATED')">${a.cta}</button></div>`).join('')}`;
+}
+
+// ══════════ EXPORT ══════════════════════════════════════════════════════
+const DOSSIER_FORMATS={dci:[{icon:'⬡ DCI',name:'CRIMINAL INVESTIGATION FILE',desc:'DCI Wildlife & Environment Unit — arrest warrant grounds, production order templates, INTERPOL referral paperwork.'},{icon:'◈ KWS',name:'KENYA WILDLIFE SERVICE BRIEF',desc:'Rapid-response brief for KWS rangers — GPS coordinates, threat level, patrol response, actor names.'},{icon:'◉ DPP',name:'DIRECTOR OF PUBLIC PROSECUTIONS BRIEF',desc:'Charge sheet ready — all evidence blocks cited, statutory offenses listed.'}],lawfirm:[{icon:'⚖ CIVIL',name:'CIVIL LITIGATION PACK',desc:'Pleadings-ready evidence with chain of custody, blockchain hash proofs, NDVI expert witness summary.'},{icon:'⬡ INJUNCTION',name:'URGENT INJUNCTION APPLICATION',desc:'Pre-drafted affidavit for urgent injunction to halt clearing.'},{icon:'◉ COMMUNITY',name:'COMMUNITY LAND RIGHTS CLAIM',desc:'Evidence pack for affected community land claims.'}],warden:[{icon:'◈ FIELD',name:'FIELD OPERATIONS BRIEF',desc:'GPS coordinates, threat type, clearing rate, armed activity status, ranger complement. Print-optimised.'},{icon:'⬡ AERIAL',name:'AERIAL RECONNAISSANCE REQUEST',desc:'KWS aviation unit tasking form — priority zones, threat coordinates, photographic evidence requirements.'},{icon:'◉ COMMS',name:'INCIDENT REPORT — KWS COMMAND',desc:'Standardised KWS incident report with all BioGuard findings pre-populated.'}]};
+
+function renderDossierFormats(){
+  const el=document.getElementById('dossier-formats');
+  const formats=DOSSIER_FORMATS[currentRole]||DOSSIER_FORMATS.dci;
+  el.innerHTML=formats.map(f=>`<div class="dossier-format" onclick="showToast('GENERATING ${f.name}...')"><div class="dossier-format-info"><div class="dossier-format-name">${f.name}</div><div class="dossier-format-desc">${f.desc}</div></div><div class="dossier-format-icon">EXPORT →</div></div>`).join('');
+}
+
+// ══════════ TOAST ═══════════════════════════════════════════════════════
+function showToast(msg){
+  const t=document.createElement('div');
+  t.style.cssText=`position:fixed;bottom:24px;right:24px;z-index:9999;background:#0a0c0f;border:1px solid var(--rc);padding:12px 20px;font-family:Share Tech Mono,monospace;font-size:11px;letter-spacing:1px;color:var(--rc);text-transform:uppercase;box-shadow:0 8px 32px rgba(0,0,0,0.5);max-width:360px;`;
+  t.textContent='▶ '+msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+
+// ══════════ INIT ════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  renderEvidenceList('ALL');
+  renderDossierFormats();
+  renderEntityList();
+  renderZoneList();
+  setTimeout(initCrimeMap,100);
+  // Live clock for stats
+  setInterval(()=>{
+    const s=Math.floor((Date.now()/1000)%60);
+    const m=37+Math.floor(s/60);
+    document.getElementById('next-pass-stat').textContent=`${String(m).padStart(2,'0')}:${String(59-s).padStart(2,'0')}`;
+  },1000);
+});
+</script>
+</body>
+</html>
