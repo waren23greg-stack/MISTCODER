@@ -1,19 +1,6 @@
-# MISTCODER -- Python Dependencies
-# Core pipeline requires Python 3.11+ stdlib only
-# No external dependencies required for MOD-01, MOD-02, MOD-03
-
-# Optional enhanced dependencies -- see requirements-optional.txt
-pandas
 numpy
-scikit-learn
-xgboost
-joblib
-matplotlib
-seaborn
+pandas
+scikit-learn==1.8.0
+xgboost==3.2.0
+joblib==1.5.3
 requests
-# optional for later
-earthengine-api
-geemap
-geopandas
-rasterio
-
