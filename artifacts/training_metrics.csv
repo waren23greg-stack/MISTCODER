@@ -1,0 +1,2 @@
+r2,rmse,mae,cv_r2_mean,cv_r2_std,best_iter,model_path
+0.7139834598697495,0.02782942453764701,0.010297136458623868,0.5554854960486942,0.19382546999840367,200,C:\Users\user\MISTCODER\MISTCODER\artifacts\xgb_east_africa_yield.joblib

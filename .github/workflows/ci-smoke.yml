@@ -1,0 +1,26 @@
+name: CI Smoke Test
+
+on:
+  push:
+    branches: [ main, feat/xgboost-east-africa ]
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run simulated training
+        run: |
+          python notebooks/xgboost_east_africa.py --simulate --n-samples 30
+      - name: Run inference smoke
+        run: |
+          python scripts/infer_from_saved_model.py
