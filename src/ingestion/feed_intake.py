@@ -17,9 +17,23 @@ from bs4 import BeautifulSoup
 log = logging.getLogger(__name__)
 
 FEEDS = {
-    "WHO": "https://www.who.int/feeds/entity/csr/don/en/rss.xml",
-    "ProMED": "https://promedmail.org/feed/",
+    # Africa CDC — Epidemic Intelligence tag feed (confirmed working)
+    "AfricaCDC_Intel": "https://africacdc.org/tag/epidemic-intelligence/feed/",
+    # WHO AFRO — Regional Office for Africa (confirmed working)
+    "WHO_AFRO":        "https://www.afro.who.int/rss.xml",
 }
+
+# ReliefWeb API v2 — East Africa country ISO codes
+RELIEFWEB_COUNTRIES = {
+    "Kenya":    "KEN",
+    "Uganda":   "UGA",
+    "Tanzania": "TZA",
+    "Ethiopia": "ETH",
+    "DRC":      "COD",
+    "Somalia":  "SOM",
+    "Rwanda":   "RWA",
+}
+RELIEFWEB_API = "https://api.reliefweb.int/v1/reports"
 
 # East Africa bounding box filter (lat -12 to 5, lon 28 to 42)
 EA_BBOX = {"lat_min": -12, "lat_max": 5, "lon_min": 28, "lon_max": 42}
@@ -77,18 +91,78 @@ def _incident_id(url: str) -> str:
     return "FEED-" + hashlib.md5(url.encode()).hexdigest()[:8].upper()
 
 
+def fetch_reliefweb() -> pd.DataFrame:
+    """Fetch disease outbreak reports from ReliefWeb API v2 for East Africa."""
+    import requests
+    rows = []
+    for country_name, iso in RELIEFWEB_COUNTRIES.items():
+        try:
+            resp = requests.post(
+                RELIEFWEB_API,
+                params={"appname": "eden-bioguard"},
+                json={
+                    "filter": {
+                        "operator": "AND",
+                        "conditions": [
+                            {"field": "primary_country.iso3", "value": iso},
+                            {"field": "theme.name", "value": "Health"},
+                        ]
+                    },
+                    "fields": {"include": ["title", "date.created", "url", "body-html", "source.name"]},
+                    "sort": ["date.created:desc"],
+                    "limit": 10,
+                },
+                timeout=15,
+            )
+            resp.raise_for_status()
+            for item in resp.json().get("data", []):
+                f = item.get("fields", {})
+                title   = f.get("title", "")
+                summary = _clean_html(f.get("body-html", ""))[:300]
+                full    = f"{title} {summary}".lower()
+                if not any(kw in full for kw in BIO_KEYWORDS):
+                    continue
+                rows.append({
+                    "incident_id":    _incident_id(item.get("href", title)),
+                    "pathogen_name":  _extract_pathogen(full),
+                    "detection_date": pd.to_datetime(f.get("date", {}).get("created", datetime.utcnow())),
+                    "region":         country_name,
+                    "location_lat":   REGION_COORDS.get(country_name.lower(), (None, None))[0],
+                    "location_lon":   REGION_COORDS.get(country_name.lower(), (None, None))[1],
+                    "case_count":     0,
+                    "source_type":    "community",
+                    "source_name":    "ReliefWeb",
+                    "title":          title,
+                    "summary":        summary,
+                    "url":            f.get("url", ""),
+                    "ndvi_mean":      None,
+                    "tree_cover_pct": None,
+                    "risk_score":     None,
+                })
+        except Exception as e:
+            log.warning("ReliefWeb API failed for %s: %s", country_name, e)
+
+    df = pd.DataFrame(rows)
+    log.info("ReliefWeb: fetched %d relevant health reports", len(df))
+    return df
+
+
 def fetch_feeds(feeds: dict = FEEDS) -> pd.DataFrame:
     rows = []
     for source, url in feeds.items():
         log.info("Fetching %s feed: %s", source, url)
         try:
-            feed = feedparser.parse(url)
+            import requests
+            resp = requests.get(url, timeout=15,
+                                headers={"User-Agent": "EDEN-BioGuard/1.0"})
+            resp.raise_for_status()
+            feed = feedparser.parse(resp.content)
         except Exception as e:
             log.warning("Failed to fetch %s: %s", source, e)
             continue
 
-        if feed.bozo:
-            log.warning("%s feed parse warning: %s", source, feed.bozo_exception)
+        if feed.bozo and not feed.entries:
+            log.warning("%s feed bozo with no entries: %s", source, feed.bozo_exception)
 
         for entry in feed.entries:
             title   = entry.get("title", "")
@@ -140,7 +214,9 @@ def save_live(df: pd.DataFrame, out: Path = Path("data/raw/live_incidents.csv"))
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s")
-    df = fetch_feeds()
+    rss_df = fetch_feeds()
+    api_df = fetch_reliefweb()
+    df = pd.concat([rss_df, api_df], ignore_index=True).drop_duplicates(subset=["incident_id"])
     if df.empty:
         print("No relevant alerts found — check network or feed URLs.")
     else:
