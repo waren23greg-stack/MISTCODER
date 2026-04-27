@@ -23,17 +23,6 @@ FEEDS = {
     "WHO_AFRO":        "https://www.afro.who.int/rss.xml",
 }
 
-# ReliefWeb API v2 — East Africa country ISO codes
-RELIEFWEB_COUNTRIES = {
-    "Kenya":    "KEN",
-    "Uganda":   "UGA",
-    "Tanzania": "TZA",
-    "Ethiopia": "ETH",
-    "DRC":      "COD",
-    "Somalia":  "SOM",
-    "Rwanda":   "RWA",
-}
-RELIEFWEB_API = "https://api.reliefweb.int/v1/reports"
 
 # East Africa bounding box filter (lat -12 to 5, lon 28 to 42)
 EA_BBOX = {"lat_min": -12, "lat_max": 5, "lon_min": 28, "lon_max": 42}
@@ -214,9 +203,7 @@ def save_live(df: pd.DataFrame, out: Path = Path("data/raw/live_incidents.csv"))
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s")
-    rss_df = fetch_feeds()
-    api_df = fetch_reliefweb()
-    df = pd.concat([rss_df, api_df], ignore_index=True).drop_duplicates(subset=["incident_id"])
+    df = fetch_feeds()
     if df.empty:
         print("No relevant alerts found — check network or feed URLs.")
     else:
